@@ -1,0 +1,12 @@
+{
+  "name": "aa-archigroup-static",
+  "version": "1.0.0",
+  "description": "Static site for AA archigroup",
+  "scripts": {
+    "build:css": "sass scss:css --style expanded",
+    "watch:css": "sass --watch scss:css --style expanded"
+  },
+  "devDependencies": {
+    "sass": "^1.70.0"
+  }
+}

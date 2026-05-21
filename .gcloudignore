@@ -1,0 +1,10 @@
+# Exclude node modules and temporary/development assets from GCP upload
+node_modules/
+.git/
+.vscode/
+package.json
+package-lock.json
+scss/
+webcopy-origin.txt
+.gcloudignore
+.dockerignore

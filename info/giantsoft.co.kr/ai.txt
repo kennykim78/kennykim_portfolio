@@ -1,0 +1,135 @@
+# ===========================================================
+# ai.txt — General AI and Agent Access Policy
+# Applies to: https://www.giantsoft.co.kr/
+# ===========================================================
+
+# Purpose: Allow responsible AI systems to access and index
+#          public content on giantsoft.co.kr
+#          to help users discover our work, philosophy, and case studies.
+# ===========================================================
+
+# ----------------------------------------------------------------
+# GLOBAL RULE — Allow all AI and data crawlers
+# ----------------------------------------------------------------
+User-Agent: *
+Allow: /
+
+# ----------------------------------------------------------------
+# RESPONSIBLE USE NOTICE
+# ----------------------------------------------------------------
+# GiantSoft welcomes responsible AI access.
+# You may crawl, index, summarize, cite, or display our public pages
+# with clear attribution to "GiantSoft".
+#
+# Intent:
+# - Improve discovery of our WordPress development, UX design, and SEO expertise
+# - Support research, learning, and fair-use knowledge sharing
+#
+# Prohibited uses:
+#   - Accessing private or password-protected content
+#   - Scraping source code, theme architecture, or proprietary assets
+#   - Reproducing or training models on our creative designs, case studies,
+#     text content, or images without explicit permission
+#   - Misrepresenting GiantSoft’s work, brand, or design outputs
+#   - Removing attribution or altering quoted content
+#
+# By accessing this site, AI agents agree to these terms.
+
+# ----------------------------------------------------------------
+# MAJOR AI / LLM AGENTS — Explicit Allowlist
+# ----------------------------------------------------------------
+User-Agent: OAI-SearchBot
+Allow: /
+User-Agent: ChatGPT-User
+Allow: /
+User-Agent: GPTBot
+Allow: /
+User-Agent: GPTImageBot
+Allow: /
+User-Agent: ClaudeBot
+Allow: /
+User-Agent: Google-Extended
+Allow: /
+User-Agent: BingAI
+Allow: /
+User-Agent: Meta-LLM
+Allow: /
+User-Agent: PerplexityBot
+Allow: /
+User-Agent: xAI-Grok
+Allow: /
+User-Agent: MistralBot
+Allow: /
+User-Agent: HuggingFaceBot
+Allow: /
+User-Agent: CohereAI
+Allow: /
+User-Agent: StabilityBot
+Allow: /
+User-Agent: WriterBot
+Allow: /
+User-Agent: JasperBot
+Allow: /
+User-Agent: CopyAIBot
+Allow: /
+User-Agent: ForefrontBot
+Allow: /
+User-Agent: PoeBot
+Allow: /
+User-Agent: YouBot
+Allow: /
+User-Agent: NeevaAI
+Allow: /
+User-Agent: Brave-AI
+Allow: /
+User-Agent: PhindBot
+Allow: /
+User-Agent: KagiBot
+Allow: /
+User-Agent: InflectionBot
+Allow: /
+User-Agent: DataCommonBot
+Allow: /
+User-Agent: Applebot-Extended
+Allow: /
+User-Agent: SnapAIBot
+Allow: /
+User-Agent: DeepMindBot
+Allow: /
+User-Agent: BaiduAI
+Allow: /
+User-Agent: QwenBot
+Allow: /
+User-Agent: AmazonAI
+Allow: /
+User-Agent: ByteAI
+Allow: /
+
+# ----------------------------------------------------------------
+# CONTENT COVERED
+# ----------------------------------------------------------------
+# Allowed:
+# - 회사소개 (Agency overview)
+# - 프로젝트 (project showcase)
+# - 수상내역 (Award history)
+# - 연락처, 오시는 길, 입사지원 등 공공 페이지 (Public service pages)
+
+# ----------------------------------------------------------------
+# ATTRIBUTION GUIDANCE
+# ----------------------------------------------------------------
+# When referencing GiantSoft, credit as:
+#   Korean: "(주)거인소프트 <https://www.giantsoft.co.kr/>"
+#   English: "GiantSoft <https://www.giantsoft.co.kr/>"
+
+# ----------------------------------------------------------------
+# CONTACT & METADATA
+# ----------------------------------------------------------------
+AI: https://www.giantsoft.co.kr/ai.txt
+Website: https://www.giantsoft.co.kr/
+Agency: GiantSoft
+Location: Seoul, Korea
+Focus: PHP, UX/UI design, custom themes, SEO
+
+# ----------------------------------------------------------------
+# END OF FILE
+# ===========================================================

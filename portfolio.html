@@ -1,18 +1,10 @@
 <!doctype html>
 <html data-head-attrs="" lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="image/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="css/index.css" />
+    <load src="inc/head-common.html" />
 
     <title>Portfolio — Wemeet 디지털 비즈니스 스튜디오</title>
     
-    <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:title" content="Portfolio — Wemeet 디지털 비즈니스 스튜디오" />
     <meta name="twitter:title" content="Portfolio — Wemeet 디지털 비즈니스 스튜디오" />
     <meta
@@ -23,8 +15,6 @@
       name="twitter:description"
       content="BMW MINI, 청와대, KBS, 직방 등 다양한 분야에서 가치를 증명한 Wemeet의 포트폴리오를 소개합니다."
     />
-    <meta property="og:image" content="/image/og.png" />
-    <meta name="twitter:image" content="/image/og.png" />
     <script>
       window.__PREFETCH_STATE__ = [];
     </script>
@@ -136,39 +126,12 @@
     </script>
     <meta name="head:count" content="10" />
     <link rel="stylesheet" href="css/project.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body data-head-attrs="">
     <div id="app" data-server-rendered="true">
       <div default-layout class="ko up">
         <div app-header class="">
-          <header>
-            <a class="logo" href="index.html"><h1 class="ir">Wemeet</h1></a>
-            <aside class="drawer">
-              <div class="drawer-holder">
-                <nav class="drawer-menu">
-                  <ul>
-                    <li><a href="about.html" class="">About</a></li>
-                    <li>
-                      <a
-                        aria-current="page"
-                        href="portfolio.html"
-                        class="router-link-active router-link-exact-active on"
-                        >Portfolio</a
-                      >
-                    </li>
-                    <li><a href="contact.html" class="">Contact</a></li>
-                  </ul>
-                </nav>
-              </div>
-            </aside>
-            <a class="btn-hamburger"></a>
-          </header>
+          <load src="inc/header.html" portfolio-active="router-link-active router-link-exact-active on" />
         </div>
         <div class="scroll-holder">
           <article class="content-body">
@@ -351,22 +314,7 @@
           </article>
         </div>
         <footer app-footer>
-          <p class="logo"><span class="ir">Wemeet</span></p>
-          <div class="copyright">
-            <p>
-              디지털 크리에이티브 스튜디오 (주)위밋 <br />
-              T 02.2187.0500 &nbsp;|&nbsp; E godvisitor@gmail.com <br />
-              10년+ 디지털 비즈니스 디자인/테크 리더십 & AI 솔루션
-            </p>
-            <p>
-              COPYRIGHT © 2026 Wemeet Studio. <br />
-              ALL RIGHTS RESERVED.
-            </p>
-          </div>
-          <div class="out-link">
-            <a href="portfolio.html">Portfolio</a>
-            <a href="contact.html">Contact</a>
-          </div>
+          <load src="inc/footer.html" />
         </footer>
       </div>
     </div>
@@ -376,9 +324,7 @@
     </script>
 
     <!-- Added GSAP, ScrollTrigger, Swiper and custom scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <load src="inc/scripts-common.html" />
     <script src="js/custom-animation.js"></script>
   </body>
 </html>

@@ -68,12 +68,22 @@
     line-height: 1.35;
   }
 }
+@media (min-width: 768px) {
+  [main] .hero .text p {
+    letter-spacing: normal !important;
+  }
+}
 @media (min-width: 1024px) {
   [main] .hero .text p {
     margin-right: 2.5rem;
     margin-left: 2.5rem;
   }
 }
+/* Fix overlapping hero text after animation */
+[main] .hero .text p {
+  letter-spacing: normal !important;
+}
+
 @media (min-width: 1920px) {
   [main] .hero .text p {
     width: 110rem;
@@ -1555,4 +1565,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */

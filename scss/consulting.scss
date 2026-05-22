@@ -1,0 +1,262 @@
+/* 프리미엄 컨택트 폼 및 서브 스타일 */
+.consulting-layout {
+  padding: 60px 0 120px;
+  background: #000;
+}
+.consulting-container {
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 메일폼 스타일 */
+.premium-form {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 24px;
+  padding: 50px 60px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  margin-bottom: 80px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .premium-form {
+    padding: 30px 24px;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+@media (max-width: 768px) {
+  .form-group.full-width {
+    grid-column: span 1;
+  }
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+
+  .required-mark {
+    color: #ff3b30;
+    margin-left: 3px;
+    font-weight: 700;
+  }
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #111;
+  background-color: #fafafa;
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #111;
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* 체크박스 영역 */
+.checkbox-area {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px; 
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  height: 22px;
+  width: 22px;
+  background-color: #fafafa;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  margin-right: 12px;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+  border-color: #111;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #111;
+  border-color: #111;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 8px;
+  top: 4px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-label {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.checkbox-label a {
+  color: #666;
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
+/* 약관 상자 */
+.privacy-policy-box {
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 15px 20px;
+  height: 80px;
+  overflow-y: auto;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #777;
+  margin-top: 8px;
+}
+
+/* 제출 버튼 */
+.submit-btn-wrap {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.premium-submit-btn {
+  display: inline-block;
+  padding: 20px 80px;
+  background: #111;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.premium-submit-btn:hover {
+  background: #333;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 하단 정보 블록 */
+.consulting-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 768px) {
+  .consulting-details-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+}
+
+.detail-card {
+  text-align: center;
+}
+
+.detail-card .icon-wrap {
+  width: 60px;
+  height: 60px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: #fff;  
+}
+
+.detail-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.detail-card p {
+  font-size: 2rem;
+  color: #FFF;
+  line-height: 1.6;
+}
+
+.detail-card p a {
+  color: #FFF;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.detail-card p a:hover {
+  color: #fff;
+  text-decoration: underline;
+}

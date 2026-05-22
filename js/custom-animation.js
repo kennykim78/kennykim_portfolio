@@ -67,41 +67,154 @@ document.addEventListener("DOMContentLoaded", () => {
     lastScrollY = safeScrollY;
   });
 
-  // 1.5. About Page Hero Text Reveal Animation (Left-to-Right Stagger Motion)
-  const aboutHeroText = document.querySelector(".about section.hero .text p");
-  if (aboutHeroText) {
-    const textSpans = aboutHeroText.querySelectorAll("span");
-    textSpans.forEach(span => {
-      const childs = Array.from(span.childNodes);
-      let newHTML = "";
-      childs.forEach(node => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const chars = node.textContent.split("").map(char => {
-            // Preserve whitespace and clean empty lines
-            if (char.trim() === "") {
-              return char;
-            }
-            return `<span class="char-anim" style="display: inline-block; opacity: 0; transform: translateX(-15px); filter: blur(2px);">${char}</span>`;
-          }).join("");
-          newHTML += chars;
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-          newHTML += node.outerHTML; // Keep <br class="hidden-tp-down"> intact
-        }
-      });
-      span.innerHTML = newHTML;
+  // 1.5. About Page Hero Image Scroll Scale (with Pinning)
+  const aboutHeroSection = document.querySelector('.about section.hero');
+  if (aboutHeroSection) {
+    const heroImages = aboutHeroSection.querySelectorAll('.slider .swiper-slide img');
+    
+    // 전체 히어로 섹션을 화면에 고정(pin)하고, 스크롤량에 비례해 이미지를 스케일링할 타임라인 정의
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: aboutHeroSection,
+        start: 'top top',
+        end: '+=800 top',  // 800px 동안 고정되어 풍성하게 축소 연출
+        scrub: true,
+        pin: true,         // 이미지가 줄어드는 동안 뷰포트에 고정!
+        pinSpacing: true,  // 고정 상태 해제 시 다음 영역이 이어서 자연스럽게 위로 스크롤되도록 여백 처리
+      }
     });
 
-    // GSAP staggered animation from left to right
-    gsap.to(aboutHeroText.querySelectorAll(".char-anim"), {
-      opacity: 1,
-      x: 0,
-      filter: "blur(0px)",
-      duration: 0.8,
-      stagger: 0.02,
-      ease: "power2.out",
-      delay: 0.5
+    // 모든 Swiper 슬라이드 이미지들이 동시에 scale: 1 -> 0.5 로 축소되도록 타임라인에 등록
+    heroImages.forEach(img => {
+      tl.fromTo(
+        img,
+        { scale: 1 },
+        {
+          scale: 0.5,
+          ease: 'none',
+        },
+        0 // 동시에(0초 시점에) 함께 시작
+      );
     });
   }
+
+  // =============================================
+  // 1.6. Footer BG — Canvas Line Pattern (Scroll Reactive)
+  // =============================================
+  (function () {
+    const canvas = document.getElementById('linePattern');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const footer = document.querySelector('[app-footer]');
+    if (!footer) return;
+
+    let progressObj = { value: 0 };
+
+    // Canvas 크기를 실제 픽셀 크기로 동기화 (retina 대응)
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = canvas.offsetWidth * dpr;
+      canvas.height = canvas.offsetHeight * dpr;
+      ctx.scale(dpr, dpr);
+      drawPattern(progressObj.value);
+    }
+
+    // 패턴 그리기 (progress: 0=숨김, 1=전체 표시)
+    function drawPattern(progress) {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = '#555';
+      ctx.lineCap = 'butt'; // 정밀한 바코드 형태를 위해 단면을 Flat하게 설정
+
+      // 사용자 요청 스펙 반영: 
+      // 1단: 1px 선, 20px 간격
+      // 2단: 2px 선, 30px 간격
+      // 3단: 3px 선, 40px 간격
+      const rows = [
+        { lineWidth: 1, gap: 30 },
+        { lineWidth: 5, gap: 50 },
+        { lineWidth: 1, gap: 30 }
+      ];
+
+      const rowDuration = 1 / rows.length; // 각 row에 할당되는 스크롤 영역 비율 (대략 0.33씩)
+
+      for (let row = 0; row < rows.length; row++) {
+        const config = rows[row];
+        ctx.lineWidth = config.lineWidth;
+        const gap = config.gap;
+
+        // 3개 단을 Y축으로 빈틈없이 붙여 배치 (1px 오차 방지 겹침 적용)
+        const yBase = row * (h / 3);
+        const fullHeight = (h / 3) + 1;
+
+        // 현재 row의 스크롤 구간 범위 계산 (0~1 사이)
+        const rowStart = row * rowDuration;
+        
+        // 전체 progress 중 해당 row 영역에서의 진행도 (0 ~ 1)
+        let rowProgress = (progress - rowStart) / rowDuration;
+        rowProgress = Math.max(0, Math.min(1, rowProgress));
+
+        for (let x = 0; x < w; x += gap) {
+          // 각 row 내부에서 왼쪽에서 오른쪽으로 흐르듯이 등장하는 stagger 딜레이 계산
+          const delay = (x / w) * 0.4; // row 안에서의 가로 딜레이 비율 (40%)
+          let localProgress = (rowProgress - delay) / 0.6; // 남은 60% 비율 동안 선이 자라남
+          localProgress = Math.max(0, Math.min(1, localProgress));
+
+          const drawHeight = fullHeight * localProgress;
+
+          if (drawHeight <= 0) continue;
+
+          ctx.beginPath();
+          // 하단 고정
+          ctx.moveTo(x, yBase + fullHeight);
+          // 위로 깔끔하게 자라나는 형태
+          ctx.lineTo(x, yBase + fullHeight - drawHeight);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // GSAP ScrollTrigger로 부드러운 스크롤 인터랙션 연동
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.to(progressObj, {
+        value: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: footer,
+          start: 'top bottom', // footer가 화면 하단에 진입할 때부터 시작
+          end: 'bottom bottom', // footer가 화면에 완전히 보일 때 완료
+          scrub: true,
+          onUpdate: (self) => {
+            drawPattern(progressObj.value);
+          }
+        }
+      });
+    } else {
+      // GSAP이 로드되지 않았을 경우를 대비한 부드러운 Vanilla Scroll Fallback
+      window.addEventListener('scroll', () => {
+        const rect = footer.getBoundingClientRect();
+        const winHeight = window.innerHeight;
+        
+        // footer가 하단에 진입한 비율 계산
+        const totalDist = winHeight + rect.height;
+        const currentDist = winHeight - rect.top;
+        const rawProgress = currentDist / totalDist;
+        const progress = Math.max(0, Math.min(1, rawProgress));
+        
+        progressObj.value = progress;
+        drawPattern(progress);
+      }, { passive: true });
+    }
+
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    // 초기 실행
+    resizeCanvas();
+  })();
+
 
   // 2. Hero Animation
   const hero = document.querySelector(".hero");

@@ -1,0 +1,175 @@
+<!doctype html>
+<html data-head-attrs="" lang="ko">
+  <head>
+    <load src="inc/head-common.html" />
+
+    <title>Consulting — Wemeet 디지털 비즈니스 스튜디오</title>
+    
+    <meta property="og:title" content="Consulting — Wemeet 디지털 비즈니스 스튜디오" />
+    <meta name="twitter:title" content="Consulting — Wemeet 디지털 비즈니스 스튜디오" />
+    <meta
+      property="og:description"
+      content="Knock on Consulting. 신뢰와 믿음을 주셔서 감사합니다. 성공적인 프로젝트를 약속합니다."
+    />
+    <meta
+      name="twitter:description"
+      content="Knock on Consulting. 신뢰와 믿음을 주셔서 감사합니다. 성공적인 프로젝트를 약속합니다."
+    />
+    <link rel="stylesheet" href="css/project.css" />
+    <link rel="stylesheet" href="css/consulting.css" />
+  </head>
+  <body data-head-attrs="">
+    <div id="app" data-server-rendered="true">
+      <div default-layout class="ko up">
+        <div app-header class="">
+          <load src="inc/header.html" consulting-active="router-link-active router-link-exact-active on" />
+        </div>
+        
+        <div class="scroll-holder">
+          <article class="content-body">
+            <div class="sub-layout projects">
+              <div class="wrapper">
+                <!-- ===================== HERO ===================== -->
+                <section class="hero">
+                  <h2>Knock on Consulting</h2>
+                  <p style="white-space: pre-line;">
+                    신뢰와 믿음을 주셔서 감사합니다.
+                    성공적인 프로젝트를 약속합니다.
+                  </p>
+                </section>
+              </div>
+            </div>
+
+            <!-- ===================== FORM SECTION ===================== -->
+            <div class="consulting-layout">
+              <div class="consulting-container">
+                
+                <form class="premium-form" onsubmit="alert('문의가 성공적으로 접수되었습니다. 신속하게 답변해 드리겠습니다.'); return false;">
+                  <div class="form-grid">
+                    
+                    <!-- 상호명 -->
+                    <div class="form-group">
+                      <label for="company_name">상호명 <span class="required-mark">*</span></label>
+                      <input type="text" id="company_name" name="company_name" placeholder="회사명 또는 브랜드명을 입력해주세요." required />
+                    </div>
+                    
+                    <!-- 담당자명 -->
+                    <div class="form-group">
+                      <label for="manager_name">담당자명 <span class="required-mark">*</span></label>
+                      <input type="text" id="manager_name" name="manager_name" placeholder="담당자 성함을 입력해주세요." required />
+                    </div>
+                    
+                    <!-- 연락처 -->
+                    <div class="form-group">
+                      <label for="phone_number">연락처 <span class="required-mark">*</span></label>
+                      <input type="text" id="phone_number" name="phone_number" placeholder="예: 010-0000-0000" required />
+                    </div>
+                    
+                    <!-- 제작예산 -->
+                    <div class="form-group">
+                      <label for="budget">제작예산</label>
+                      <input type="text" id="budget" name="budget" placeholder="생각하시는 대략적인 예산을 입력해주세요. (선택)" />
+                    </div>
+                    
+                    <!-- 이메일주소 -->
+                    <div class="form-group full-width">
+                      <label for="email_address">이메일 주소 <span class="required-mark">*</span></label>
+                      <input type="email" id="email_address" name="email_address" placeholder="연락받으실 이메일 주소를 입력해주세요." required />
+                    </div>
+                    
+                    <!-- 요청사항 -->
+                    <div class="form-group full-width">
+                      <label for="message">요청사항 <span class="required-mark">*</span></label>
+                      <textarea id="message" name="message" placeholder="프로젝트의 목적, 희망 완료일정 등 상세한 내용을 남겨주세요." required></textarea>
+                    </div>
+                    
+                    <!-- 체크박스 그룹 -->
+                    <div class="form-group full-width checkbox-area">
+                      
+                      <!-- 방문상담요청 -->
+                      <label class="custom-checkbox">
+                        <input type="checkbox" id="visit_consult" name="visit_consult" />
+                        <span class="checkmark"></span>
+                        <span class="checkbox-label">오프라인 방문 상담을 요청합니다.</span>
+                      </label>
+                      
+                      <!-- 개인정보취급방침 동의 -->
+                      <label class="custom-checkbox">
+                        <input type="checkbox" id="privacy_agree" name="privacy_agree" required />
+                        <span class="checkmark"></span>
+                        <span class="checkbox-label">개인정보 취급방침에 동의합니다. <span style="color: #ff3b30;">(필수)</span></span>
+                      </label>
+                      
+                      <!-- 개인정보취급방침 약관 텍스트 상자 -->
+                      <div class="privacy-policy-box">
+                        Wemeet은 고객님의 문의 내역 접수 및 원활한 상담을 위해 상호명, 담당자명, 연락처, 예산, 이메일 등의 개인정보를 수집 및 이용합니다. 수집된 개인정보는 목적 달성 및 상담 처리가 완료된 후 지체 없이 파기됩니다. 개인정보 수집 및 이용에 동의를 거부하실 수 있으나, 동의하지 않으실 경우 문의 접수 및 상담에 제한이 있을 수 있습니다.
+                      </div>
+                      
+                    </div>
+                  </div>
+                  
+                  <div class="submit-btn-wrap">
+                    <button type="submit" class="premium-submit-btn">프로젝트 문의 신청하기</button>
+                  </div>
+                </form>
+
+                <!-- ===================== BOTTOM INFO SECTION ===================== -->
+                <div class="consulting-details-grid">
+                  
+                  <!-- 전화번호 -->
+                  <div class="detail-card">
+                    <div class="icon-wrap">
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg>
+                    </div>
+                    <h4>전화번호</h4>
+                    <p>02-2187-0500</p>
+                  </div>
+                  
+                  <!-- 이메일 -->
+                  <div class="detail-card">
+                    <div class="icon-wrap">
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                      </svg>
+                    </div>
+                    <h4>이메일</h4>
+                    <p><a href="mailto:godvisitor@gmail.com">godvisitor@gmail.com</a></p>
+                  </div>
+                  
+                  <!-- 주소 -->
+                  <div class="detail-card">
+                    <div class="icon-wrap">
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </div>
+                    <h4>주소</h4>
+                    <p>서울 강서구 <br>강서로 47마길 48, 2F</p>
+                  </div>
+                  
+                </div>
+
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <footer app-footer>
+          <load src="inc/footer.html" />
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      window.__INITIAL_STATE__ = "{}";
+    </script>
+
+    <!-- Added GSAP, ScrollTrigger, Swiper and custom scripts -->
+    <load src="inc/scripts-common.html" />
+    <script src="js/custom-animation.js"></script>
+  </body>
+</html>

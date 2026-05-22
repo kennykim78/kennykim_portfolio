@@ -1355,20 +1355,21 @@ button.swiper-pagination-bullet {
   position: sticky;
   bottom: 0;
 }
-[app-footer]:after {
-  content: "";
-  display: block;
+[app-footer] .footer-bg-wrap {
   position: absolute;
   left: 0;
   bottom: 0;
-  right: auto;
+  right: 0;
   top: auto;
   width: 100%;
   height: 13.8125rem;
-  background-image: url(../image/common/footer-bg.s.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+[app-footer] #linePattern {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 [app-footer] .logo img {
   display: block;
@@ -1434,12 +1435,8 @@ button.swiper-pagination-bullet {
     grid-gap: 0;
     grid-template-columns: 284px auto;
   }
-  [app-footer]:after {
+  [app-footer] .footer-bg-wrap {
     height: 18.8125rem;
-    background-image: url(../image/common/footer-bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
   }
   [app-footer] .logo {
     grid-column: auto;

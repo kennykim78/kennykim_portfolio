@@ -1125,8 +1125,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cTl.fromTo(
       careersImgCover,
-      { width: "75%", height: "55%" },
-      { width: "100%", height: "100%", ease: "none" },
+      { width: "75%", height: "55%", opacity: 0 },
+      { width: "100%", height: "100%", opacity: 1, ease: "none" },
       0,
     );
     cTl.fromTo(careersImg, { y: "15%" }, { y: "0%", ease: "none" }, 0);
@@ -1143,10 +1143,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const listContainer = document.querySelector('.projects .list');
   const listUl = document.querySelector('.projects .list ul[name="fade"]');
 
-  // 외부 데이터(portfolioData)를 기반으로 동적 DOM 렌더링을 안전하게 우선 수행
+  // 외부 데이터(portfolioData)를 기반으로 동적 DOM 렌더링을 안전하게 우선 수행 (id 바인딩 추가)
   if (listUl && typeof window !== "undefined" && window.portfolioData) {
-    listUl.innerHTML = window.portfolioData.map(item => `
-      <li>
+    listUl.innerHTML = window.portfolioData.map((item, idx) => `
+      <li id="portItem${idx}">
         <div class="img">
           <img cdn-img src="${item.img}" alt="${item.title}" />
         </div>
@@ -1157,6 +1157,66 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </li>
     `).join('');
+  }
+
+  // 포트폴리오 탭 메뉴 동적 생성 및 자석 밑줄/양방향 연동 추가
+  const portTabsUl = document.getElementById('portfolioTabs');
+  if (portTabsUl && typeof window !== "undefined" && window.portfolioData) {
+    portTabsUl.innerHTML = window.portfolioData.map((item, idx) => `
+      <li class="${idx === 0 ? 'selected' : ''}">
+        <a href="#portItem${idx}"><em>${item.shortTitle}</em></a>
+      </li>
+    `).join('');
+  }
+
+  const portTabsWrapper = document.querySelector('.portfolio-tab-list-style');
+  const portTabsLineSpan = document.querySelector('.portfolio-tab-list-style .tab-on-icon.move-line > span');
+
+  function getPortLiMetrics(li) {
+    if (!li) return null;
+    const leftOuter = li.offsetLeft;
+    const a = li.querySelector("a");
+    if (!a) return null;
+    const leftInner = a.offsetLeft;
+    const width = a.offsetWidth;
+    return { left: leftOuter + leftInner, width: width };
+  }
+
+  function animatePortLineToLi(li, durSeconds) {
+    if (!portTabsLineSpan) return;
+    const m = getPortLiMetrics(li);
+    if (!m) return;
+
+    gsap.to(portTabsLineSpan, {
+      left: m.left,
+      width: m.width,
+      duration: durSeconds !== undefined ? durSeconds : 0.3,
+      ease: "power2.out",
+      overwrite: "auto"
+    });
+  }
+
+  function syncPortfolioTabActive(idx) {
+    if (!portTabsUl) return;
+    const targetLi = portTabsUl.children[idx];
+    if (!targetLi) return;
+
+    portTabsUl.querySelectorAll('li').forEach(li => li.classList.remove('selected'));
+    targetLi.classList.add('selected');
+    animatePortLineToLi(targetLi, 0.3);
+    
+    // 가로 스크롤 오토 포커스 슬라이딩
+    targetLi.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+
+  // 초기 라인 배치
+  if (portTabsUl && portTabsUl.children.length > 0) {
+    setTimeout(() => {
+      const selected = portTabsUl.querySelector("li.selected");
+      if (selected) {
+        animatePortLineToLi(selected, 0);
+      }
+    }, 200);
   }
 
   // 동적으로 렌더링된 li 요소들을 획득하여 애니메이션 바인딩
@@ -1215,7 +1275,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         desktopTimeline = gsap.timeline();
 
-        // 9개의 아이템 간 교차 오버랩 루프
+        // 33개의 아이템 간 교차 오버랩 루프 (각 스왑 호출마다 탭 동기화 트리거 추가)
         for (let i = 0; i < listItems.length - 1; i++) {
           const currentLi = listItems[i];
           const nextLi = listItems[i + 1];
@@ -1226,7 +1286,6 @@ document.addEventListener("DOMContentLoaded", () => {
           const nextInfo = nextLi.querySelector('.info-box');
 
           // (1) 현재 카드가 위로 작아지며 날아감과 동시에 (2) 다음 카드가 아래서 자라나며 등장
-          // 두 연출을 동일 듀레이션(0.8s)으로 묶고 오버랩시킵니다.
           desktopTimeline
             // 현재 카드가 위로 상승하며 페이드 아웃
             .to(curImg, { scale: 0.82, opacity: 0, y: -150, ease: "power2.inOut", duration: 0.8 })
@@ -1241,13 +1300,15 @@ document.addEventListener("DOMContentLoaded", () => {
             .to(nextInfo, { scale: 1, opacity: 1, y: 0, ease: "power2.inOut", duration: 0.8 }, "<")
             .call(() => {
               nextLi.classList.add('active');
+              // 탭 동기화 트리거 연계
+              syncPortfolioTabActive(i + 1);
             }, null, "-=0.4")
 
             // 카드 안착 후 읽을 수 있도록 유지(Hold) 구간 생성
             .to({}, { duration: 0.5 });
         }
 
-        // 전체 컨테이너 Pin
+        // 전체 컨테이너 Pin 및 실시간 onUpdate 탭 추적 결합
         scrollTriggerInstance = ScrollTrigger.create({
           trigger: listContainer,
           start: "top 12%",
@@ -1256,12 +1317,25 @@ document.addEventListener("DOMContentLoaded", () => {
           pinSpacing: true,
           scrub: 1.2,
           animation: desktopTimeline,
-          invalidateOnRefresh: true
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            const panelCount = listItems.length;
+            const idx = Math.max(0, Math.min(panelCount - 1, Math.round(progress * (panelCount - 1))));
+            
+            const targetLi = portTabsUl.children[idx];
+            if (targetLi && !targetLi.classList.contains('selected')) {
+              portTabsUl.querySelectorAll('li').forEach(li => li.classList.remove('selected'));
+              targetLi.classList.add('selected');
+              animatePortLineToLi(targetLi, 0.3);
+              targetLi.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+          }
         });
 
       } else {
-        // 모바일/태블릿: 순차적으로 아래서 위로 부드럽게 페이드인 등장 (스크롤 겹침 없음)
-        listItems.forEach((li) => {
+        // 모바일/태블릿: 순차적으로 아래서 위로 부드럽게 페이드인 등장 (스크롤 겹침 없음, onEnter 탭 연동 추가)
+        listItems.forEach((li, idx) => {
           gsap.fromTo(
             li,
             { y: 50, opacity: 0 },
@@ -1273,7 +1347,10 @@ document.addEventListener("DOMContentLoaded", () => {
               scrollTrigger: {
                 trigger: li,
                 start: "top 85%",
-                once: true
+                once: true,
+                onEnter: () => {
+                  syncPortfolioTabActive(idx);
+                }
               },
             },
           );
@@ -1283,6 +1360,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 초기 활성화
     initPortfolioAnimation();
+
+    // 탭 클릭 수직 스크롤 양방향 연동 제어 바인딩
+    if (portTabsUl) {
+      portTabsUl.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const li = a.closest('li');
+          if (!li) return;
+          const idx = Array.from(portTabsUl.children).indexOf(li);
+          if (idx < 0) return;
+
+          syncPortfolioTabActive(idx);
+
+          if (window.innerWidth >= 1024 && scrollTriggerInstance) {
+            const startScroll = scrollTriggerInstance.start;
+            const endScroll = scrollTriggerInstance.end;
+            const totalDist = endScroll - startScroll;
+            const panelCount = listItems.length;
+
+            const stepDur = 1.3;
+            const targetTime = idx * stepDur;
+            const totalDur = (panelCount - 1) * stepDur + 0.1;
+            const progress = Math.max(0, Math.min(1, targetTime / totalDur));
+            const targetY = startScroll + (totalDist * progress);
+
+            window.scrollTo({
+              top: targetY + 2,
+              behavior: "smooth"
+            });
+          } else {
+            const targetCard = listItems[idx];
+            if (targetCard) {
+              const headerHeight = document.querySelector('[app-header] header').offsetHeight || 50;
+              const tabHeight = portTabsWrapper ? portTabsWrapper.offsetHeight : 50;
+              const yOffset = -(headerHeight + tabHeight + 20);
+              const y = targetCard.getBoundingClientRect().top + window.scrollY + yOffset;
+              window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    }
 
     // 리사이즈 디바운스 및 재정비
     let prevWidth = window.innerWidth;

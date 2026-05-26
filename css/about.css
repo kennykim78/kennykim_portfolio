@@ -183,6 +183,12 @@
   margin-left: 2.25rem;
 }
 
+.about section.philosophy .visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .about section.philosophy ul {
   margin-top: 3rem;
 }
@@ -339,11 +345,11 @@
   line-height: 1.5;
   font-weight: 600;
   transition: background-size 0.1s;
-  color: rgba(255, 255, 255, 0.4);
+  color: #000;
   -webkit-background-clip: text;
   background-clip: text;
   background-repeat: no-repeat;
-  background-image: linear-gradient(#fff, #fff);
+  background-image: linear-gradient(#000, #000);
   background-size: 0 100%;
 }
 
@@ -1262,6 +1268,4 @@
   .about section.hero .text p span:last-child {
     font-size: 3.5rem;
   }
-}
-
-/*# sourceMappingURL=about.css.map */
+}/*# sourceMappingURL=about.css.map */

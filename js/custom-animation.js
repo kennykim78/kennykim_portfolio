@@ -98,6 +98,54 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // 1.55. About Top Anchor Menu Sync (click + scroll active state)
+  const aboutRoot = document.querySelector('.about');
+  const aboutAnchorMenu = aboutRoot ? aboutRoot.querySelector('.anchor-menu') : null;
+  if (aboutRoot && aboutAnchorMenu) {
+    const aboutAnchorLinks = Array.from(aboutAnchorMenu.querySelectorAll('a'));
+    const aboutSections = [
+      aboutRoot.querySelector('section.philosophy'),
+      aboutRoot.querySelector('section.core-value'),
+      aboutRoot.querySelector('section.history'),
+      aboutRoot.querySelector('section.vision'),
+    ];
+
+    const setActiveAboutAnchor = (index) => {
+      aboutAnchorLinks.forEach((link, i) => {
+        link.classList.toggle('on', i === index);
+      });
+    };
+
+    aboutAnchorLinks.forEach((link, index) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetSection = aboutSections[index];
+        if (!targetSection) return;
+
+        const headerEl = document.querySelector('[app-header] header');
+        const headerOffset = headerEl ? headerEl.offsetHeight : 0;
+        const anchorOffset = aboutAnchorMenu ? aboutAnchorMenu.offsetHeight : 0;
+        const targetY = targetSection.getBoundingClientRect().top + window.scrollY - headerOffset - anchorOffset - 8;
+
+        setActiveAboutAnchor(index);
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      });
+    });
+
+    aboutSections.forEach((section, index) => {
+      if (!section) return;
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => setActiveAboutAnchor(index),
+        onEnterBack: () => setActiveAboutAnchor(index),
+      });
+    });
+
+    setActiveAboutAnchor(0);
+  }
+
   // =============================================
   // 1.6. Footer BG — Canvas Line Pattern (Scroll Reactive)
   // =============================================
@@ -1479,12 +1527,58 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (document.querySelector(".about .history .slider")) {
-    new Swiper(".about .history .slider", {
+    const historySwiper = new Swiper(".about .history .slider", {
       effect: "fade",
       speed: 1000,
       loop: true,
       autoplay: { delay: 3000, disableOnInteraction: false },
     });
+
+    const historySection = document.querySelector(".about section.history");
+    if (historySection) {
+      const navLinks = Array.from(historySection.querySelectorAll(".menu nav a"));
+      const historyGroups = Array.from(historySection.querySelectorAll(".content > ul"));
+
+      const setActiveHistoryNav = (index) => {
+        if (!navLinks.length || !historyGroups.length) return;
+        const safeIndex = Math.max(0, Math.min(index, Math.min(navLinks.length, historyGroups.length) - 1));
+
+        navLinks.forEach((link, i) => {
+          link.classList.toggle("on", i === safeIndex);
+        });
+
+        if (historySwiper && historySwiper.realIndex !== safeIndex) {
+          historySwiper.slideToLoop(safeIndex, 600);
+        }
+      };
+
+      historyGroups.forEach((group, index) => {
+        ScrollTrigger.create({
+          trigger: group,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => setActiveHistoryNav(index),
+          onEnterBack: () => setActiveHistoryNav(index),
+        });
+      });
+
+      navLinks.forEach((link, index) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetGroup = historyGroups[index];
+          if (!targetGroup) return;
+
+          const headerEl = document.querySelector("[app-header] header");
+          const headerOffset = headerEl ? headerEl.offsetHeight : 0;
+          const targetY = targetGroup.getBoundingClientRect().top + window.scrollY - headerOffset - 16;
+
+          setActiveHistoryNav(index);
+          window.scrollTo({ top: targetY, behavior: "smooth" });
+        });
+      });
+
+      setActiveHistoryNav(0);
+    }
   }
 
   if (document.querySelector(".leadership .visual .slider")) {

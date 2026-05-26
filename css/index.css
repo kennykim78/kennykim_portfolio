@@ -427,16 +427,23 @@ img {
 
 .btn.arrow:after {
   content: "";
-  display: inline-block;
-  margin-left: 0.375rem;
-  vertical-align: text-top;
+  display: block;
+  margin-left: 0.5rem;
+  vertical-align: middle;
   width: 1.25rem;
   height: 1.25rem;
   background-image: url(../image/common/ico-seemore-w.svg);
   background-repeat: no-repeat;
   background-size: contain;
+  flex-shrink: 0;
   transform: translate(0);
   transition: transform 0.3s 0s;
+}
+
+.btn.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .no-touch .btn.arrow:hover:after {
@@ -1091,6 +1098,20 @@ button.swiper-pagination-bullet {
   bottom: auto;
   width: 100%;
   z-index: 49;
+}
+
+html.drawer-open,
+body.drawer-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+[app-header].drawer-open {
+  pointer-events: auto;
+}
+
+[app-header].drawer-open header {
+  transform: translateY(0);
 }
 
 [app-header].roll {

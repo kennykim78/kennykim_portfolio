@@ -5,15 +5,35 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. Header & Drawer
   const appHeader = document.querySelector("[app-header]");
   const hamburger = document.querySelector(".btn-hamburger");
+  const drawer = appHeader ? appHeader.querySelector(".drawer") : null;
   const body = document.body;
 
-  if (hamburger && appHeader) {
-    hamburger.addEventListener("click", () => {
-      appHeader.classList.toggle("drawer-open");
-      if (appHeader.classList.contains("drawer-open")) {
-        hamburger.classList.add("on");
-      } else {
-        hamburger.classList.remove("on");
+  if (hamburger && appHeader && drawer) {
+    const setDrawerOpen = (open) => {
+      appHeader.classList.toggle("drawer-open", open);
+      drawer.classList.toggle("on", open);
+      hamburger.classList.toggle("on", open);
+      body.classList.toggle("drawer-open", open);
+      document.documentElement.classList.toggle("drawer-open", open);
+
+      if (open) {
+        appHeader.classList.remove("roll");
+      }
+    };
+
+    hamburger.addEventListener("click", (e) => {
+      e.preventDefault();
+      const nextOpen = !drawer.classList.contains("on");
+      setDrawerOpen(nextOpen);
+    });
+
+    drawer.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setDrawerOpen(false));
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && drawer.classList.contains("on")) {
+        setDrawerOpen(false);
       }
     });
   }
@@ -26,6 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Safeguard for iOS elastic scrolling/rubber-banding
     const safeScrollY = currentScrollY < 0 ? 0 : currentScrollY;
+
+    if (drawer && drawer.classList.contains("on")) {
+      appHeader.classList.remove("roll");
+      lastScrollY = safeScrollY;
+      return;
+    }
 
     if (safeScrollY > 50) {
       appHeader.classList.add("scrolled");
@@ -1160,6 +1186,14 @@ document.addEventListener("DOMContentLoaded", () => {
     lsTl.fromTo(lsBgItems[2], { y: 220 }, { y: -120 }, 0);
     lsTl.fromTo(lsBgItems[3], { y: 100 }, { y: -100 }, 0);
     lsTl.fromTo(lsBgItems[4], { x: -30 }, { x: 0 }, 0);
+
+    if (lsBgItems[5]) {
+      lsTl.fromTo(lsBgItems[5], { x: 40, y: 80, opacity: 0.3 }, { x: 0, y: -80, opacity: 1 }, 0);
+    }
+
+    if (lsBgItems[6]) {
+      lsTl.fromTo(lsBgItems[6], { x: -20, y: 60, opacity: 0.3 }, { x: 0, y: -70, opacity: 1 }, 0);
+    }
   }
 
   // 8. Careers Parallax

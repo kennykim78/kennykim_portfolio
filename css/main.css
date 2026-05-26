@@ -754,11 +754,11 @@
     gap: 0;
   }
   [main] .service-con-out-container .service-txt-top strong {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   [main] .service-con-out-container .service-txt-top h5 {
     margin-top: 1.2rem;
-    font-size: 2rem;
+    font-size: 1.65rem;
     line-height: 1.35;
   }
   [main] .service-con-out-container .service-txt-bottom {
@@ -767,12 +767,12 @@
   }
   [main] .service-con-out-container .service-txt-bottom .txt {
     margin-bottom: 1.2rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.55;
   }
   [main] .service-con-out-container .service-txt-bottom .dot-txt li {
     padding-left: 1.5rem;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     line-height: 1.45;
   }
   [main] .service-con-out-container .service-txt-bottom .dot-txt li + li {
@@ -785,15 +785,15 @@
     margin-top: 1.5rem;
   }
   [main] .service-con-out-container .service-txt-bottom .cir-group dt {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
   [main] .service-con-out-container .service-txt-bottom .cir-group dd {
     margin-top: 0.8rem;
   }
   [main] .service-con-out-container .service-txt-bottom .cir-group dd span {
     padding: 0 1.2rem;
-    font-size: 1.05rem;
-    line-height: 2.2rem;
+    font-size: 0.9rem;
+    line-height: 2rem;
     border-radius: 4rem;
     margin-bottom: 0.6rem;
     margin-right: 0.6rem;
@@ -826,7 +826,7 @@
 }
 [main] .leadership {
   position: relative;
-  height: 75rem;
+  height: 88rem;
   margin-top: 7.5rem;
 }
 
@@ -850,57 +850,79 @@
 
 [main] .leadership .bg .bg-item:nth-of-type(1) {
   left: -3.0625rem;
-  top: 4rem;
+  top: 3.25rem;
   right: auto;
   bottom: auto;
 }
 
 [main] .leadership .bg .bg-item:nth-of-type(1) img {
-  width: 15.875rem;
+  width: 17.75rem;
 }
 
 [main] .leadership .bg .bg-item:nth-of-type(2) {
   right: -3.5rem;
-  top: 9.75rem;
+  top: 17rem;
   left: auto;
   bottom: auto;
 }
 
 [main] .leadership .bg .bg-item:nth-of-type(2) img {
-  width: 8.125rem;
+  width: 6.875rem;
 }
 
 [main] .leadership .bg .bg-item:nth-of-type(3) {
   left: 1.875rem;
-  top: 35.4375rem;
+  top: 55rem;
   right: auto;
   bottom: auto;
 }
 
 [main] .leadership .bg .bg-item:nth-of-type(3) img {
-  width: 9.5rem;
+  width: 11.25rem;
 }
 
 [main] .leadership .bg .bg-item:nth-of-type(4) {
   right: -2.0625rem;
-  top: 46.5rem;
+  top: 70.5rem;
   left: auto;
   bottom: auto;
 }
 
 [main] .leadership .bg .bg-item:nth-of-type(4) img {
-  width: 8.625rem;
+  width: 7.75rem;
 }
 
 [main] .leadership .bg .bg-item:nth-of-type(5) {
   left: -1.5rem;
-  top: 60.5625rem;
+  top: 81.75rem;
   right: auto;
   bottom: auto;
 }
 
 [main] .leadership .bg .bg-item:nth-of-type(5) img {
-  width: 10.375rem;
+  width: 13.5rem;
+}
+
+[main] .leadership .bg .bg-item:nth-of-type(6) {
+  right: 2.5rem;
+  top: 40.5rem;
+  left: auto;
+  bottom: auto;
+}
+
+[main] .leadership .bg .bg-item:nth-of-type(6) img {
+  width: 6.5rem;
+}
+
+[main] .leadership .bg .bg-item:nth-of-type(7) {
+  left: 34%;
+  top: 24rem;
+  right: auto;
+  bottom: auto;
+}
+
+[main] .leadership .bg .bg-item:nth-of-type(7) img {
+  width: 8.25rem;
 }
 
 [main] .leadership .sticky-holder {
@@ -1163,7 +1185,7 @@
   /* Removed legacy fixed span popups */
   /* Removed legacy .services styling */
   [main] .leadership {
-    height: 118.75rem;
+    height: 136rem;
   }
   [main] .leadership .sticky-holder h3 {
     font-size: 1.25rem;
@@ -1181,48 +1203,66 @@
   }
   [main] .leadership .bg .bg-item:nth-of-type(1) {
     left: -0.4375rem;
-    top: 9.375rem;
+    top: 7.5rem;
     right: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(1) img {
-    width: 20.5rem;
+    width: 23.5rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(2) {
     right: 0;
-    top: 24.4375rem;
+    top: 36rem;
     left: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(2) img {
-    width: 10.5625rem;
+    width: 8.75rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(3) {
     left: 7.5rem;
-    top: 51rem;
+    top: 76rem;
     right: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(3) img {
-    width: 14.875rem;
+    width: 17.5rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(4) {
     right: 0.9375rem;
-    top: 77.5625rem;
+    top: 109rem;
     left: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(4) img {
-    width: 11.4375rem;
+    width: 10rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(5) {
     left: 2.625rem;
-    top: 95.0625rem;
+    top: 126rem;
     right: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(5) img {
-    width: 18rem;
+    width: 22rem;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(6) {
+    right: 3.5rem;
+    top: 54rem;
+    left: auto;
+    bottom: auto;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(6) img {
+    width: 8.5rem;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(7) {
+    left: 39%;
+    top: 20.25rem;
+    right: auto;
+    bottom: auto;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(7) img {
+    width: 12.5rem;
   }
   [main] .careers .sticky-holder .img-cover .img {
     background-image: url(../image/main/careers-img.png);
@@ -1289,52 +1329,70 @@
     margin-top: 3.75rem;
   }
   [main] .leadership {
-    height: 118.75rem;
+    height: 142rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(1) {
     left: -3.125rem;
-    top: 9.375rem;
+    top: 8rem;
     right: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(1) img {
-    width: 28.75rem;
+    width: 31rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(2) {
     right: -3.125rem;
-    top: 24.4375rem;
+    top: 38rem;
     left: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(2) img {
-    width: 17.375rem;
+    width: 14rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(3) {
     left: 13.5625rem;
-    top: 51rem;
+    top: 79rem;
     right: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(3) img {
-    width: 20.3125rem;
+    width: 23rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(4) {
     right: 2.8125rem;
-    top: 77.5625rem;
+    top: 113rem;
     left: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(4) img {
-    width: 15.6875rem;
+    width: 13rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(5) {
     left: 2.75rem;
-    top: 95.0625rem;
+    top: 130rem;
     right: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(5) img {
-    width: 17.875rem;
+    width: 24.5rem;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(6) {
+    right: 10.5rem;
+    top: 58rem;
+    left: auto;
+    bottom: auto;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(6) img {
+    width: 11rem;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(7) {
+    left: 41%;
+    top: 24rem;
+    right: auto;
+    bottom: auto;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(7) img {
+    width: 15rem;
   }
   [main] .leadership .sticky-holder p {
     margin-top: 1.5rem;
@@ -1387,48 +1445,66 @@
   }
   [main] .leadership .bg .bg-item:nth-of-type(1) {
     left: -3.125rem;
-    top: 9.375rem;
+    top: 8rem;
     right: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(1) img {
-    width: 28.75rem;
+    width: 31rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(2) {
     right: -3.125rem;
-    top: 24.4375rem;
+    top: 38rem;
     left: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(2) img {
-    width: 17.375rem;
+    width: 14rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(3) {
     left: 13.5625rem;
-    top: 51rem;
+    top: 79rem;
     right: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(3) img {
-    width: 20.3125rem;
+    width: 23rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(4) {
     right: 2.8125rem;
-    top: 77.5625rem;
+    top: 113rem;
     left: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(4) img {
-    width: 15.6875rem;
+    width: 13rem;
   }
   [main] .leadership .bg .bg-item:nth-of-type(5) {
     left: 2.75rem;
-    top: 95.0625rem;
+    top: 130rem;
     right: auto;
     bottom: auto;
   }
   [main] .leadership .bg .bg-item:nth-of-type(5) img {
-    width: 17.875rem;
+    width: 24.5rem;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(6) {
+    right: 10.5rem;
+    top: 58rem;
+    left: auto;
+    bottom: auto;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(6) img {
+    width: 11rem;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(7) {
+    left: 41%;
+    top: 24rem;
+    right: auto;
+    bottom: auto;
+  }
+  [main] .leadership .bg .bg-item:nth-of-type(7) img {
+    width: 15rem;
   }
   [main] .leadership .sticky-holder p {
     margin-top: 1.5rem;

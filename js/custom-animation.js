@@ -1140,6 +1140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 9. Additional Sub-Page Animations
   // 9. Premium Portfolio Cinematic Stack Animation (Desktop Overlay & Responsive Fallback)
+  const animContainer = document.querySelector('.portfolio-animation-container');
   const listContainer = document.querySelector('.projects .list');
   const listUl = document.querySelector('.projects .list ul[name="fade"]');
 
@@ -1323,8 +1324,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 전체 컨테이너 Pin 및 실시간 onUpdate 탭 추적 결합
         scrollTriggerInstance = ScrollTrigger.create({
-          trigger: listContainer,
-          start: "top 12%",
+          trigger: animContainer || listContainer,
+          start: "top 4.875rem",
           end: `+=${listItems.length * 750}`, // 스크롤 감도
           pin: true,
           pinSpacing: true,

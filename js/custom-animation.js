@@ -1196,6 +1196,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function autoScrollTabCenter(targetLi) {
+    if (!portTabsWrapper || !targetLi) return;
+    const wrapperWidth = portTabsWrapper.offsetWidth;
+    const liLeft = targetLi.offsetLeft;
+    const liWidth = targetLi.offsetWidth;
+    const targetScrollLeft = liLeft - (wrapperWidth / 2) + (liWidth / 2);
+    
+    portTabsWrapper.scrollTo({
+      left: targetScrollLeft,
+      behavior: 'smooth'
+    });
+  }
+
   function syncPortfolioTabActive(idx) {
     if (!portTabsUl) return;
     const targetLi = portTabsUl.children[idx];
@@ -1206,7 +1219,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animatePortLineToLi(targetLi, 0.3);
     
     // 가로 스크롤 오토 포커스 슬라이딩
-    targetLi.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    autoScrollTabCenter(targetLi);
   }
 
   // 초기 라인 배치
@@ -1328,7 +1341,7 @@ document.addEventListener("DOMContentLoaded", () => {
               portTabsUl.querySelectorAll('li').forEach(li => li.classList.remove('selected'));
               targetLi.classList.add('selected');
               animatePortLineToLi(targetLi, 0.3);
-              targetLi.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+              autoScrollTabCenter(targetLi);
             }
           }
         });
@@ -1379,10 +1392,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const totalDist = endScroll - startScroll;
             const panelCount = listItems.length;
 
-            const stepDur = 1.3;
-            const targetTime = idx * stepDur;
-            const totalDur = (panelCount - 1) * stepDur + 0.1;
-            const progress = Math.max(0, Math.min(1, targetTime / totalDur));
+            const progress = idx / (panelCount - 1);
             const targetY = startScroll + (totalDist * progress);
 
             window.scrollTo({

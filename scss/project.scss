@@ -22,6 +22,12 @@
     transform: translate(10px);
   }
 }
+
+/* 포트폴리오 페이지 가로 스크롤바 방지 (GSAP pin spacer 등으로 인한 overflow 차단) */
+/* overflow-x: clip 은 hidden과 달리 position:sticky를 방해하지 않습니다 */
+html, body {
+  overflow-x: clip;
+}
 .projects .search-area {
   margin-top: 3.75rem;
 }
@@ -596,5 +602,114 @@
   .projects .list ul li .info-box .desc {
     font-size: 1.125rem;
     margin-top: 0.75rem;
+  }
+}
+/* ===================== PORTFOLIO TABS STYLES ===================== */
+.portfolio-tab-wrapper-style {
+  position: sticky;
+  top: 3.75rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 40;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+@media (min-width: 1024px) {
+  .portfolio-tab-wrapper-style {
+    top: 4.875rem;
+  }
+}
+
+.portfolio-tab-list-style {
+  position: relative;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  ul {
+    position: relative;
+    display: inline-flex;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+      position: relative;
+      width: auto;
+      padding: 0 1.25rem;
+      z-index: 1;
+
+      a {
+        display: block;
+        width: 100%;
+        padding: 1.15rem 0;
+        text-decoration: none;
+        cursor: pointer;
+
+        em {
+          display: block;
+          text-align: center;
+          font-size: 1.1rem;
+          font-weight: 500;
+          letter-spacing: -0.025em;
+          color: rgba(0, 0, 0, 0.4);
+          transition: color 0.3s, font-weight 0.3s;
+          font-style: normal;
+        }
+      }
+
+      &.selected {
+        z-index: 2;
+        a em {
+          color: #000;
+          font-weight: 700;
+        }
+      }
+
+      &:hover a em {
+        color: #000;
+      }
+    }
+  }
+
+  .move-line-wrap {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+
+  .tab-on-icon.move-line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    height: 2px;
+    width: 100%;
+
+    & > span {
+      height: 2px;
+      background-color: #000;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transition: background-color 0.5s;
+    }
   }
 }

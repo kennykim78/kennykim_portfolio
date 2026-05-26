@@ -759,9 +759,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function getMaxX() {
-      const total = track.scrollWidth;
       const vw = window.innerWidth;
-      return Math.max(0, total - vw);
+      const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 10;
+      const gap = fontSize * 8; // 8rem (gap between panels in CSS)
+      const padding = fontSize * 6; // 6rem (initial padding)
+      const count = panels.length;
+      // 마지막 패널의 왼쪽 오프셋 = 패널 인덱스 * (vw + gap) + padding
+      // 총 이동 거리 = 마지막 패널의 우측 끝 - 뷰포트 너비
+      if (count <= 1) return 0;
+      const lastPanelLeft = (count - 1) * vw + (count - 1) * gap + padding;
+      return Math.max(0, lastPanelLeft);
     }
 
     function buildPCTimelines() {
@@ -1114,6 +1121,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const careersText = document.querySelector(".careers .align-warp");
 
   if (careers && careersImgCover && careersImg) {
+    // FOUC 방지: ScrollTrigger 준비 전에 즉시 초기 상태 지정
+    gsap.set(careersImgCover, { width: "75%", height: "55%", opacity: 0 });
+
     const cTl = gsap.timeline({
       scrollTrigger: {
         trigger: careers,

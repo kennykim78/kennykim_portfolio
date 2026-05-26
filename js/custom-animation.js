@@ -1139,23 +1139,160 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 9. Additional Sub-Page Animations
+  // 9. Premium Portfolio Cinematic Stack Animation (Desktop Overlay & Responsive Fallback)
+  const listContainer = document.querySelector('.projects .list');
+  const listUl = document.querySelector('.projects .list ul[name="fade"]');
+
+  // 외부 데이터(portfolioData)를 기반으로 동적 DOM 렌더링을 안전하게 우선 수행
+  if (listUl && typeof window !== "undefined" && window.portfolioData) {
+    listUl.innerHTML = window.portfolioData.map(item => `
+      <li>
+        <div class="img">
+          <img cdn-img src="${item.img}" alt="${item.title}" />
+        </div>
+        <div class="info-box">
+          <h3 class="title">${item.title}</h3>
+          <p class="category">${item.category}</p>
+          <p class="desc">${item.desc}</p>
+        </div>
+      </li>
+    `).join('');
+  }
+
+  // 동적으로 렌더링된 li 요소들을 획득하여 애니메이션 바인딩
   const listItems = document.querySelectorAll('ul[name="fade"] > li');
-  listItems.forEach((li) => {
-    gsap.fromTo(
-      li,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: li,
-          start: "top 90%",
-        },
-      },
-    );
-  });
+
+  if (listContainer && listItems.length > 0) {
+    let scrollTriggerInstance = null;
+    let desktopTimeline = null;
+
+    function initPortfolioAnimation() {
+      // 1. 기존 리소스 클리어
+      if (scrollTriggerInstance) {
+        scrollTriggerInstance.kill(true);
+        scrollTriggerInstance = null;
+      }
+      if (desktopTimeline) {
+        desktopTimeline.kill();
+        desktopTimeline = null;
+      }
+
+      gsap.killTweensOf(listItems);
+      listItems.forEach(li => {
+        gsap.killTweensOf(li);
+        const img = li.querySelector('.img');
+        const info = li.querySelector('.info-box');
+        if (img) {
+          gsap.killTweensOf(img);
+          gsap.set(img, { clearProps: "all" });
+        }
+        if (info) {
+          gsap.killTweensOf(info);
+          gsap.set(info, { clearProps: "all" });
+        }
+        gsap.set(li, { clearProps: "all" });
+        li.classList.remove('active');
+      });
+
+      // 2. 분기 처리 (1024px 이상 해상도만 프리미엄 시네마틱 오버랩 핀 적용)
+      const isDesktop = window.innerWidth >= 1024;
+
+      if (isDesktop) {
+        // 첫 번째 카드는 로드 시 100% 활성화, 나머지는 opacity 0 / 아래 대기
+        listItems.forEach((li, idx) => {
+          const img = li.querySelector('.img');
+          const info = li.querySelector('.info-box');
+          
+          if (idx === 0) {
+            gsap.set(li, { opacity: 1 });
+            gsap.set([img, info], { scale: 1, opacity: 1, y: 0 });
+            li.classList.add('active');
+          } else {
+            gsap.set(li, { opacity: 0 });
+            gsap.set([img, info], { scale: 0.82, opacity: 0, y: 150 });
+          }
+        });
+
+        desktopTimeline = gsap.timeline();
+
+        // 9개의 아이템 간 교차 오버랩 루프
+        for (let i = 0; i < listItems.length - 1; i++) {
+          const currentLi = listItems[i];
+          const nextLi = listItems[i + 1];
+          
+          const curImg = currentLi.querySelector('.img');
+          const curInfo = currentLi.querySelector('.info-box');
+          const nextImg = nextLi.querySelector('.img');
+          const nextInfo = nextLi.querySelector('.info-box');
+
+          // (1) 현재 카드가 위로 작아지며 날아감과 동시에 (2) 다음 카드가 아래서 자라나며 등장
+          // 두 연출을 동일 듀레이션(0.8s)으로 묶고 오버랩시킵니다.
+          desktopTimeline
+            // 현재 카드가 위로 상승하며 페이드 아웃
+            .to(curImg, { scale: 0.82, opacity: 0, y: -150, ease: "power2.inOut", duration: 0.8 })
+            .to(curInfo, { scale: 0.85, opacity: 0, y: -80, ease: "power2.inOut", duration: 0.8 }, "<")
+            .call(() => {
+              currentLi.classList.remove('active');
+            }, null, "-=0.4")
+            
+            // 다음 카드가 레이어 opacity:1 처리되며 아래서 솟아오름
+            .to(nextLi, { opacity: 1, duration: 0.1 }, "-=0.8")
+            .to(nextImg, { scale: 1, opacity: 1, y: 0, ease: "power2.inOut", duration: 0.8 }, "-=0.8")
+            .to(nextInfo, { scale: 1, opacity: 1, y: 0, ease: "power2.inOut", duration: 0.8 }, "<")
+            .call(() => {
+              nextLi.classList.add('active');
+            }, null, "-=0.4")
+
+            // 카드 안착 후 읽을 수 있도록 유지(Hold) 구간 생성
+            .to({}, { duration: 0.5 });
+        }
+
+        // 전체 컨테이너 Pin
+        scrollTriggerInstance = ScrollTrigger.create({
+          trigger: listContainer,
+          start: "top 12%",
+          end: `+=${listItems.length * 750}`, // 스크롤 감도
+          pin: true,
+          pinSpacing: true,
+          scrub: 1.2,
+          animation: desktopTimeline,
+          invalidateOnRefresh: true
+        });
+
+      } else {
+        // 모바일/태블릿: 순차적으로 아래서 위로 부드럽게 페이드인 등장 (스크롤 겹침 없음)
+        listItems.forEach((li) => {
+          gsap.fromTo(
+            li,
+            { y: 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: li,
+                start: "top 85%",
+                once: true
+              },
+            },
+          );
+        });
+      }
+    }
+
+    // 초기 활성화
+    initPortfolioAnimation();
+
+    // 리사이즈 디바운스 및 재정비
+    let prevWidth = window.innerWidth;
+    window.addEventListener("resize", () => {
+      if (Math.abs(window.innerWidth - prevWidth) > 50) {
+        prevWidth = window.innerWidth;
+        initPortfolioAnimation();
+      }
+    });
+  }
 
   if (document.querySelector(".about .hero .slider")) {
     new Swiper(".about .hero .slider", {

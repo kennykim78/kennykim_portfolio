@@ -87,9 +87,7 @@
   font-weight: 700;
 }
 
-.form-group input[type=text],
-.form-group input[type=email],
-.form-group textarea {
+.form-group input[type=text], .form-group input[type=email], .form-group textarea {
   width: 100%;
   padding: 16px 20px;
   font-size: 1rem;
@@ -103,8 +101,7 @@
   box-sizing: border-box;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.form-group input:focus, .form-group textarea:focus {
   border-color: #111;
   background-color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -379,6 +376,4 @@
 .detail-card p a:hover {
   color: #fff;
   text-decoration: underline;
-}
-
-/*# sourceMappingURL=consulting.css.map */
+}/*# sourceMappingURL=consulting.css.map */

@@ -130,8 +130,7 @@
   will-change: width, height, top, left;
 }
 
-[main] .hero .cover .cover-clip .cover-image img,
-[main] .hero .cover .cover-clip .cover-image video {
+[main] .hero .cover .cover-clip .cover-image img, [main] .hero .cover .cover-clip .cover-image video {
   position: absolute;
   left: 0;
   top: 0;
@@ -154,35 +153,11 @@
   background: rgba(0, 0, 0, 0.4);
 }
 
-[main] .hero[data-o="+"] .cover .cover-clip,
-[main] .hero[data-o="11"] .cover .cover-clip,
-[main] .hero[data-o="10"] .cover .cover-clip,
-[main] .hero[data-o="9"] .cover .cover-clip,
-[main] .hero[data-o="8"] .cover .cover-clip,
-[main] .hero[data-o="7"] .cover .cover-clip,
-[main] .hero[data-o="6"] .cover .cover-clip,
-[main] .hero[data-o="5"] .cover .cover-clip,
-[main] .hero[data-o="4"] .cover .cover-clip,
-[main] .hero[data-o="3"] .cover .cover-clip,
-[main] .hero[data-o="2"] .cover .cover-clip,
-[main] .hero[data-o="1"] .cover .cover-clip,
-[main] .hero[data-o="0"] .cover .cover-clip {
+[main] .hero[data-o="+"] .cover .cover-clip, [main] .hero[data-o="11"] .cover .cover-clip, [main] .hero[data-o="10"] .cover .cover-clip, [main] .hero[data-o="9"] .cover .cover-clip, [main] .hero[data-o="8"] .cover .cover-clip, [main] .hero[data-o="7"] .cover .cover-clip, [main] .hero[data-o="6"] .cover .cover-clip, [main] .hero[data-o="5"] .cover .cover-clip, [main] .hero[data-o="4"] .cover .cover-clip, [main] .hero[data-o="3"] .cover .cover-clip, [main] .hero[data-o="2"] .cover .cover-clip, [main] .hero[data-o="1"] .cover .cover-clip, [main] .hero[data-o="0"] .cover .cover-clip {
   overflow: visible;
 }
 
-[main] .hero[data-o="+"] .cover .text,
-[main] .hero[data-o="11"] .cover .text,
-[main] .hero[data-o="10"] .cover .text,
-[main] .hero[data-o="9"] .cover .text,
-[main] .hero[data-o="8"] .cover .text,
-[main] .hero[data-o="7"] .cover .text,
-[main] .hero[data-o="6"] .cover .text,
-[main] .hero[data-o="5"] .cover .text,
-[main] .hero[data-o="4"] .cover .text,
-[main] .hero[data-o="3"] .cover .text,
-[main] .hero[data-o="2"] .cover .text,
-[main] .hero[data-o="1"] .cover .text,
-[main] .hero[data-o="0"] .cover .text {
+[main] .hero[data-o="+"] .cover .text, [main] .hero[data-o="11"] .cover .text, [main] .hero[data-o="10"] .cover .text, [main] .hero[data-o="9"] .cover .text, [main] .hero[data-o="8"] .cover .text, [main] .hero[data-o="7"] .cover .text, [main] .hero[data-o="6"] .cover .text, [main] .hero[data-o="5"] .cover .text, [main] .hero[data-o="4"] .cover .text, [main] .hero[data-o="3"] .cover .text, [main] .hero[data-o="2"] .cover .text, [main] .hero[data-o="1"] .cover .text, [main] .hero[data-o="0"] .cover .text {
   position: sticky;
   top: 0 !important;
   padding-bottom: 6.25rem;
@@ -745,8 +720,7 @@
   [main] .service-con-out-container .service-tab-con .area {
     padding-top: calc(5rem + 55px) !important;
   }
-  [main] .service-con-out-container .service-con.add-260226.is-sticky-mode .service-tab-wrapper-style,
-  [main] .service-con-out-container .service-tab-wrapper-style {
+  [main] .service-con-out-container .service-con.add-260226.is-sticky-mode .service-tab-wrapper-style, [main] .service-con-out-container .service-tab-wrapper-style {
     top: 5rem;
   }
   [main] .service-con-out-container .service-tab-list-style {
@@ -1190,8 +1164,7 @@
     flex-direction: row;
     align-items: center;
   }
-  [main] .featured .swiper-navigation .swiper-button-prev,
-  [main] .featured .swiper-navigation .swiper-button-next {
+  [main] .featured .swiper-navigation .swiper-button-prev, [main] .featured .swiper-navigation .swiper-button-next {
     opacity: 0.2;
     transition: opacity 0.4s 0s;
     display: inline-block;
@@ -1204,8 +1177,7 @@
     background-repeat: no-repeat;
     background-size: contain;
   }
-  .no-touch [main] .featured .swiper-navigation .swiper-button-prev:hover,
-  .no-touch [main] .featured .swiper-navigation .swiper-button-next:hover {
+  .no-touch [main] .featured .swiper-navigation .swiper-button-prev:hover, .no-touch [main] .featured .swiper-navigation .swiper-button-next:hover {
     opacity: 1;
   }
   [main] .featured .swiper-navigation .swiper-button-next {
@@ -1700,6 +1672,4 @@
     margin-left: auto;
     margin-right: auto;
   }
-}
-
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */

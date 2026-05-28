@@ -116,8 +116,7 @@ html, body {
   height: 0.875rem;
 }
 
-.projects .search-area .filter > a i:before,
-.projects .search-area .filter > a i:after {
+.projects .search-area .filter > a i:before, .projects .search-area .filter > a i:after {
   content: "";
   display: block;
   background-color: #111;
@@ -736,6 +735,4 @@ html, body {
     font-size: 1.875rem;
     line-height: 1.5;
   }
-}
-
-/*# sourceMappingURL=project.css.map */
+}/*# sourceMappingURL=project.css.map */

@@ -46,6 +46,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Header scroll effect
   let lastScrollY = window.scrollY;
 
+  function isInPortfolioListSection() {
+    const portfolioList = document.querySelector(".projects .list");
+    if (!portfolioList) return false;
+
+    const rect = portfolioList.getBoundingClientRect();
+
+    // Keep behavior consistent across mobile and desktop pinning:
+    // treat the section as active while the portfolio list intersects viewport.
+    return rect.top < window.innerHeight && rect.bottom > 0;
+  }
+
   window.addEventListener("scroll", () => {
     const currentScrollY = window.scrollY;
     
@@ -78,13 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    const inPortfolioListSection = isInPortfolioListSection();
+
     if (safeScrollY > 100) {
       if (safeScrollY > lastScrollY) {
         // Scrolling down: Hide header
         appHeader.classList.add("roll");
       } else {
-        // Scrolling up: Show header UNLESS in the service section
-        if (inServiceSection) {
+        // Scrolling up: Keep header hidden inside specific sections
+        if (inServiceSection || inPortfolioListSection) {
           appHeader.classList.add("roll");
         } else {
           appHeader.classList.remove("roll");
@@ -1330,6 +1343,24 @@ document.addEventListener("DOMContentLoaded", () => {
     return headerHeight + tabHeight;
   }
 
+  function getPortfolioTabSyncOffset() {
+    return getPortfolioPinnedOffset() + 8;
+  }
+
+  function getPortfolioActiveIndexByTopLine() {
+    const syncLine = getPortfolioTabSyncOffset();
+    let activeIdx = 0;
+
+    listItems.forEach((item, idx) => {
+      const itemTop = item.getBoundingClientRect().top;
+      if (itemTop <= syncLine + 1) {
+        activeIdx = idx;
+      }
+    });
+
+    return Math.max(0, Math.min(listItems.length - 1, activeIdx));
+  }
+
   function updatePortfolioTabExit(progress, panelCount, contentProgressCap) {
     if (!portTabsAside || window.innerWidth < 1024) return;
 
@@ -1363,6 +1394,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (listContainer && listItems.length > 0) {
     let scrollTriggerInstance = null;
     let desktopTimeline = null;
+    let mobileTabSyncSTs = [];
+    let mobileRevealTweens = [];
 
     function initPortfolioAnimation() {
       // 1. 기존 리소스 클리어
@@ -1374,6 +1407,10 @@ document.addEventListener("DOMContentLoaded", () => {
         desktopTimeline.kill();
         desktopTimeline = null;
       }
+      mobileTabSyncSTs.forEach(st => st.kill());
+      mobileTabSyncSTs = [];
+      mobileRevealTweens.forEach(tween => tween.kill());
+      mobileRevealTweens = [];
 
       if (portTabsAside) {
         gsap.set(portTabsAside, { clearProps: "transform,opacity,visibility,pointerEvents" });
@@ -1490,7 +1527,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 모바일/태블릿: 순차적으로 아래서 위로 부드럽게 페이드인 등장 (스크롤 겹침 없음, onEnter 탭 연동 추가)
         listItems.forEach((li, idx) => {
-          gsap.fromTo(
+          const revealTween = gsap.fromTo(
             li,
             { y: 50, opacity: 0 },
             {
@@ -1502,13 +1539,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 trigger: li,
                 start: "top 85%",
                 once: true,
-                onEnter: () => {
-                  syncPortfolioTabActive(idx);
-                }
               },
             },
           );
+
+          mobileRevealTweens.push(revealTween);
         });
+
+        const syncST = ScrollTrigger.create({
+          trigger: listContainer,
+          start: "top bottom",
+          end: "bottom top",
+          onEnter: () => syncPortfolioTabActive(getPortfolioActiveIndexByTopLine()),
+          onEnterBack: () => syncPortfolioTabActive(getPortfolioActiveIndexByTopLine()),
+          onUpdate: () => syncPortfolioTabActive(getPortfolioActiveIndexByTopLine()),
+          onRefresh: () => syncPortfolioTabActive(getPortfolioActiveIndexByTopLine()),
+        });
+
+        mobileTabSyncSTs.push(syncST);
       }
     }
 
@@ -1543,11 +1591,9 @@ document.addEventListener("DOMContentLoaded", () => {
           } else {
             const targetCard = listItems[idx];
             if (targetCard) {
-              const headerHeight = document.querySelector('[app-header] header').offsetHeight || 50;
-              const tabHeight = portTabsWrapper ? portTabsWrapper.offsetHeight : 50;
-              const yOffset = -(headerHeight + tabHeight + 20);
-              const y = targetCard.getBoundingClientRect().top + window.scrollY + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
+              const stickyOffset = getPortfolioTabSyncOffset();
+              const y = targetCard.getBoundingClientRect().top + window.scrollY - stickyOffset;
+              window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
             }
           }
         });

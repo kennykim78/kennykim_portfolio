@@ -238,8 +238,11 @@ html.drawer-open, body.drawer-open { overflow: hidden; overscroll-behavior: none
 [app-header].roll.footerVisible header, [app-header].footerVisible header { transform: translateY(0); }
 [app-header] header { position: relative; background-color: rgba(255, 255, 255, 0.4); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); width: 100%; height: 3.75rem; transform: translateY(0); transition: transform 0.6s ease; z-index: 2; }
 [app-header] header > a { display: block; width: 1.5rem; height: 1.5rem; background-size: contain; background-repeat: no-repeat; position: absolute; left: 1rem; top: 1.25rem; right: auto; bottom: auto; }
-[app-header] header > a.logo { width: 8.25rem; aspect-ratio: 8.25/1.25; z-index: 3; display: flex; align-items: center; }
-[app-header] header > a.logo img { width: 100%; height: 100%; object-fit: contain; }
+[app-header] header > a.logo { width: auto; height: 3rem; aspect-ratio: 460.91/182.99; z-index: 3; display: flex; align-items: center; color: #231f20; top: 50%; transform: translateY(-50%); }
+[app-header] header > a.logo svg { display: block; width: 100%; height: 100%; overflow: visible; }
+[app-header] header > a.logo .logo-path { fill: currentColor; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+[app-header] header > a.logo.is-signing .logo-path { fill: transparent; }
+[app-header] header > a.logo.logo-animated .logo-path { fill: currentColor; }
 [app-header] header > a.btn-hamburger { background-image: url(../image/common/ico-hamburger.svg); background-position: center; right: 1.25rem; top: 1.25rem; left: auto; bottom: auto; }
 [app-header] header > a.btn-hamburger.on { background-image: url(../image/common/ico-close.svg); width: 1.25rem; height: 1.25rem; }
 [app-header] .drawer { position: absolute; left: 0; top: 0; right: auto; bottom: auto; width: 100%; }
@@ -252,7 +255,11 @@ html.drawer-open, body.drawer-open { overflow: hidden; overscroll-behavior: none
 [app-header] .drawer .drawer-holder .language nav a:first-child:after { content: ""; display: block; display: inline-block; width: 0.0625rem; height: 0.75rem; background-color: #b2b2b2; margin-right: 0.75rem; margin-left: 0.75rem; }
 [app-header] .drawer .drawer-holder .language nav a.on { color: #111; }
 [app-header] .drawer.on .drawer-holder { transform: translate(0); }
-.dark [app-header] header > a.logo:not(.on) img, .dark-bg [app-header] header > a.logo:not(.on) img { content: url(../image/common/logo-w.svg); }
+.dark [app-header] header > a.logo:not(.on), .dark-bg [app-header] header > a.logo:not(.on) { color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  [app-header] header > a.logo .logo-path { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; fill: currentColor !important; }
+}
 .dark [app-header] header > a.btn-hamburger:not(.on), .dark-bg [app-header] header > a.btn-hamburger:not(.on) { background-image: url(../image/common/ico-hamburger-w.svg); }
 @media (min-width:768px) {
   [app-header] .drawer .drawer-holder .drawer-menu { padding: 7.5rem 1.875rem 3.75rem; }
@@ -262,7 +269,7 @@ html.drawer-open, body.drawer-open { overflow: hidden; overscroll-behavior: none
 }
 @media (min-width:1024px) {
   [app-header] header { height: 4.875rem; }
-  [app-header] header > a.logo { width: 8rem; aspect-ratio: 11.5625/1.75; left: 2.5rem; top: 1.5625rem; right: auto; bottom: auto; }
+  [app-header] header > a.logo { width: auto; height: 3.5rem; aspect-ratio: 460.91/182.99; left: 2.5rem; top: 50%; right: auto; bottom: auto; transform: translateY(-50%); }
   [app-header] header > a.btn-hamburger { display: none; }
   [app-header] .drawer { position: relative; height: 100%; }
   [app-header] .drawer .drawer-holder { position: relative; width: 100%; height: 100%; transform: translate(0); display: flex; justify-content: flex-end; overflow-y: visible; background: none; }
@@ -291,7 +298,7 @@ html.drawer-open, body.drawer-open { overflow: hidden; overscroll-behavior: none
 [app-footer] { position: relative; padding: 1.5rem 1rem 15.625rem; position: sticky; bottom: 0; }
 [app-footer] .footer-bg-wrap { position: absolute; left: 0; bottom: 0; right: 0; top: auto; width: 100%; height: 13.8125rem; overflow: hidden; pointer-events: none; }
 [app-footer] #linePattern { width: 100%; height: 100%; display: block; }
-[app-footer] .logo img { display: block; width: 10rem; aspect-ratio: 5/1; object-fit: contain; }
+[app-footer] .logo img { display: block; width: 30rem; aspect-ratio: 5/1; object-fit: contain; }
 [app-footer] .copyright { margin-top: 2.5rem; font-size: 0.75rem; line-height: 1.125rem; }
 [app-footer] .copyright p + p { margin-top: 1.125rem; }
 [app-footer] .out-link { margin-top: 3.9375rem; display: flex; align-items: center; justify-content: flex-end; gap: 1rem; text-align: left; }

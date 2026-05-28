@@ -43,6 +43,52 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const signatureLogo = document.querySelector("[app-header] .logo--signature");
+  if (signatureLogo) {
+    const signaturePaths = Array.from(signatureLogo.querySelectorAll(".logo-path"));
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (signaturePaths.length) {
+      if (reduceMotion) {
+        signatureLogo.classList.add("logo-animated");
+      } else {
+        signatureLogo.classList.add("is-signing");
+
+        signaturePaths.forEach((path) => {
+          const length = path.getTotalLength();
+          path.style.strokeDasharray = `${length}`;
+          path.style.strokeDashoffset = `${length}`;
+          path.style.fillOpacity = "0";
+        });
+
+        const signatureTimeline = gsap.timeline({
+          defaults: { ease: "power2.out" },
+          onComplete: () => {
+            signatureLogo.classList.remove("is-signing");
+            signatureLogo.classList.add("logo-animated");
+            signaturePaths.forEach((path) => {
+              path.style.strokeDasharray = "none";
+              path.style.strokeDashoffset = "0";
+              path.style.fillOpacity = "1";
+            });
+          },
+        });
+
+        signatureTimeline.to(signaturePaths, {
+          strokeDashoffset: 0,
+          duration: 0.85,
+          stagger: 0.14,
+        });
+
+        signatureTimeline.to(signaturePaths, {
+          fillOpacity: 1,
+          duration: 0.28,
+          stagger: 0.05,
+        }, "-=0.18");
+      }
+    }
+  }
+
   // Header scroll effect
   let lastScrollY = window.scrollY;
 

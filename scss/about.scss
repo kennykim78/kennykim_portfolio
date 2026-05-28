@@ -66,6 +66,12 @@
 .about section.history ul li p:first-child { color: #9c9c9c; }
 .about section.history ul li.img + li { margin-top: 2.5rem; }
 .about section.history ul li + li { margin-top: 2.25rem; }
+.about section.history ul li.history-item { padding-top: 1.125rem; border-top: 1px solid #ececec; }
+.about section.history ul li.history-item .period { color: #8d8d8d; font-size: 0.9375rem; line-height: 1.5; font-weight: 600; letter-spacing: 0.01em; }
+.about section.history ul li.history-item .history-body { margin-top: 0.5rem; padding-left: 1rem; }
+.about section.history ul li.history-item .project-name { color: #111; font-size: 1.1875rem; line-height: 1.45; font-weight: 700; }
+.about section.history ul li.history-item .project-meta { margin-top: 0.5rem; color: #444; font-size: 0.9375rem; line-height: 1.65; font-weight: 500; }
+.about section.history ul li.history-item .project-meta span { display: block; margin-bottom: 0.125rem; color: #9c9c9c; font-size: 0.75rem; line-height: 1.4; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 @media (max-width:767px) {
   .about section.history ul:first-child { padding-top: 0; }
 }
@@ -131,6 +137,10 @@
   .about section.history ul li.img { display: none; }
   .about section.history ul li.img + li { margin-top: 0; }
   .about section.history:after { content: ""; display: block; position: absolute; left: 21.875rem; top: 0; right: auto; bottom: auto; height: 100%; width: 0.0625rem; background-color: #eaeaea; }
+  .about section.history ul li.history-item { align-items: start; column-gap: 1.5rem; }
+  .about section.history ul li.history-item .history-body { margin-top: 0; padding-left: 1.25rem; }
+  .about section.history ul li.history-item .project-name { font-size: 1.25rem; }
+  .about section.history ul li.history-item .project-meta { font-size: 0.95rem; }
   .about section.vision .img { margin-top: 11.25rem; }
   .about section.vision .img img { width: 25.8125rem; }
   .about section.vision ul { margin-top: 7.5rem; }
@@ -185,6 +195,11 @@
   .about section.history ul li { display: grid; grid-template-columns: repeat(1, 1fr); grid-gap: 0; grid-template-columns: 107px auto; }
   .about section.history ul li + li { margin-top: 3.25rem; }
   .about section.history:after { left: 32.625rem; }
+  .about section.history ul li.history-item .period { font-size: 1rem; }
+  .about section.history ul li.history-item .history-body { padding-left: 1.5rem; }
+  .about section.history ul li.history-item .project-name { font-size: 1.375rem; }
+  .about section.history ul li.history-item .project-meta { font-size: 1rem; }
+  .about section.history ul li.history-item .project-meta span { font-size: 0.8125rem; }
   .about section.vision { padding-top: 7.5rem; padding-right: 0; padding-bottom: 9.375rem; padding-left: 0; }
   .about section.vision h3 { font-size: 5rem; line-height: 0.0875rem; line-height: 1.4; }
   .about section.vision .prx-txt { margin-top: 8.125rem; }
@@ -227,6 +242,11 @@
   .about section.history .content { margin-left: calc(50% + 120px); margin-top: -45.25rem; }
   .about section.history ul { padding-top: 10.625rem; }
   .about section.history:after { left: calc(50% + 60px); }
+  .about section.history ul li.history-item { column-gap: 2rem; }
+  .about section.history ul li.history-item .period { font-size: 1.0625rem; }
+  .about section.history ul li.history-item .history-body { padding-left: 1.75rem; }
+  .about section.history ul li.history-item .project-name { font-size: 1.5rem; }
+  .about section.history ul li.history-item .project-meta { font-size: 1.0625rem; }
   .about section.vision { padding-top: 11.25rem; padding-right: 0; padding-bottom: 9.375rem; padding-left: 0; }
   .about section.vision h3 { font-size: 6rem; line-height: 0.08125rem; line-height: 1.3; }
   .about section.vision .prx-txt { margin-top: 11.0625rem; }

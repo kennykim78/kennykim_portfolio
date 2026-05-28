@@ -1086,17 +1086,39 @@ html.drawer-open, body.drawer-open {
 }
 
 [app-header] header > a.logo {
-  width: 8.25rem;
-  aspect-ratio: 8.25/1.25;
+  width: auto;
+  height: 3rem;
+  aspect-ratio: 460.91/182.99;
   z-index: 3;
   display: flex;
   align-items: center;
+  color: #231f20;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-[app-header] header > a.logo img {
+[app-header] header > a.logo svg {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  overflow: visible;
+}
+
+[app-header] header > a.logo .logo-path {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+[app-header] header > a.logo.is-signing .logo-path {
+  fill: transparent;
+}
+
+[app-header] header > a.logo.logo-animated .logo-path {
+  fill: currentColor;
 }
 
 [app-header] header > a.btn-hamburger {
@@ -1189,10 +1211,17 @@ html.drawer-open, body.drawer-open {
   transform: translate(0);
 }
 
-.dark [app-header] header > a.logo:not(.on) img, .dark-bg [app-header] header > a.logo:not(.on) img {
-  content: url(../image/common/logo-w.svg);
+.dark [app-header] header > a.logo:not(.on), .dark-bg [app-header] header > a.logo:not(.on) {
+  color: #fff;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  [app-header] header > a.logo .logo-path {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    fill: currentColor !important;
+  }
+}
 .dark [app-header] header > a.btn-hamburger:not(.on), .dark-bg [app-header] header > a.btn-hamburger:not(.on) {
   background-image: url(../image/common/ico-hamburger-w.svg);
 }
@@ -1222,12 +1251,14 @@ html.drawer-open, body.drawer-open {
     height: 4.875rem;
   }
   [app-header] header > a.logo {
-    width: 8rem;
-    aspect-ratio: 11.5625/1.75;
+    width: auto;
+    height: 3.5rem;
+    aspect-ratio: 460.91/182.99;
     left: 2.5rem;
-    top: 1.5625rem;
+    top: 50%;
     right: auto;
     bottom: auto;
+    transform: translateY(-50%);
   }
   [app-header] header > a.btn-hamburger {
     display: none;
@@ -1407,7 +1438,7 @@ html.drawer-open, body.drawer-open {
 
 [app-footer] .logo img {
   display: block;
-  width: 10rem;
+  width: 30rem;
   aspect-ratio: 5/1;
   object-fit: contain;
 }

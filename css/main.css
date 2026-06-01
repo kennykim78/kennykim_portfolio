@@ -1541,6 +1541,7 @@
   margin-top: 5.75rem;
   overflow: hidden;
   padding: 3rem 0;
+  min-height: 18rem;
 }
 
 [main] .history-section h2 {
@@ -1555,6 +1556,7 @@
 [main] .history-section .history-slider {
   overflow: visible;
   width: 100%;
+  min-height: 6.5rem;
 }
 
 [main] .history-section .history-slider .swiper-wrapper {
@@ -1571,6 +1573,10 @@
 
 [main] .history-section .history-slider.history-slider-top {
   margin-bottom: 2.5rem;
+}
+
+[main] .history-section .history-slider.history-slider-bottom {
+  min-height: 6.5rem;
 }
 
 [main] .history-section .history-item {
@@ -1627,14 +1633,21 @@
 @media (min-width: 768px) {
   [main] .history-section {
     margin-top: 7.5rem;
+    min-height: 22rem;
   }
   [main] .history-section h2 {
     margin-right: 2.5rem;
     margin-left: 2.5rem;
     font-size: 3rem;
   }
+  [main] .history-section .history-slider {
+    min-height: 8rem;
+  }
   [main] .history-section .history-slider.history-slider-top {
     margin-bottom: 3.5rem;
+  }
+  [main] .history-section .history-slider.history-slider-bottom {
+    min-height: 8rem;
   }
   [main] .history-section .history-item {
     padding: 0.5rem 2.5rem;
@@ -1656,6 +1669,7 @@
 @media (min-width: 1024px) {
   [main] .history-section {
     margin-top: 10rem;
+    min-height: 24rem;
   }
   [main] .history-section h2 {
     margin-right: 2.5rem;

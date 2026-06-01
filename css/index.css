@@ -1108,6 +1108,15 @@ html.drawer-open, body.drawer-open {
   overflow: visible;
 }
 
+[app-header] header > a.logo .logo-signature-svg .logo-path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2px;
+  vector-effect: non-scaling-stroke;
+}
+
 [app-header] header > a.btn-hamburger {
   background-image: url(../image/common/ico-hamburger.svg);
   background-position: center;

@@ -45,79 +45,151 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const signatureLogo = document.querySelector("[app-header] .logo--signature");
   if (signatureLogo) {
-    const signatureImage = signatureLogo.querySelector(".logo-signature-svg");
     const signaturePaths = Array.from(signatureLogo.querySelectorAll(".logo-path"));
     const signatureText = signatureLogo.querySelector(".logo-script");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const SIGNATURE_ROW_TOLERANCE = 10;
+    const SIGNATURE_LETTER_COUNT = 8;
 
-    if (signatureImage && signatureImage.tagName === "IMG" && !reduceMotion) {
-      const signatureSrc = signatureImage.getAttribute("src");
+    const signaturePathMeta = signaturePaths.map((path, index) => {
+      const length = path.getTotalLength();
+      const startPoint = path.getPointAtLength(0);
+      const endPoint = path.getPointAtLength(length);
+      const bbox = path.getBBox();
+      const dx = endPoint.x - startPoint.x;
+      const dy = endPoint.y - startPoint.y;
+      const isHorizontalDominant = Math.abs(dx) >= Math.abs(dy);
+      const reverseDirection = isHorizontalDominant ? dx < 0 : dy < 0;
 
-      if (signatureSrc) {
-        const baseSignatureSrc = signatureSrc.split("?")[0];
+      return {
+        path,
+        index,
+        length,
+        reverseDirection,
+        top: bbox.y,
+        left: bbox.x,
+      };
+    });
 
-        const replaySignature = () => {
-          const cacheBustedSrc = `${baseSignatureSrc}?v=${Date.now()}`;
-          const preloader = new Image();
-
-          // Keep current logo visible until the next SVG is fully loaded.
-          preloader.onload = () => {
-            signatureImage.src = cacheBustedSrc;
-          };
-
-          preloader.onerror = () => {
-            // Ignore failed refresh and keep the current logo image.
-          };
-
-          preloader.src = cacheBustedSrc;
-        };
-
-        replaySignature();
-        window.setInterval(() => {
-          if (document.visibilityState !== "hidden") {
-            replaySignature();
-          }
-        }, 10000);
+    const xSortedSignaturePathMeta = [...signaturePathMeta].sort((a, b) => {
+      if (Math.abs(a.left - b.left) > 1) {
+        return a.left - b.left;
       }
-    }
+
+      if (Math.abs(a.top - b.top) > SIGNATURE_ROW_TOLERANCE) {
+        return a.top - b.top;
+      }
+
+      return a.index - b.index;
+    });
+
+    const buildLetterGroups = (pathsByX) => {
+      if (pathsByX.length <= SIGNATURE_LETTER_COUNT) {
+        return pathsByX.map((meta) => [meta]);
+      }
+
+      const gaps = [];
+      for (let i = 0; i < pathsByX.length - 1; i += 1) {
+        gaps.push({
+          at: i,
+          gap: pathsByX[i + 1].left - pathsByX[i].left,
+        });
+      }
+
+      const boundaryCount = Math.min(SIGNATURE_LETTER_COUNT - 1, gaps.length);
+      const boundaries = gaps
+        .sort((a, b) => b.gap - a.gap)
+        .slice(0, boundaryCount)
+        .map((item) => item.at)
+        .sort((a, b) => a - b);
+
+      const groups = [];
+      let start = 0;
+      boundaries.forEach((boundaryIndex) => {
+        groups.push(pathsByX.slice(start, boundaryIndex + 1));
+        start = boundaryIndex + 1;
+      });
+      groups.push(pathsByX.slice(start));
+
+      return groups;
+    };
+
+    const letterGroups = buildLetterGroups(xSortedSignaturePathMeta);
+
+    const orderedSignaturePathMeta = letterGroups
+      .map((group) => group.sort((a, b) => {
+        if (Math.abs(a.top - b.top) > SIGNATURE_ROW_TOLERANCE) {
+          return a.top - b.top;
+        }
+
+        if (Math.abs(a.left - b.left) > 1) {
+          return a.left - b.left;
+        }
+
+        return a.index - b.index;
+      }))
+      .flat();
+
+    const orderedSignaturePaths = orderedSignaturePathMeta.map((meta) => meta.path);
 
     if (signaturePaths.length) {
       if (reduceMotion) {
         signatureLogo.classList.add("logo-animated");
+        signaturePathMeta.forEach((meta) => {
+          meta.path.style.strokeDasharray = "none";
+          meta.path.style.strokeDashoffset = "0";
+          meta.path.style.fillOpacity = "1";
+        });
       } else {
-        signatureLogo.classList.add("is-signing");
+        let signatureTimeline = null;
 
-        signaturePaths.forEach((path) => {
-          const length = path.getTotalLength();
-          path.style.strokeDasharray = `${length}`;
-          path.style.strokeDashoffset = `${length}`;
-          path.style.fillOpacity = "0";
-        });
+        const replaySignaturePaths = () => {
+          if (signatureTimeline) {
+            signatureTimeline.kill();
+            signatureTimeline = null;
+          }
 
-        const signatureTimeline = gsap.timeline({
-          defaults: { ease: "power2.out" },
-          onComplete: () => {
-            signatureLogo.classList.remove("is-signing");
-            signatureLogo.classList.add("logo-animated");
-            signaturePaths.forEach((path) => {
-              path.style.strokeDasharray = "none";
-              path.style.strokeDashoffset = "0";
-              path.style.fillOpacity = "1";
-            });
-          },
-        });
+          signatureLogo.classList.remove("logo-animated");
+          signatureLogo.classList.add("is-signing");
 
-        signatureTimeline.to(signaturePaths, {
-          strokeDashoffset: 0,
-          duration: 0.85,
-          stagger: 0.14,
-        });
+          orderedSignaturePathMeta.forEach((meta) => {
+            meta.path.style.strokeDasharray = `${meta.length}`;
+            meta.path.style.strokeDashoffset = `${meta.reverseDirection ? -meta.length : meta.length}`;
+            meta.path.style.fillOpacity = "0";
+          });
 
-        signatureTimeline.to(signaturePaths, {
-          fillOpacity: 1,
-          duration: 0.28,
-          stagger: 0.05,
-        }, "-=0.18");
+          signatureTimeline = gsap.timeline({
+            defaults: { ease: "power2.out" },
+            onComplete: () => {
+              signatureLogo.classList.remove("is-signing");
+              signatureLogo.classList.add("logo-animated");
+              signaturePathMeta.forEach((meta) => {
+                meta.path.style.strokeDasharray = "none";
+                meta.path.style.strokeDashoffset = "0";
+                meta.path.style.fillOpacity = "1";
+              });
+            },
+          });
+
+          signatureTimeline.to(orderedSignaturePaths, {
+            strokeDashoffset: 0,
+            duration: 0.85,
+            stagger: 0.14,
+          });
+
+          signatureTimeline.to(orderedSignaturePaths, {
+            fillOpacity: 1,
+            duration: 0.28,
+            stagger: 0.05,
+          }, "-=0.18");
+        };
+
+        replaySignaturePaths();
+        window.setInterval(() => {
+          if (document.visibilityState !== "hidden") {
+            replaySignaturePaths();
+          }
+        }, 10000);
       }
     } else if (signatureText) {
       if (reduceMotion) {
@@ -510,7 +582,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 4. Fade in elements on scroll
   const fadeSections = document.querySelectorAll(
-    ".history-section > div, .text-interaction > div, .services > div, .leadership .align-warp",
+    ".text-interaction > div, .services > div, .leadership .align-warp",
   );
   fadeSections.forEach((sec) => {
     gsap.fromTo(

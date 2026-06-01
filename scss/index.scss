@@ -246,6 +246,7 @@ html.drawer-open, body.drawer-open { overflow: hidden; overscroll-behavior: none
 [app-header] header > a { display: block; width: 1.5rem; height: 1.5rem; background-size: contain; background-repeat: no-repeat; position: absolute; left: 1rem; top: 1.25rem; right: auto; bottom: auto; }
 [app-header] header > a.logo { z-index: 3; display: flex; align-items: center; color: #231f20; top: 50%; transform: translateY(-50%); width: auto; height: auto; }
 [app-header] header > a.logo .logo-signature-svg { display: block; width: 6rem; height: auto; overflow: visible; }
+[app-header] header > a.logo .logo-signature-svg .logo-path { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.2px; vector-effect: non-scaling-stroke; }
 [app-header] header > a.btn-hamburger { background-image: url(../image/common/ico-hamburger.svg); background-position: center; right: 1.25rem; top: 1.25rem; left: auto; bottom: auto; }
 [app-header] header > a.btn-hamburger.on { background-image: url(../image/common/ico-close.svg); width: 1.25rem; height: 1.25rem; }
 [app-header] .drawer { position: absolute; left: 0; top: 0; right: auto; bottom: auto; width: 100%; }

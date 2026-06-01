@@ -54,13 +54,30 @@ document.addEventListener("DOMContentLoaded", () => {
       const signatureSrc = signatureImage.getAttribute("src");
 
       if (signatureSrc) {
+        const baseSignatureSrc = signatureSrc.split("?")[0];
+
         const replaySignature = () => {
-          const cacheBustedSrc = `${signatureSrc.split("?")[0]}?v=${Date.now()}`;
-          signatureImage.src = cacheBustedSrc;
+          const cacheBustedSrc = `${baseSignatureSrc}?v=${Date.now()}`;
+          const preloader = new Image();
+
+          // Keep current logo visible until the next SVG is fully loaded.
+          preloader.onload = () => {
+            signatureImage.src = cacheBustedSrc;
+          };
+
+          preloader.onerror = () => {
+            // Ignore failed refresh and keep the current logo image.
+          };
+
+          preloader.src = cacheBustedSrc;
         };
 
         replaySignature();
-        window.setInterval(replaySignature, 10000);
+        window.setInterval(() => {
+          if (document.visibilityState !== "hidden") {
+            replaySignature();
+          }
+        }, 10000);
       }
     }
 

@@ -208,11 +208,11 @@
 [main] .leadership .sticky-holder a { margin-top: 1.25rem; }
 [main] .careers { position: relative; height: 200vh; }
 [main] .careers .sticky-holder { position: sticky; top: 0; height: calc(var(--vh, 1vh) * 100); display: flex; justify-content: center; align-items: center; }
-[main] .careers .sticky-holder .img-cover { position: absolute; left: 0; top: 0; right: 0; bottom: 0; margin: auto; width: 100%; height: 100%; transform-origin: center; opacity: 0; }
-[main] .careers .sticky-holder .img-cover .img { display: block; width: 100%; height: 100%; background-image: url(../image/main/careers-img.s.png); background-repeat: no-repeat; background-size: cover; background-position: center; }
+[main] .careers .sticky-holder .img-cover { position: absolute; left: 0; top: 0; right: 0; bottom: 0; margin: auto; width: 100%; height: 100%; transform-origin: center; opacity: 0; background-color: #000; overflow: hidden; transition: opacity 0.6s ease; }
+[main] .careers .sticky-holder .img-cover .img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: right center; }
 [main] .careers .sticky-holder .align-warp { text-align: center; margin-right: 1rem; margin-left: 1rem; }
 @media (min-width:768px) {
-  [main] .careers .sticky-holder .align-warp { margin-right: 2.5rem; margin-left: 2.5rem; }
+  [main] .careers .sticky-holder .align-warp { margin-right: 2.5rem; margin-left: 2.5rem; text-align:left;}
 }
 @media (min-width:1024px) {
   [main] .careers .sticky-holder .align-warp { margin-right: 2.5rem; margin-left: 2.5rem; }
@@ -221,7 +221,10 @@
   [main] .careers .sticky-holder .align-warp { width: 110rem; margin-left: auto; margin-right: auto; box-sizing: border-box; }
 }
 [main] .careers .sticky-holder span { display: inline-block; margin-top: 1.25rem; font-size: 1.25rem; line-height: 0.0875rem; line-height: 1.4; font-weight: 600; color: #fff; }
-[main] .careers .sticky-holder a { margin-top: 1.25rem; }
+[main] .careers .sticky-holder a { margin-top: 1.25rem; border: 1px solid #fff; }
+@media (max-width:767px) {
+  [main] .careers .sticky-holder { align-items: flex-end; padding-bottom: 40px; box-sizing: border-box; }
+}
 @media (min-width:768px) {
   [main] .featured .slider .swiper-wrapper .swiper-slide { margin-right: 0.9375rem; }
   [main] .text-interaction { margin-top: 10rem; }
@@ -270,7 +273,7 @@
   [main] .leadership .bg .bg-item:nth-of-type(6) img { width: 8.5rem; }
   [main] .leadership .bg .bg-item:nth-of-type(7) { left: 39%; top: 20.25rem; right: auto; bottom: auto; }
   [main] .leadership .bg .bg-item:nth-of-type(7) img { width: 12.5rem; }
-  [main] .careers .sticky-holder .img-cover .img { background-image: url(../image/main/careers-img.png); }
+  [main] .careers .sticky-holder .img-cover .img { object-position: right center; }
   [main] .careers .sticky-holder a { margin-top: 2.5rem; }
 }
 @media (min-width:1440px) {

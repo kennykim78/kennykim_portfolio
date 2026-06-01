@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: "Aplenty Regular";
+  src: url("../image/AplentyRegular-owWJq.ttf") format("truetype");
+  font-display: swap;
+}
+
 body { -webkit-text-size-adjust: none; word-wrap: break-word; -webkit-tap-highlight-color: transparent; }
 * { margin: 0; padding: 0; max-height: 1000000px; box-sizing: border-box; }
 article, aside, details, figcaption, figure, footer, header, menu, nav, section { display: block; }
@@ -238,11 +244,8 @@ html.drawer-open, body.drawer-open { overflow: hidden; overscroll-behavior: none
 [app-header].roll.footerVisible header, [app-header].footerVisible header { transform: translateY(0); }
 [app-header] header { position: relative; background-color: rgba(255, 255, 255, 0.4); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); width: 100%; height: 3.75rem; transform: translateY(0); transition: transform 0.6s ease; z-index: 2; }
 [app-header] header > a { display: block; width: 1.5rem; height: 1.5rem; background-size: contain; background-repeat: no-repeat; position: absolute; left: 1rem; top: 1.25rem; right: auto; bottom: auto; }
-[app-header] header > a.logo { width: auto; height: 3rem; aspect-ratio: 460.91/182.99; z-index: 3; display: flex; align-items: center; color: #231f20; top: 50%; transform: translateY(-50%); }
-[app-header] header > a.logo svg { display: block; width: 100%; height: 100%; overflow: visible; }
-[app-header] header > a.logo .logo-path { fill: currentColor; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-[app-header] header > a.logo.is-signing .logo-path { fill: transparent; }
-[app-header] header > a.logo.logo-animated .logo-path { fill: currentColor; }
+[app-header] header > a.logo { z-index: 3; display: flex; align-items: center; color: #231f20; top: 50%; transform: translateY(-50%); width: auto; height: auto; }
+[app-header] header > a.logo .logo-signature-svg { display: block; width: 6rem; height: auto; overflow: visible; }
 [app-header] header > a.btn-hamburger { background-image: url(../image/common/ico-hamburger.svg); background-position: center; right: 1.25rem; top: 1.25rem; left: auto; bottom: auto; }
 [app-header] header > a.btn-hamburger.on { background-image: url(../image/common/ico-close.svg); width: 1.25rem; height: 1.25rem; }
 [app-header] .drawer { position: absolute; left: 0; top: 0; right: auto; bottom: auto; width: 100%; }
@@ -258,7 +261,7 @@ html.drawer-open, body.drawer-open { overflow: hidden; overscroll-behavior: none
 .dark [app-header] header > a.logo:not(.on), .dark-bg [app-header] header > a.logo:not(.on) { color: #fff; }
 
 @media (prefers-reduced-motion: reduce) {
-  [app-header] header > a.logo .logo-path { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; fill: currentColor !important; }
+  [app-header] header > a.logo .logo-signature-svg { animation: none !important; }
 }
 .dark [app-header] header > a.btn-hamburger:not(.on), .dark-bg [app-header] header > a.btn-hamburger:not(.on) { background-image: url(../image/common/ico-hamburger-w.svg); }
 @media (min-width:768px) {
@@ -269,7 +272,8 @@ html.drawer-open, body.drawer-open { overflow: hidden; overscroll-behavior: none
 }
 @media (min-width:1024px) {
   [app-header] header { height: 4.875rem; }
-  [app-header] header > a.logo { width: auto; height: 3.5rem; aspect-ratio: 460.91/182.99; left: 2.5rem; top: 50%; right: auto; bottom: auto; transform: translateY(-50%); }
+  [app-header] header > a.logo { left: 2.5rem; top: 50%; right: auto; bottom: auto; transform: translateY(-50%); }
+  [app-header] header > a.logo .logo-signature-svg { width: 8rem; height: auto; }
   [app-header] header > a.btn-hamburger { display: none; }
   [app-header] .drawer { position: relative; height: 100%; }
   [app-header] .drawer .drawer-holder { position: relative; width: 100%; height: 100%; transform: translate(0); display: flex; justify-content: flex-end; overflow-y: visible; background: none; }

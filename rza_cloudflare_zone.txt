@@ -1,0 +1,32 @@
+; rza.co.kr Cloudflare DNS Zone Import File
+; Google Cloud Run Custom Domain Mapping & Daum Smart Work Email Security
+
+rza.co.kr. 1     IN  A     216.239.32.21
+rza.co.kr. 1     IN  A     216.239.34.21
+rza.co.kr. 1     IN  A     216.239.36.21
+rza.co.kr. 1     IN  A     216.239.38.21
+rza.co.kr. 1     IN  AAAA  2001:4860:4802:32::15
+rza.co.kr. 1     IN  AAAA  2001:4860:4802:34::15
+rza.co.kr. 1     IN  AAAA  2001:4860:4802:36::15
+rza.co.kr. 1     IN  AAAA  2001:4860:4802:38::15
+www.rza.co.kr. 1 IN  CNAME ghs.googlehosted.com.
+
+; ========================================================
+; 다음 스마트워크 메일 서버 연결 정보 (기존 유지)
+; ========================================================
+rza.co.kr. 1     IN  MX    10 aspmx.daum.net.
+rza.co.kr. 1     IN  MX    20 alt.aspmx.daum.net.
+
+; ========================================================
+; 도메인 소유권 인증 정보 (기존 유지)
+; ========================================================
+rza.co.kr. 3600  IN  TXT   "google-site-verification=RoHhsCRzJaJ1JFJ3VdHUEUMTYEHWB5-QOmbj_hNRKNA"
+
+; ========================================================
+; [신규 추가] 이메일 사칭 방지 보안 레코드 (SPF & DMARC)
+; ========================================================
+; [SPF Record] 다음 스마트워크 메일 서버 인증 규격
+rza.co.kr. 3600  IN  TXT   "v=spf1 include:_spf.daum.net ~all"
+
+; [DMARC Record] 사칭 메일을 100% 스팸함으로 격리
+_dmarc.rza.co.kr. 3600 IN TXT "v=DMARC1; p=quarantine; pct=100"

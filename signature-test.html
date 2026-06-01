@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구글 폰트 서명 애니메이션 예시</title>
+
+  <!-- Google Fonts: Great Vibes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: radial-gradient(circle, #2c3e50, #1a252f);
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 90px;
+      fill: none;
+      stroke: #f39c12;
+      stroke-width: 2px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+      animation: writeSignature 3.5s ease-in-out forwards;
+    }
+
+    @keyframes writeSignature {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .hint {
+      margin-top: 16px;
+      color: #e9eef3;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg width="600" height="200" viewBox="0 0 600 200" role="img" aria-label="signature animation sample">
+      <text x="50%" y="60%" text-anchor="middle" class="signature">Kennykim</text>
+    </svg>
+    <p class="hint">페이지를 새로고침하면 애니메이션이 다시 재생됩니다.</p>
+  </div>
+</body>
+</html>

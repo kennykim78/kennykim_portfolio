@@ -45,8 +45,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const signatureLogo = document.querySelector("[app-header] .logo--signature");
   if (signatureLogo) {
+    const signatureImage = signatureLogo.querySelector(".logo-signature-svg");
     const signaturePaths = Array.from(signatureLogo.querySelectorAll(".logo-path"));
+    const signatureText = signatureLogo.querySelector(".logo-script");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (signatureImage && signatureImage.tagName === "IMG" && !reduceMotion) {
+      const signatureSrc = signatureImage.getAttribute("src");
+
+      if (signatureSrc) {
+        const replaySignature = () => {
+          const cacheBustedSrc = `${signatureSrc.split("?")[0]}?v=${Date.now()}`;
+          signatureImage.src = cacheBustedSrc;
+        };
+
+        replaySignature();
+        window.setInterval(replaySignature, 10000);
+      }
+    }
 
     if (signaturePaths.length) {
       if (reduceMotion) {
@@ -85,6 +101,16 @@ document.addEventListener("DOMContentLoaded", () => {
           duration: 0.28,
           stagger: 0.05,
         }, "-=0.18");
+      }
+    } else if (signatureText) {
+      if (reduceMotion) {
+        signatureLogo.classList.add("logo-animated");
+      } else {
+        requestAnimationFrame(() => signatureLogo.classList.add("is-signing"));
+        signatureText.addEventListener("animationend", () => {
+          signatureLogo.classList.remove("is-signing");
+          signatureLogo.classList.add("logo-animated");
+        }, { once: true });
       }
     }
   }

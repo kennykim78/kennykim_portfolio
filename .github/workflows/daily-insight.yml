@@ -1,0 +1,50 @@
+name: Daily Insight
+
+# [대안 경로 - 기본 비활성화]
+# 현재 발행은 내 PC + Claude Code(scripts/daily-insight.bat, 키 없음)로 운영합니다.
+# 이 워크플로는 GitHub Actions 자동 발행으로 전환하고 싶을 때를 위한 백업입니다.
+# 켜는 법: 아래 schedule 주석을 해제하고 (KST 10시 = UTC 01:00),
+#          저장소 Secrets에 ANTHROPIC_API_KEY 등록.
+on:
+  # schedule:
+  #   - cron: "0 1 * * *"   # 매일 KST 오전 10시
+  workflow_dispatch:
+    inputs:
+      category:
+        description: "강제 카테고리 (design 또는 ai, 비우면 자동)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate today's insight
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INSIGHTS_MODEL: ${{ vars.INSIGHTS_MODEL || 'claude-sonnet-4-6' }}
+          INSIGHTS_CATEGORY: ${{ github.event.inputs.category }}
+        run: node scripts/generate-post.mjs
+
+      - name: Commit & push if changed
+        run: |
+          if [[ -n "$(git status --porcelain data/insights.json js/insights-data.js)" ]]; then
+            git config user.name "kenny-insights-bot"
+            git config user.email "bot@kennykim.co.kr"
+            git add data/insights.json js/insights-data.js
+            git commit -m "chore(insights): daily auto-post $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "No new insight today; nothing to commit."
+          fi

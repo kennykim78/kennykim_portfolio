@@ -1,0 +1,359 @@
+// =====================================================
+// Insights (Blog / News) styles — Kenny
+// Mirrors the site's minimal black/white tone.
+// Source of truth: edit here, then `npm run build:css`.
+// =====================================================
+
+$ink: #1a1a1a;
+$muted: #666;
+$line: rgba(0, 0, 0, 0.1);
+$chip-line: #aaa;
+
+$gutter: 1rem;
+$gutter-md: 2.5rem;
+
+@mixin wrap-pad {
+  margin-right: $gutter;
+  margin-left: $gutter;
+  @media (min-width: 768px) { margin-right: $gutter-md; margin-left: $gutter-md; }
+  @media (min-width: 1920px) { width: 110rem; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+}
+
+.sub-layout.insights {
+  .wrapper { padding-bottom: 6rem; }
+
+  // ---------- HERO (portfolio와 동일한 타이포/레이아웃) ----------
+  .insights-hero {
+    @include wrap-pad;
+    h2 {
+      font-size: 3.25rem;
+      line-height: 1.2;
+      font-weight: 500;
+      color: $ink;
+      @media (max-width: 430px) {
+        font-size: 2.2rem;
+        line-height: 1.18;
+      }
+    }
+    p {
+      margin-top: 1.25rem;
+      font-size: 1.125rem;
+      line-height: 1.3;
+      color: #999;
+      @media (max-width: 430px) {
+        margin-top: 0.85rem;
+        font-size: 0.98rem;
+        line-height: 1.45;
+      }
+    }
+    @media (min-width: 768px) {
+      display: flex;
+      h2 { flex-grow: 1; }
+      p { margin: 0; width: 22.5rem; }
+    }
+    @media (min-width: 1024px) {
+      h2 { font-size: 4.125rem; }
+      p { font-size: 1.25rem; width: 27rem; }
+    }
+    @media (min-width: 1440px) {
+      h2 { font-size: 6.125rem; }
+      p { font-size: 1.5rem; width: 35.625rem; }
+    }
+  }
+
+  // ---------- FILTER ----------
+  .insights-filter {
+    @include wrap-pad;
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 1.4rem;
+      height: 2.5rem;
+      font-size: 1rem;
+      color: $ink;
+      background: transparent;
+      border: 1px solid $chip-line;
+      border-radius: 4rem;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+
+      &:hover { border-color: $ink; }
+      &.on { background: #000; color: #fff; border-color: #000; }
+
+      @media (max-width: 430px) {
+        height: 2.2rem;
+        padding: 0 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  // ---------- LIST GRID ----------
+  .insights-list {
+    @include wrap-pad;
+    margin-top: 2.25rem;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem 1.5rem;
+      @media (min-width: 600px) { grid-template-columns: repeat(2, 1fr); }
+      @media (min-width: 1024px) { grid-template-columns: repeat(3, 1fr); }
+    }
+  }
+
+  .insights-empty {
+    margin-top: 2rem;
+    color: $muted;
+    font-size: 1rem;
+  }
+
+  // ---------- CARD ----------
+  .insight-card {
+    a { display: block; color: inherit; text-decoration: none; }
+
+    .card-thumb {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-size: cover;
+      background-position: center;
+      background-color: #f2f2f2;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    &.no-thumb {
+      .card-body {
+        padding-top: 0;
+        @media (max-width: 430px) { padding-top: 0; }
+      }
+    }
+
+    .card-body {
+      padding-top: 0.9rem;
+      @media (max-width: 430px) { padding-top: 0.75rem; }
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      font-size: 0.75rem;
+      @media (max-width: 430px) {
+        gap: 0.45rem;
+        font-size: 0.7rem;
+      }
+    }
+    .card-cat {
+      display: inline-flex;
+      align-items: center;
+      height: 1.4rem;
+      padding: 0 0.6rem;
+      border: 1px solid $ink;
+      border-radius: 4rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: $ink;
+    }
+    .card-date { color: #999; }
+
+    .card-title {
+      margin-top: 0.6rem;
+      font-size: 1.1875rem;
+      line-height: 1.4;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: $ink;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      @media (max-width: 430px) {
+        margin-top: 0.48rem;
+        font-size: 1.06rem;
+        line-height: 1.38;
+      }
+    }
+    .card-summary {
+      margin-top: 0.5rem;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: $muted;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      @media (max-width: 430px) {
+        margin-top: 0.42rem;
+        font-size: 0.9rem;
+        line-height: 1.52;
+        -webkit-line-clamp: 2;
+      }
+    }
+    .card-source {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: #aaa;
+      @media (max-width: 430px) {
+        margin-top: 0.55rem;
+        font-size: 0.7rem;
+      }
+    }
+
+    .no-touch &:hover .card-thumb { opacity: 0.92; }
+    .no-touch &:hover .card-title { text-decoration: underline; text-underline-offset: 3px; }
+  }
+
+  // ---------- DETAIL ----------
+  .insight-back {
+    @include wrap-pad;
+    display: inline-block;
+    margin-top: 0;
+    font-size: 0.9375rem;
+    color: $muted;
+    text-decoration: none;
+    &:hover { color: $ink; }
+  }
+
+  .insight-article {
+    @include wrap-pad;
+    display: block;
+    max-width: 50rem;
+    margin-top: 1.5rem;
+
+    .insight-title {
+      margin-top: 0.75rem;
+      font-size: 1.875rem;
+      line-height: 1.35;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: $ink;
+      @media (max-width: 430px) {
+        font-size: 1.55rem;
+        line-height: 1.32;
+      }
+      @media (min-width: 768px) { font-size: 2.5rem; }
+    }
+    .insight-tags { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { font-size: 0.8125rem; color: $muted; }
+
+    .insight-body {
+      margin-top: 2rem;
+      font-size: 1.0625rem;
+      line-height: 1.85;
+      color: #2a2a2a;
+      @media (max-width: 430px) {
+        margin-top: 1.6rem;
+        font-size: 1rem;
+        line-height: 1.78;
+      }
+      p { margin: 0 0 1.25rem; }
+      > p:first-of-type {
+        font-size: 1.125rem;
+        line-height: 1.9;
+        color: #202020;
+        @media (max-width: 430px) {
+          font-size: 1.04rem;
+          line-height: 1.8;
+        }
+      }
+      h2, h3 { margin: 2.25rem 0 0.75rem; font-weight: 700; color: $ink; }
+      h3 {
+        font-size: 1.25rem;
+        letter-spacing: -0.01em;
+        margin-top: 2.6rem;
+        padding-top: 0.95rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        @media (max-width: 430px) {
+          font-size: 1.12rem;
+          margin-top: 2.1rem;
+          padding-top: 0.7rem;
+        }
+      }
+      a { color: #000; text-decoration: underline; text-underline-offset: 2px; }
+      ul, ol { margin: 0 0 1.25rem 1.25rem; }
+      li { margin-bottom: 0.4rem; }
+
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.875em;
+        padding: 0.1em 0.4em;
+        background: #f1f1f1;
+        border-radius: 4px;
+        color: #1a1a1a;
+        word-break: break-word;
+      }
+
+      // 핵심 짧은 인용
+      blockquote {
+        margin: 1.75rem 0;
+        padding: 0.85rem 1rem 0.85rem 1.25rem;
+        border-left: 3px solid $ink;
+        font-size: 1.1875rem;
+        line-height: 1.7;
+        color: $ink;
+        font-style: normal;
+        background: #f8f8f8;
+        border-radius: 0 8px 8px 0;
+        position: relative;
+        @media (max-width: 430px) {
+          margin: 1.45rem 0;
+          padding: 0.72rem 0.82rem 0.72rem 1rem;
+          font-size: 1.04rem;
+          line-height: 1.62;
+        }
+
+        &::before {
+          content: "\201C";
+          position: absolute;
+          top: -0.15rem;
+          left: 0.55rem;
+          font-size: 1.7rem;
+          line-height: 1;
+          color: rgba(0, 0, 0, 0.2);
+          pointer-events: none;
+        }
+
+        cite {
+          display: block;
+          margin-top: 0.6rem;
+          font-size: 0.8125rem;
+          font-style: normal;
+          color: $muted;
+          @media (max-width: 430px) {
+            font-size: 0.76rem;
+          }
+          &::before { content: "— "; }
+        }
+      }
+    }
+
+    .insight-source-box {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      border: 1px solid $line;
+      border-radius: 12px;
+      background: #fafafa;
+      @media (max-width: 430px) {
+        margin-top: 2rem;
+        padding: 1rem;
+        border-radius: 10px;
+      }
+      p { margin: 0 0 0.75rem; font-size: 0.875rem; color: $muted; }
+      a { font-weight: 600; color: #000; text-decoration: none; word-break: break-all; }
+      a:hover { text-decoration: underline; }
+    }
+
+    .insight-missing { margin-top: 2rem; color: $muted; }
+  }
+}

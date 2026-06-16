@@ -1,0 +1,78 @@
+<!doctype html>
+<html data-head-attrs="" lang="ko">
+  <head>
+    <load src="inc/head-common.html" />
+
+    <title>Insights — Kenny Kim</title>
+
+    <meta property="og:title" content="Insights — Kenny Kim" />
+    <meta name="twitter:title" content="Insights — Kenny Kim" />
+    <meta
+      property="og:description"
+      content="해외 디자인·AI 트렌드를 매일 한국어로 큐레이션합니다. Kenny가 전하는 최신 디지털 인사이트."
+    />
+    <meta
+      name="twitter:description"
+      content="해외 디자인·AI 트렌드를 매일 한국어로 큐레이션합니다. Kenny가 전하는 최신 디지털 인사이트."
+    />
+
+    <link rel="stylesheet" href="css/project.css" />
+    <link rel="stylesheet" href="css/insights.css" />
+  </head>
+  <body data-head-attrs="">
+    <div id="app" data-server-rendered="true">
+      <div default-layout class="ko up">
+        <div app-header class="">
+          <load src="inc/header.html" insights-active="router-link-active router-link-exact-active on" />
+        </div>
+        <div class="scroll-holder">
+          <article class="content-body">
+            <div class="sub-layout insights">
+              <div class="wrapper">
+                <!-- ===================== HERO ===================== -->
+                <section class="insights-hero">
+                  <h2>Insights</h2>
+                  <p>
+                    매일 해외 디자인·AI 소식을 한국어로 정리해 전합니다.
+                    트렌드를 가장 먼저 읽고, 원문 출처와 함께 큐레이션합니다.
+                  </p>
+                </section>
+
+                <!-- ===================== FILTER ===================== -->
+                <nav class="insights-filter" id="insightsFilter" aria-label="카테고리 필터">
+                  <button type="button" class="filter-chip on" data-cat="all">전체</button>
+                  <button type="button" class="filter-chip" data-cat="design">Design</button>
+                  <button type="button" class="filter-chip" data-cat="ai">AI</button>
+                </nav>
+
+                <!-- ===================== LIST ===================== -->
+                <section class="insights-list">
+                  <ul id="insightsGrid"></ul>
+                  <p class="insights-empty" id="insightsEmpty" hidden>
+                    아직 등록된 글이 없습니다. 곧 새로운 인사이트가 업데이트됩니다.
+                  </p>
+                </section>
+
+                <div class="btn-wrap">
+                  <a href="consulting.html" class="btn rounded plus">Do you wanna consulting?</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <footer app-footer>
+          <load src="inc/footer.html" />
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      window.__INITIAL_STATE__ = "{}";
+    </script>
+
+    <load src="inc/scripts-common.html" />
+    <script src="js/custom-animation.js"></script>
+    <script src="js/insights-data.js"></script>
+    <script src="js/insights.js"></script>
+  </body>
+</html>

@@ -8,7 +8,9 @@
     "build:css": "sass scss:css --style expanded",
     "watch:css": "sass --watch scss:css --style expanded",
     "check:scss-source": "node scripts/enforce-scss-source.mjs",
-    "setup:hooks": "git config core.hooksPath .githooks"
+    "setup:hooks": "git config core.hooksPath .githooks",
+    "insights:build-data": "node scripts/build-insights-data.mjs",
+    "insights:generate": "node scripts/generate-post.mjs"
   },
   "devDependencies": {
     "sass": "^1.70.0",

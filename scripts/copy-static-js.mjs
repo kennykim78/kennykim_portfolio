@@ -9,6 +9,8 @@ const projectRoot = dirname(__dirname);
 const sources = [
   join(projectRoot, 'js', 'custom-animation.js'),
   join(projectRoot, 'js', 'history-data.js'),
+  join(projectRoot, 'js', 'insights-data.js'),
+  join(projectRoot, 'js', 'insights.js'),
 ];
 
 const distJsDir = join(projectRoot, 'dist', 'js');

@@ -1,0 +1,56 @@
+<!doctype html>
+<html data-head-attrs="" lang="ko">
+  <head>
+    <load src="inc/head-common.html" />
+
+    <title>Insights — Kenny Kim</title>
+
+    <meta property="og:title" content="Insights — Kenny Kim" />
+    <meta name="twitter:title" content="Insights — Kenny Kim" />
+    <meta
+      property="og:description"
+      content="해외 디자인·AI 트렌드를 매일 한국어로 큐레이션합니다. Kenny가 전하는 최신 디지털 인사이트."
+    />
+
+    <link rel="stylesheet" href="css/project.css" />
+    <link rel="stylesheet" href="css/insights.css" />
+  </head>
+  <body data-head-attrs="">
+    <div id="app" data-server-rendered="true">
+      <div default-layout class="ko up">
+        <div app-header class="">
+          <load src="inc/header.html" insights-active="router-link-active router-link-exact-active on" />
+        </div>
+        <div class="scroll-holder">
+          <article class="content-body">
+            <div class="sub-layout insights">
+              <div class="wrapper">
+                <a href="insights.html" class="insight-back">← Insights 목록</a>
+
+                <article class="insight-article" id="insightArticle" aria-live="polite">
+                  <!-- Rendered by js/insights.js from ?id= -->
+                </article>
+
+                <div class="btn-wrap">
+                  <a href="insights.html" class="btn rounded plus">더 많은 인사이트 보기</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <footer app-footer>
+          <load src="inc/footer.html" />
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      window.__INITIAL_STATE__ = "{}";
+    </script>
+
+    <load src="inc/scripts-common.html" />
+    <script src="js/insights-data.js"></script>
+    <script src="js/insights.js"></script>
+    <script src="js/custom-animation.js"></script>
+  </body>
+</html>

@@ -13,6 +13,8 @@ export default defineConfig({
         about: resolve(__dirname, 'about.html'),
         portfolio: resolve(__dirname, 'portfolio.html'),
         consulting: resolve(__dirname, 'consulting.html'),
+        insights: resolve(__dirname, 'insights.html'),
+        insight: resolve(__dirname, 'insight.html'),
       },
     },
   },

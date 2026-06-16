@@ -1,15 +1,16 @@
 // =====================================================
 // Daily Insights generator
-// - Pulls headlines from curated design/AI RSS feeds
+// - Pulls headlines from curated RSS feeds across four areas:
+//   design / ai / plan(기획·QA) / pm(PM·사업기획)
 // - Asks Claude to write ORIGINAL Korean deep-curation posts
-// - Generates two posts by default (design 1 + ai 1)
+// - Generates two posts/day; the category pair rotates daily (see ROTATION_PAIRS)
 // - Appends new posts to data/insights.json and rebuilds js/insights-data.js
 //
 // Usage:  ANTHROPIC_API_KEY=sk-... node scripts/generate-post.mjs
 // Env:
 //   ANTHROPIC_API_KEY  (required)
 //   INSIGHTS_MODEL     (optional, default claude-sonnet-4-6)
-//   INSIGHTS_CATEGORY  (optional: "design" | "ai" to generate only one)
+//   INSIGHTS_CATEGORY  (optional: "design"|"ai"|"plan"|"pm" to force only one)
 // Exit code 0 with no changes if nothing new is found.
 // =====================================================
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -34,6 +35,18 @@ const FEEDS = {
     { source: 'MIT Technology Review', url: 'https://www.technologyreview.com/feed/' },
     { source: 'VentureBeat AI', url: 'https://venturebeat.com/category/ai/feed/' },
   ],
+  // 기획 · QA
+  plan: [
+    { source: 'Mind the Product', url: 'https://www.mindtheproduct.com/feed/' },
+    { source: 'Ministry of Testing', url: 'https://www.ministryoftesting.com/feed.rss' },
+    { source: 'Google Testing Blog', url: 'https://testing.googleblog.com/feeds/posts/default' },
+  ],
+  // PM/PL · 사업기획
+  pm: [
+    { source: "Lenny's Newsletter", url: 'https://www.lennysnewsletter.com/feed' },
+    { source: 'a16z', url: 'https://a16z.com/feed/' },
+    { source: 'Mind the Product', url: 'https://www.mindtheproduct.com/feed/' },
+  ],
 };
 
 const MODEL = process.env.INSIGHTS_MODEL || 'claude-sonnet-4-6';
@@ -41,9 +54,19 @@ const API_KEY = process.env.ANTHROPIC_API_KEY;
 const TITLE_MAX = 40;
 const SUMMARY_MAX = 130;
 
+// Daily rotation: 2 posts/day, pairs cycle so all four areas surface evenly.
+const ROTATION_PAIRS = [
+  ['design', 'ai'],
+  ['plan', 'pm'],
+  ['design', 'pm'],
+  ['ai', 'plan'],
+];
+
 const FALLBACK_TAGS = {
   design: ['Frontend', 'UX', 'WebPlatform'],
   ai: ['AI', 'AX', 'Workflow'],
+  plan: ['Planning', 'QA', 'Quality'],
+  pm: ['ProductManagement', 'Strategy', 'Business'],
 };
 
 // ---------- tiny RSS/Atom parser (zero deps) ----------
@@ -286,10 +309,18 @@ async function main() {
   const usedUrls = new Set(posts.map((p) => p.sourceUrl));
   const usedTitles = new Set(posts.map((p) => (p.rawTitle || '').toLowerCase()));
 
+  const VALID_CATS = ['design', 'ai', 'plan', 'pm'];
   const forcedCategory = process.env.INSIGHTS_CATEGORY;
-  const targetCategories = (forcedCategory === 'design' || forcedCategory === 'ai')
-    ? [forcedCategory]
-    : ['design', 'ai'];
+  let targetCategories;
+  if (VALID_CATS.includes(forcedCategory)) {
+    targetCategories = [forcedCategory];
+  } else {
+    // Rotate by calendar day so the pair changes daily and all areas appear.
+    const epochDay = Math.floor(Date.parse(today()) / 86400000);
+    const idx = ((epochDay % ROTATION_PAIRS.length) + ROTATION_PAIRS.length) % ROTATION_PAIRS.length;
+    targetCategories = ROTATION_PAIRS[idx];
+  }
+  console.log(`Today's categories: ${targetCategories.join(' + ')}`);
 
   const selected = [];
   const runUrls = new Set();

@@ -1,7 +1,7 @@
 # 매일 인사이트 발행 루틴 (Claude Code용)
 
 이 문서는 매일 오전 10시 자동 실행 시 Claude Code가 그대로 따라야 하는 절차입니다.
-목표: **해외 디자인 소식 1건과 AI 소식 1건(하루 총 2건)을 한국어로 큐레이션해 사이트에 발행**하고, git에 커밋·푸시까지 완료한다.
+목표: **하루 2건을 한국어로 큐레이션해 사이트에 발행**하고, git에 커밋·푸시까지 완료한다. 카테고리는 4개(디자인·AI·기획/QA·PM/사업기획)를 날짜에 따라 번갈아 2개씩 선택한다. Kenny의 다방면 작업 영역(프론트엔드·AX·기획·QA·PM/PL·사업기획)을 고르게 보여주는 것이 목표다.
 
 ## 작업 디렉터리
 `C:\kenny_work\000._My_company\260528_kenny_web`
@@ -10,11 +10,24 @@
 
 1. **기존 글 확인**: `data/insights.json`을 읽어 이미 발행된 글의 `sourceUrl`과 `rawTitle` 목록을 파악한다. (중복 발행 금지)
 
-2. **오늘 발행 대상**: 매일 **design 1건 + ai 1건, 총 2건**을 발행한다. (번갈아가 아니라 두 카테고리를 항상 함께 올린다.) 두 글 모두 오늘 날짜로 추가한다.
+2. **오늘 발행 대상(카테고리 2개, 날짜로 번갈아 선택)**: 매일 **총 2건**을 발행한다. 카테고리는 4개를 날짜 기준으로 순환하는 아래 표에서 오늘의 쌍을 고른다(두 글 모두 오늘 날짜로 추가).
+   - 카테고리 키와 라벨: `design`(Design) · `ai`(AI) · `plan`(기획·QA) · `pm`(PM·사업기획)
+   - 오늘의 쌍 계산: `idx = floor(Date.parse('오늘 YYYY-MM-DD') / 86400000) % 4`
 
-3. **소식 묶음 선택(한 글에 2~3개 소스 교차)**: 아래 **Kenny 정체성(프론트엔드·AX) 소스**에서 카테고리마다 **주요 소스 1개 + 보조 소스 1~2개**를 고른다(글 1건당 총 2~3개 소스). 보조 소스는 주요 소스와 **같은 주제를 다른 각도에서 다루는** 글로 고른다. 이미 쓴 URL은 제외.
-   - 디자인/프론트엔드: web.dev, css-tricks.com, tympanus.net/codrops, uxdesign.cc(UX Collective), joshwcomeau.com
-   - AI/AX: anthropic.com/news, theverge.com(AI 섹션), technologyreview.com, venturebeat.com(AI), blogs.microsoft.com/ai
+     | idx | 카테고리 쌍 |
+     |-----|-------------|
+     | 0 | design + ai |
+     | 1 | plan + pm |
+     | 2 | design + pm |
+     | 3 | ai + plan |
+
+   - 빠르게 확인: `node -e "const P=[['design','ai'],['plan','pm'],['design','pm'],['ai','plan']];console.log(P[(Math.floor(Date.now()/86400000)%4+4)%4])"`
+
+3. **소식 묶음 선택(한 글에 2~3개 소스 교차)**: 아래 **Kenny 정체성(프론트엔드·AX·기획·PM) 소스**에서 카테고리마다 **주요 소스 1개 + 보조 소스 1~2개**를 고른다(글 1건당 총 2~3개 소스). 보조 소스는 주요 소스와 **같은 주제를 다른 각도에서 다루는** 글로 고른다. 이미 쓴 URL은 제외.
+   - `design` 디자인/프론트엔드: web.dev, css-tricks.com, tympanus.net/codrops, uxdesign.cc(UX Collective), joshwcomeau.com
+   - `ai` AI/AX: anthropic.com/news, theverge.com(AI 섹션), technologyreview.com, venturebeat.com(AI), blogs.microsoft.com/ai
+   - `plan` 기획·QA: mindtheproduct.com, ministryoftesting.com, testing.googleblog.com (기획=제품 기획/요구사항/디스커버리, QA=테스트/품질 전략)
+   - `pm` PM·사업기획: lennysnewsletter.com, review.firstround.com, a16z.com, mindtheproduct.com (제품/프로젝트 매니지먼트 + 사업기획/전략/GTM)
    - ※ 다른 스튜디오 사이트와 차별화하기 위해 Smashing Magazine·NN/g·OpenAI·Google AI Blog·Hugging Face 등은 **쓰지 않는다.**
    - WebSearch로 "site 최근 글"을 찾고, 정확한 제목과 URL을 확보한다. **URL이 실제 존재하는지 확인**하고 추정 URL은 쓰지 않는다. 가능하면 WebFetch로 원문을 읽어 분석 깊이를 확보한다.
 
@@ -58,7 +71,7 @@
 7. **git 커밋·푸시** (Insights 관련 파일만, 2건을 한 커밋으로):
    ```
    git add data/insights.json js/insights-data.js
-   git commit -m "chore(insights): daily auto-post YYYY-MM-DD (design+ai)"
+   git commit -m "chore(insights): daily auto-post YYYY-MM-DD (오늘의 카테고리 쌍)"
    git push origin main
    ```
    - 다른 변경 파일은 건드리지 말 것.
@@ -67,7 +80,7 @@
 8. **완료 보고**: 발행한 2건의 제목·카테고리·URL을 각각 한 줄로 출력한다.
 
 ## 주의
-- 하루 2건(디자인 1 + AI 1)을 발행한다.
+- 하루 2건을 발행한다(오늘의 카테고리 쌍 = 위 2번 표 기준).
 - 한 카테고리에서 적절한 소식을 못 찾으면 그 카테고리는 건너뛰고(발행하지 않고) 사유를 출력한다. 나머지 한 건은 정상 발행한다.
 - 사실 확인이 안 되는 URL/제목은 쓰지 않는다.
 - **저작권**: 원문 전체 번역·전재 금지. 인용은 **핵심 1문장 이내**, 따옴표+출처 명시, 글의 '종'으로만. 본문 대부분은 직접 쓴 분석이어야 한다.

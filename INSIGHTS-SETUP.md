@@ -1,6 +1,9 @@
 # Insights (Blog/News) — 설치 및 운영 가이드
 
-해외 디자인·AI 소식을 **매일 2건(Design 1 + AI 1)** 한국어로 자동 큐레이션해 발행하는 기능입니다.
+해외 소식을 **매일 2건** 한국어로 자동 큐레이션해 발행하는 기능입니다. 카테고리는 4개
+(**Design · AI · 기획·QA(plan) · PM·사업기획(pm)**)이며, 날짜에 따라 2개 카테고리를 번갈아
+선택해 Kenny의 다방면 작업 영역을 고르게 보여줍니다(순환 규칙은 `scripts/generate-post.mjs`의
+`ROTATION_PAIRS`, 데일리 루틴은 `scripts/daily-insight-routine.md` 2번 표 참고).
 기존 정적 사이트(Vite + Docker/Nginx) 구조를 그대로 유지하며, 콘텐츠는 정적 JS 데이터로
 빌드되어 별도 백엔드·DB가 필요 없습니다.
 
@@ -51,10 +54,14 @@ npm run build    # dist/ 생성 (Docker가 이걸 Nginx로 서빙)
 
 ## 소스(피드) 바꾸기
 
-`scripts/generate-post.mjs` 상단 `FEEDS` 객체에서 RSS 주소를 자유롭게 추가/삭제하세요.
-기본값(Kenny 정체성 — 프론트엔드·AX): web.dev, Codrops, CSS-Tricks, UX Collective(디자인/프론트엔드) /
-The Verge AI, MIT Technology Review, VentureBeat AI(AI). 다른 스튜디오와 차별화하기 위해
-Smashing·NN/g·OpenAI·Google AI·Hugging Face 등은 의도적으로 제외했습니다.
+`scripts/generate-post.mjs` 상단 `FEEDS` 객체에서 카테고리별 RSS 주소를 자유롭게 추가/삭제하세요.
+기본값(Kenny 정체성 — 프론트엔드·AX·기획·PM):
+- `design`: web.dev, Codrops, CSS-Tricks, UX Collective
+- `ai`: The Verge AI, MIT Technology Review, VentureBeat AI
+- `plan`(기획·QA): Mind the Product, Ministry of Testing, Google Testing Blog
+- `pm`(PM·사업기획): Lenny's Newsletter, a16z, Mind the Product
+
+다른 스튜디오와 차별화하기 위해 Smashing·NN/g·OpenAI·Google AI·Hugging Face 등은 의도적으로 제외했습니다.
 이미 발행한 원문 URL·제목은 자동 중복 제거됩니다.
 
 ## 생성 품질 가드레일

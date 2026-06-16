@@ -14,7 +14,7 @@
     return String(b.date || "").localeCompare(String(a.date || ""));
   });
 
-  var CAT_LABEL = { design: "Design", ai: "AI" };
+  var CAT_LABEL = { design: "Design", ai: "AI", plan: "기획·QA", pm: "PM·사업기획" };
 
   function esc(s) {
     return String(s == null ? "" : s)

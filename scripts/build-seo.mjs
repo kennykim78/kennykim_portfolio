@@ -133,3 +133,30 @@ export function renderInsightPage(post, template) {
   );
   return html;
 }
+
+export function renderSitemap(posts) {
+  const today = posts.reduce((m, p) => (p.date > m ? p.date : m), '2026-01-01');
+  const urls = [];
+  for (const pg of MAIN_PAGES) {
+    const lastmod = pg.path === '/insights.html' || pg.path === '/' ? today : '';
+    urls.push(
+      '  <url><loc>' + abs(pg.path) + '</loc>' +
+        (lastmod ? '<lastmod>' + lastmod + '</lastmod>' : '') +
+        '<changefreq>' + pg.changefreq + '</changefreq>' +
+        '<priority>' + pg.priority + '</priority></url>'
+    );
+  }
+  for (const p of posts) {
+    urls.push(
+      '  <url><loc>' + abs('/insight/' + p.id + '/') + '</loc>' +
+        '<lastmod>' + p.date + '</lastmod>' +
+        '<changefreq>monthly</changefreq><priority>0.6</priority></url>'
+    );
+  }
+  return (
+    '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    urls.join('\n') +
+    '\n</urlset>\n'
+  );
+}

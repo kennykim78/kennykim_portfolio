@@ -115,3 +115,21 @@ test('renderInsightPage throws if the article placeholder is missing', () => {
     /insightArticle not found/
   );
 });
+
+import { renderSitemap } from './build-seo.mjs';
+
+test('renderSitemap includes all main pages and one entry per post', () => {
+  const posts = [
+    { id: 'a', date: '2026-06-18' },
+    { id: 'b', date: '2026-06-17' },
+  ];
+  const xml = renderSitemap(posts);
+  assert.match(xml, /^<\?xml/);
+  assert.match(xml, /<loc>https:\/\/rza\.co\.kr\/<\/loc>/);
+  assert.match(xml, /<loc>https:\/\/rza\.co\.kr\/about\.html<\/loc>/);
+  assert.match(xml, /<loc>https:\/\/rza\.co\.kr\/insight\/a\/<\/loc>/);
+  assert.match(xml, /<lastmod>2026-06-17<\/lastmod>/);
+  const locs = (xml.match(/<loc>/g) || []).length;
+  assert.equal(locs, 5 + 2); // 5 main pages + 2 posts
+  assert.doesNotMatch(xml, /insight\.html/); // shell excluded
+});

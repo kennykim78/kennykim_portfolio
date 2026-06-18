@@ -145,3 +145,19 @@ test('renderRobots allows AI crawlers and points to sitemap', () => {
   }
   assert.match(txt, /Sitemap: https:\/\/rza\.co\.kr\/sitemap\.xml/);
 });
+
+import { renderLlms } from './build-seo.mjs';
+
+test('renderLlms leads with Kenny Kim summary and lists recent posts', () => {
+  const posts = Array.from({ length: 25 }, (_, i) => ({
+    id: 'p' + i, title: 'T' + i, summary: 'S' + i, date: '2026-06-' + String((i % 28) + 1).padStart(2, '0'),
+  }));
+  const txt = renderLlms(posts);
+  assert.match(txt, /# Kenny Kim/);
+  assert.match(txt, /기획/);
+  assert.match(txt, /프론트엔드/);
+  assert.match(txt, /https:\/\/rza\.co\.kr\/about\.html/);
+  // newest-first, capped at 20
+  const postLinks = (txt.match(/\/insight\/p\d+\//g) || []).length;
+  assert.equal(postLinks, 20);
+});

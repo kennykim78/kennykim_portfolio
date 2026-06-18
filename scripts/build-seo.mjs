@@ -170,3 +170,28 @@ export function renderRobots() {
   lines.push('Sitemap: ' + abs('/sitemap.xml'), '');
   return lines.join('\n');
 }
+
+export function renderLlms(posts) {
+  const sorted = posts.slice().sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  const recent = sorted.slice(0, 20);
+  const out = [];
+  out.push('# Kenny Kim');
+  out.push('');
+  out.push('> ' + PERSON.name + ' (' + PERSON.alternateName + ') — ' + PERSON.jobTitle + '. ' + PERSON.description);
+  out.push('');
+  out.push('## 강점 (Expertise)');
+  out.push(PERSON.knowsAbout.join(', '));
+  out.push('');
+  out.push('## 대표 프로젝트');
+  out.push('청와대, KBS, BMW MINI, MetLife, 직방, Keymedia International(글로벌 미디어), 인도네시아 관광청, SKT Btv, KCC 등 (상세: ' + abs('/about.html') + ', ' + abs('/portfolio.html') + ').');
+  out.push('');
+  out.push('## 주요 페이지');
+  for (const pg of MAIN_PAGES) out.push('- ' + abs(pg.path));
+  out.push('');
+  out.push('## 최근 인사이트');
+  for (const p of recent) {
+    out.push('- [' + p.title + '](' + abs('/insight/' + p.id + '/') + ') — ' + (p.summary || ''));
+  }
+  out.push('');
+  return out.join('\n');
+}

@@ -49,7 +49,13 @@ test('articleJsonLd contains headline, author and canonical', () => {
   const post = { id: 'p1', title: '제목<', summary: '요약', date: '2026-06-18', tags: ['CSS'], sourceUrl: 'https://s.com' };
   const out = articleJsonLd(post, 'https://rza.co.kr/insight/p1/');
   assert.match(out, /"@type": "Article"/);
-  assert.match(out, /"headline": "제목<"/); // JSON.stringify handles escaping, not HTML-escaped
+  assert.match(out, /"headline": "제목\\u003c"/); // JSON.stringify handles escaping, not HTML-escaped
   assert.match(out, /"name": "Kenny Kim"/);
   assert.match(out, /"mainEntityOfPage": "https:\/\/rza\.co\.kr\/insight\/p1\/"/);
+});
+
+test('jsonLd neutralizes </script> breakout in values', () => {
+  const out = jsonLd({ name: 'a</script>b' });
+  assert.doesNotMatch(out, /<\/script>b/); // the value's closing tag is escaped
+  assert.match(out, /\\u003c\/script>b/);
 });

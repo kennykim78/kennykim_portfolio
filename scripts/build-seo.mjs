@@ -19,7 +19,9 @@ export function abs(path) {
 }
 
 export function jsonLd(obj) {
-  return '<script type="application/ld+json">\n' + JSON.stringify(obj, null, 2) + '\n</script>';
+  // Escape '<' so a value containing "</script>" can't break out of the script block.
+  const json = JSON.stringify(obj, null, 2).replace(/</g, '\\u003c');
+  return '<script type="application/ld+json">\n' + json + '\n</script>';
 }
 
 export function articleJsonLd(post, canonical) {

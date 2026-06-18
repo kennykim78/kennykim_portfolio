@@ -17,7 +17,7 @@ export const PERSON = {
   jobTitle: 'Frontend AX UI/UX Manager',
   description:
     '디자인에서 출발해 기획·UI/UX·퍼블리싱·프론트엔드·PM/PL·글로벌 협업·AI/AX까지 23년간 직접 수행해온 실무형 리더.',
-  image: '/image/og.png',
+  image: '/image/kenny_photo.png',
   profilePath: '/about.html',
   knowsLanguage: ['ko', 'en'],
   knowsAbout: [

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { SITE_URL, MAIN_PAGES, PERSON, ORG } from './seo-config.mjs';
+import { SITE_URL, MAIN_PAGES, PERSON, ORG, WEBSITE } from './seo-config.mjs';
 
 test('SITE_URL is the canonical apex without trailing slash', () => {
   assert.equal(SITE_URL, 'https://rza.co.kr');
@@ -22,4 +22,8 @@ test('PERSON facts are grounded and include core strengths', () => {
 test('ORG is RZA founded by Kenny Kim', () => {
   assert.equal(ORG.name, 'RZA');
   assert.equal(ORG.founder, 'Kenny Kim');
+});
+
+test('WEBSITE.url is the apex with a single trailing slash', () => {
+  assert.equal(WEBSITE.url, 'https://rza.co.kr/');
 });

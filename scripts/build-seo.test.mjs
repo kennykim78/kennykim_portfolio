@@ -133,3 +133,15 @@ test('renderSitemap includes all main pages and one entry per post', () => {
   assert.equal(locs, 5 + 2); // 5 main pages + 2 posts
   assert.doesNotMatch(xml, /insight\.html/); // shell excluded
 });
+
+import { renderRobots } from './build-seo.mjs';
+
+test('renderRobots allows AI crawlers and points to sitemap', () => {
+  const txt = renderRobots();
+  assert.match(txt, /User-agent: \*/);
+  assert.match(txt, /Allow: \//);
+  for (const bot of ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'anthropic-ai', 'PerplexityBot', 'CCBot', 'Google-Extended']) {
+    assert.match(txt, new RegExp('User-agent: ' + bot));
+  }
+  assert.match(txt, /Sitemap: https:\/\/rza\.co\.kr\/sitemap\.xml/);
+});

@@ -160,3 +160,13 @@ export function renderSitemap(posts) {
     '\n</urlset>\n'
   );
 }
+
+export function renderRobots() {
+  const aiBots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'anthropic-ai', 'PerplexityBot', 'CCBot', 'Google-Extended'];
+  const lines = ['User-agent: *', 'Allow: /', ''];
+  for (const bot of aiBots) {
+    lines.push('User-agent: ' + bot, 'Allow: /', '');
+  }
+  lines.push('Sitemap: ' + abs('/sitemap.xml'), '');
+  return lines.join('\n');
+}

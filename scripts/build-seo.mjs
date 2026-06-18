@@ -87,11 +87,18 @@ export function articleInnerHtml(post) {
 export function renderInsightPage(post, template) {
   const canonical = abs('/insight/' + post.id + '/');
   const title = post.title + ' — Kenny Insights';
+
+  // Existing social/title metas to strip (we inject fresh per-post versions below).
+  const stripKeys = ['og:title', 'og:description', 'og:image', 'og:type', 'twitter:title', 'twitter:description'];
+
   const headInjection = [
     '<meta name="description" content="' + esc(post.summary) + '" />',
+    '<meta property="og:title" content="' + esc(title) + '" />',
+    '<meta property="og:description" content="' + esc(post.summary) + '" />',
     '<meta property="og:type" content="article" />',
     '<meta property="og:url" content="' + canonical + '" />',
     '<meta property="og:image" content="' + abs(PERSON.image) + '" />',
+    '<meta name="twitter:title" content="' + esc(title) + '" />',
     '<meta name="twitter:description" content="' + esc(post.summary) + '" />',
     '<link rel="canonical" href="' + canonical + '" />',
     articleJsonLd(post, canonical),
@@ -101,17 +108,23 @@ export function renderInsightPage(post, template) {
   let html = template;
   // 1) base tag so root-relative assets resolve from /insight/<id>/
   html = html.replace(/<head>/i, '<head>\n<base href="/" />');
-  // 2) title + existing OG title/description
+  // 2) title
   html = html.replace(/<title>[\s\S]*?<\/title>/i, '<title>' + esc(title) + '</title>');
-  html = html.replace(/(<meta property="og:title" content=")[^"]*(")/i, '$1' + esc(title) + '$2');
-  html = html.replace(/(<meta property="og:description" content=")[^"]*(")/i, '$1' + esc(post.summary) + '$2');
-  // 3) inject new head tags
+  // 3) strip existing social/title metas (tolerant of multi-line tags), then inject fresh set
+  for (const key of stripKeys) {
+    const re = new RegExp('<meta\\b[^>]*(?:property|name)="' + key + '"[^>]*>', 'gi');
+    html = html.replace(re, '');
+  }
   html = html.replace(/<\/head>/i, headInjection + '\n</head>');
-  // 4) server-render the article body
+  // 4) server-render the article body (fail loudly if the template changed)
+  const beforeArticle = html;
   html = html.replace(
     /(<article[^>]*id="insightArticle"[^>]*>)[\s\S]*?(<\/article>)/i,
     '$1' + articleInnerHtml(post) + '$2'
   );
+  if (html === beforeArticle) {
+    throw new Error('renderInsightPage: #insightArticle not found in template for ' + post.id);
+  }
   // 5) prerender flag so insights.js does not clobber server HTML
   html = html.replace(
     /<\/body>/i,

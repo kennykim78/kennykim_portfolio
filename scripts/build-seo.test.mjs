@@ -71,9 +71,13 @@ const SAMPLE = {
 const FAKE_TEMPLATE = [
   '<!doctype html><html lang="ko"><head>',
   '<meta charset="UTF-8" />',
+  '<meta property="og:image" content="/image/og.png" />',
   '<title>Insights — Kenny Kim</title>',
   '<meta property="og:title" content="Insights — Kenny Kim" />',
-  '<meta property="og:description" content="디자인·AI 및 IT 트렌드를 큐레이션합니다." />',
+  '<meta',
+  '  property="og:description"',
+  '  content="디자인·AI 및 IT 트렌드를 큐레이션합니다."',
+  '/>',
   '<link rel="stylesheet" href="css/insights.css" />',
   '</head><body>',
   '<article class="insight-article" id="insightArticle" aria-live="polite"><!-- x --></article>',
@@ -99,4 +103,15 @@ test('renderInsightPage injects base, canonical, title, article and prerender fl
   assert.match(out, /<h1 class="insight-title">센터링<\/h1>/); // body server-rendered into #insightArticle
   assert.doesNotMatch(out, /<!-- x -->/); // placeholder replaced
   assert.match(out, /"@type": "Article"/);
+  assert.match(out, /property="og:description" content="요약문"/); // per-post summary injected
+  assert.doesNotMatch(out, /큐레이션합니다/); // stale generic og:description removed
+  assert.equal((out.match(/property="og:description"/g) || []).length, 1); // exactly one
+  assert.equal((out.match(/property="og:image"/g) || []).length, 1); // de-duplicated
+});
+
+test('renderInsightPage throws if the article placeholder is missing', () => {
+  assert.throws(
+    () => renderInsightPage(SAMPLE, '<html><head></head><body></body></html>'),
+    /insightArticle not found/
+  );
 });

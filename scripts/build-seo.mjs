@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { SITE_URL, MAIN_PAGES, PERSON, ORG } from './seo-config.mjs';
+import { SITE_URL, MAIN_PAGES, PERSON, ORG, INDEXNOW_KEY } from './seo-config.mjs';
 
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -221,6 +221,7 @@ export function main(distDir = join(projectRoot, 'dist')) {
   writeFileSync(join(distDir, 'sitemap.xml'), renderSitemap(posts));
   writeFileSync(join(distDir, 'robots.txt'), renderRobots());
   writeFileSync(join(distDir, 'llms.txt'), renderLlms(posts));
+  writeFileSync(join(distDir, INDEXNOW_KEY + '.txt'), INDEXNOW_KEY + '\n');
   console.log('SEO: ' + pageCount + ' insight pages + sitemap/robots/llms written to ' + distDir);
 }
 

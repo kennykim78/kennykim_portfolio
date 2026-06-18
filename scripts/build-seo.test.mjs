@@ -164,3 +164,10 @@ test('renderLlms leads with Kenny Kim summary and lists recent posts', () => {
   const postLinks = (txt.match(/\/insight\/p\d+\//g) || []).length;
   assert.equal(postLinks, 20);
 });
+
+import { INDEXNOW_KEY } from './seo-config.mjs';
+
+test('INDEXNOW_KEY is a valid IndexNow key (hex, 8-128 chars)', () => {
+  assert.match(INDEXNOW_KEY, /^[a-zA-Z0-9-]{8,128}$/);
+  assert.equal(INDEXNOW_KEY, '7524750a9d09d4e77e47209370376372');
+});

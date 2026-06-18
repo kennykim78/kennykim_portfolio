@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-06-18-css-centering-2026",
+    "category": "design",
+    "date": "2026-06-18",
+    "title": "2026년의 CSS 센터링, 트릭에서 의도로",
+    "rawTitle": "The State of CSS Centering in 2026",
+    "summary": "div 가운데 정렬은 이제 transform 트릭이 아니라 place-self·anchor-center·text-box·safe로 정렬 의도를 선언하는 문제다. 2026년 CSS 센터링을 세 출처로 정리한다.",
+    "bodyHtml": "<p>\"div 하나 가운데 정렬\"은 한때 프론트엔드의 농담이자 통과의례였다. 그런데 2026년의 CSS 센터링은 더 이상 transform 트릭이나 마진 핵을 외우는 문제가 아니다. <code>place-content</code>, <code>anchor-center</code>, <code>text-box</code>, <code>safe</code> 키워드까지 더해지면서, 이제는 \"어떻게 가운데 두느냐\"가 아니라 \"어떤 정렬 의도를 선언하느냐\"의 문제가 됐다. 같은 주제를 세 출처가 나란히 정리한 지금이 센터링 지식을 새로 고칠 적기다.</p><blockquote>\"It's about understanding how alignment works, considering your specific use case and layout.\"<cite>CSS-Tricks</cite></blockquote><h3>무슨 일인가</h3><p>CSS-Tricks의 2026 센터링 정리는 핵심을 세 갈래로 나눈다. 첫째, 절대 위치 센터링이 <code>transform: translate(-50%,-50%)</code>에서 <code>inset: 0; place-self: center</code>로 옮겨갔다. 둘째, <code>text-box</code> 속성으로 폰트 위아래의 군더더기 여백을 잘라 픽셀 단위 수직 정렬을 맞춘다. 셋째, 앵커 포지셔닝의 <code>center</code>(영역 기준)와 <code>anchor-center</code>(앵커 기준)가 새로운 정렬 축을 만든다. 무엇보다 <code>safe</code> 키워드는 콘텐츠가 넘칠 때 잘려 사라지는 사고를 막는다.</p><h3>여러 시각</h3><p>같은 \"가운데 정렬\"을 세 출처가 다른 높이에서 본다.</p><ul><li><b>CSS-Tricks</b> — 2026 최신 기능(text-box, safe/unsafe, anchor-center)을 묶어 \"코드 암기가 아니라 정렬 원리 이해\"가 본질이라고 정리한다.</li><li><b>web.dev</b> — <code>place-content: center</code>, gentle-flex 같은 재사용 패턴을 카탈로그처럼 제시하고, <code>align-content</code>가 block 레이아웃까지 Baseline에 들어왔음을 짚는다.</li><li><b>Josh W. Comeau</b> — 수십 가지 방법 대신 \"flex + justify/align-items\"를 가장 자주 쓰는 기본값으로 권하며, 자식이 컨테이너를 넘쳐도 깨지지 않는 실용성을 강조한다.</li></ul><h3>왜 중요한가</h3><p>세 글을 겹치면 결론이 모인다. 센터링엔 단일 정답이 없고, 레이아웃 알고리즘(flex·grid·block·absolute)마다 정렬의 의미가 다르다. 그래서 \"가운데 두는 코드\"만 외우면 오히려 함정에 빠진다. <code>align-content</code>가 block에도 들어오고 <code>safe</code> 정렬이 표준이 되면서, 이제 중요한 건 \"이 요소가 어떤 컨텍스트에서 어떻게 넘칠 수 있는가\"를 먼저 묻는 습관이다. 정렬은 장식이 아니라 콘텐츠 보존과 접근성의 문제다.</p><h3>실무 적용</h3><ul><li>새 absolute 센터링은 transform 핵 대신 <code>inset: 0; place-self: center</code>로 쓰고, 레거시 폴백만 transform으로 남겨라.</li><li>텍스트 블록의 수직 어긋남은 line-height 땜질 대신 <code>text-box</code>로 폰트 메트릭을 직접 잘라 맞춰라.</li><li>가변 콘텐츠를 가운데 둘 땐 항상 <code>safe</code> 키워드를 붙여 좁은 화면에서 잘려 사라지는 일을 막아라.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드·AX 관점에서 센터링의 진화는 \"의도를 코드로 말하기\"의 축소판이다. <code>transform: translate(-50%,-50%)</code>는 결과(좌표)를 적는 코드였고, <code>place-self: center</code>는 의도(가운데)를 적는 코드다. 의도가 드러나는 코드는 사람이 읽기 쉽고, AI 보조 도구가 레이아웃을 추론하기도 쉽다. 나는 신규 코드에서 정렬 의도와 넘침(overflow) 시나리오를 한 쌍으로 묶어 리뷰하는 걸 기본 규칙으로 삼는다.</p><h3>출처</h3><ul><li><a href=\"https://css-tricks.com/the-state-of-css-centering-in-2026/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: The State of CSS Centering in 2026 ↗</a></li><li><a href=\"https://web.dev/articles/centering-in-css\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: Centering in CSS ↗</a></li><li><a href=\"https://www.joshwcomeau.com/css/center-a-div/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Josh W. Comeau: How To Center a Div ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/the-state-of-css-centering-in-2026/",
+    "tags": [
+      "CSS",
+      "Centering",
+      "Layout"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-18-ai-agent-security",
+    "category": "ai",
+    "date": "2026-06-18",
+    "title": "수백만 AI 에이전트의 시대, 보안이 먼저다",
+    "rawTitle": "Google DeepMind is worried about what happens when millions of agents start to interact",
+    "summary": "구글 딥마인드는 멀티에이전트 안전 연구에 1천만 달러를 건다. 메타 AI 봇 탈취 사건은 그 위험이 이미 현실임을 보여준다. 에이전트 시대의 진짜 과제는 통제와 방어다.",
+    "bodyHtml": "<p>AI 에이전트가 사람을 대신해 이메일을 바꾸고 계정을 복구하고 코드를 고치기 시작하면서, 질문이 바뀌었다. \"에이전트가 무엇을 할 수 있나\"에서 \"에이전트가 서로, 그리고 공격자와 어떻게 부딪치나\"로. 구글 딥마인드는 수백만 에이전트가 동시에 상호작용할 때 벌어질 일을 연구하라며 1천만 달러를 내놨다. 같은 시기 메타의 AI 지원 봇이 인스타그램 계정 탈취에 악용된 사건은, 그 위험이 미래가 아니라 지금임을 못 박았다.</p><blockquote>\"The main issue is that there just isn't really a field of research for multi-agent safety yet.\"<cite>MIT Technology Review</cite></blockquote><h3>무슨 일인가</h3><p>딥마인드는 슈미트 사이언스, 영국 ARIA, Cooperative AI Foundation, Google.org와 함께 멀티에이전트 안전 연구 자금 1천만 달러를 조성했다. AGI 안전 연구를 이끄는 Rohin Shah는 \"몇 달 안에\" 에이전트 배포가 우려스러운 규모에 이를 것으로 본다. 명시된 위험은 사기·프롬프트 인젝션·사이버공격·시스템 탈취, 그리고 장기적으로는 경제적 연쇄 붕괴다. 핵심은 단일 에이전트의 정렬(alignment)이 아니라, 여러 에이전트가 얽힐 때 생기는 창발적 위험을 다룰 학문 자체가 아직 없다는 점이다.</p><h3>여러 시각</h3><p>같은 \"에이전트 보안\"을 세 출처가 연구·공격·방어의 세 입구에서 본다.</p><ul><li><b>MIT Technology Review (딥마인드)</b> — 멀티에이전트 상호작용의 창발적 위험을 연구할 \"분야 자체가 없다\"며 학계의 선제 연구를 촉구한다.</li><li><b>MIT Technology Review (메타 해킹)</b> — 거창한 위협이 아니라 VPN으로 위치만 맞춘 뒤 봇에게 이메일 변경을 요청하는 단순 수법으로 계정이 털린 현실을 보여준다.</li><li><b>Anthropic (Project Glasswing)</b> — 공격이 아니라 방어 쪽에서 AI를 먼저 무장시키자는 접근. Claude 기반 모델로 취약점을 찾아 패치하며 이미 1만 건 넘는 고위험 결함을 발견했다.</li></ul><h3>왜 중요한가</h3><p>세 관점을 겹치면 흐름이 분명하다. 위험은 모델이 \"더 똑똑해져서\"가 아니라 \"세상에 실제 행동을 위임받아서\" 커진다. 메타 사례처럼 정교한 해킹이 아닌 평범한 사회공학이 에이전트를 통과하고, 딥마인드 경고처럼 그런 에이전트가 수백만 개로 얽히면 단일 사고가 연쇄가 된다. 그래서 방어의 승부는 모델 성능이 아니라 권한 경계·검증·관측에서 갈린다. Glasswing이 보여주듯 방어 측도 AI로 속도를 내야 비대칭 우위를 지킬 수 있다.</p><h3>실무 적용</h3><ul><li>에이전트에 실제 행동(계정·결제·메일 변경)을 위임할 땐, 모델 응답과 별개로 신원 재확인·승인 게이트를 코드 레벨에서 강제하라.</li><li>프롬프트 인젝션을 전제로 설계하라 — 외부 입력은 명령이 아니라 데이터로 취급하고, 권한 범위를 최소화한 뒤 감사 로그를 남겨라.</li><li>출시 전 레드팀(단순 사회공학 시나리오 포함)을 필수 게이트로 두고, 비용을 이유로 건너뛰지 마라.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드·AX 관점에서 이 문제의 무대는 결국 \"사람이 개입하는 화면\"이다. 메타 봇이 털린 건 모델이 멍청해서가 아니라, 위험한 행동을 사람 확인 없이 끝까지 수행하도록 흐름이 설계됐기 때문이다. 에이전트가 계정·결제 같은 비가역적 행동을 하기 직전엔, 무엇을·왜·누구 권한으로 하는지 사용자가 멈추고 검토할 표면이 있어야 한다. 자율성과 통제감을 동시에 주는 인터페이스, 그것이 에이전트 보안의 마지막 1마일이다.</p><h3>출처</h3><ul><li><a href=\"https://www.technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Google DeepMind is worried about what happens when millions of agents start to interact ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/06/05/1138437/the-meta-hack-shows-theres-more-to-ai-security-than-mythos/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: The Meta hack shows there's more to AI security than Mythos ↗</a></li><li><a href=\"https://www.anthropic.com/news/expanding-project-glasswing\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Expanding Project Glasswing ↗</a></li></ul>",
+    "source": "MIT Technology Review",
+    "sourceUrl": "https://www.technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact/",
+    "tags": [
+      "AIAgents",
+      "AISecurity",
+      "MultiAgent"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-16-css-anchor-positioning",
     "category": "design",
     "date": "2026-06-16",

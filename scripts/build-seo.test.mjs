@@ -59,3 +59,44 @@ test('jsonLd neutralizes </script> breakout in values', () => {
   assert.doesNotMatch(out, /<\/script>b/); // the value's closing tag is escaped
   assert.match(out, /\\u003c\/script>b/);
 });
+
+import { articleInnerHtml, renderInsightPage } from './build-seo.mjs';
+
+const SAMPLE = {
+  id: '2026-06-18-x', category: 'design', date: '2026-06-18',
+  title: '센터링', summary: '요약문', bodyHtml: '<p>본문</p>',
+  source: 'CSS-Tricks', sourceUrl: 'https://css-tricks.com/x/', tags: ['CSS', 'Layout'],
+};
+
+const FAKE_TEMPLATE = [
+  '<!doctype html><html lang="ko"><head>',
+  '<meta charset="UTF-8" />',
+  '<title>Insights — Kenny Kim</title>',
+  '<meta property="og:title" content="Insights — Kenny Kim" />',
+  '<meta property="og:description" content="디자인·AI 및 IT 트렌드를 큐레이션합니다." />',
+  '<link rel="stylesheet" href="css/insights.css" />',
+  '</head><body>',
+  '<article class="insight-article" id="insightArticle" aria-live="polite"><!-- x --></article>',
+  '<script src="js/insights.js"></script>',
+  '</body></html>',
+].join('\n');
+
+test('articleInnerHtml mirrors renderDetail structure with server-rendered body', () => {
+  const html = articleInnerHtml(SAMPLE);
+  assert.match(html, /<h1 class="insight-title">센터링<\/h1>/);
+  assert.match(html, /<div class="insight-body"><p>본문<\/p><\/div>/);
+  assert.match(html, /insight-source-box/);
+  assert.match(html, /#CSS/);
+});
+
+test('renderInsightPage injects base, canonical, title, article and prerender flag', () => {
+  const out = renderInsightPage(SAMPLE, FAKE_TEMPLATE);
+  assert.match(out, /<base href="\/" \/>/);
+  assert.match(out, /<title>센터링 — Kenny Insights<\/title>/);
+  assert.match(out, /<link rel="canonical" href="https:\/\/rza\.co\.kr\/insight\/2026-06-18-x\/" \/>/);
+  assert.match(out, /property="og:type" content="article"/);
+  assert.match(out, /window\.__INSIGHT_PRERENDERED__\s*=\s*true/);
+  assert.match(out, /<h1 class="insight-title">센터링<\/h1>/); // body server-rendered into #insightArticle
+  assert.doesNotMatch(out, /<!-- x -->/); // placeholder replaced
+  assert.match(out, /"@type": "Article"/);
+});

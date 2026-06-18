@@ -54,3 +54,69 @@ export function breadcrumbJsonLd(post, canonical) {
     ],
   });
 }
+
+const CAT_LABEL = { design: 'Design', ai: 'AI', plan: '기획·QA', pm: 'PM·사업기획' };
+const catLabel = (c) => CAT_LABEL[c] || (c ? String(c).toUpperCase() : '');
+const fmtDate = (d) => {
+  const p = String(d || '').split('-');
+  return p.length === 3 ? p.join('.') : String(d || '');
+};
+
+// Mirrors js/insights.js renderDetail() inner markup so existing CSS applies.
+export function articleInnerHtml(post) {
+  const tags = (post.tags || [])
+    .map((t) => '<span class="tag">#' + esc(t) + '</span>')
+    .join('');
+  return (
+    '<div class="insight-head">' +
+    '<div class="card-meta"><span class="card-cat" data-cat="' + esc(post.category) + '">' +
+    esc(catLabel(post.category)) + '</span>' +
+    '<span class="card-date">' + esc(fmtDate(post.date)) + '</span></div>' +
+    '<h1 class="insight-title">' + esc(post.title) + '</h1>' +
+    (tags ? '<div class="insight-tags">' + tags + '</div>' : '') +
+    '</div>' +
+    '<div class="insight-body">' + (post.bodyHtml || '<p>' + esc(post.summary) + '</p>') + '</div>' +
+    '<div class="insight-source-box">' +
+    '<p>이 글은 아래 원문을 바탕으로 Kenny가 한국어로 요약·정리한 큐레이션입니다.</p>' +
+    '<a href="' + esc(post.sourceUrl) + '" target="_blank" rel="noopener noreferrer nofollow">' +
+    '원문 보기 — ' + esc(post.source || post.sourceUrl) + ' ↗</a>' +
+    '</div>'
+  );
+}
+
+export function renderInsightPage(post, template) {
+  const canonical = abs('/insight/' + post.id + '/');
+  const title = post.title + ' — Kenny Insights';
+  const headInjection = [
+    '<meta name="description" content="' + esc(post.summary) + '" />',
+    '<meta property="og:type" content="article" />',
+    '<meta property="og:url" content="' + canonical + '" />',
+    '<meta property="og:image" content="' + abs(PERSON.image) + '" />',
+    '<meta name="twitter:description" content="' + esc(post.summary) + '" />',
+    '<link rel="canonical" href="' + canonical + '" />',
+    articleJsonLd(post, canonical),
+    breadcrumbJsonLd(post, canonical),
+  ].join('\n');
+
+  let html = template;
+  // 1) base tag so root-relative assets resolve from /insight/<id>/
+  html = html.replace(/<head>/i, '<head>\n<base href="/" />');
+  // 2) title + existing OG title/description
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, '<title>' + esc(title) + '</title>');
+  html = html.replace(/(<meta property="og:title" content=")[^"]*(")/i, '$1' + esc(title) + '$2');
+  html = html.replace(/(<meta property="og:description" content=")[^"]*(")/i, '$1' + esc(post.summary) + '$2');
+  // 3) inject new head tags
+  html = html.replace(/<\/head>/i, headInjection + '\n</head>');
+  // 4) server-render the article body
+  html = html.replace(
+    /(<article[^>]*id="insightArticle"[^>]*>)[\s\S]*?(<\/article>)/i,
+    '$1' + articleInnerHtml(post) + '$2'
+  );
+  // 5) prerender flag so insights.js does not clobber server HTML
+  html = html.replace(
+    /<\/body>/i,
+    '<script>window.__INSIGHT_PRERENDERED__=true;window.__INSIGHT_ID__=' +
+      JSON.stringify(post.id) + ';</script>\n</body>'
+  );
+  return html;
+}

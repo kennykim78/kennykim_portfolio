@@ -61,7 +61,7 @@
     }
 
     function cardHtml(p) {
-      var href = "insight.html?id=" + encodeURIComponent(p.id);
+      var href = "insight/" + encodeURIComponent(p.id) + "/";
       var hasThumb = !!(p.thumb && String(p.thumb).trim());
       var thumb = hasThumb
         ? '<span class="card-thumb" style="background-image:url(\'' + esc(p.thumb) + '\')"></span>'
@@ -100,7 +100,14 @@
   function renderDetail() {
     var root = byId("insightArticle");
     if (!root) return;
+    // Static pre-rendered page already has the article server-side; leave it untouched.
+    if (window.__INSIGHT_PRERENDERED__) return;
     var id = getParam("id");
+    // Legacy ?id= URL → consolidate to the canonical clean URL when the post exists.
+    if (id && POSTS.some(function (p) { return String(p.id) === String(id); })) {
+      window.location.replace("/insight/" + encodeURIComponent(id) + "/");
+      return;
+    }
     var post = POSTS.filter(function (p) { return String(p.id) === String(id); })[0];
 
     if (!post) {

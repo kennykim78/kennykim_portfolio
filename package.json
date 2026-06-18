@@ -4,7 +4,7 @@
   "description": "Static site for AA archigroup",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/copy-static-js.mjs",
+    "build": "vite build && node scripts/copy-static-js.mjs && node scripts/build-seo.mjs",
     "build:css": "sass scss:css --style expanded",
     "watch:css": "sass --watch scss:css --style expanded",
     "check:scss-source": "node scripts/enforce-scss-source.mjs",

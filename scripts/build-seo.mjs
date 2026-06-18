@@ -195,3 +195,33 @@ export function renderLlms(posts) {
   out.push('');
   return out.join('\n');
 }
+
+function readPosts() {
+  const jsonPath = join(projectRoot, 'data', 'insights.json');
+  return JSON.parse(readFileSync(jsonPath, 'utf8'));
+}
+
+export function main(distDir = join(projectRoot, 'dist')) {
+  const posts = readPosts();
+  const templatePath = join(distDir, 'insight.html');
+  if (!existsSync(templatePath)) {
+    throw new Error('Missing ' + templatePath + ' — run vite build first.');
+  }
+  const template = readFileSync(templatePath, 'utf8');
+
+  let pageCount = 0;
+  for (const post of posts) {
+    const outDir = join(distDir, 'insight', post.id);
+    mkdirSync(outDir, { recursive: true });
+    writeFileSync(join(outDir, 'index.html'), renderInsightPage(post, template));
+    pageCount += 1;
+  }
+  writeFileSync(join(distDir, 'sitemap.xml'), renderSitemap(posts));
+  writeFileSync(join(distDir, 'robots.txt'), renderRobots());
+  writeFileSync(join(distDir, 'llms.txt'), renderLlms(posts));
+  console.log('SEO: ' + pageCount + ' insight pages + sitemap/robots/llms written to ' + distDir);
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}

@@ -39,3 +39,6 @@ export const WEBSITE = {
   url: SITE_URL + '/',
   inLanguage: 'ko',
 };
+
+// IndexNow public key (hosted at https://rza.co.kr/<key>.txt for ownership verification).
+export const INDEXNOW_KEY = '7524750a9d09d4e77e47209370376372';

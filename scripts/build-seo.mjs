@@ -115,6 +115,8 @@ export function renderInsightPage(post, template) {
     const re = new RegExp('<meta\\b[^>]*(?:property|name)="' + key + '"[^>]*>', 'gi');
     html = html.replace(re, '');
   }
+  // Strip any existing canonical (the SPA shell has one pointing at the list page).
+  html = html.replace(/<link\b[^>]*rel="canonical"[^>]*>/gi, '');
   html = html.replace(/<\/head>/i, headInjection + '\n</head>');
   // 4) server-render the article body (fail loudly if the template changed)
   const beforeArticle = html;

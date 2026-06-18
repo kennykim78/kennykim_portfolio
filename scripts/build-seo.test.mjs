@@ -71,6 +71,7 @@ const SAMPLE = {
 const FAKE_TEMPLATE = [
   '<!doctype html><html lang="ko"><head>',
   '<meta charset="UTF-8" />',
+  '<link rel="canonical" href="https://rza.co.kr/insights.html" />',
   '<meta property="og:image" content="/image/og.png" />',
   '<title>Insights — Kenny Kim</title>',
   '<meta property="og:title" content="Insights — Kenny Kim" />',
@@ -107,6 +108,8 @@ test('renderInsightPage injects base, canonical, title, article and prerender fl
   assert.doesNotMatch(out, /큐레이션합니다/); // stale generic og:description removed
   assert.equal((out.match(/property="og:description"/g) || []).length, 1); // exactly one
   assert.equal((out.match(/property="og:image"/g) || []).length, 1); // de-duplicated
+  assert.equal((out.match(/rel="canonical"/g) || []).length, 1); // exactly one canonical
+  assert.match(out, /rel="canonical" href="https:\/\/rza\.co\.kr\/insight\/2026-06-18-x\/"/); // the per-post one
 });
 
 test('renderInsightPage throws if the article placeholder is missing', () => {

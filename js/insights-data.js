@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-06-19-aria-notify",
+    "category": "design",
+    "date": "2026-06-19",
+    "title": "ariaNotify(), 스크린리더 알림의 양날의 검",
+    "rawTitle": "The Siren Song of ariaNotify()",
+    "summary": "새 ariaNotify() API는 aria-live의 고질적 타이밍 문제를 없애지만, 너무 쉬워서 옛 alert()처럼 사용자를 괴롭히기 쉽다. 편의와 절제 사이의 균형을 세 출처로 짚는다.",
+    "bodyHtml": "<p>화면이 바뀌었다는 사실을 스크린리더 사용자에게 어떻게 알릴까. 그동안 답은 사실상 <code>aria-live</code> 영역 하나뿐이었고, 그마저도 브라우저·보조기술마다 제멋대로 동작해 개발자를 괴롭혔다. 2026년 6월, 새 <code>ariaNotify()</code> API가 \"문자열 하나만 넘기면 스크린리더가 읽어준다\"는 깔끔한 대안으로 등장했다. 그런데 CSS-Tricks의 Mat Marquis는 이 편리함이야말로 함정일 수 있다고 경고한다.</p><blockquote>\"ARIA leaves no room for interpretation; what we say goes, full stop.\"<cite>CSS-Tricks</cite></blockquote><h3>무슨 일인가</h3><p>ariaNotify()는 요소나 document에서 호출해 알릴 문자열과 우선순위(normal·high)를 넘기면 스크린리더가 그대로 읽는다. 기존 aria-live는 영역이 DOM에 미리 존재해야 하고 <code>display:none</code>에서 토글하면 안 읽히는 등 타이밍 문제가 많았는데, 이 API는 그런 숨은 마크업 트릭 없이 직접 알림을 띄운다. 파이어폭스 150이 먼저 지원을 붙였다. 문제는 호출이 너무 쉬워서, 옛 <code>alert()</code>처럼 아무 데서나 남발하기 쉽다는 점이다.</p><h3>여러 시각</h3><p>같은 \"알림\" 문제를 세 글이 다른 높이에서 본다.</p><ul><li><b>CSS-Tricks (Mat Marquis)</b> — ariaNotify()는 진짜 문제를 풀지만, 쉬운 만큼 과도한 알림으로 숙련된 스크린리더 사용자를 방해할 위험이 크다며 절제를 강조한다.</li><li><b>web.dev (Hiding and updating content)</b> — 전통적 aria-live의 polite·assertive와 aria-atomic·relevant·busy를 정리하되, 영역이 로드 시점에 존재해야 하고 스크린리더마다 동작이 달라 테스트가 필수라고 짚는다.</li><li><b>web.dev (Introduction to ARIA)</b> — \"ARIA의 첫 번째 규칙은 ARIA를 쓰지 않는 것\"이라는 원칙으로, 네이티브 HTML로 되는 일에 굳이 ARIA를 덧씌우지 말라고 상기시킨다.</li></ul><h3>왜 중요한가</h3><p>세 글을 겹치면 결론이 모인다. 새 API의 가치는 기술이 아니라 절제에서 나온다. ariaNotify()는 aria-live의 고질적 타이밍 문제를 없애지만, 그만큼 \"읽어줄 수 있다\"가 \"읽어줘야 한다\"로 오해되기 쉽다. 스크린리더 사용자에게 불필요한 알림은 시각 사용자에게 모달 팝업을 연달아 띄우는 것과 같다. 접근성은 더 많이 말하는 게 아니라, 꼭 필요한 것만 정확한 순간에 말하는 일이다.</p><h3>실무 적용</h3><ul><li>알림이 정말 필요한지 먼저 묻고, 포커스 이동이나 네이티브 HTML로 이미 전달되는 맥락은 ariaNotify()로 중복 안내하지 마라.</li><li>새 API는 점진적 향상으로 깔되, 미지원 브라우저를 위해 검증된 aria-live 폴백을 함께 설계하라.</li><li>high 우선순위는 작업을 가로막아야 할 만큼 급한 경우로만 한정하고, 대부분의 알림은 normal로 큐에 쌓아라.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드·AX 관점에서 ariaNotify()는 \"권한이 생기면 책임도 커진다\"는 접근성의 오랜 교훈을 다시 꺼낸다. 그동안 aria-live가 까다로웠던 건 역설적으로 남용을 막는 마찰이기도 했다. 마찰이 사라진 지금, 무엇을 알릴지 결정하는 판단이 곧 품질이 된다. 나는 알림을 늘리는 코드를 리뷰할 때 \"이 소리를 끄고 싶은 사용자는 어떻게 하지\"를 함께 묻는 것을 기본 규칙으로 삼는다.</p><h3>출처</h3><ul><li><a href=\"https://css-tricks.com/the-siren-song-of-arianotify/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: The Siren Song of ariaNotify() ↗</a></li><li><a href=\"https://web.dev/hiding-and-updating-content/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: Hiding and updating content ↗</a></li><li><a href=\"https://web.dev/articles/semantics-aria\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: Introduction to ARIA ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/the-siren-song-of-arianotify/",
+    "tags": [
+      "Accessibility",
+      "ARIA",
+      "ScreenReader"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-19-why-koreans-love-ai",
+    "category": "ai",
+    "date": "2026-06-19",
+    "title": "세계가 AI를 겁낼 때, 한국은 끌어안는다",
+    "rawTitle": "Why do South Koreans love AI so much?",
+    "summary": "AI를 걱정하는 한국인은 25개국 중 가장 적다. 정부 주도 전략, 기술로 도약한 기억, 그리고 앤트로픽의 서울 진출까지—한국 AI 열풍의 동력과 그늘을 세 출처로 분석한다.",
+    "bodyHtml": "<p>AI를 향한 불안이 전 세계를 덮을 때, 한국은 정반대로 움직인다. MIT 테크놀로지 리뷰에 따르면 \"AI가 기대보다 걱정된다\"는 한국인은 16%로, 조사된 25개국 중 가장 낮다(미국은 50%). 마침 같은 주에 앤트로픽이 서울 사무소를 열고 한국 AI 생태계 파트너십을 쏟아내면서, 한국은 글로벌 AI 기업이 가장 탐내는 시장이 됐다. 무엇이 이 열기를 만들었나.</p><blockquote>\"South Koreans have consistently and relentlessly been told by the government about AI's potential to create a better future.\"<cite>MIT Technology Review</cite></blockquote><h3>무슨 일인가</h3><p>기사는 한국의 AI 사랑을 정부·역사·일상 세 갈래로 설명한다. 이재명 정부는 \"AI 3대 강국\"을 내걸고 국가AI전략위원회와 소버린 AI 파운데이션 모델 사업을 추진한다. 철강·반도체·스마트폰으로 가난을 벗어난 \"기술로 도약\"의 기억이 AI에도 그대로 투영된다. 실제로 20대의 46%가 챗봇으로 운세를 봤고, 다수가 매일 AI를 쓴다. 2024년 AI 기본법은 안전보다 발전에 무게를 두고, 응답자 70%가 규제보다 과학 발전을 우선한다고 답했다.</p><h3>여러 시각</h3><p>같은 \"한국의 AI 열풍\"을 세 출처가 다른 입구에서 본다.</p><ul><li><b>MIT Technology Review (Michelle Kim)</b> — 문화·정책 관점. 정부의 일관된 메시지와 기술 성공의 기억이 낙관을 만들지만, 64%는 일자리 위협도 동시에 우려한다는 양면성을 짚는다.</li><li><b>Anthropic (서울 사무소)</b> — 시장 관점. LG CNS·삼성SDS·한화솔루션이 Claude를 도입하고, 한국 사용자가 총량·1인당 사용량 모두 세계 5위 안에 든다며 아시아태평양 매출이 1년 새 10배 늘었다고 밝힌다.</li><li><b>VentureBeat (SKT 파트너십)</b> — 주권 관점. SK텔레콤이 앤트로픽에 1억 달러를 투입해 Claude와 한국어·통신 역량을 결합한 다국어 모델을 함께 만들며, 외산 모델 도입과 자체 모델 육성을 동시에 노린다.</li></ul><h3>왜 중요한가</h3><p>세 시각을 겹치면 한국 AI 열풍의 구조가 보인다. 위에서는 정부가 비전을 밀고, 옆에서는 앤트로픽 같은 외국 기업이 시장을 파고들며, 안에서는 SKT처럼 자체 역량을 키운다. 다만 낙관이 곧 무비판은 아니다. 같은 조사에서 일자리 불안은 64%로 높고, 안전보다 발전을 택한 기본법은 사고가 터지면 되돌리기 어렵다. 빠른 수용은 강점이지만, 속도가 검증을 앞지르면 신뢰는 한순간에 무너진다.</p><h3>실무 적용</h3><ul><li>한국 시장용 AI 제품은 \"수용도가 높다\"를 전제로, 온보딩 마찰을 줄이고 업무·생활을 아우르는 일상 활용 시나리오를 전면에 배치하라.</li><li>높은 낙관 뒤의 64% 일자리 불안을 외면하지 말고, 사람을 대체가 아닌 증강하는 메시지와 검수 가능한 UI로 신뢰를 쌓아라.</li><li>데이터 레지던시와 한국어 품질을 기본 요구사항으로 두고, 외산·국산 모델을 함께 평가하는 출구 전략을 설계하라.</li></ul><h3>Kenny의 관점</h3><p>사업기획과 프론트엔드를 오가는 입장에서 한국의 높은 AI 수용도는 기회이자 함정이다. 사용자가 새 기능을 빨리 받아들인다는 건, 그만큼 실망도 빠르다는 뜻이다. 앤트로픽이 서울에 깃발을 꽂은 지금, 차별화는 모델 성능이 아니라 한국어 맥락과 신뢰 경험에서 갈린다. 나는 \"빨리 쓰게 만들기\"보다 \"오래 믿게 만들기\"를 화면 설계의 첫 질문으로 둔다.</p><h3>출처</h3><ul><li><a href=\"https://www.technologyreview.com/2026/06/15/1138983/why-do-south-koreans-love-ai-so-much/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Why do South Koreans love AI so much? ↗</a></li><li><a href=\"https://www.anthropic.com/news/seoul-office-partnerships-korean-ai-ecosystem\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Anthropic opens Seoul office and announces new partnerships across the Korean AI ecosystem ↗</a></li><li><a href=\"https://venturebeat.com/ai/ai-startup-anthropic-gets-100m-to-build-custom-llm-for-telecom-industry\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: AI startup Anthropic gets $100M to build custom LLM for telecom industry ↗</a></li></ul>",
+    "source": "MIT Technology Review",
+    "sourceUrl": "https://www.technologyreview.com/2026/06/15/1138983/why-do-south-koreans-love-ai-so-much/",
+    "tags": [
+      "AIKorea",
+      "AIAdoption",
+      "AIPolicy"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-18-css-centering-2026",
     "category": "design",
     "date": "2026-06-18",

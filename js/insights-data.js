@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-06-22-css-at-function-custom-functions",
+    "category": "design",
+    "date": "2026-06-22",
+    "title": "CSS @function, 스타일시트가 프로그래밍을 배우다",
+    "rawTitle": "Functions in CSS?!",
+    "summary": "인자를 받아 값을 반환하는 사용자 정의 함수 @function이 CSS에 들어왔다. Chrome이 먼저 구현했고 올해 베이스라인 진입이 점쳐진다. 전처리기 없이 로직을 런타임 CSS로 되돌리는 변화다.",
+    "bodyHtml": "<p>CSS는 오랫동안 \"선언적\"이라는 정체성에 머물렀다. 변수는 있어도 인자를 받아 계산해 돌려주는 진짜 함수는 없었다. 이제 <code>@function</code> 규칙이 그 빈자리를 메운다. 인자를 받고 타입을 검사하며 결과를 반환하는 사용자 정의 함수가 CSS에 들어온 것이다. Chrome 141이 먼저 구현을 붙였고, 업계는 올해 베이스라인 진입을 점친다. 스타일시트가 프로그래밍 언어의 문법을 흡수하기 시작한 지금, 프론트엔드의 추상화 방식이 흔들린다.</p><blockquote>\"Custom functions allow authors the same power as custom properties, but parameterized.\"<cite>CSS-Tricks</cite></blockquote><h3>무슨 일인가</h3><p><code>@function</code>은 <code>--my-fn()</code> 같은 대시 함수로 호출하고 <code>result</code> 디스크립터로 값을 반환한다. 인자에 기본값과 타입(<code>&lt;length&gt;</code> 등)을 지정할 수 있고, 내부에서 <code>@media</code>·<code>@supports</code>로 조건 분기까지 가능하다. 다만 한계도 분명하다. 지역 변수·재귀·리스트 인자·조기 반환이 없고, 함수 정의를 바꿔 스타일을 자동 갱신하는 것도 불가능하다. 아직 Chromium 계열 실험 단계라 Firefox·Safari 지원은 진행 중이다.</p><h3>여러 시각</h3><p>같은 \"프로그래밍되는 CSS\" 흐름을 두 자료가 다른 층위에서 본다.</p><ul><li><b>web.dev</b> — <code>@property</code>가 베이스라인에 오르며 커스텀 속성에 타입과 애니메이션 가능성을 부여했다. 변수에 \"의미\"를 입힌 그 흐름의 연장선에 <code>@function</code>이 있다.</li><li><b>CSS-Tricks(What's !important #13)</b> — <code>@function</code>을 \"올해 베이스라인에 오를 가장 큰 기능\"으로 꼽으면서도, <code>alpha()</code> 같은 작은 함수부터 익히며 단계적으로 접근하라고 권한다.</li></ul><h3>왜 중요한가</h3><p>그동안 복잡한 계산 로직은 Sass 같은 전처리기나 자바스크립트로 밀어냈다. <code>@function</code>은 그 로직을 런타임 CSS 안으로 되돌린다. 빌드 도구 없이도 유동 타이포그래피, 반응형 그리드, 간격 스케일을 함수 하나로 재사용할 수 있다. 전처리기 의존을 줄이고 디자인 토큰을 더 선언적으로 표현하는 길이 열린다는 뜻이다.</p><h3>실무 적용</h3><ul><li><code>@function</code>은 점진적 향상으로만 도입하고, <code>@supports</code>로 미지원 브라우저용 폴백을 함께 설계한다.</li><li>반복되는 <code>clamp()</code> 기반 유동 타이포그래피나 간격 계산을 함수로 추출해 디자인 시스템의 단일 출처로 삼는다.</li><li><code>@property</code>로 타입을 지정한 커스텀 속성과 <code>@function</code>을 함께 써, 입력 검증과 계산을 CSS 레이어에서 일관되게 처리한다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드 관점에서 <code>@function</code>의 진짜 의미는 \"전처리기 탈출\"이 아니라 \"관심사의 재배치\"다. 계산이 빌드 타임에서 런타임으로 내려오면, 컨테이너 크기나 사용자 설정 같은 실시간 맥락에 함수가 반응할 수 있다. 다만 강력함은 남용을 부른다. CSS에 로직이 쌓일수록 디버깅은 어려워진다. 나는 <code>@function</code>을 \"토큰을 만드는 작은 순수 함수\"로만 제한하고, 분기 로직은 여전히 명시적으로 드러내는 규율을 권한다.</p><h3>출처</h3><ul><li><a href=\"https://css-tricks.com/functions-in-css/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Functions in CSS?! ↗</a></li><li><a href=\"https://web.dev/blog/at-property-baseline\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: @property — Next-gen CSS variables now with universal browser support ↗</a></li><li><a href=\"https://css-tricks.com/whats-important-13/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: What's !important #13 ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/functions-in-css/",
+    "tags": [
+      "CSS",
+      "AtFunction",
+      "Frontend"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-22-claude-fable-5-export-directive",
+    "category": "ai",
+    "date": "2026-06-22",
+    "title": "최강 모델 페이블 5, 출시 사흘 만에 빗장",
+    "rawTitle": "Claude Fable 5 and Claude Mythos 5",
+    "summary": "앤트로픽이 역대 최강 모델 페이블 5를 공개했지만, 사흘 뒤 미국 정부가 국가안보를 이유로 전면 접근 중단을 명령했다. 최전선 AI가 수출 통제 대상이 된 분기점을 세 출처로 분석한다.",
+    "bodyHtml": "<p>앤트로픽이 6월 9일 역대 가장 강력한 모델 클로드 페이블 5(Fable 5)와 제한 공개 모델 미토스 5(Mythos 5)를 공개했다. 그런데 사흘 뒤인 6월 12일, 미국 정부가 국가안보를 이유로 두 모델의 전면 접근 중단을 명령했다. 출시와 빗장이 한 주 안에 겹친 이 사건은 최전선 AI가 더 이상 순수 기술 제품이 아니라 수출 통제의 대상이 됐음을 보여준다.</p><blockquote>\"We are complying with the government's legal directive and are removing access to Fable 5 and Mythos 5 for all users.\"<cite>Anthropic</cite></blockquote><h3>무슨 일인가</h3><p>페이블 5는 소프트웨어 엔지니어링·지식 노동·비전·과학 연구 전반에서 최고 수준 성능을 내세웠고, 입력 100만 토큰당 10달러·출력 50달러로 책정됐다. 사이버보안·생물/화학·증류(distillation) 질의를 막는 분류기 3종을 새로 달고, 차단 시 Opus 4.8로 폴백한다. 1000시간 넘는 레드팀에서 보편적 탈옥은 발견되지 않았다고 밝혔다. 미토스 5는 분자생물학 가설 생성에서 Opus급 대비 약 80% 선호됐을 만큼 연구 능력이 두드러진다.</p><h3>여러 시각</h3><p>같은 사건을 세 출처가 다른 각도에서 본다.</p><ul><li><b>Anthropic(출시 공지)</b> — 능력과 안전을 함께 강조하는 제품 관점. 분류기·폴백·레드팀으로 위험을 관리했다고 설명한다.</li><li><b>Anthropic(정부 지침 성명)</b> — 정책 관점. 정부가 시연한 건 \"코드 취약점 분석\"이라는 좁은 비보편 탈옥뿐이며, 같은 약점은 타사 모델에도 흔하다고 반박한다. 따르되 동의하지 않는다는 입장이다.</li><li><b>MIT Technology Review</b> — 거시 관점. AI 능력 급상승의 이면에서 딥페이크 피해, 사회적 반발, 그리고 \"진보인지 위험인지 여전히 불확실\"하다는 점을 짚는다.</li></ul><h3>왜 중요한가</h3><p>세 시각을 겹치면 분기점이 보인다. 모델 능력이 임계선을 넘자 규제의 단위가 \"콘텐츠 정책\"에서 \"수출 통제\"로 올라섰다. 좁은 탈옥 하나로 최첨단 모델 전체가 차단될 수 있다면, 기업의 모델 선택은 성능뿐 아니라 지정학·규제 리스크까지 계산해야 한다. AI가 반도체처럼 국가 안보 자산으로 다뤄지기 시작했다는 신호다.</p><h3>실무 적용</h3><ul><li>최전선 모델에 핵심 기능을 묶지 말고, 규제로 접근이 끊겨도 대체 모델로 폴백할 추상화 계층을 둔다.</li><li>글로벌 서비스라면 모델 접근이 국적·지역에 따라 달라질 수 있음을 전제로, 지역별 모델 라우팅과 다운그레이드 경로를 미리 설계한다.</li><li>벤더 평가 기준에 성능·가격뿐 아니라 수출 통제·정책 변동 시 SLA와 공지 절차를 명시한다.</li></ul><h3>Kenny의 관점</h3><p>사업기획과 프론트엔드를 오가는 입장에서 이번 사건의 교훈은 \"가장 똑똑한 모델\"이 \"가장 안정적인 모델\"은 아니라는 것이다. 사흘 만에 빗장이 걸리는 모델 위에 제품의 핵심 경험을 올리는 건 위험하다. 나는 모델을 고를 때 벤치마크 점수보다 \"이 접근이 다음 분기에도 같은 조건으로 유지될까\"를 먼저 본다. 규제 시대의 AI 설계는 능력의 최대치가 아니라 가용성의 하한선을 지키는 일이 됐다.</p><h3>출처</h3><ul><li><a href=\"https://www.anthropic.com/news/claude-fable-5-mythos-5\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Claude Fable 5 and Claude Mythos 5 ↗</a></li><li><a href=\"https://www.anthropic.com/news/fable-mythos-access\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Statement on the US government directive to suspend access to Fable 5 and Mythos 5 ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/06/09/1138582/five-things-you-need-to-know-about-ai/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Five things you need to know about AI ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+    "tags": [
+      "Anthropic",
+      "ExportControl",
+      "AIPolicy"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-21-cross-document-view-transitions-gotchas",
     "category": "design",
     "date": "2026-06-21",

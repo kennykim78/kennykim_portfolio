@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-06-24-modern-css-toolkit-memorable-experiences",
+    "category": "design",
+    "date": "2026-06-24",
+    "title": "기억에 남는 웹, 모던 CSS 도구함과 절제의 미학",
+    "rawTitle": "Creating Memorable Web Experiences: A Modern CSS Toolkit",
+    "summary": "글자 분할·clip-path·스크롤 연동·3D까지 순수 CSS로 가능해진 시대, 화려함의 장벽은 무너졌다. 이제 경쟁은 '무엇을 안 움직일까'라는 절제로 옮겨간다.",
+    "bodyHtml": "<p>화려한 인터랙션을 넣는 기술적 장벽은 거의 사라졌다. <code>SplitText</code>로 글자를 쪼개 흩뿌리고, <code>clip-path</code>·<code>mask</code>·스크롤 연동 애니메이션·3D 변환을 자바스크립트 없이 순수 CSS로 구현한다. CSS-Tricks가 2026년 6월 10일 정리한 \"모던 CSS 도구함\"은 그 가능성을 한자리에 모았다. 그런데 글의 진짜 메시지는 \"무엇을 할 수 있나\"가 아니라 \"왜, 언제 움직여야 하나\"라는 절제의 질문이다.</p><blockquote>\"Everything communicates, and our animations are no exception.\"<cite>CSS-Tricks</cite></blockquote><h3>무슨 일인가</h3><p>기사는 여섯 가지 기법을 든다. 글자 분할 애니메이션, <code>clip-path</code>·<code>mask</code>, <code>animation-timeline</code> 기반 스크롤 연동, <code>perspective</code>·<code>preserve-3d</code> 3D 변환, SVG 커스텀 커서, 앵커 포지셔닝이다. 하지만 핵심은 기법 목록이 아니라 그 앞에 둔 원칙이다. 움직임을 넣기 전에 톤·속도·감정을 규정하는 키워드를 먼저 정하고, 그 의도에 맞는 기법만 고르라는 것. 저자는 또 글자 분할이 스크린리더 지원이 들쭉날쭉하다는 점을 짚으며, 접근성 테스트를 거치지 않을 거라면 DOM을 쪼개는 대신 <code>letter-spacing</code> 같은 대안을 쓰라고 권한다.</p><h3>여러 시각</h3><p>같은 \"의도 있는 모션\" 문제를 두 자료가 다른 층위에서 본다.</p><ul><li><b>web.dev(prefers-reduced-motion)</b> — 절제의 의무 관점. 애니메이션은 일부 사용자에게 어지럼·메스꺼움 같은 전정기관 반응을 일으킬 수 있어 \"적은 움직임\"이 의학적 필요가 된다. 동시에 <code>transform</code>·<code>opacity</code> 위주로 컴포지터 스레드에서 처리해 성능까지 챙기라고 짚는다.</li><li><b>Josh W. Comeau(Squash and Stretch)</b> — 장인의 관점. 1981년 디즈니 애니메이터들이 정리한 원칙에서 출발해, 움직임이 \"좋게 느껴지게\" 만드는 디테일과 <code>prefers-reduced-motion</code> 존중을 함께 가르친다. 같은 효과라도 타이밍과 가속 곡선이 인상을 가른다는 것이다.</li></ul><h3>왜 중요한가</h3><p>기법이 흔해질수록 차별점은 \"무엇을 안 움직일까\"로 옮겨간다. 모두가 스크롤 패럴랙스를 붙일 수 있게 되면 그 효과는 더 이상 인상적이지 않고, 오히려 산만함·성능 저하·접근성 문제로 남는다. 절제된 모션은 메시지를 보조하고, 과한 모션은 메시지를 가린다. 도구의 평준화가 곧 취향과 판단의 경쟁으로 바뀐다는 뜻이다.</p><h3>실무 적용</h3><ul><li>움직임을 코딩하기 전에 톤·속도·감정 키워드를 먼저 적고, 각 애니메이션이 그 의도에 부합하는지 검토하는 체크 단계를 둔다.</li><li>모든 모션에 <code>prefers-reduced-motion</code> 분기를 기본값으로 넣고, 핵심 정보 전달은 애니메이션이 꺼져도 완결되게 설계한다.</li><li>성능을 위해 layout·paint를 유발하는 속성 대신 <code>transform</code>·<code>opacity</code>로 애니메이션하고, 글자 분할은 스크린리더 테스트를 통과한 경우에만 쓴다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드 관점에서 이 글의 핵심은 \"기술 과시에서 의도 설계로\"의 이동이다. 이제 누구나 화려한 효과를 붙일 수 있으니, 차별점은 효과의 개수가 아니라 \"이 움직임이 무엇을 말하는가\"다. 나는 새 인터랙션을 넣을 때 \"이걸 끄면 사용자가 무엇을 잃는가\"를 먼저 묻는다. 잃는 게 없다면 그 모션은 장식일 뿐이고, 장식은 빼는 쪽이 대개 옳다.</p><h3>출처</h3><ul><li><a href=\"https://css-tricks.com/creating-memorable-web-experiences-a-modern-css-toolkit/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Creating Memorable Web Experiences: A Modern CSS Toolkit ↗</a></li><li><a href=\"https://web.dev/articles/prefers-reduced-motion\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: prefers-reduced-motion: Sometimes less movement is more ↗</a></li><li><a href=\"https://www.joshwcomeau.com/animation/squash-and-stretch/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Josh W. Comeau: Squash and Stretch ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/creating-memorable-web-experiences-a-modern-css-toolkit/",
+    "tags": [
+      "CSS",
+      "Animation",
+      "UX"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-24-anthropic-public-record-ai-opinion",
+    "category": "ai",
+    "date": "2026-06-24",
+    "title": "AI를 향한 미국인의 속마음, 5만 2천 명의 기록",
+    "rawTitle": "Results from first Anthropic Public Record",
+    "summary": "앤트로픽이 미국인 약 5만 2천 명에게 AI를 물었다. 혜택은 원하되 만든 기업을 신뢰한다는 응답은 15%뿐. 신뢰 위기의 뿌리는 성능이 아니라 경험의 격차였다.",
+    "bodyHtml": "<p>앤트로픽이 미국인 약 5만 2천 명에게 AI를 어떻게 생각하는지 물었다. 'Anthropic Public Record'라 이름 붙인 이 설문은 2025년 11~12월, 50개 주 전역의 전국 대표 표본으로 진행됐다. 결과는 한쪽으로 쏠리지 않았다. 질병 정복 같은 기대와 일자리 상실 같은 두려움이 공존하고, 정부 개입을 원하는 목소리는 71%로 초당파적이다. 그런데 가장 눈에 띄는 건, AI 개발을 만드는 기업에 맡겨도 된다는 신뢰가 단 15%라는 점이다.</p><blockquote>\"The direction AI takes should not be set only by the companies building it.\"<cite>Anthropic</cite></blockquote><h3>무슨 일인가</h3><p>설문은 기대·두려움·규제 인식을 갈라 물었다. 기대 1위는 질병 치료(48%)였고 장애인 지원(36%)이 뒤를 이었다. 두려움은 일자리 대체(64%)가 압도했고 인지적 의존(56%), 허위정보(52%) 순이었다. 규제에선 71%가 정부 개입을 원했고 지역·정파 차이는 작았다. 반면 AI 개발 결정을 기업에 맡겨도 된다는 신뢰는 15%로, 조사된 기관 중 최저였다. 모델을 만든 회사가 스스로 \"우리만 믿고 맡기지 말라\"는 데이터를 공개한 셈이다.</p><h3>여러 시각</h3><p>같은 \"AI 여론\"을 두 자료가 다른 각도에서 본다.</p><ul><li><b>Anthropic(Public Record)</b> — 합의 관점. 미국인은 정파·지역을 넘어 \"AI의 혜택은 원하되 기업의 책임을 요구한다\"는 데서 의외로 일치한다는 점을 부각한다.</li><li><b>MIT Technology Review(왜 의견이 갈리나)</b> — 분열 관점. 전문가의 73%가 일자리 영향을 긍정하지만 대중은 23%만 동의해 약 50%p 격차가 난다. 유료 도구를 쓰는 파워유저와 몇 달 전 무료 버전을 써본 사람은 사실상 다른 기술을 경험하기 때문이라고 본다.</li></ul><h3>왜 중요한가</h3><p>두 자료를 겹치면 역설이 드러난다. 큰 틀(혜택 기대 + 기업 불신 + 규제 요구)에서는 합의하지만, \"AI가 실제로 얼마나 쓸 만한가\"라는 체감에서는 전문가와 대중이 갈린다. 즉 신뢰 위기의 뿌리는 능력 부족이 아니라 경험의 격차다. 제품을 만드는 쪽에는 \"성능을 더 올리면 신뢰가 따라온다\"는 가정이 틀릴 수 있다는 경고이기도 하다.</p><h3>실무 적용</h3><ul><li>AI 기능을 내놓을 때 능력 과시보다 \"무엇을 못 하는지\"를 투명하게 알려, 들쭉날쭉한 성능(jagged frontier)에서 오는 실망을 관리한다.</li><li>무료·유료 경험 격차가 신뢰 격차로 이어지므로, 무료 사용자에게도 핵심 가치는 안정적으로 닿게 하는 품질 하한선을 설계한다.</li><li>일자리·의존·허위정보 같은 구체적 두려움을 제품 메시지와 거버넌스에 반영해, 기업 불신(15%)을 전제로 한 책임 구조를 갖춘다.</li></ul><h3>Kenny의 관점</h3><p>사업기획과 프론트엔드를 오가는 입장에서 이 조사의 교훈은 \"신뢰는 벤치마크가 아니라 경험에서 온다\"는 것이다. 대중의 23%만 일자리 낙관에 동의하는 현실은 모델 점수로 메울 수 없다. 나는 AI 기능을 붙일 때 최고 성능 시나리오가 아니라 \"처음 써보는 사람이 가장 먼저 마주칠 실패\"를 기준으로 UX를 설계한다. 불신이 기본값인 시대엔, 못하는 걸 솔직히 보여주는 제품이 결국 더 신뢰받는다.</p><h3>출처</h3><ul><li><a href=\"https://www.anthropic.com/news/anthropic-public-record\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Results from first Anthropic Public Record ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/04/13/1135720/why-opinion-on-ai-is-so-divided/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Why opinion on AI is so divided ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/anthropic-public-record",
+    "tags": [
+      "Anthropic",
+      "PublicOpinion",
+      "AIPolicy"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-23-css-shape-function-complex-shapes",
     "category": "design",
     "date": "2026-06-23",

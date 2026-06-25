@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-06-25-3d-view-transition-perspective",
+    "category": "design",
+    "date": "2026-06-25",
+    "title": "3D 뷰 전환은 왜 깨질까, perspective의 함정",
+    "rawTitle": "Why Isn't My 3D View Transition Working?",
+    "summary": "뷰 트랜지션에 3D를 넣으면 화면이 평평해지는 이유는 의사(pseudo) 트리에 부모가 없기 때문이다. perspective 속성 대신 perspective() 함수를 써야 하고, 사파리는 그마저 막힌다.",
+    "bodyHtml": "<p>페이지 전환에 입체감을 넣으려다 화면이 평평하게 뭉개지는 경험. CSS-Tricks가 2026년 6월 12일 공개한 글에서 Sunkanmi Fafowora는 그 원인을 정확히 짚는다. 뷰 트랜지션(View Transitions)으로 만든 의사 요소(pseudo) 트리는 일반 HTML 흐름 바깥, DOM 위 별도 레이어에 렌더된다. 그래서 조상 요소에 건 <code>perspective</code>는 끝내 닿지 않는다. 단순한 버그가 아니라 뷰 트랜지션의 렌더링 모델 자체에서 비롯된 함정이다.</p><blockquote>\"Since the view transition pseudo tree does not have a true parent, we've gotta use perspective().\"<cite>CSS-Tricks</cite></blockquote><h3>무슨 일인가</h3><p>핵심은 <code>perspective</code> 속성과 <code>perspective()</code> 함수의 차이다. <code>perspective</code> 속성은 부모 요소에 걸어 자식들이 공유하는 3D 공간을 만든다. 하지만 뷰 트랜지션 의사 트리에는 진짜 부모가 없으니 이 속성이 무력하다. 해결책은 부모가 필요 없는 <code>perspective()</code> 변형 함수를 <code>@keyframes</code> 안에서 요소 자신에 직접 적용하는 것이다. 단, 사파리는 스냅샷을 찍을 때 3D 맥락을 통째로 평면화해 <code>perspective()</code>마저 듣지 않는다(WebKit 버그 #283568·#302166).</p><h3>여러 시각</h3><p>같은 \"스크롤·전환 애니메이션\" 영역은 도구를 혼동하기 쉽다. CSS-Tricks의 다른 글들이 그 지형도를 보완한다.</p><ul><li><b>CSS-Tricks(스크롤·전환 4분류)</b> — 분류의 관점. 스크롤 구동(scroll-driven)은 스크롤 진행과 1:1로 묶이고, 스크롤 트리거(scroll-triggered)는 임계선을 넘으면 끝까지 한 번 재생되며, 스크롤 상태(scroll-state)는 sticky가 \"붙은\" 조건에서 스타일을 바꾸고, 뷰 트랜지션은 상태 A→B 전환을 맡는다. 넷을 구분해야 디버깅이 풀린다.</li><li><b>CSS-Tricks(View Transitions 레시피)</b> — 실전의 관점. 같은 API라도 추상 개념 대신 카드 확장·목록 전환 같은 시나리오별 레시피로 접근하면 감을 더 빨리 잡는다.</li></ul><h3>왜 중요한가</h3><p>뷰 트랜지션은 2026년 들어 크로스 도큐먼트까지 확장되며 \"JS 없이 매끄러운 페이지 전환\"의 표준 후보가 됐다. 하지만 의사 트리라는 독특한 렌더링 모델 탓에, 익숙한 3D 트릭이 그대로 통하지 않는다. <code>perspective</code> 하나가 왜 안 먹는지 모르면 한나절을 날린다. 표준이 강력해질수록, 그 내부 모델을 이해한 개발자와 \"왜 안 되지\"만 반복하는 개발자의 생산성 격차가 벌어진다.</p><h3>실무 적용</h3><ul><li>뷰 트랜지션에 3D를 줄 때는 조상에 <code>perspective</code> 속성을 걸지 말고, <code>@keyframes</code> 안에서 <code>perspective()</code> 함수를 요소에 직접 적용한다.</li><li>사파리는 스냅샷 단계에서 3D를 평면화하므로, 입체 전환은 점진적 향상(progressive enhancement)으로 설계하고 평면 fallback이 항상 자연스럽게 보이게 한다.</li><li>스크롤 효과를 넣기 전, 원하는 동작이 스크롤 구동·트리거·상태·뷰 트랜지션 중 무엇인지 먼저 분류해 잘못된 API로 디버깅하는 시간을 없앤다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드 관점에서 이 사례의 교훈은 \"추상화의 경계를 의심하라\"다. 뷰 트랜지션은 마치 일반 DOM처럼 보이지만 별도 레이어에서 돌아가고, 그 작은 차이가 <code>perspective</code>를 무력화한다. 나는 새 CSS API를 쓸 때 \"이게 어디서, 어떤 트리 위에서 렌더되는가\"를 먼저 확인한다. 화려한 3D 전환보다, 꺼졌을 때도 멀쩡한 평면 전환을 기본으로 두는 편이 사용자에게도 팀에게도 안전하다.</p><h3>출처</h3><ul><li><a href=\"https://css-tricks.com/why-isnt-my-3d-view-transition-working/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Why Isn't My 3D View Transition Working? ↗</a></li><li><a href=\"https://css-tricks.com/scroll-driven-scroll-triggered-scroll-states-and-view-transitions/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Scroll-Driven, Scroll-Triggered, Scroll States, and View Transitions ↗</a></li><li><a href=\"https://css-tricks.com/7-view-transitions-recipes-to-try/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: 7 View Transitions Recipes to Try ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/why-isnt-my-3d-view-transition-working/",
+    "tags": [
+      "CSS",
+      "ViewTransitions",
+      "Animation"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-25-project-glasswing-expansion-ai-security",
+    "category": "ai",
+    "date": "2026-06-25",
+    "title": "AI가 취약점을 캐낸다, 글래스윙 확장의 양날",
+    "rawTitle": "Expanding Project Glasswing",
+    "summary": "앤트로픽이 보안 모델 글래스윙을 15개국 150여 개 기관으로 확장했다. 4월 이후 1만 건 넘는 치명적 결함을 찾아냈지만, 진짜 병목은 탐지가 아니라 패치 속도로 드러났다.",
+    "bodyHtml": "<p>앤트로픽이 보안 특화 모델을 무기 삼아 방어 진영을 빠르게 넓히고 있다. 2026년 6월 2일, 회사는 'Project Glasswing'을 기존 약 50개 파트너에서 15개국 이상 150여 개 기관으로 확장한다고 밝혔다. 전력·수도·의료·통신·하드웨어 등 핵심 인프라 운영사들이 Claude Mythos 프리뷰로 자사 코드베이스의 취약점을 스캔한다. AI가 공격 도구가 될 수 있다는 공포의 뒷면에서, 같은 능력을 방어에 먼저 배치하려는 시도다.</p><blockquote>\"A major attack could affect more than 100 million people, with important ramifications for both global and national security.\"<cite>Anthropic</cite></blockquote><h3>무슨 일인가</h3><p>글래스윙의 성과는 구체적이다. 초기 파트너들은 4월 이후 Claude Mythos 프리뷰로 1만 건 넘는 고·치명도 보안 결함을 찾아냈다. 앤트로픽은 이번 확장의 목표를 두 가지로 든다. 첫째, 산업계가 안전한 방식으로 첨단 모델에 접근하도록 돕는 것. 둘째, 초점을 \"취약점 탐지\"에서 \"공개·패치·수정본 배포\"로 옮기는 것이다. 즉 결함을 찾는 일은 더 이상 병목이 아니며, 진짜 과제는 찾은 것을 얼마나 빨리 고치느냐로 이동했다는 선언이다.</p><h3>여러 시각</h3><p>같은 \"AI×보안\" 흐름을 두 자료가 다른 각도에서 본다.</p><ul><li><b>Anthropic(정부 수출통제 지시)</b> — 통제의 역설. 같은 6월, 미국 정부는 Fable 5·Mythos 5에 대한 모든 접근을 외국인 포함 전면 중단하라는 수출통제 지시를 내렸다(6월 12일 수령). 방어에 강력한 모델일수록 곧 통제 대상이 되는 긴장이다. 앤트로픽은 \"좁은 잠재적 탈옥(jailbreak)을 이유로 수억 명에게 배포된 상용 모델을 회수해야 한다는 데 동의하지 않는다\"며 따르되 반대한다는 입장을 냈다.</li><li><b>VentureBeat(패치가 너무 느리다)</b> — 운영의 관점. Mythos가 드러낸 불편한 진실은 탐지 속도가 아니라 기업의 패치 프로세스가 기계의 속도를 못 따라간다는 것이다. AI가 결함을 쏟아낼수록, 사람이 검토·배포하는 단계가 새로운 병목으로 떠오른다고 짚는다.</li></ul><h3>왜 중요한가</h3><p>세 자료를 겹치면 2026년 AI 보안의 구도가 보인다. 첫째, AI는 이미 방어에서 압도적 생산성을 낸다(1만 건 이상 탐지). 둘째, 그러나 그 능력은 곧 국가 통제의 대상이 된다(수출통제). 셋째, 조직의 진짜 약점은 모델이 아니라 그 뒤의 느린 사람·프로세스다. 공격이 자동화로 빨라지는데 탐지를 자동화하고도 패치가 수일~수주 걸린다면, 격차는 줄기는커녕 오히려 벌어진다.</p><h3>실무 적용</h3><ul><li>보안에 AI를 도입할 때 \"결함을 얼마나 찾느냐\"보다 \"찾은 결함을 며칠 만에 패치·배포하느냐\"(MTTR)를 핵심 지표로 삼는다.</li><li>강력한 모델은 언제든 규제·수출통제로 접근이 끊길 수 있으므로, 단일 모델에 종속되지 않는 대체 경로와 폴백을 보안 파이프라인에 설계한다.</li><li>AI가 쏟아내는 취약점 리포트를 사람이 다 검토할 수 없으므로, 심각도 자동 분류·우선순위화·수정안 자동 생성까지 파이프라인을 확장해 사람 병목을 줄인다.</li></ul><h3>Kenny의 관점</h3><p>PM·사업기획과 프론트엔드를 오가는 입장에서 이 흐름의 핵심은 \"AI의 가치는 탐지가 아니라 마감에 있다\"는 것이다. 결함을 1만 건 찾아도 고치지 못하면 위험은 그대로다. 나는 AI를 워크플로에 넣을 때 자동화가 만드는 새 산출물(리포트·후보 코드)을 사람이 감당할 수 있는지부터 본다. 병목을 한 단계 뒤로 미루는 자동화는 진짜 자동화가 아니다. 통제 리스크가 상수가 된 지금, 단일 모델에 운명을 거는 설계도 피한다.</p><h3>출처</h3><ul><li><a href=\"https://www.anthropic.com/news/expanding-project-glasswing\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Expanding Project Glasswing ↗</a></li><li><a href=\"https://www.anthropic.com/news/fable-mythos-access\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Statement on the US government directive to suspend access to Fable 5 and Mythos 5 ↗</a></li><li><a href=\"https://venturebeat.com/security/claude-mythos-exposed-a-hard-truth-your-enterprise-patching-process-is-way-too-slow\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Claude Mythos exposed a hard truth: Your enterprise patching process is way too slow ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/expanding-project-glasswing",
+    "tags": [
+      "Anthropic",
+      "AISecurity",
+      "Cybersecurity"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-24-modern-css-toolkit-memorable-experiences",
     "category": "design",
     "date": "2026-06-24",

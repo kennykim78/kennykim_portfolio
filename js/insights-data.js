@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-06-26-scroll-animations-decoded",
+    "category": "design",
+    "date": "2026-06-26",
+    "title": "스크롤 애니메이션 4형제, 헷갈림 없이 구분하기",
+    "rawTitle": "Scroll-Driven, Scroll-Triggered, Scroll States, and View Transitions",
+    "summary": "스크롤 구동·스크롤 트리거·스크롤 상태·뷰 트랜지션은 비슷해 보이지만 작동 방식이 전혀 다르다. CSS-Tricks의 정리를 토대로 차이와 실무 선택 기준을 짚었다.",
+    "bodyHtml": "<p>최근 CSS 스크롤 관련 기능이 한꺼번에 쏟아지면서 이름이 비슷한 네 가지 기술이 자주 혼동된다. CSS-Tricks의 제프 그레이엄은 스크롤 구동(scroll-driven), 스크롤 트리거(scroll-triggered), 스크롤 상태(scroll-state) 쿼리, 그리고 뷰 트랜지션을 한자리에 놓고 차이를 정리했다. 핵심은 ‘스크롤 진행도와 애니메이션이 직접 연결되는가’라는 한 가지 질문이다. 이름만 보고 고르면 의도와 다른 동작이 나오기 쉽다.</p>\n<blockquote>\"It helps me to spell things out like this.\"<cite>Geoff Graham, CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>스크롤 구동 애니메이션은 스크롤 위치와 진행도가 1:1로 묶여, 위로 올리면 거꾸로 재생되고 멈추면 곧바로 멈춘다. 스크롤 트리거는 요소가 특정 임계선을 넘는 순간 발동해 스크롤과 무관하게 끝까지 한 번 재생된다. 스크롤 상태 쿼리는 컨테이너가 특정 스크롤 조건에 도달했을 때 스타일을 바꾸는 중간 형태다. 뷰 트랜지션은 같은 문서 안의 상태 변화와 문서 간 페이지 전환을 모두 다루는 CSS+JS 통합 API다.</p>\n<h3>여러 시각</h3>\n<p>같은 흐름을 브라우저·표준 관점에서 보면 그림이 더 선명해진다.</p>\n<ul><li><b>CSS-Tricks(Interop 2026)</b> — 세 주요 엔진이 스크롤 구동 애니메이션·뷰 트랜지션·앵커 포지셔닝을 함께 맞추기로 하면서, ‘지원 여부 단서’를 달지 않고 쓸 수 있는 시대가 가까워졌다고 본다.</li><li><b>web.dev</b> — 2026년 들어 컨테이너 쿼리와 스크롤 상태 관련 기능이 차례로 Baseline에 올라, 실험 기능이 아니라 기본 도구로 다룰 수 있음을 데이터로 보여준다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>네 기술은 목적이 달라 잘못 고르면 성능·접근성에서 비용을 치른다. 스크롤 진행도에 묶어야 할 효과를 트리거로 만들면 사용자가 위로 스크롤할 때 어색하게 멈추고, 반대로 한 번만 재생돼야 할 강조를 스크롤 구동으로 만들면 계속 깜빡인다. 또한 이들 대부분은 메인 스레드를 벗어나 처리되므로, 무거운 자바스크립트 스크롤 핸들러를 걷어내고 성능을 회복할 기회이기도 하다.</p>\n<h3>실무 적용</h3>\n<ul><li>진행 표시줄·패럴럭스처럼 스크롤과 동기화돼야 하는 효과는 scroll-driven(animation-timeline)으로 만든다.</li><li>화면 진입 시 한 번 등장시키는 강조는 scroll-triggered로 분리해 되돌이 재생을 막는다.</li><li>페이지 이동의 연결감이 필요하면 view-transition을 점진적 향상으로 적용해 미지원 브라우저에서도 깨지지 않게 한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드에서 이 네 가지를 한 단어 ‘스크롤 애니메이션’으로 뭉뚱그리는 순간 디자인 QA가 어려워진다. 나는 기획 단계에서 ‘스크롤을 멈췄을 때 이 모션은 멈춰야 하나, 끝나야 하나’를 먼저 묻는다. 그 한 줄 정의가 곧 기술 선택이고, AX 관점에선 멀미·접근성(prefers-reduced-motion) 대응 범위까지 결정한다. 도구가 표준으로 안착한 지금은 ‘되는지’보다 ‘왜 이걸 쓰는지’를 설명할 수 있어야 한다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/scroll-driven-scroll-triggered-scroll-states-and-view-transitions/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Scroll-Driven, Scroll-Triggered, Scroll States, and View Transitions ↗</a></li><li><a href=\"https://css-tricks.com/interop-2026/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Interop 2026 ↗</a></li><li><a href=\"https://web.dev/blog/web-platform-05-2026\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: New to the web platform in May ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/scroll-driven-scroll-triggered-scroll-states-and-view-transitions/",
+    "tags": [
+      "CSS",
+      "Animation",
+      "Scroll"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-26-claude-tag-slack-teammate",
+    "category": "ai",
+    "date": "2026-06-26",
+    "title": "클로드를 팀원으로: 슬랙에 들어온 'Claude Tag'",
+    "rawTitle": "Introducing Claude Tag",
+    "summary": "앤트로픽이 슬랙에서 @Claude를 팀원처럼 호출해 일을 맡기는 ‘Claude Tag’를 공개했다. 채널 맥락을 학습하는 멀티플레이어형 협업 AI다.",
+    "bodyHtml": "<p>6월 23일 앤트로픽이 슬랙에서 @Claude를 멘션해 업무를 맡기는 ‘Claude Tag’를 베타로 공개했다. 기존 ‘Claude in Slack’ 앱을 대체하며, 채널마다 하나의 클로드 인스턴스가 상주해 팀 전체가 함께 대화한다. 단순 챗봇 호출을 넘어 채널 맥락과 연결된 데이터를 시간이 지나며 학습하고, 미해결 작업을 스스로 챙기는 점이 핵심이다. AI를 ‘도구’에서 ‘비동기로 일하는 팀원’으로 옮기려는 시도다.</p>\n<blockquote>\"Tagging @Claude is now one of the main ways we get things done at Anthropic.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Claude Tag는 Claude Enterprise·Team 고객에게 슬랙 베타로 제공되며 Claude Opus 4.8을 기반으로 한다. 채널에 상주한 인스턴스는 모두가 보는 공간에서 협업하고, 관리자는 어떤 도구·데이터·채널에 접근할지 세밀하게 통제한다. 사용자가 다른 일을 하는 동안 작업을 독립적으로 끝내고, 관련 정보를 먼저 띄우거나 후속 조치를 제안한다. 앤트로픽은 자사 제품팀 코드의 65%가 내부판 Claude Tag로 작성된다고 밝혔다.</p>\n<h3>여러 시각</h3>\n<p>이 발표는 ‘AI가 사무 업무를 떠맡는다’는 더 큰 흐름 위에 있다.</p>\n<ul><li><b>MIT Technology Review</b> — AI가 이미 회의 요약·인보이스·일정·SNS 기획 같은 기본 관리 업무를 처리할 수 있어, 전담 인력을 두기 어려운 소규모 조직일수록 효용이 크다고 본다. Claude Tag는 그 ‘관리 업무 대행’을 팀 채널 안으로 끌어들인 형태다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>협업의 단위가 ‘사람이 AI를 호출’에서 ‘사람과 AI가 한 채널에 상주’로 바뀐다. 1:1 비공개 대화에 갇혀 있던 AI 작업이 팀 전체에 공개되면서 맥락 공유와 책임 추적이 쉬워지지만, 동시에 권한·데이터 접근 범위 설계가 보안의 핵심이 된다. 65%라는 내부 코드 비중은 마케팅 수치를 넘어, 조직이 AI를 상시 협업자로 전제하기 시작했다는 신호다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI를 1:1 챗봇이 아니라 채널 상주 멤버로 배치해 맥락·결정 과정을 팀과 공유한다.</li><li>관리자 권한 설정(접근 가능한 도구·데이터·채널)을 도입 첫날의 보안 설계 항목으로 다룬다.</li><li>비동기 위임에 맞춰 ‘맡길 일’과 ‘사람이 검수할 일’의 경계를 명확히 하는 워크플로를 만든다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드·QA·PM을 오가며 일하는 입장에서 가장 와닿는 변화는 ‘AI가 스레드 맥락을 기억한다’는 점이다. 매번 배경을 다시 설명하던 비용이 사라지면, AI에게 맡길 수 있는 일의 단위가 작은 질문에서 며칠짜리 작업으로 커진다. 다만 채널 공개는 곧 실수도 공개라는 뜻이라, AX 관점에선 ‘클로드가 무엇을 했는지’ 투명하게 보이는 로그·승인 흐름 설계가 중요해진다. 팀원으로 들어온 AI에겐 도구 UX가 아니라 협업 에티켓이 필요하다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/introducing-claude-tag\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Introducing Claude Tag ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/06/02/1138277/the-download-ai-tips-small-businesses-admin/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: The Download — AI can run your admin department now ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/introducing-claude-tag",
+    "tags": [
+      "Claude",
+      "AI",
+      "Collaboration"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-25-3d-view-transition-perspective",
     "category": "design",
     "date": "2026-06-25",

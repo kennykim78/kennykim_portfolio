@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-06-27-css-pie-chart-sans-javascript",
+    "category": "design",
+    "date": "2026-06-27",
+    "title": "자바스크립트 없이 그리는 CSS 파이 차트",
+    "rawTitle": "Another Stab at the Perfect CSS Pie Chart… Sans JavaScript!",
+    "summary": "conic-gradient로 파이 차트를 그릴 때 막히는 건 '앞선 조각들의 누적 각도'다. 형제 상태를 모르는 CSS의 한계를 부모로 데이터를 끌어올려 순수 CSS로 푼 영리한 해법.",
+    "bodyHtml": "<p>파이 차트를 자바스크립트 없이 순수 CSS로 그릴 수 있을까? CSS-Tricks가 2026년 6월 4일 공개한 Antoine Villepreux의 글은 이 오래된 질문에 새 답을 내놓는다. <code>conic-gradient</code>로 원형을 칠하는 건 쉽지만, 각 조각의 '시작 각도'를 정하려면 앞선 조각들의 누적 퍼센트가 필요하다. 문제는 CSS에서 형제(sibling) 요소가 서로의 상태를 알 수 없다는 점이다. 저자는 이 근본 제약을 정면으로 다시 붙든다.</p>\n<blockquote>\"I returned to the core issue: because of how CSS inheritance works, children cannot know the state of their siblings.\"<cite>Antoine Villepreux, CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>해법은 데이터를 자식이 아니라 부모 <code>&lt;ul&gt;</code>로 끌어올리는 것이다. 각 조각의 퍼센트를 부모의 data 속성에 인덱스로 담아 두고, <code>attr()</code> 함수로 읽어 <code>nth-child()</code>로 해당 조각에 분배한다. 그런 다음 <code>calc()</code>로 앞선 값들을 차곡차곡 더해 '시작 각도(--accum)'를 만든다. 부모는 모든 자식을 알기에, 형제끼리 공유하지 못하던 누적 계산을 부모가 대신 떠맡는 구조다. 저자는 곧 Baseline에 오를 <code>sibling-index()</code>·<code>sibling-count()</code>가 이 번거로운 우회를 통째로 없앨 것이라 본다.</p>\n<h3>여러 시각</h3>\n<p>같은 문제를 다른 각도에서 보면 한계와 맥락이 분명해진다.</p>\n<ul><li><b>CSS-Tricks(이전 시도)</b> — '완벽한 CSS 파이 차트'를 향한 초기 도전은 자바스크립트로 누적값을 계산해 채워 넣었다. 이번 글은 그 JS 의존을 걷어내고 같은 결과를 CSS만으로 재현했다는 점에서 진화다.</li><li><b>MDN(conic-gradient)</b> — 접근성의 관점. conic-gradient로 그린 차트는 결국 '이미지'라 대체 텍스트를 줄 수 없어 스크린리더에는 보이지 않는다. 시각화의 의미는 별도 마크업(표·텍스트)으로 반드시 보강해야 한다고 짚는다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이 사례는 CSS가 점점 '계산'을 흡수하는 큰 흐름을 보여준다. 예전엔 자바스크립트가 맡던 누적·인덱스 계산이 <code>attr()</code>·<code>calc()</code>로, 그리고 곧 <code>sibling-index()</code>로 네이티브에 들어온다. JS 의존이 줄면 번들이 가벼워지고 렌더링도 브라우저 최적화 경로를 탄다. 다만 영리한 우회일수록 코드의 의도가 가려지기 쉬워, '왜 이렇게 썼는지'를 설명할 수 있어야 유지보수가 산다.</p>\n<h3>실무 적용</h3>\n<ul><li>간단한 비율 시각화는 라이브러리 대신 conic-gradient + CSS 변수로 구현해 번들과 의존성을 줄인다.</li><li>CSS-only 차트는 스크린리더에 안 보이므로, 데이터를 <code>&lt;table&gt;</code>이나 visually-hidden 텍스트로 함께 제공해 접근성을 보강한다.</li><li>sibling-index()·sibling-count() 지원 현황을 점검해, 가능해지면 인덱스별 변수 나열 같은 보일러플레이트를 걷어낸다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드 관점에서 이 글의 진짜 교훈은 '기교'가 아니라 '경계 감각'이다. CSS로 못 하던 일이 매년 가능해지지만, 가능하다고 다 옳은 선택은 아니다. 나는 작은 도넛·게이지처럼 정적인 비율 표시는 CSS로 내리고, 인터랙션·툴팁·동적 갱신이 필요하면 그때 JS를 얹는다. 그리고 화면에 무엇을 그리든 '스크린리더에는 어떻게 들리나'를 먼저 묻는다. 예뻐 보이는 차트보다, 꺼졌을 때도 데이터가 전달되는 차트가 맞다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/another-stab-at-the-perfect-css-pie-chart-sans-javascript/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Another Stab at the Perfect CSS Pie Chart… Sans JavaScript! ↗</a></li><li><a href=\"https://css-tricks.com/trying-to-make-the-perfect-pie-chart-in-css/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Trying to Make the Perfect Pie Chart in CSS ↗</a></li><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/conic-gradient\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MDN: conic-gradient() ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/another-stab-at-the-perfect-css-pie-chart-sans-javascript/",
+    "tags": [
+      "CSS",
+      "ConicGradient",
+      "DataViz"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-27-leading-hybrid-human-ai-teams",
+    "category": "ai",
+    "date": "2026-06-27",
+    "title": "AI가 동료가 된 팀, 리더십이 바뀐다",
+    "rawTitle": "Learning to lead in a hybrid human-AI enterprise",
+    "summary": "자율 에이전트가 늘면서 리더의 일은 '문제를 푸는 영웅'에서 '문제를 풀 무대를 설계하는 사람'으로 옮겨간다. 2년간 도입 300% 전망 속, 진짜 병목은 모델이 아니라 사람·거버넌스다.",
+    "bodyHtml": "<p>AI 에이전트가 '도구'에서 '동료'로 넘어오면서, 진짜 과제는 모델 성능이 아니라 사람과 AI가 섞인 팀을 어떻게 이끄느냐로 옮겨가고 있다. MIT 테크놀로지 리뷰가 2026년 6월 9일 공개한 글은, 자율적으로 일하는 에이전트가 늘어나는 조직에서 리더의 역할 자체가 바뀐다고 짚는다. 앞으로 2년간 에이전트 도입이 최대 300% 늘 것으로 전망되는 가운데, 역할 배분·필요 역량·조직 문화를 다시 설계하지 않으면 생산성도 신뢰도 얻지 못한다는 경고다.</p>\n<blockquote>\"The nature of your job changes from being the hero who comes in to solve the problem to designing the hero who can solve the problem.\"<cite>Ateet Jayaswal, MIT Technology Review</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>기사가 든 수치는 변화의 속도를 보여준다. 고객지원·HR·영업 같은 초기 적용 영역에서 이미 30~50%의 생산성 향상이 나타났고, 2030년까지 현재 직무의 약 75%가 재설계·재교육·재배치를 필요로 할 것으로 본다. 인사 책임자의 86%는 '디지털 노동(AI 에이전트) 관리'가 자기 업무의 핵심이 될 것이라 답했지만, 73%는 정작 직원들이 AI가 자기 일을 어떻게 바꿀지조차 잘 모른다고 토로한다. 리더가 풀어야 할 건 기술이 아니라 사람과 신뢰의 문제라는 것이다.</p>\n<h3>여러 시각</h3>\n<p>같은 'AI 에이전트의 조직화' 흐름을 두 자료가 다른 층위에서 본다.</p>\n<ul><li><b>MIT 테크놀로지 리뷰(조직 설계)</b> — 더 근본적인 관점. 에이전트 시대엔 직무를 손보는 수준이 아니라 조직 구조 자체를 다시 그려야 하며, 85%가 '에이전트형 조직'을 원하지만 76%는 현재 운영·인프라가 이를 못 받친다고 짚는다.</li><li><b>VentureBeat(섀도 AI)</b> — 운영·보안의 관점. 마이크로소프트가 에이전트 관리 플랫폼 'Agent 365'를 정식 출시한 배경엔, 회사 몰래 쓰이는 '섀도 AI'를 통제 가능한 거버넌스 안으로 끌어들여야 한다는 절박함이 있다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>세 자료를 겹치면 2026년 기업 AI의 병목이 또렷해진다. 모델은 충분히 똑똑해졌고, 막상 막히는 건 사람·프로세스·거버넌스다. 에이전트가 민감한 데이터에 접근하는 순간 'human-in-the-loop' 감독과 권한 설계가 필수가 되고, 직원이 AI를 신뢰하지 못하면 300% 도입 전망도 숫자에 그친다. 리더십의 정의가 '직접 문제를 푸는 영웅'에서 '문제를 풀 수 있는 시스템을 설계하는 사람'으로 옮겨가는 것이다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI를 1:1 도구가 아니라 팀 멤버로 배치할 때, '맡길 일'과 '사람이 검수할 일(human-in-the-loop)'의 경계를 워크플로에 명시한다.</li><li>섀도 AI를 금지로 막기보다, 접근 권한·로그·감사 흐름을 갖춘 공식 경로를 먼저 제공해 양지로 끌어들인다.</li><li>팀의 'AI 리터러시'를 기본 역량으로 두고, 요구사항을 에이전트에 명확히 전달하는 '지시 설계' 능력을 새 핵심 스킬로 키운다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드·QA·PM을 오가며 일하는 입장에서 이 변화의 핵심은 'AX(Agent Experience)'다. 사람이 쓰는 UX만큼, 에이전트가 일하기 좋은 권한·맥락·피드백 구조를 설계하는 일이 곧 생산성을 가른다. 나는 에이전트에게 일을 맡길 때 'UI를 어떻게 보여줄까'보다 '무엇을 했고 어디서 멈춰 사람을 불러야 하나'를 먼저 정한다. 영웅을 자처하기보다 영웅이 일할 무대를 설계하는 쪽이, 결국 팀 전체를 빠르게 만든다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.technologyreview.com/2026/06/09/1137830/learning-to-lead-in-a-hybrid-human-ai-enterprise/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Learning to lead in a hybrid human-AI enterprise ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/05/26/1137584/rethinking-organizational-design-in-the-age-of-agentic-ai/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Rethinking organizational design in the age of agentic AI ↗</a></li><li><a href=\"https://venturebeat.com/technology/microsoft-takes-agent-365-out-of-preview-as-shadow-ai-becomes-an-enterprise-threat\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Microsoft takes Agent 365 out of preview as shadow AI becomes an enterprise threat ↗</a></li></ul>",
+    "source": "MIT Technology Review",
+    "sourceUrl": "https://www.technologyreview.com/2026/06/09/1137830/learning-to-lead-in-a-hybrid-human-ai-enterprise/",
+    "tags": [
+      "AIagents",
+      "Leadership",
+      "Governance"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-26-scroll-animations-decoded",
     "category": "design",
     "date": "2026-06-26",

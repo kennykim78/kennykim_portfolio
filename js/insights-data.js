@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-06-28-astro-markdown-component-any-framework",
+    "category": "design",
+    "date": "2026-06-28",
+    "title": "마크다운을 컴포넌트에 넣을 때 깨지는 들여쓰기",
+    "rawTitle": "Astro Markdown Component Utility for Any Framework",
+    "summary": "마크다운을 컴포넌트 안에 곱게 들여쓰면 대부분의 라이브러리가 그 공백을 코드 블록으로 오해한다. Astro 슬롯과 작은 유틸로 프레임워크를 가리지 않고 푸는 법.",
+    "bodyHtml": "<p>마크다운을 컴포넌트 안에 곱게 들여써 넣었더니 본문이 통째로 회색 코드 블록으로 변해버린 경험. 프론트엔드 개발자라면 한 번쯤 겪는 함정이다. CSS-Tricks가 2026년 6월 1일 공개한 Zell Liew의 글은 이 사소해 보이지만 끈질긴 문제를 정면으로 다룬다. 대부분의 마크다운 라이브러리가 들여쓴 공백을 ‘코드’로 오해해 <code>&lt;pre&gt;&lt;code&gt;</code>로 감싸버리기 때문인데, 저자는 이를 프레임워크를 가리지 않고 푸는 작은 유틸과 Astro 슬롯 활용법으로 풀어낸다.</p>\n<blockquote>\"I hit a snag when using most Markdown libraries.\"<cite>Zell Liew, CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>핵심은 ‘입력 정리’다. Splendid Labz의 <code>markdown()</code> 유틸은 마크다운 텍스트를 처리하기 전에 문제의 들여쓰기를 먼저 걷어낸다. <code>inline</code> 옵션으로 결과를 <code>&lt;p&gt;</code>로 감쌀지 말지도 고른다. 프레임워크별 연결 방식은 슬롯 처리 능력에 따라 갈린다. Astro는 <code>Astro.slots.render()</code>로 슬롯에 담긴 자식 콘텐츠를 문자열로 받아 유틸에 통과시키고, Svelte는 동적 슬롯 내용을 읽지 못해 props로 텍스트를 넘긴다. React·Vue는 같은 패턴을 직접 구현하면 된다. 결국 ‘어디에 마크다운을 두고, 어떻게 문자열로 꺼내느냐’가 전부다.</p>\n<h3>여러 시각</h3>\n<p>같은 문제를 Astro가 제공하는 기본기와 견주면 맥락이 분명해진다.</p>\n<ul><li><b>Astro 공식 문서(슬롯)</b> — 구조의 관점. <code>&lt;slot/&gt;</code>은 외부 HTML을 끼워 넣는 자리표시자이고, <code>Astro.slots</code> 유틸로 슬롯 콘텐츠를 직접 렌더링·문자열화할 수 있다. 이 글의 우회법이 사실 Astro의 기본기 위에 서 있음을 보여준다.</li><li><b>Astro 공식 문서(마크다운)</b> — 대안의 관점. 레이아웃은 <code>compiledContent()</code>로 마크다운을 HTML로, <code>rawContent()</code>로 원문 문자열을 돌려준다. 콘텐츠 양이 커지면 즉석 유틸보다 이런 네이티브 파이프라인이나 MDX가 더 견고하다는 점을 시사한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이 작은 문제는 ‘콘텐츠와 컴포넌트의 경계’라는 큰 주제를 건드린다. 디자인 시스템이 성숙할수록 버튼·카드 같은 UI뿐 아니라 본문 텍스트도 컴포넌트로 다뤄야 하는데, 마크다운은 공백에 민감해 ‘코드 모양’과 ‘콘텐츠 모양’의 경계가 쉽게 무너진다. 들여쓰기 하나로 렌더링이 깨지면 디자인 QA에서 잡기도 어렵다. 프레임워크마다 슬롯 모델이 달라 ‘한 번 짜서 어디서나’가 생각보다 어렵다는 현실도 함께 드러난다.</p>\n<h3>실무 적용</h3>\n<ul><li>마크다운을 컴포넌트에 넣을 땐 들여쓰기를 펴거나 전용 유틸로 정규화해, 공백이 코드 블록으로 둔갑하는 일을 막는다.</li><li>슬롯에서 문자열을 꺼내는 API(<code>Astro.slots.render</code> 등)는 프레임워크마다 다르므로, 콘텐츠 렌더링 계층을 얇게 추상화해 갈아끼우기 쉽게 둔다.</li><li>본문 분량이 늘면 즉석 변환 대신 MDX·콘텐츠 컬렉션 같은 네이티브 파이프라인으로 옮겨 빌드 타임에 안정적으로 처리한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드에서 이런 ‘공백 한 칸’ 버그가 무서운 이유는, 기능이 아니라 콘텐츠가 조용히 망가지기 때문이다. 테스트는 통과하는데 글이 코드처럼 보인다. 나는 마크다운을 다룰 때 ‘입력은 더럽고 출력은 깨끗해야 한다’를 전제로, 정규화 단계를 파이프라인 맨 앞에 못 박아 둔다. 그리고 프레임워크에 종속된 슬롯 트릭은 최소화한다 — 영리한 우회는 당장은 통하지만, 다음 사람이 왜 이렇게 짰는지 모르면 그게 곧 부채다. 콘텐츠를 컴포넌트로 다루는 시대일수록 경계를 단순하게 지키는 쪽이 오래 간다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/astro-markdown-component-utility-any-framework/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Astro Markdown Component Utility for Any Framework ↗</a></li><li><a href=\"https://docs.astro.build/en/basics/astro-components/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Astro Docs: Components (Slots) ↗</a></li><li><a href=\"https://docs.astro.build/en/guides/markdown-content/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Astro Docs: Markdown in Astro ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/astro-markdown-component-utility-any-framework/",
+    "tags": [
+      "Astro",
+      "Markdown",
+      "Components"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-28-anthropic-economic-index-cadences",
+    "category": "ai",
+    "date": "2026-06-28",
+    "title": "AI 사용의 리듬: 새벽엔 잠, 저녁엔 레시피",
+    "rawTitle": "Anthropic Economic Index report: Cadences",
+    "summary": "앤트로픽이 클로드 사용 로그와 9,700명 설문으로 본 ‘AI 사용의 리듬’. 7시엔 뉴스, 18시엔 레시피, 새벽 5시엔 수면 고민 — AI가 일상의 생체시계를 그대로 비춘다.",
+    "bodyHtml": "<p>AI가 언제 무엇을 묻는지를 들여다보면, 결국 사람의 하루가 보인다. 앤트로픽이 2026년 6월 26일 공개한 이코노믹 인덱스 ‘Cadences(리듬)’ 보고서는 클로드 사용 로그와 9,700명 설문을 엮어, AI 사용이 일상의 생체시계를 그대로 비춘다는 사실을 데이터로 보여준다. 아침 7시엔 뉴스 요청이, 저녁 6시엔 평소의 2.3배에 달하는 레시피 질문이, 새벽 5시엔 수면 고민이 몰린다. 단순한 통계 너머, 사람들이 AI를 어떻게 일과 삶에 녹여 쓰는지를 읽어내는 보고서다.</p>\n<blockquote>\"People who use Claude in the most automated way expect AI to take on more of their tasks in the next year, yet feel the most optimistic about what that means for their work.\"<cite>Anthropic Economic Index</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>보고서가 든 숫자는 사용의 결을 드러낸다. 평일 35% 수준이던 개인적 대화는 주말이면 50%까지 오르고, 고임금 직군일수록 주말에도 업무성 사용이 덜 줄어든다. 4월 14—15일엔 세금 관련 요청이 평소의 8배로 튀었다. 대화의 93%는 설명·문서·가이드 같은 구체적 산출물(artifact)로 이어지며, 고임금 직군의 대화는 저임금 직군보다 토큰을 2.07배 더 소비한다 — 더 복잡한 일을 맡긴다는 뜻이다. 설문에선 3분의 1이 1년 안에 AI가 업무 대부분을 처리할 것으로 봤지만, 정작 자기 일을 잃을 가능성을 높게 본 비율은 10%에 그쳤다.</p>\n<h3>여러 시각</h3>\n<p>같은 ‘AI와 일’의 흐름을 두 자료가 다른 층위에서 본다.</p>\n<ul><li><b>MIT 테크놀로지 리뷰(증강의 관점)</b> — 대체가 아니라 증강. 다수의 직무는 자동화와 혁신이 섞이며, 60% 이상이 AI를 ‘대체’가 아닌 ‘보조’ 도구로 활용하게 된다고 본다. 가장 자동화해 쓰는 사용자가 가장 낙관적이라는 앤트로픽의 결과와 결을 같이한다.</li><li><b>VentureBeat(확산 속도의 관점)</b> — 현장의 속도. 1,000명 이상 기업의 68%가 이미 에이전트형 AI를 도입했고, 누구나 ‘AI 에이전트를 만들고 관리하는 사람’이 되어가며 명확한 커뮤니케이션·전략적 사고가 새 핵심 역량으로 떠오른다고 짚는다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>세 자료를 겹치면 2026년 AI 사용의 윤곽이 또렷해진다. 사용량은 이제 ‘얼마나 똑똑한가’가 아니라 ‘삶의 어디에 끼어드는가’로 측정되기 시작했다. AI가 일상의 리듬에 스며들수록 가장 깊이 쓰는 사람일수록 더 낙관적이라는 역설은 ‘익숙함이 불안을 이긴다’는 신호다. 동시에 고임금 직군이 더 무거운 일을 맡긴다는 토큰 격차는, AI 활용 능력 자체가 새로운 격차의 축이 될 수 있음을 경고한다.</p>\n<h3>실무 적용</h3>\n<ul><li>제품의 사용 지표를 ‘DAU’가 아니라 ‘시간대·요일별 의도(intent)’로 쪼개 보면, 사용자의 진짜 맥락과 피크 시점을 설계에 반영할 수 있다.</li><li>AI 기능은 산출물(artifact) 중심으로 설계한다 — 대화의 93%가 결과물로 이어지는 만큼, ‘대화’보다 ‘꺼내 쓸 수 있는 결과’를 먼저 만든다.</li><li>팀 안에서 AI를 ‘얼마나 자동화해 쓰는가’의 편차를 줄이는 교육에 투자해, 활용 격차가 성과 격차로 굳어지지 않게 한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드·QA·PM을 오가며 일하는 입장에서 이 보고서의 진짜 가치는 ‘AI 사용을 UX 데이터처럼 읽을 수 있다’는 점이다. 사람들은 새벽 5시에 잠을 묻고 저녁 6시에 저녁을 묻는다 — 이건 기능 명세가 아니라 생활 맥락이다. 나는 AI 기능을 붙일 때 ‘무엇을 할 수 있나’보다 ‘사용자가 언제, 어떤 마음으로 부르나’를 먼저 그린다. 그리고 가장 깊이 쓰는 사용자가 가장 낙관적이라는 결과를, AX 관점에선 ‘초기 진입 마찰을 낮추면 신뢰가 따라온다’로 읽는다. 결국 AI 제품의 승부처는 모델이 아니라 일상의 리듬에 자연스레 얹히는 설계다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/research/economic-index-june-2026-report\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Economic Index report — Cadences ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/01/21/1131366/rethinking-ais-future-in-an-augmented-workplace/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Rethinking AI’s future in an augmented workplace ↗</a></li><li><a href=\"https://venturebeat.com/ai/the-great-ai-agent-acceleration-why-enterprise-adoption-is-happening-faster-than-anyone-predicted\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: The great AI agent acceleration ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/research/economic-index-june-2026-report",
+    "tags": [
+      "AnthropicEconomicIndex",
+      "AIatWork",
+      "UsagePatterns"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-27-css-pie-chart-sans-javascript",
     "category": "design",
     "date": "2026-06-27",

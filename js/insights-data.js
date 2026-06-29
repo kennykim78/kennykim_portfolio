@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-06-29-prop-for-that-live-css-props",
+    "category": "design",
+    "date": "2026-06-29",
+    "title": "CSS에 살아있는 값을 주입하는 Prop For That",
+    "rawTitle": "Prop For That",
+    "summary": "마우스 위치·스크롤 속도·현재 시각처럼 CSS 혼자선 못 보던 값을, JS 배선 없이 커스텀 속성으로 받아 스타일링한다. Adam Argyle의 작은 라이브러리가 던지는 ‘이건 CSS의 일인가’라는 질문.",
+    "bodyHtml": "<p>마우스가 어디 있는지, 스크롤이 얼마나 빠른지, 지금 몇 시인지 — CSS는 이런 ‘살아있는 값’을 혼자 알지 못한다. 늘 자바스크립트가 값을 추적해 커스텀 속성으로 넘겨줘야 했다. CSS-Tricks가 2026년 6월 16일 공개한 Geoff Graham의 글은 Adam Argyle가 만든 작은 라이브러리 ‘Prop For That’을 소개한다. 라이브러리를 불러오고 HTML에 데이터 속성 한 줄을 붙이면, 포인터 좌표·스크롤 속도·진행도·폼 상태·현재 시각이 자동으로 CSS 변수로 흘러든다.</p>\n<blockquote>\"All that's needed is to import the library, declare it in HTML, then style away in CSS.\"<cite>Geoff Graham, CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>사용법은 단순하다. <code>data-props-for=\"pointer\"</code> 같은 속성을 요소에 붙이면 라이브러리가 백그라운드에서 이벤트를 듣고 <code>--live-pointer-x</code>·<code>--live-pointer-y</code> 같은 변수를 갱신한다. 개발자는 그 변수를 <code>calc()</code>나 <code>translate</code>에 꽂아 쓰기만 하면 된다. 데모로는 포인터를 따라오는 그림자, 관성이 붙은 스크롤 효과, 색조를 미는 슬라이더 등이 제시됐다. 핵심은 값을 추적하는 ‘JS 배선’을 매번 직접 짜지 않아도 된다는 점이다.</p>\n<h3>여러 시각</h3>\n<p>같은 ‘CSS에 동적 값을 넣는다’는 흐름을 네이티브 기능과 견주면 경계가 또렷해진다.</p>\n<ul><li><b>MDN(@property)</b> — 표준의 관점. CSS Houdini의 <code>@property</code>는 커스텀 속성에 <code>syntax</code>·<code>inherits</code>·<code>initial-value</code>를 부여해 타입을 가진 변수로 등록한다. 값의 ‘형식’은 네이티브가 책임지지만, 그 값을 무엇으로 채울지(포인터·시간)는 여전히 외부가 공급해야 한다.</li><li><b>MDN(스크롤 기반 애니메이션)</b> — 네이티브의 진격. <code>animation-timeline: scroll()</code>·<code>view()</code>는 스크롤 진행도만큼은 JS 없이 CSS가 직접 읽게 만들었다. 즉 ‘스크롤’ 값은 이미 표준이 흡수했지만 ‘포인터·현재 시각’은 아직 빈자리여서, 이 라이브러리가 그 틈을 메운다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이 라이브러리의 진짜 메시지는 기능이 아니라 질문이다 — ‘이건 CSS가 직접 해야 할 일인가’. CSS는 매년 JS의 영역을 흡수해 왔고(스크롤 타임라인, <code>attr()</code>, 곧 나올 <code>if()</code>·<code>sibling-index()</code>), 그럴수록 번들은 가벼워지고 렌더링은 브라우저 최적화 경로를 탄다. 다만 포인터 추적처럼 잦은 갱신을 라이브러리에 맡기면, 보이지 않는 곳에서 매 프레임 JS가 돈다는 비용은 그대로다. 편의와 성능의 트레이드오프를 의식해야 한다.</p>\n<h3>실무 적용</h3>\n<ul><li>포인터·스크롤 같은 살아있는 값을 한두 군데에서만 쓴다면, 라이브러리 대신 작은 직접 핸들러로 충분하다 — 의존성과 전역 리스너를 늘리지 않는다.</li><li>타입이 필요한 커스텀 속성은 <code>@property</code>로 등록해 애니메이션·검증을 네이티브에 맡기고, 값 공급만 외부에서 처리한다.</li><li>스크롤 연동 효과는 먼저 <code>animation-timeline: scroll()</code> 같은 네이티브로 가능한지 확인하고, 안 되는 값(포인터·시간)에만 JS를 얹는다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드 관점에서 이런 ‘마법 같은’ 라이브러리는 늘 양날의 검이다. 코드가 짧아져 좋지만, 매 <code>pointermove</code>마다 변수를 갱신하는 비용은 저사양 기기에서 먼저 드러난다. 나는 ‘CSS로 표현, JS로 측정’의 경계를 명확히 긋고, 측정 비용이 큰 값은 <code>requestAnimationFrame</code>으로 묶거나 갱신 빈도를 떨어뜨린다. 그리고 영리함보다 ‘다음 사람이 이 변수가 어디서 오는지 5초 안에 아는가’를 우선한다. 편리한 추상은 그 출처가 투명할 때만 부채가 아니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/prop-for-that/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Prop For That ↗</a></li><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/@property\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MDN: @property (CSS Properties and Values API) ↗</a></li><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll-driven_animations\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MDN: CSS scroll-driven animations ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/prop-for-that/",
+    "tags": [
+      "CSS",
+      "CustomProperties",
+      "Houdini"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-29-fable-mythos-access-suspended",
+    "category": "ai",
+    "date": "2026-06-29",
+    "title": "미 정부가 멈춰 세운 Fable 5 — 탈옥 하나의 무게",
+    "rawTitle": "Statement on the US government directive to suspend access to Fable 5 and Mythos 5",
+    "summary": "미 정부가 수출통제 지침으로 외국인의 Fable 5·Mythos 5 접근을 전면 중단시켰다. 발단은 공개된 탈옥(jailbreak) 하나. ‘좁은 취약점이 상용 모델 회수의 근거가 되는가’라는 논쟁.",
+    "bodyHtml": "<p>탈옥(jailbreak) 시연 하나가 전 세계 사용자에게서 모델을 끊어버릴 수 있을까. 앤트로픽이 2026년 6월 12일 공개한 성명에 따르면, 미 정부는 같은 날 오후 5시 21분(ET) 국가안보를 근거로 수출통제 지침을 내려 외국인(미국 내외, 자사 외국인 직원 포함)의 Fable 5·Mythos 5 접근을 전면 중단할 것을 명령했다. 컴플라이언스를 위해 앤트로픽은 두 모델을 모든 고객에게서 즉시 비활성화했고, 다른 모델은 영향받지 않는다.</p>\n<blockquote>\"We are complying with the government's legal directive and are removing access to Fable 5 and Mythos 5 for all users.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>정부가 든 근거는 Fable 5의 안전장치를 우회하는 ‘탈옥’ 방법이 발견됐다는 것이다. 외부 보도에 따르면 6월 10일 유명 탈옥러 ‘Pliny the Liberator’가 X에 공개한 우회법이 발단으로, 사이버 공격·폭발물 등 위험 정보를 끌어냈다고 주장했다. 앤트로픽은 시연을 검토한 뒤, 이는 다른 공개 모델에도 흔한 사소하고 이미 알려진 취약점이라고 반박한다. 좁은(narrow) 탈옥이지 보편적 결함이 아니며, 같은 기준을 업계 전체에 적용하면 모든 프런티어 모델 배포가 멈춘다는 것이다.</p>\n<h3>여러 시각</h3>\n<p>같은 사건을 현장과 산업 전체의 층위에서 보면 파장이 더 분명해진다.</p>\n<ul><li><b>VentureBeat(기업의 관점)</b> — 비즈니스 연속성. 가장 강력한 상용 모델이 하루아침에 꺼지자, 기업들은 대체 모델로의 즉각 이전과 ‘단일 모델 의존’의 위험을 다시 따져야 했다. 정책 리스크가 곧 운영 리스크임을 보여준 사례다.</li><li><b>VentureBeat(산업의 관점)</b> — 게이팅의 일반화. 비슷한 시기 OpenAI의 신모델(GPT-5.6 계열)도 정부 방침에 따라 일부 프리뷰 파트너에게만 열렸다. 프런티어 모델 접근을 정부가 사전 통제하는 흐름이 한 회사만의 일이 아니라는 신호다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>세 자료를 겹치면 2026년 프런티어 AI의 새 국면이 보인다. 모델의 운명을 가르는 변수가 ‘성능’에서 ‘규제·안보’로 옮겨가고 있다. 탈옥 한 건이 수출통제 카드로 이어진다는 건, 능력이 커질수록 배포가 정치·안보 판단에 묶인다는 뜻이다. 기업엔 ‘어떤 모델이 가장 똑똑한가’만큼 ‘어떤 모델이 내일도 켜져 있을 것인가’가 중요한 질문이 됐다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI 기능은 처음부터 모델 교체가 쉬운 추상화 계층 위에 올려, 특정 모델이 중단돼도 빠르게 갈아끼울 수 있게 설계한다.</li><li>핵심 워크플로는 단일 공급사·단일 모델에 묶지 말고, 동급 대체 모델을 미리 검증해 ‘플랜 B’를 운영 문서에 박아 둔다.</li><li>모델 선택 기준에 성능·비용뿐 아니라 ‘규제·가용성 리스크’를 명시적 항목으로 넣어 의사결정에 반영한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프런트엔드·PM을 오가며 일하는 입장에서 이 사건의 교훈은 분명하다 — AI 모델은 ‘영구 인프라’가 아니라 ‘언제든 사라질 수 있는 외부 의존성’이다. 나는 AI 기능을 붙일 때 모델 호출을 얇은 어댑터 뒤에 숨겨, 공급사가 바뀌어도 UI와 제품 로직은 그대로 두는 구조를 우선한다. 그리고 ‘이 기능이 모델 없이도 최소한 동작하는가(graceful degradation)’를 항상 묻는다. 화려한 능력보다, 꺼졌을 때 무너지지 않는 설계가 결국 신뢰를 만든다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/fable-mythos-access\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Statement on the US government directive to suspend access to Fable 5 and Mythos 5 ↗</a></li><li><a href=\"https://venturebeat.com/technology/anthropic-blocks-all-public-access-to-claude-fable-5-mythos-5-following-us-government-order-what-enterprises-should-do\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Anthropic blocks all public access to Claude Fable 5, Mythos 5 — what enterprises should do ↗</a></li><li><a href=\"https://venturebeat.com/technology/openai-unveils-gpt-5-6-sol-terra-and-luna-models-but-only-accessible-to-limited-preview-partners-for-now-per-us-gov\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: OpenAI unveils GPT-5.6 Sol, Terra and Luna — limited preview per US Gov ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/fable-mythos-access",
+    "tags": [
+      "AIPolicy",
+      "ExportControls",
+      "FrontierModels"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-28-astro-markdown-component-any-framework",
     "category": "design",
     "date": "2026-06-28",

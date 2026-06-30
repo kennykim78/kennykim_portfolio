@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-06-30-interop-2026-three-engines",
+    "category": "design",
+    "date": "2026-06-30",
+    "title": "세 브라우저 엔진이 합의한 2026 CSS 우선순위",
+    "rawTitle": "Interop 2026",
+    "summary": "Chrome·Safari·Firefox가 올해 ‘완전하고 일관된 지원’을 약속한 기능 목록이 확정됐다. 앵커 포지셔닝·view transitions·contrast-color() 등 11개 영역, 브라우저 분기의 끝을 겨냥한다.",
+    "bodyHtml": "<p>같은 CSS를 썼는데 브라우저마다 다르게 보이는 일 — 프런트엔드의 오래된 피로다. Interop은 이 분기를 줄이려 Blink(Chrome·Edge)·WebKit(Safari)·Gecko(Firefox) 세 엔진이 ‘올해는 이 기능들을 끝까지 똑같이 맞추자’고 공개 약속하는 연례 프로젝트다. CSS-Tricks가 2026년 2월 17일 정리한 글에 따르면, Interop 2026은 앵커 포지셔닝부터 view transitions까지 11개 영역을 우선순위로 못 박았다. 매년 그래왔듯, 여기 오른 기능은 그해 안에 ‘안심하고 쓸 수 있는’ 후보가 된다.</p>\n<blockquote>\"CSS Anchor Positioning gives us a simple interface to attach elements next to others just by saying which sides to connect — directly in CSS.\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>선정된 영역은 실무 체감이 큰 것들이다. 툴팁·팝오버를 소스 순서와 무관하게 다른 요소에 붙이는 <b>앵커 포지셔닝</b>, 자바스크립트 없이 부드러운 화면 전환을 만드는 <b>view transitions</b>, 접근성 대비를 자동 계산하는 <b>contrast-color()</b>, 타입·단위 변환까지 지원하는 고급 <b>attr()</b>, DOM을 더럽히지 않고 임의 텍스트 범위를 칠하는 <b>커스텀 하이라이트</b>가 포함됐다. 여기에 컨테이너 스타일 쿼리, 선언형 <b>dialog·popover</b>, 미디어 의사클래스, 스크롤 기반 애니메이션, <b>shape()</b> 함수, 그리고 레이아웃에 영향을 주는 <b>zoom</b> 속성까지 11개 영역이 올랐다. 대부분 State of CSS·State of HTML 설문에서 ‘제일 안 맞는다’고 꼽힌 기능들이다.</p>\n<h3>여러 시각</h3>\n<p>같은 Interop 2026을 두 매체는 다른 각도에서 본다.</p>\n<ul><li><b>web.dev</b> — 거버넌스의 관점. 이 프로젝트는 Apple·Google·Igalia·Microsoft·Mozilla 대표가 함께 운영하며, 선정 테스트를 자동화 인프라에서 상시 실행하고 통과율을 공개 대시보드로 투명하게 보여준다. ‘약속’이 아니라 ‘측정되는 약속’이라는 점을 강조한다.</li><li><b>CSS-Tricks</b> — 개발자 체감의 관점. 어떤 기능이 왜 골라졌고 실제 코드에서 무엇이 달라지는지, 앵커 포지셔닝 같은 사례 중심으로 풀어 ‘내일의 내 코드’에 닿게 설명한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>Interop의 가치는 새 기능이 아니라 ‘예측 가능성’이다. 목록에 오른 기능은 세 엔진이 같은 해에 같은 테스트를 통과하도록 압박받으므로, 폴리필·벤더 분기·“이 브라우저에선 안 돼요” 같은 방어 코드의 수명이 짧아진다. 결국 Baseline(안정 지원 기준)에 더 빨리 편입돼, 개발자가 기능을 채택하는 시점을 앞당긴다. 분기를 메우는 데 쓰던 시간을 제품에 쓸 수 있게 된다는 뜻이다.</p>\n<h3>실무 적용</h3>\n<ul><li>Interop 2026 목록을 올해 기술 도입 로드맵의 ‘청신호 리스트’로 삼되, 실제 채택 전엔 Baseline·대시보드 통과율을 함께 확인한다.</li><li>JS로 직접 구현 중인 툴팁·모달·화면 전환은 앵커 포지셔닝·popover·view transitions 네이티브로 대체 가능한지 먼저 검토해 의존성을 줄인다.</li><li>접근성 대비 색은 하드코딩 대신 contrast-color()로 옮겨, 테마·다크모드에서도 자동으로 대비를 보장하는 방향을 실험한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프런트엔드 실무자에게 Interop은 ‘언제 도입할까’의 불안을 줄여 주는 달력이다. 나는 새 CSS 기능을 볼 때 데모의 화려함보다 ‘세 엔진이 합의했는가, 대시보드 통과율이 오르고 있는가’를 먼저 본다. 다만 목록에 올랐다고 오늘 당장 전면 도입은 위험하다 — 합의는 시작이지 완료가 아니다. 핵심 경험은 네이티브 + 점진적 향상(progressive enhancement)으로 깔고, 미지원 환경에서도 무너지지 않게 설계하는 습관이 결국 가장 빠른 길이다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/interop-2026/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Interop 2026 ↗</a></li><li><a href=\"https://web.dev/blog/interop-2026\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: Interop 2026 — Continuing to improve the web for developers ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/interop-2026/",
+    "tags": [
+      "CSS",
+      "Interop",
+      "Browsers"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-06-30-ai-coding-reality-check",
+    "category": "ai",
+    "date": "2026-06-30",
+    "title": "AI 코딩은 어디에나, 그러나 확신은 아직",
+    "rawTitle": "AI coding is now everywhere. But not everyone is convinced.",
+    "summary": "주간 사용 65%, 벤더 주장 20~55% 속도 향상. 그러나 숙련 개발자가 오히려 19% 느려졌다는 연구도 있다. ‘체감’과 ‘증거’의 간극을 짚는다.",
+    "bodyHtml": "<p>AI 코딩은 더 이상 실험이 아니다. MIT Technology Review가 2025년 12월 15일 공개한 기획에 따르면, 개발자의 65%가 매주 AI 코딩 도구를 쓰고(Stack Overflow 2025), 상위 모델은 표준 벤치마크에서 버그의 70% 이상을 푼다 — 1년 전 33%에서 급등했다. 그런데 같은 글이 던지는 질문은 정반대다. 이 폭발적 채택이 정말 ‘생산성 향상’으로 이어졌는가. 경영진의 장담과 현장의 증거 사이에 큰 틈이 있다는 것이다.</p>\n<blockquote>\"You remember the jackpots. You don't remember sitting there plugging tokens into the slot machine for two hours.\"<cite>Mike Judge, MIT Technology Review</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Microsoft·Google 임원은 자사 코드의 25%가 AI로 작성된다고 말하고, 초기 벤더 연구는 20~55% 속도 향상을 제시한다. 그러나 METR 연구에서 숙련 개발자는 AI 도구로 오히려 19% 느려졌고, GitClear 데이터상 ‘오래 가는(durable) 코드’는 2022년 이후 10%가량만 늘었다. 기사는 AI가 보일러플레이트·테스트·버그 수정 같은 좁은 작업엔 강하지만, 숙련자 업무의 대부분인 복잡한 통합 문제에선 제한적 문맥창과 일관성 부족으로 흔들린다고 짚는다. 게다가 AI 결함의 90% 이상은 명백한 버그가 아니라 미묘한 ‘코드 냄새(code smell)’라, 리뷰에서 걸러내기 어렵다.</p>\n<h3>여러 시각</h3>\n<p>같은 흐름을 더 멀리서 보면 ‘도구’가 아니라 ‘조직’의 문제가 보인다.</p>\n<ul><li><b>MIT Technology Review(에이전트 리포트)</b> — 변곡점의 관점. 에이전틱 AI를 오픈소스·DevOps에 이은 세 번째 전환으로 보고, 평균 37%의 속도 향상을 기대한다. 다만 “완전한 효과를 얻으려면 때로 고통스러운 조직·프로세스 변화가 필요하다”고 못 박는다 — 기술만으론 부족하다는 것.</li><li><b>현장 데이터(METR·GitClear)</b> — 회의의 관점. 잭팟의 기억은 또렷하지만 토큰을 허비한 두 시간은 잊힌다. 개인의 ‘체감 향상’과 측정된 ‘실제 향상’ 사이의 인지 편향을 경고한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>두 자료를 겹치면 결론은 분명하다 — AI 코딩의 성패는 모델 성능보다 ‘조직의 엔지니어링 규율’에 달렸다. AI는 좋은 관행도 나쁜 관행도 똑같이 증폭한다. 주니어가 쏟아내는 코드량이 시니어 리뷰 용량을 포화시키면 병목은 오히려 심해지고, 기술부채는 더 빨리 쌓인다. ‘얼마나 빨리 짜는가’가 아니라 ‘얼마나 빨리 검증·통합·유지하는가’가 진짜 지표가 됐다는 뜻이다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI 생산성은 라인 수·속도가 아니라 ‘리뷰 통과율·재작업률·결함 밀도’로 측정해, 잭팟 편향에 속지 않는다.</li><li>AI가 낸 코드는 프로젝트 컨벤션 준수와 통합 영향을 우선 검토한다 — 미묘한 코드 냄새는 자동 린트·테스트로 1차 거른다.</li><li>주니어 산출량이 시니어 리뷰를 포화시키지 않도록, 생성-검증 비율과 리뷰 SLA를 팀 단위로 명시한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프런트엔드와 PM·QA를 오가며 AI를 매일 쓰는 입장에서 이 기사는 과장이 아니라 균형추다. 나는 AI를 ‘초안 생성기’로 쓰되, 검증 책임은 끝까지 사람이 진다는 선을 분명히 한다. 특히 미묘한 코드 냄새는 속도의 대가로 슬그머니 쌓이므로, 테스트·타입·린트라는 ‘자동 안전망’을 먼저 깔아 두는 것이 AI 활용의 전제 조건이다. 잭팟의 기억보다 두 시간의 토큰을 기록하는 것 — 결국 측정만이 체감의 환상을 이긴다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.technologyreview.com/2025/12/15/1128352/rise-of-ai-coding-developers-2026/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: AI coding is now everywhere. But not everyone is convinced. ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/04/14/1134397/redefining-the-future-of-software-engineering/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Redefining the future of software engineering ↗</a></li></ul>",
+    "source": "MIT Technology Review",
+    "sourceUrl": "https://www.technologyreview.com/2025/12/15/1128352/rise-of-ai-coding-developers-2026/",
+    "tags": [
+      "AICoding",
+      "DevTools",
+      "Productivity"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-29-prop-for-that-live-css-props",
     "category": "design",
     "date": "2026-06-29",

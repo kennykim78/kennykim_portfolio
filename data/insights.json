@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-07-01-anthropic-gigawatt-compute-grid",
+    "category": "ai",
+    "date": "2026-07-01",
+    "title": "기가와트로 몸집 키우는 앤트로픽, 전력망은 버틸까",
+    "rawTitle": "Anthropic expands partnership with Google and Broadcom for multiple gigawatts of next-generation compute",
+    "summary": "앤트로픽이 구글·브로드컴과 손잡고 2027년부터 가동될 차세대 TPU를 ‘기가와트 단위’로 확보한다. 연 매출 런레이트가 1년 새 90억→300억 달러로 뛴 수요 폭증이 배경인데, 정작 발목을 잡는 건 전력망이다.",
+    "bodyHtml": "<p>앤트로픽이 구글·브로드컴과의 협력을 확대해, 2027년부터 순차 가동될 차세대 구글 TPU를 ‘기가와트 단위’로 확보한다고 2026년 4월 발표했다. 대부분 미국 내에 지어지며, 앞서 밝힌 500억 달러 규모 미국 인프라 투자 위에 얹히는 물량이다. 왜 지금인가 — 클로드 수요가 말 그대로 폭발했기 때문이다. 연 매출 런레이트는 2025년 말 90억 달러에서 2026년 300억 달러를 넘어섰고, 연 100만 달러 이상을 쓰는 기업 고객이 두 달도 안 돼 500곳에서 1,000곳으로 두 배가 됐다.</p>\n<blockquote>\"This significant expansion of our compute infrastructure will power our frontier Claude models and help us serve extraordinary demand from customers worldwide.\"<cite>Krishna Rao, Anthropic CFO</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>핵심은 ‘규모’와 ‘시점’이다. 이번 계약은 단일 데이터센터가 아니라 <b>다수의 기가와트급</b> TPU 용량을 묶은 것으로, 하나의 대형 시설만으로도 중소도시 전체가 쓰는 전력을 삼킬 수 있는 체급이다. 물량 대부분은 미국에 배치되고 2027년부터 온라인된다. 브로드컴이 커스텀 실리콘 설계·공급을, 구글이 TPU 인프라를 맡는 분업 구조로, 특정 GPU 한 곳에 대한 의존을 낮추려는 포석이기도 하다. 급증하는 추론(inference) 수요를 감당하면서도 프런티어 모델 학습 여력을 확보하려는, 공급 병목을 미리 사두는 베팅이다.</p>\n<h3>여러 시각</h3>\n<p>컴퓨트를 ‘사두는’ 경쟁의 이면에는 전력망이라는 물리적 한계가 있다.</p>\n<ul><li><b>MIT Technology Review</b> — 발전소를 새로 짓는 대신 데이터센터를 ‘유연하게’ 운영하자는 관점. 듀크대 연구에 따르면 연중 0.25%(약 22시간)만 사용량을 줄여도 미국 그리드는 76기가와트를 추가로 내줄 수 있고, 프린스턴·구글 공동연구에선 유연 운영 시설이 경직된 시설보다 3~5년 빨리 완전 가동에 도달했다. 컴퓨트 확보의 진짜 병목이 ‘칩’이 아니라 ‘언제 전기를 꽂느냐’임을 보여준다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>기가와트 단위 발표는 단순한 자랑이 아니라, AI 서비스의 품질과 가격이 앞으로 전력·부지·냉각 같은 물리 인프라에 묶인다는 신호다. 컴퓨트가 늘면 응답 지연과 가용성이 개선되지만, 그 비용은 결국 API 단가와 요금제에 반영된다. 동시에 전력망이 병목이 되면 ‘칩은 있는데 켤 전기가 없다’는 상황이 현실이 되고, 이는 특정 리전의 지연·장애로 우리 제품에까지 번진다. AI를 쓰는 쪽에서도 인프라 리스크를 남의 일로 볼 수 없게 됐다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI 기능을 붙일 때 단일 모델·단일 프로바이더에 하드코딩하지 말고, 라우팅·폴백을 둔 오케스트레이션 계층으로 감싸 공급·리전 리스크를 분산한다.</li><li>지연에 민감한 UX는 스트리밍·낙관적 렌더링·캐싱을 기본값으로 설계해, 백엔드 컴퓨트가 출렁여도 체감 품질이 무너지지 않게 한다.</li><li>기능별 토큰·호출 비용을 계측해 ‘컴퓨트 원가 대비 가치’를 지표로 관리하고, 비용이 가치보다 빨리 커지는 기능은 조기에 걷어낸다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프런트엔드·AX 실무자에게 이 뉴스는 ‘AI는 무한 자원이 아니다’라는 리마인더다. 나는 AI 기능을 설계할 때 모델 성능만큼이나 ‘느려지거나 끊겼을 때 화면이 어떻게 버티는가’를 먼저 그린다. 기가와트가 늘어도 전력망이 그 속도를 못 따라가면 특정 시점·리전의 병목은 남는다. 그래서 프로바이더 종속을 피하고, 스켈레톤·부분 렌더·우아한 실패(graceful degradation)를 기본기로 깔아두는 것이 결국 사용자에게 가장 정직한 설계다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/google-broadcom-partnership-compute\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Anthropic expands partnership with Google and Broadcom for multiple gigawatts of next-generation compute ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/06/16/1138591/data-center-online-quickly-electric-grid-flex/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Want to get a data center online quickly? Give it some flex. ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/google-broadcom-partnership-compute",
+    "tags": [
+      "Anthropic",
+      "Compute",
+      "DataCenters"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-07-01-ai-qa-problem-orchestration",
+    "category": "plan",
+    "date": "2026-07-01",
+    "title": "AI 시대 QA의 무기는 자동화가 아니라 ‘판단’이다",
+    "rawTitle": "Five practical ways to use AI as a partner in Quality Engineering",
+    "summary": "Ministry of Testing은 AI가 QA를 대체하는 게 아니라, 테스터의 역할을 ‘산출물 제작’에서 ‘문제 설계’로 옮긴다고 본다. 기획도 마찬가지 — 하이프를 걷어내고 판단을 파는 시대다.",
+    "bodyHtml": "<p>AI가 테스트 케이스를 대신 써 주는 시대에 QA는 무엇을 하는가. Ministry of Testing이 정리한 ‘품질 엔지니어링에서 AI를 파트너로 쓰는 다섯 가지 실무법’은 이 질문에 명확히 답한다. 핵심은 AI를 자동화 지름길로 쓰는 게 아니라, 테스터의 일을 ‘산출물 찍어내기(artifact production)’에서 ‘문제 설계·오케스트레이션(problem orchestration)’으로 재정의하는 데 있다. AI 도입이 테스터의 판단력을 대체하는 게 아니라 오히려 날카롭게 만든다는 관점이다.</p>\n<blockquote>\"AI won't replace Quality Assurance (QA), but a QA who learns to use AI effectively will replace those who don't.\"<cite>Ministry of Testing</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>제시된 다섯 가지는 모두 ‘사람이 문제를 정의하고 AI가 실행을 돕는’ 구조다. ① 역할·제약을 명시한 <b>반복적 프롬프트</b>로 테스트를 생성하고, ② 불안정한 <b>플래키 테스트</b>의 패턴을 AI로 분석·리팩터링하며, ③ <b>프롬프트 체이닝</b>으로 회귀 스위트의 중복·공백을 찾아 최적화한다. ④ 배포 전 검증·코드 리뷰·버그 트리아지를 잇는 <b>프로덕션 QA 워크플로</b>에 AI를 끼워 넣고, ⑤ 표준화된 프롬프트를 팀 공용 자산으로 쌓는 <b>QA 프롬프트 라이브러리</b>를 만든다. 관통하는 전제는 하나 — 문제를 명확히 프레이밍하고, 제약을 정의하고, 결과를 해석하는 힘이 있어야 AI가 제값을 한다는 것이다.</p>\n<h3>여러 시각</h3>\n<p>같은 원리가 QA를 넘어 제품 기획에도 그대로 적용된다.</p>\n<ul><li><b>Mind the Product</b> — ‘하이프를 걷어낸 AI 제품 전략’ 관점. AI 기능은 직접 컴퓨트 비용의 최소 3배 가치를 증명해야 하고(안 그러면 잘 팔려도 마진을 갉아먹는다), 단일 프로바이더에 잠기지 말고 교체 가능한 아키텍처를 두며, ‘채택률’이 아니라 ‘실제로 줄인 업무량’을 성공 지표로 삼으라고 말한다. QA의 ‘문제 설계’와 기획의 ‘가치·비용 판단’은 결국 같은 근육이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>AI가 실행 단가를 떨어뜨릴수록, 사람의 가치는 ‘무엇을·왜 검증하고 만드는가’라는 판단으로 이동한다. 테스트 케이스를 손으로 쓰고 실패를 수동 분류하던 일은 빠르게 기본값(table stakes)이 되고 있고, 그만큼 리스크 기반 전략·거버넌스·품질 판단의 몸값이 오른다. 기획도 똑같다 — 만들 수 있느냐가 아니라, 만들 가치가 있느냐를 숫자로 가르는 사람이 살아남는다. AI는 답을 주는 도구가 아니라, 좋은 질문을 던진 사람에게만 레버리지를 주는 도구다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI에 테스트·요구사항을 맡길 때 역할·제약·수용 기준을 먼저 문장으로 못 박고, 산출물은 ‘초안’으로만 받아 사람이 리스크 관점에서 검수한다.</li><li>팀 공용 ‘프롬프트 라이브러리’를 리포에 두고, 잘 통한 프롬프트를 코드처럼 리뷰·버전관리해 품질을 재현 가능하게 만든다.</li><li>기획 단계에서 각 AI 기능에 ‘실패 조건’과 ‘가치 지표(줄인 업무량·전환)’를 컴퓨트 원가와 함께 명시해, 하이프가 아니라 단위 경제로 우선순위를 정한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>기획·QA·프런트엔드를 오가며 일하는 입장에서, 이 글의 ‘문제 오케스트레이션’이라는 표현이 가장 정확하다고 느낀다. 나는 AI에게 코드나 테스트를 시킬 때 결과물의 양보다 ‘내가 문제를 얼마나 좁게 정의했는가’로 품질이 갈린다는 걸 매번 확인한다. 그래서 AI를 쓸수록 요구사항을 더 명료하게 쪼개고, 실패 조건을 먼저 적는 습관이 늘었다. 자동화는 거들 뿐, 무엇을 검증하고 무엇을 포기할지 정하는 판단은 여전히 사람의 몫이다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.ministryoftesting.com/articles/five-practical-ways-to-use-ai-as-a-partner-in-quality-engineering\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: Five practical ways to use AI as a partner in Quality Engineering ↗</a></li><li><a href=\"https://www.mindtheproduct.com/the-2026-ai-product-strategy-huide-how-to-plan-budget-and-build-without-buying-into-the-hype/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: The 2026 AI product strategy guide — How to plan, budget, and build without buying into the hype ↗</a></li></ul>",
+    "source": "Ministry of Testing",
+    "sourceUrl": "https://www.ministryoftesting.com/articles/five-practical-ways-to-use-ai-as-a-partner-in-quality-engineering",
+    "tags": [
+      "QA",
+      "AI",
+      "ProductStrategy"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-06-30-interop-2026-three-engines",
     "category": "design",
     "date": "2026-06-30",

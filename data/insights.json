@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-07-03-css-states-replace-js-events",
+    "category": "design",
+    "date": "2026-07-03",
+    "title": "이벤트 리스너를 지우는 CSS — ‘상태’가 JS를 대신한다",
+    "rawTitle": "The Shifting Line Between CSS States and JavaScript Events",
+    "summary": ":hover부터 :user-invalid, :popover-open, :muted까지 — JS 이벤트 리스너로 하던 일을 CSS 의사 클래스가 빠르게 흡수하고 있다. 제안 중인 event-trigger는 상태와 이벤트의 경계 자체를 지운다.",
+    "bodyHtml": "<p>CSS-Tricks의 Daniel Schwarz가 6월 29일, CSS가 자바스크립트 이벤트 처리의 영역을 어디까지 흡수했는지 전면적으로 정리했다. :hover 같은 고전적 의사 클래스부터 폼 검증(:user-invalid), 팝오버(:popover-open), 미디어 재생 상태(:playing, :muted)까지 — 예전이라면 이벤트 리스너를 달고 클래스를 토글하던 일들이 이제 선언 한 줄로 끝난다. 폼·오버레이·미디어라는 UI의 굵직한 축이 모두 CSS 상태로 표현 가능해진 지금이, 이 경계선을 다시 그어볼 시점이다.</p>\n<blockquote>\"CSS is accumulating more and more pseudo-classes to help us respond to JavaScript events so that we don't have to do so with JavaScript itself.\"<cite>CSS-Tricks, Daniel Schwarz</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>글의 핵심 통찰은 CSS가 추적하는 것이 ‘이벤트’가 아니라 <b>이벤트 사이의 상태</b>라는 점이다. :hover는 pointerenter와 pointerleave 사이의 구간이고, :checked는 change 이벤트 후의 결과다. 폼 검증은 checkValidity() 호출 대신 :valid/:invalid/:user-invalid로, 해시 변경 감지는 hashchange 리스너 대신 :target으로, 전체화면은 fullscreenchange 대신 :fullscreen으로 대체된다. 나아가 제안 단계인 event-trigger는 click·dblclick 같은 이벤트를 CSS가 직접 받아 애니메이션을 실행하는 기능으로, 상태와 이벤트의 구분 자체를 무너뜨린다. 다만 미디어 의사 클래스는 아직 Chrome이 미지원이고 event-trigger는 어떤 브라우저에도 구현되지 않았다.</p>\n<h3>여러 시각</h3>\n<p>‘JS가 하던 일을 CSS가 가져간다’는 흐름은 상태 추적에 그치지 않는다.</p>\n<ul><li><b>web.dev</b> — @property가 3대 엔진 Baseline에 도달하면서, 커스텀 프로퍼티에 타입·초기값·오류 폴백까지 부여할 수 있게 됐다. 그라디언트 색상처럼 JS로 보간하던 값을 CSS가 직접 애니메이션한다. 상태에 이어 ‘타입 시스템과 오류 처리’까지 CSS가 흡수한다는 같은 방향의 신호다.</li><li><b>CSS-Tricks(스크롤 트리거)</b> — Chrome 146에 실린 animation-trigger·timeline-trigger는 IntersectionObserver로 구현하던 뷰포트 진입 애니메이션을 CSS로 옮긴다. 아직 Chrome 단독 지원이지만, ‘관찰하고 반응하는 코드’를 선언으로 바꾸는 궤적은 동일하다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이벤트 리스너는 등록·해제·클린업이라는 수명주기 관리가 따라붙고, 이는 SPA 메모리 누수와 상태 불일치 버그의 단골 원인이다. 선언적 CSS 상태는 그 수명주기 자체가 없어, 코드가 줄어드는 것 이상으로 버그의 표면적이 줄어든다. 메인 스레드 JS가 줄면 성능 예산에도 직접적인 이득이다. 다만 지원 편차가 있는 만큼, ‘CSS 우선 + JS 폴백’이라는 점진적 향상 전략이 다시 중요해진다.</p>\n<h3>실무 적용</h3>\n<ul><li>폼 검증 피드백은 :user-valid/:user-invalid로 스타일링하고, JS는 제출 시점의 최종 검증만 담당하게 역할을 나눈다.</li><li>팝오버·아코디언·다이얼로그는 popover 속성과 :popover-open/:open 상태를 기본으로 삼아 toggle 이벤트 리스너를 걷어낸다.</li><li>뷰포트 진입 애니메이션은 @supports로 스크롤 트리거 CSS를 감싸고 IntersectionObserver를 폴백으로 유지한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>이 글이 준 가장 실용적인 도구는 “이건 상태인가, 이벤트인가”라는 질문이다. 상태라면 CSS가 1순위 후보고, 네트워크 요청처럼 진짜 ‘사건’일 때만 JS가 필요하다 — 코드 리뷰에서 바로 쓸 수 있는 기준이다. AI 기능이 붙으며 JS 번들이 계속 무거워지는 요즘, UI 상태를 CSS 레이어로 내려보내는 것은 취향이 아니라 성능 예산을 확보하는 수단이다. 이벤트 리스너를 하나 지울 때마다 앱은 조금 더 단순해진다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/css-states-and-javascript-events/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: The Shifting Line Between CSS States and JavaScript Events ↗</a></li><li><a href=\"https://web.dev/blog/at-property-baseline\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: @property — Next-gen CSS variables now with universal browser support ↗</a></li><li><a href=\"https://css-tricks.com/css-scroll-triggered-animations-first-look/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: A First Look at Scroll-Triggered Animations ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/css-states-and-javascript-events/",
+    "tags": [
+      "CSS",
+      "PseudoClasses",
+      "Frontend"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-07-03-fable-5-global-redeployment",
+    "category": "ai",
+    "date": "2026-07-03",
+    "title": "18일 만에 돌아온 Fable 5 — ‘탈옥 채점표’를 들고 왔다",
+    "rawTitle": "Redeploying Claude Fable 5",
+    "summary": "미 정부가 6월 30일 수출통제를 철회하며 Fable 5가 7월 1일 전 세계에 복귀했다. 앤트로픽은 재발 방지책으로 아마존·MS·구글과 함께 업계 공통의 ‘탈옥 심각도 채점 프레임워크’를 제안했다.",
+    "bodyHtml": "<p>6월 9일 출시, 6월 12일 수출통제로 전면 중단, 그리고 7월 1일 글로벌 복귀 — Claude Fable 5가 18일 만에 돌아왔다. 미 상무부가 6월 30일 라이선스 요구를 공식 철회하면서다. 지난주 이 코너에서 다뤘던 ‘접근 중단’ 소식의 후속편인데, 앤트로픽은 단순히 스위치를 다시 켜는 대신 업계 공통의 <b>탈옥 심각도 채점 프레임워크</b>라는 제도적 제안을 함께 들고 나왔다. 프런티어 모델이 정부 명령으로 꺼졌다 켜진 첫 사례의 마무리라는 점에서 뜯어볼 가치가 있다.</p>\n<blockquote>\"It is probably impossible to make any AI model fully robust (that is, impervious) to jailbreaks.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>발단은 아마존 연구진이 발견한 탈옥 기법이었다. 모델이 소프트웨어 취약점을 식별하고 악용 방법까지 시연하게 만들 수 있다는 것. 그러나 조사 결과 같은 취약점은 GPT-5.5, Kimi K2.7, Claude Opus 계열 등 기존 모델로도 재현 가능했고, Mythos급 고유의 공격 능력이 아니라 통상적인 방어 보안 범주의 행동으로 판정돼 ‘경미’로 분류됐다. 이에 정부는 6월 26일 신뢰 기관 대상 Mythos 5 복원을 거쳐 6월 30일 통제를 전면 해제했다. Fable 5는 Claude 플랫폼·Claude.ai·Claude Code에서 즉시, AWS·구글클라우드·MS Foundry에서 순차 제공되며, Pro·Max·Team 요금제는 7월 7일까지 주간 한도의 50%까지 쓸 수 있다. 함께 제안된 채점 프레임워크는 능력 증가분·범위·무기화 용이성·발견 가능성이라는 4개 축으로 탈옥을 평가한다.</p>\n<h3>여러 시각</h3>\n<p>복귀를 바라보는 시선은 안도와 회의로 갈린다.</p>\n<ul><li><b>VentureBeat</b> — 기업 실무 관점의 정리. 상무장관이 철회 서한을 보낸 경위와 함께, 18일의 공백 동안 대체 모델로 갈아탄 기업들의 경험이 ‘단일 모델 의존’의 리스크를 각인시켰다고 본다. 복귀 이후 어디서 접근 가능한지가 기업의 첫 질문이라는 것.</li><li><b>MIT Technology Review</b> — 정부 대응이 “안전 계획이라기보다 피상적 반응에 가깝다”는 회의론. 경쟁사인 아마존 CEO가 사태 촉발에 관여한 구도, 소프트웨어 접근에 수출통제를 적용하는 것의 법적 근거를 문제 삼고, 이런 불확실성이 기업들을 중국 오픈소스 모델로 밀어낼 수 있다고 경고한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이번 사태는 프런티어 모델이 하루아침에 꺼질 수 있는 ‘규제 대상 인프라’임을 실증했다. 더 근본적인 문제는 탈옥의 심각도를 말할 공통 언어가 업계에 없었다는 점이다. 채점 프레임워크가 표준으로 자리 잡으면 ‘탈옥 발견 → 전면 중단’이라는 이분법 대신 심각도에 비례한 대응이 가능해진다. 사전 정부 접근과 신속한 정보 공유 같은 약속들은 앞으로 프런티어 모델 출시의 기본 템플릿이 될 가능성이 높다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI 기능은 특정 모델에 하드코딩하지 말고 추상화 계층과 폴백 체인을 두어, 모델 중단 시 교체가 배포 없이 가능하게 설계한다.</li><li>주력 프롬프트의 기대 출력을 스냅샷으로 관리해, 모델 교체·복귀 시 회귀 테스트로 품질 변화를 즉시 감지한다.</li><li>모델 제공사의 정책·약관·가용성 변화를 모니터링하는 운영 채널을 정해두고, 중단 시나리오를 런북에 포함한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>지난번 중단 소식을 다루며 ‘모델은 인프라’라고 썼는데, 18일 만의 복귀는 그 교훈을 완성한다. AI가 꺼졌을 때의 UX — 대체 모델 안내, 기능 축소 모드, 정직한 상태 표시 — 를 미리 설계해 둔 팀만 이 공백을 무사히 넘겼을 것이다. 흥미로운 건 채점 프레임워크가 QA의 결함 심각도 분류와 닮았다는 점이다. ‘버그 제로’가 아니라 심각도 관리로 가는 것은 성숙한 산업의 신호이고, AI 안전도 같은 길을 걷기 시작했다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/redeploying-fable-5\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Redeploying Claude Fable 5 ↗</a></li><li><a href=\"https://venturebeat.com/technology/anthropic-is-bringing-back-claude-fable-5-globally-after-us-lifts-export-control-order-where-can-enterprises-access-it\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Anthropic is bringing back Claude Fable 5 globally after US lifts export control order ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/06/22/1139424/three-things-to-watch-amid-anthropics-latest-feud-with-the-government/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Three things to watch amid Anthropic’s latest feud with the government ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/redeploying-fable-5",
+    "tags": [
+      "Anthropic",
+      "AISafety",
+      "ExportControls"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-07-01-anthropic-gigawatt-compute-grid",
     "category": "ai",
     "date": "2026-07-01",

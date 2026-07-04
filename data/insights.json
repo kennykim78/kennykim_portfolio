@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-07-04-contrast-color-baseline",
+    "category": "design",
+    "date": "2026-07-04",
+    "title": "글자색을 브라우저가 고른다 — contrast-color()",
+    "rawTitle": "New to the web platform in April",
+    "summary": "contrast-color()가 크롬 147과 함께 4대 엔진에 모두 안착해 Baseline이 됐다. 배경색만 주면 브라우저가 흑·백 중 대비가 높은 글자색을 자동으로 고른다.",
+    "bodyHtml": "<p>배경색에 따라 글자를 검정으로 할지 흰색으로 할지 고민하던 일을, 이제 브라우저가 대신 계산한다. CSS의 contrast-color() 함수가 크롬 147·엣지 147·파이어폭스 146·사파리 26에 모두 실리며 'Baseline 신규 지원'에 올랐다. 색 하나만 넘기면 그 위에서 가장 대비가 큰 흑 또는 백을 돌려주는, 접근성을 겨냥한 함수다. 다크 모드·사용자 테마·동적 색상처럼 배경이 런타임에 바뀌는 UI에서 특히 쓸모가 크다.</p>\n<blockquote>\"크롬 147이 contrast-color()를 출시하면서, 이 접근성 기능이 모든 주요 엔진에서 쓸 수 있는 Baseline 신규 기능이 됐다.\"<cite>web.dev</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>contrast-color()는 대비를 '검사'하는 게 아니라, 주어진 색 위에서 검정과 흰색 중 대비가 높은 쪽으로 곧장 '해석'된다. 예전 이름은 color-contrast()였고 CSS Color Module Level 5에 정의돼 있다. 사용법은 <code>color: contrast-color(var(--bg))</code>처럼 단순하다. 다만 아직은 흑·백 두 값만 반환하고 임의의 대비 비율을 지정하는 문법은 표준에서 빠져, 미묘한 색 조정이 필요한 디자인에는 손이 더 간다. WCAG 2.x의 명도 대비를 기준으로 삼을지, 차세대 APCA를 따를지도 아직 정리 중인 영역이다.</p>\n<h3>여러 시각</h3>\n<p>편리함 뒤에는 '흑백만 돌려준다'는 한계를 둘러싼 논쟁이 있다.</p>\n<ul><li><b>CSS-Tricks(대체 구현)</b> — 사파리·파이어폭스가 없던 시절부터, OKLCH 상대 색상 문법으로 <code>oklch(from var(--bg) round(1.21 - L) 0 0)</code> 한 줄이면 흑백 판정을 흉내 낼 수 있다고 정리한다. WCAG 명도 공식을 CSS로 옮기는 대신 인지 명도(L)를 쓰는, APCA에 더 가까운 접근이다.</li><li><b>CSS-Tricks(비판)</b> — Andy Clarke는 순수 흑백의 대비가 \"너무 높아 오히려 읽기 불편하다\"고 지적한다. 기술적으로 접근성을 통과해도 실제 가독성은 나빠질 수 있다는 것. 오프화이트나 반투명 같은 선택지를 못 주는 게 이 함수의 약점이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>색 대비는 접근성 감사에서 가장 흔히 걸리는 항목이고, 지금까지는 디자이너·개발자가 조합마다 수동으로 맞춰 왔다. contrast-color()는 그 유지보수 부담을 브라우저로 넘긴다. 사용자가 배경색을 고르는 테마 기능이나, 데이터로 색이 정해지는 차트·태그처럼 '빌드 시점에 색을 알 수 없는' 경우에 값을 미리 계산할 필요가 사라진다. 다만 법적 기준인 WCAG 2.0과 실제 가독성(APCA) 사이의 간극이 남아 있어, 자동화가 곧 '최선의 가독성'을 뜻하지는 않는다.</p>\n<h3>실무 적용</h3>\n<ul><li>사용자·데이터로 배경이 정해지는 배지·태그·버튼의 글자색은 contrast-color()로 두어 조합별 하드코딩을 없앤다.</li><li>구버전 사파리·파이어폭스를 커버해야 하면 @supports로 감싸고, OKLCH round() 한 줄을 폴백으로 둔다.</li><li>흑백 대비가 과할 땐 color-mix()로 결과를 배경과 살짝 섞어 눈이 편한 준-검정/준-흰색을 만든다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>이 함수의 진짜 가치는 접근성을 '사후 감사'에서 '설계 기본값'으로 끌어내린다는 데 있다. 예전엔 색 조합이 늘 때마다 대비를 다시 검사했지만, 이제 규칙을 한 번 선언하면 브라우저가 지켜 준다. 다만 나는 이걸 만능으로 보지 않는다 — Andy Clarke의 지적처럼 '통과'와 '읽기 편함'은 다르다. contrast-color()로 안전선을 깔되, 브랜드 색과 가독성의 균형은 여전히 사람이 조율하는 게 좋은 프런트엔드의 태도다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://web.dev/blog/web-platform-04-2026\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: New to the web platform in April (contrast-color Baseline) ↗</a></li><li><a href=\"https://css-tricks.com/approximating-contrast-color-with-other-css-features/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Approximating contrast-color() With Other CSS Features ↗</a></li><li><a href=\"https://css-tricks.com/the-thing-about-contrast-color/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: The thing about contrast-color ↗</a></li></ul>",
+    "source": "web.dev",
+    "sourceUrl": "https://web.dev/blog/web-platform-04-2026",
+    "tags": [
+      "CSS",
+      "Accessibility",
+      "Color"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-07-04-ai-agents-not-coworkers",
+    "category": "ai",
+    "date": "2026-07-04",
+    "title": "AI 에이전트는 당신의 동료가 아니다",
+    "rawTitle": "AI agents are not your coworkers",
+    "summary": "MS·오픈AI·앤트로픽·구글이 에이전트를 '디지털 동료'로 파는 지금, 그 이름표가 오히려 사람의 감독을 무디게 한다는 연구가 나왔다. '직원'이라 부르자 관리자가 오류를 18% 덜 잡아냈다.",
+    "bodyHtml": "<p>AI 에이전트에 이름과 직함을 붙여 '동료'처럼 부르는 마케팅이 업계 표준이 됐다. 마이크로소프트·오픈AI·앤트로픽·구글이 앞다퉈 에이전트를 디지털 동료로 소개한다. 그런데 MIT 테크놀로지 리뷰는 6월 29일, 바로 그 '동료 프레이밍'이 생산성을 높이기는커녕 사람의 감독을 무디게 한다는 연구를 근거로 반론을 제기했다. 에이전트를 대거 도입하려는 기업이라면 반드시 짚어야 할 경고다.</p>\n<blockquote>\"AI는 사람을 대체하는 대신 사람의 역량을 끌어올리도록 최적화돼야 한다.\"<cite>Daron Acemoglu, MIT Technology Review</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>보스턴대 에마 와일스(Emma Wiles)의 실험이 핵심 근거다. 같은 결과물이라도 '챗봇'이 아니라 'AI 직원'이 했다고 알려 주면, 관리자가 오류를 18% 덜 잡아냈다. 게다가 참가자들은 미심쩍은 산출물을 스스로 고치기보다 상급자에게 넘길 확률이 44% 더 높았다 — 시간을 아끼려던 목적이 되레 무너지는 셈이다. 설문에서 관리자의 약 3분의 1은 이미 에이전트를 '직원'으로 여겼고, 23%는 조직도에 올려 두기까지 했다. 필자는 이런 프레이밍이 책임 소재를 흐려, 의료·국방·행정처럼 오판의 대가가 큰 영역에서 특히 위험하다고 본다.</p>\n<h3>여러 시각</h3>\n<p>'이름표'가 문제라면, 진짜 과제는 에이전트를 '어떻게 관리하느냐'다.</p>\n<ul><li><b>VentureBeat(오케스트레이션)</b> — 관리의 주도권을 놓고 구글은 시스템(제어) 계층에서, AWS는 실행(하네스) 계층에서 에이전트를 다스리는 상반된 전략을 편다. 가트너 집계로 멀티에이전트 관련 문의가 1년여 만에 1,445% 늘 만큼, 업계의 관심은 '동료라 부르기'가 아니라 오케스트레이션 설계로 이미 옮겨 갔다.</li><li><b>VentureBeat(플랫폼 종속)</b> — 앤트로픽이 에이전트의 메모리·평가·오케스트레이션까지 자사 플랫폼으로 끌어안으려 한다는 분석. '동료' 서사 이면에서 벌어지는 건 결국 누가 관리 계층을 소유하느냐의 경쟁이며, 기업 입장에선 종속 리스크를 경계해야 한다는 지적이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>에이전트를 '동료'로 부르는 순간, 사람은 무의식적으로 그 판단을 동료의 것처럼 신뢰하고 검증을 늦춘다. 18%·44%라는 수치는 그 인지적 비용을 정량화한다. 자동화의 이득이 감독 소홀로 상쇄되면, 도입 효과는 장부상으로만 남는다. 더 큰 문제는 책임이다 — 에이전트가 조직도에 오르는 순간, 실수의 책임이 사람에서 '시스템'으로 흩어져 결국 아무도 지지 않는 공백이 생긴다.</p>\n<h3>실무 적용</h3>\n<ul><li>제품 UI에서 에이전트를 '직원/동료'로 의인화하기보다 '도구'로 명확히 표기해, 사용자가 검증 책임을 놓지 않게 한다.</li><li>에이전트 산출물에는 근거·출처·확신도를 함께 노출해 '스스로 고치기'가 '상급자에게 떠넘기기'보다 쉽도록 설계한다.</li><li>중요한 결정 경로에는 사람 승인(human-in-the-loop) 게이트를 두고, 책임 주체를 로그로 남긴다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>이 연구는 UX 카피 한 줄이 안전에 직결된다는 걸 보여준다. '당신의 AI 동료'라는 문구는 따뜻해 보이지만, 사용자의 경계심을 낮추는 다크 패턴에 가깝다. 나는 에이전트 인터페이스를 설계할 때 '유능하지만 검증이 필요한 인턴'의 톤을 선호한다 — 도움은 주되, 최종 판단은 사람이 한다는 신호를 UI 곳곳에 남기는 것이다. QA에서 자동화 도구를 '보조'로 두고 최종 판정을 사람이 쥐는 원칙과 정확히 같다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.technologyreview.com/2026/06/29/1139849/ai-agents-are-not-your-coworkers/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: AI agents are not your coworkers ↗</a></li><li><a href=\"https://venturebeat.com/orchestration/google-and-aws-split-the-ai-agent-stack-between-control-and-execution\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Google and AWS split the AI agent stack between control and execution ↗</a></li><li><a href=\"https://venturebeat.com/orchestration/anthropic-wants-to-own-your-agents-memory-evals-and-orchestration-and-that-should-make-enterprises-nervous\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Anthropic wants to own your agent's memory, evals, and orchestration ↗</a></li></ul>",
+    "source": "MIT Technology Review",
+    "sourceUrl": "https://www.technologyreview.com/2026/06/29/1139849/ai-agents-are-not-your-coworkers/",
+    "tags": [
+      "AIAgents",
+      "Workplace",
+      "HumanInTheLoop"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-07-03-css-states-replace-js-events",
     "category": "design",
     "date": "2026-07-03",

@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-07-05-css-exploit-blink-uaf",
+    "category": "design",
+    "date": "2026-07-05",
+    "title": "'CSS 익스플로잇'의 진실 — 크롬 취약점이 남긴 교훈",
+    "rawTitle": "An Exploit … in CSS?!",
+    "summary": "크롬 Blink 엔진이 @font-feature-values를 처리하는 과정에서 원격 코드 실행으로 이어지는 UAF 취약점(CVE-2026-2441)이 발견됐다. 'CSS가 뚫렸다'는 헤드라인의 실체와 프런트엔드가 챙길 교훈을 짚는다.",
+    "bodyHtml": "<p>선언형 언어라 \"안전하다\"고 여겨지던 CSS가 보안 뉴스의 주인공이 됐다. 크롬의 렌더링 엔진 Blink에서 CSS의 @font-feature-values 규칙 처리와 얽힌 Use After Free(UAF) 취약점, CVE-2026-2441이 공개된 것이다. CSS-Tricks의 Lee Meyer는 이 사건을 해부하며 'CSS 익스플로잇'이라는 자극적인 헤드라인과 실제 공격 구조 사이의 간극을 파고든다. 스타일시트 한 줄이 정말 브라우저를 뚫을 수 있는지, 프런트엔드 개발자가 무엇을 해야 하는지 정리했다.</p>\n<blockquote>\"조작된 HTML 페이지를 통해 원격 공격자가 샌드박스 안에서 임의 코드를 실행할 수 있게 했다.\"<cite>CSS-Tricks (CVE-2026-2441 설명 인용)</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>크롬이 @font-feature-values 규칙을 파싱하면 내부적으로 CSSFontFeaturesValueMap이라는 객체가 만들어지는데, 이를 떠받치는 HashMap 자료구조의 메모리 관리에 결함이 있었다. 해제된 메모리를 다시 참조할 수 있게 된 틈을 악성 자바스크립트가 타입 혼동(type confusion)으로 악용하면, 브라우저 샌드박스 안에서 임의 코드 실행까지 이어진다. 즉 CSS는 취약점을 '여는 방아쇠'였고, 실제 공격을 수행한 것은 자바스크립트였다. 크롬 145.0.7632.75, 엣지 145.0.3800.58 이상으로 패치가 배포됐으니 크로미움 계열 브라우저는 즉시 업데이트하는 것이 답이다.</p>\n<h3>여러 시각</h3>\n<p>'CSS와 보안'이라는 오래된 질문에 이번 사건은 새로운 각도를 더한다.</p>\n<ul><li><b>CSS-Tricks(Chris Coyier)</b> — 일찍이 :visited 방문 기록 탐지, 속성 선택자 키로거 같은 순수 CSS 공격 벡터를 검토한 뒤 \"CSS 자체는 특별히 위험한 보안 문제가 아니다\"라고 정리했다. 언어로서의 CSS는 안전하다는 이 통념이, 이번엔 언어가 아니라 '엔진 구현'에서 깨질 수 있음이 드러난 셈이다.</li><li><b>web.dev(How Browsers Work)</b> — 브라우저 동작 원리 관점에서 보면 Blink·Gecko·WebKit 같은 렌더링 엔진은 CSS를 파싱해 내부 객체로 변환하는데, 바로 그 파싱 파이프라인이 공격 표면이 된다. 어떤 입력이든 파서를 거치는 순간 보안의 영역에 들어간다는 각도다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이번 취약점의 본질은 CSS 문법이 아니라 C++ 기반 엔진의 메모리 안전성 문제다. 파이어폭스가 CSS 엔진을 Rust로 새로 쓰면서 이런 계열의 버그를 원천 차단한 것과 대비되며, 크로미움도 Rust 도입을 늘려가는 배경이 여기에 있다. 동시에 이 사건은 기술 커뮤니케이션의 문제이기도 하다. 'CSS 익스플로잇'이라는 헤드라인만 보면 스타일시트를 겁내게 되지만, 실제 실행 벡터는 자바스크립트였다. 원인과 방아쇠를 구분하지 못하면 엉뚱한 곳에 방어선을 치게 된다.</p>\n<h3>실무 적용</h3>\n<ul><li>크로미움 기반 환경(브라우저는 물론 일렉트론·임베디드 웹뷰 포함)의 보안 패치 추적과 최소 버전 정책을 점검한다.</li><li>서드파티 CSS와 사용자 생성 스타일은 신뢰 경계 밖으로 두고, CSP와 외부 스타일시트 무결성 검증(SRI)을 기본으로 깐다.</li><li>보안 공지를 리포팅할 때 '트리거'와 '실행 벡터'를 구분해 기록한다 — QA에서 재현 조건과 근본 원인을 분리하는 습관과 같다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>\"CSS니까 안전하다\"는 가정은 사실 언어에 대한 신뢰가 아니라 엔진 구현에 대한 신뢰였다는 걸 이번 사건이 보여준다. 프런트엔드 개발자가 엔진의 메모리 버그를 직접 고칠 수는 없지만, 패치 배포 속도와 웹뷰 업데이트 체계는 우리 손에 있는 방어선이다. 그리고 QA 관점에서 이 글의 진짜 교훈은 헤드라인 리터러시다 — 자극적인 제목 앞에서 공포가 아니라 '무엇이 방아쇠이고 무엇이 실행 벡터인가'를 묻는 침착함이, 팀의 대응 품질을 가른다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/an-exploit-in-css/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: An Exploit … in CSS?! ↗</a></li><li><a href=\"https://css-tricks.com/css-security-vulnerabilities/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: CSS Security Vulnerabilities ↗</a></li><li><a href=\"https://web.dev/articles/howbrowserswork\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: How browsers work ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/an-exploit-in-css/",
+    "tags": [
+      "CSS",
+      "Security",
+      "Browser"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-07-05-claude-science-workbench",
+    "category": "ai",
+    "date": "2026-07-05",
+    "title": "채팅을 넘어 실험대로 — '클로드 사이언스'가 여는 AI 워크벤치",
+    "rawTitle": "Claude Science, an AI workbench for scientists",
+    "summary": "앤트로픽이 문헌 분석부터 컴퓨트 관리, 결과 검증까지 한 화면에 담은 과학자용 AI 작업환경 '클로드 사이언스'를 베타 출시했다. 채팅형 AI가 도메인 워크벤치로 진화하는 신호다.",
+    "bodyHtml": "<p>앤트로픽이 6월 30일 과학자를 위한 통합 AI 연구 환경 '클로드 사이언스(Claude Science)'를 macOS·리눅스 베타로 내놨다. 문헌 분석, 다단계 연구 실행, 출판 수준의 산출물 생성, 컴퓨팅 자원 관리를 하나의 워크스페이스에서 처리하고, 모든 과정에 재현성과 감사 가능한 이력을 남기는 것이 핵심이다. 구글 딥마인드가 수년째 갈아온 밭에 오픈AI가 전담 조직을 꾸려 뛰어든 데 이어, 'AI for Science'가 AI 경쟁의 다음 격전지임을 보여주는 행보다.</p>\n<blockquote>\"클로드 사이언스는 이 파편화된 도구들을 하나의 연구 환경으로 모아, 과학자가 연구의 모든 단계를 수행할 수 있게 한다.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>클로드 사이언스는 3D 단백질 구조, 유전체 트랙, 화학 구조, 논문 원고를 네이티브로 렌더링하고, 각 산출물에 코드와 방법론이 따라붙어 전 과정을 추적할 수 있다. 컴퓨트는 로컬 머신부터 HPC 클러스터·온디맨드 서비스까지, 단일 GPU에서 수백 대 규모로 자동 확장된다. 유전체학·단백질체학·구조생물학·화학정보학용 스킬과 커넥터 60여 개가 사전 구성돼 있고, 인용과 계산을 자동 점검하며 오류를 자가 수정하는 '리뷰어 에이전트'가 내장됐다. 접근은 Pro·Max·Team·Enterprise 요금제에 연동되며, 프로젝트당 최대 3만 달러 크레딧을 주는 연구 지원 프로그램이 7월 15일까지 신청을 받는다.</p>\n<h3>여러 시각</h3>\n<p>같은 시장을 노리는 경쟁사의 움직임과 회의론을 겹쳐 보면 그림이 선명해진다.</p>\n<ul><li><b>MIT Technology Review</b> — 오픈AI도 'OpenAI for Science' 전담팀(케빈 웨일 총괄)을 꾸리고 GPT-5를 과학 협업자로 내세운다. 박사급 과학 문제(GPQA)에서 GPT-5.2가 92%를 기록할 만큼 능력은 급상승했지만, '새 발견'이라던 결과가 기존 해법의 재발견으로 드러난 논란, 전문가도 놓치는 미묘한 오류, 사용자 비위를 맞추며 틀린 생각을 검증해 주는 문제 등 과학계의 회의론도 만만치 않다고 전한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>주목할 것은 제품의 형태다. 챗봇에 질문을 던지는 방식에서, 도메인 도구·데이터·컴퓨트·산출물이 통합된 '작업환경'으로 무게중심이 옮겨가고 있다. 특히 리뷰어 에이전트와 감사 가능한 이력은 MIT 테크놀로지 리뷰가 짚은 회의론 — 미묘한 오류와 검증 불가능성 — 에 대한 제품 차원의 응답이다. 생성 능력이 아니라 검증과 재현성을 1급 기능으로 올린 것이며, 이는 과학을 넘어 전문가용 AI 도구 전반이 따라갈 방향이다.</p>\n<h3>실무 적용</h3>\n<ul><li>전문가용 AX를 설계할 때 채팅 UI가 아니라 도메인 도구·데이터·산출물이 통합된 워크벤치를 기준으로 잡는다.</li><li>AI 산출물에 코드·출처·방법론이 따라붙는 '감사 가능한 아티팩트' 패턴을 UI에 도입해 결과를 신뢰할 근거를 함께 준다.</li><li>생성과 분리된 검증 에이전트(인용·계산 점검)를 워크플로에 내장해 미묘한 오류가 사용자에게 닿기 전에 걸러낸다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>전문가 도구에서 AI의 신뢰는 모델 벤치마크가 아니라 검증·재현성의 UX에서 나온다고 본다. 클로드 사이언스가 리뷰어 에이전트와 추적 가능한 산출물을 전면에 세운 건, '믿어달라'가 아니라 '검증하게 해주겠다'는 설계 철학의 전환이다. 이 패턴은 과학자만의 것이 아니다 — 기획 문서의 근거 추적, QA 리포트의 재현 절차처럼, 내가 다루는 도구들에도 같은 워크벤치 문법을 적용할 수 있다. 채팅은 AI 경험의 시작점이었을 뿐, 종착지가 아니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/claude-science-ai-workbench\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Claude Science, an AI workbench for scientists ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/01/26/1131728/inside-openais-big-play-for-science/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Inside OpenAI's big play for science ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/claude-science-ai-workbench",
+    "tags": [
+      "AIforScience",
+      "Anthropic",
+      "AXDesign"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-07-04-contrast-color-baseline",
     "category": "design",
     "date": "2026-07-04",

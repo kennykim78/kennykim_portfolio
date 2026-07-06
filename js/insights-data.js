@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-07-06-view-transitions-webgpu-vs-css",
+    "category": "design",
+    "date": "2026-07-06",
+    "title": "페이지 전환, 어디까지 CSS로? — WebGPU와의 분업",
+    "rawTitle": "Building Persistent Page Transitions with WebGPU and Vanilla JavaScript",
+    "summary": "Codrops가 WebGPU로 DOM 밖에서 이미지 평면을 유지하며 지속되는 페이지 전환을 구현하는 기법을 공개했다. 네이티브 뷰 트랜지션이 Baseline에 오른 지금, 무엇을 CSS에 맡기고 무엇을 GPU로 만들지 그 분업을 짚는다.",
+    "bodyHtml": "<p>세련된 페이지 전환은 이제 선택이 아니라 기대치가 됐다. 마침 두 흐름이 나란히 도착했다. 하나는 네이티브 CSS 뷰 트랜지션이 세 엔진에서 모두 지원되며 Baseline에 올라 '문법 몇 줄'로 전환을 얻게 된 것이고, 다른 하나는 Codrops가 WebGPU로 DOM 밖에서 이미지 평면을 유지하며 사이트 전체에 지속되는 전환을 구현한 심화 튜토리얼을 6월 30일 공개한 것이다. 표준이 성숙할수록 '어디까지 CSS로 하고, 어디부터 GPU로 갈까'라는 분업의 질문이 오히려 또렷해진다.</p>\n<blockquote>\"전환 동안 모든 평면을 DOM 추적에서 떼어내면, 렌더 루프가 GSAP 트윈을 덮어쓰지 못해 바운드 애니메이션이 방해 없이 완주한다.\"<cite>Codrops (Ben Paine)</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Codrops의 기법은 페이지마다 캔버스를 새로 그리지 않는다. 사이트 전체에 걸쳐 단 하나의 WebGPU 레이어를 두고, 이미지 평면들을 그 위에 지속시켜 DOM 상태가 바뀔 때 생기는 '팝(pop)' 현상을 없앤다. 각 평면은 <code>getBoundingClientRect()</code>로 측정한 DOM '슬롯'에 바인딩돼 매 프레임 위치를 갱신하다가, 전환이 시작되면 추적에서 분리된다. 전환은 세 가지 상태 — 유지(바운드를 모핑), 제거(불투명도 0으로 페이드), 추가(즉시 찍고 페이드인) — 로 처리되고, 가벼운 바닐라 JS 라우터가 내비게이션을 가로채 이전·다음 페이지의 out()·in()을 동시에 발사한다. CSS만으로는 닿기 어려운 수준의 시각적 제어를 GPU로 확보하는 접근이다.</p>\n<h3>여러 시각</h3>\n<p>같은 '페이지 전환'이라는 목표를 두 진영이 정반대 무게중심으로 푼다.</p>\n<ul><li><b>web.dev(Bramus)</b> — 동일 문서 뷰 트랜지션이 파이어폭스 144 출시와 함께 'Baseline Newly available'에 올랐다. <code>document.startViewTransition()</code>, <code>view-transition-name</code>, <code>:active-view-transition</code> 같은 API만으로 대부분의 전환을 선언형으로 얻는다 — 코드도, 유지보수 비용도 최소인 기본값이다.</li><li><b>Codrops(WebGPU)</b> — 반대로 프레임워크 없이 GPU 씬을 직접 소유해 브랜드성 짙은 커스텀 전환을 만든다. 대신 라우터·바운드 추적·메모리 관리를 손수 져야 한다. 표현력과 복잡도를 맞바꾸는, 명백히 상급 옵션이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>핵심은 '둘 중 하나'가 아니라 계층화다. 뷰 트랜지션이 Baseline에 오르면서 부드러운 전환의 '바닥'이 표준으로 깔렸고, 그 위에서 WebGPU는 히어로 페이지나 쇼케이스처럼 정말 필요한 곳에만 얹는 사치품이 된다. 표준이 성숙할수록 커스텀 엔진의 존재 이유는 '기본을 대체'가 아니라 '기본을 넘어서는 특정 순간'으로 좁혀진다. 무엇을 CSS에 위임하고 무엇을 직접 만들지 가르는 판단력이, 성능과 유지보수성을 동시에 지키는 열쇠다.</p>\n<h3>실무 적용</h3>\n<ul><li>기본 내비게이션 전환은 <code>@view-transition</code>·<code>view-transition-name</code>으로 먼저 깔고, 프로그레시브 인핸스먼트로 미지원 환경을 감싼다.</li><li>WebGPU 커스텀 전환은 랜딩·캠페인 페이지 등 투자 대비 효과가 확실한 소수 지점에만 국한하고, 전환 성능 예산(프레임·메모리)을 명시적으로 잡는다.</li><li>전환을 QA할 때 느린 API·SSR로 인한 지연, 종횡비 왜곡, 저사양 GPU 폴백을 재현 시나리오에 반드시 포함한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프런트엔드에서 '멋짐'의 비용은 늘 유지보수와 성능으로 청구된다. 나는 이 둘을 경쟁이 아니라 계층으로 본다 — 표준 뷰 트랜지션을 기본값으로 깔아 대부분을 저비용으로 해결하고, WebGPU는 브랜드 경험이 매출·기억에 직결되는 극소수 지점에만 쓰는 것이다. 화려한 데모에 홀려 사이트 전체를 커스텀 엔진에 태우는 순간, 애니메이션이 아니라 기술 부채가 지속된다. 좋은 AX 판단은 '무엇을 만들까'만큼이나 '무엇을 표준에 맡길까'를 아는 데서 나온다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://tympanus.net/codrops/2026/06/30/building-persistent-page-transitions-with-webgpu-and-vanilla-javascript/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Codrops: Building Persistent Page Transitions with WebGPU and Vanilla JavaScript ↗</a></li><li><a href=\"https://web.dev/blog/same-document-view-transitions-are-now-baseline-newly-available\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: Same-document view transitions have become Baseline Newly available ↗</a></li></ul>",
+    "source": "Codrops",
+    "sourceUrl": "https://tympanus.net/codrops/2026/06/30/building-persistent-page-transitions-with-webgpu-and-vanilla-javascript/",
+    "tags": [
+      "ViewTransitions",
+      "WebGPU",
+      "Frontend"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-07-06-sparse-attention-llm-bottleneck",
+    "category": "ai",
+    "date": "2026-07-06",
+    "title": "LLM 병목을 뚫었다는 스타트업 — 희소 어텐션의 승부수",
+    "rawTitle": "A startup claims it broke through a bottleneck that's holding back LLMs",
+    "summary": "마이애미 스타트업 서브쿼드래틱이 밀집 어텐션을 희소 어텐션으로 바꿔 최대 56배 빠르고 훨씬 싼 LLM을 만들었다고 주장한다. 알고리즘·하드웨어·아키텍처, 세 갈래로 벌어지는 AI 비용 절감 경쟁을 비교한다.",
+    "bodyHtml": "<p>거대 언어 모델의 비용과 속도는 결국 '어텐션'이라는 병목에 걸려 있다. 마이애미의 스타트업 서브쿼드래틱(Subquadratic)이 바로 이 병목을 뚫었다고 주장하며 6월 19일 MIT 테크놀로지 리뷰의 조명을 받았다. 트랜스포머의 표준인 밀집(dense) 어텐션 — 모든 토큰을 다른 모든 토큰과 비교하는 방식 — 을 희소(sparse) 어텐션으로 대체해, 중요한 관계만 골라 처리한다는 것이다. 마침 하드웨어·아키텍처 진영도 각자의 방식으로 토큰 비용을 깎아 내려오는 중이라, 'AI를 싸게 만드는 법'의 지형이 세 갈래로 갈라지고 있다.</p>\n<blockquote>\"모든 것을 비교하는 대신, 어떤 관계가 중요한지 동적으로 선택한다.\"<cite>Subquadratic (MIT Technology Review 인용)</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>서브쿼드래틱의 모델 'SubQ'가 내세우는 수치는 공격적이다. 기준 테스트에서 FlashAttention 기반 모델보다 56배 빠르고, 한 벤치마크를 처리하는 데 앤트로픽 Opus 4.6이 2,600달러가 드는 것을 8달러로 끝냈다고 주장한다. 컨텍스트 창은 최상위 경쟁작(약 100만 토큰)을 훌쩍 넘는 1,200만 토큰, 경쟁 코딩 평가 LiveCodeBench에서 89.7%, 극한 길이의 '건초 더미 속 바늘' 검색에서 98%를 기록했다. 독립 평가기관 Appen이 속도 향상 상당수를 확인했지만, SubQ가 백지에서 학습된 게 아니라 기존 Qwen 가중치에서 부트스트랩됐고 공개 접근이 제한적이라는 점에서 회의론도 남아 있다.</p>\n<h3>여러 시각</h3>\n<p>'AI를 싸게 만든다'는 목표에 세 진영이 서로 다른 층위로 달려든다.</p>\n<ul><li><b>VentureBeat(Blackwell 인프라)</b> — 알고리즘이 아니라 하드웨어·소프트웨어 스택에서 답을 찾는다. 엔비디아 Blackwell에 최적화 스택과 오픈소스 모델을 결합해 토큰당 비용을 4~10배 낮췄고, \"하드웨어는 방정식의 절반일 뿐\"이라며 소프트웨어 전환의 몫을 강조한다.</li><li><b>VentureBeat(DeepSeek V4 아키텍처)</b> — 모델 아키텍처 자체를 급진적으로 바꾼다. 초희소 MoE 설계로 100만 토큰 컨텍스트를 단 5.48GB HBM에 담아, 서구식 표준 구조가 89GB를 쓰는 것과 대비된다. 비용의 '해자'를 아키텍처로 무너뜨리는 접근이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이 세 갈래는 경쟁이 아니라 곱셈으로 쌓인다. 어텐션 알고리즘(SubQ), 추론 하드웨어(Blackwell), 모델 아키텍처(DeepSeek)에서의 절감이 겹치면 토큰당 비용은 계단식이 아니라 급락하는 곡선을 그린다. 비용이 이렇게 무너지면 지금은 '너무 비싸서' 접었던 제품 — 문서 전체를 통째로 넣는 초장문 컨텍스트, 실시간 에이전트 루프 — 이 갑자기 경제성을 얻는다. 다만 SubQ의 부트스트랩 논란이 보여주듯, 화려한 벤치마크와 재현 가능한 실제 성능 사이의 간극은 늘 검증의 대상이다.</p>\n<h3>실무 적용</h3>\n<ul><li>모델 선택을 성능 벤치마크뿐 아니라 '유효 토큰당 비용'으로 평가한다 — 컨텍스트 길이·처리 속도·요금을 함께 놓고 본다.</li><li>초장문 컨텍스트가 싸질 것을 전제로, 지금은 잘라 넣던 프롬프트 설계를 '전체를 넣는' 방향으로 재검토할 여지를 남긴다.</li><li>'56배', '1/300 비용' 같은 벤더 수치는 독립 평가와 재현 조건(어떤 기준선 대비인지)을 확인한 뒤에만 아키텍처 결정에 반영한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>AI 제품을 만드는 입장에서 이 경쟁의 진짜 수혜는 '더 똑똑한 모델'이 아니라 '더 싼 토큰'이다. 비용이 한 자릿수로 떨어질 때마다, 데모에서만 가능하던 경험이 프로덕션 예산 안으로 들어온다 — 그게 AX의 판을 넓힌다. 동시에 나는 SubQ의 부트스트랩 논란을 QA의 언어로 읽는다: 벤치마크는 주장이고, 재현 조건이 증거다. 벤더의 배수(倍數)에 설계를 걸기 전에 '무엇 대비, 어떤 조건에서'를 묻는 습관이, 비용 곡선을 진짜 내 제품의 경쟁력으로 바꾸는 분기점이다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.technologyreview.com/2026/06/19/1139313/a-startup-claims-it-broke-through-a-bottleneck-thats-holding-back-llms/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: A startup claims it broke through a bottleneck that's holding back LLMs ↗</a></li><li><a href=\"https://venturebeat.com/infrastructure/ai-inference-costs-dropped-up-to-10x-on-nvidias-blackwell-but-hardware-is\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: AI inference costs dropped up to 10x on Nvidia's Blackwell ↗</a></li><li><a href=\"https://venturebeat.com/infrastructure/how-deepseeks-radical-architecture-is-shattering-silicon-valleys-token-moat\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: How DeepSeek's radical architecture is shattering Silicon Valley's token moat ↗</a></li></ul>",
+    "source": "MIT Technology Review",
+    "sourceUrl": "https://www.technologyreview.com/2026/06/19/1139313/a-startup-claims-it-broke-through-a-bottleneck-thats-holding-back-llms/",
+    "tags": [
+      "LLM",
+      "Efficiency",
+      "Attention"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-07-05-css-exploit-blink-uaf",
     "category": "design",
     "date": "2026-07-05",

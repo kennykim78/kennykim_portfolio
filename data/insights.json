@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-07-07-css-scroll-triggered-animations",
+    "category": "design",
+    "date": "2026-07-07",
+    "title": "스크롤 트리거 vs 드리븐, JS 없는 스크롤 애니메이션",
+    "rawTitle": "A First Look at Scroll-Triggered Animations",
+    "summary": "CSS-Tricks가 Chrome 146에 처음 실린 '스크롤 트리거 애니메이션'을 소개했다. 임계점을 넘으면 고정 시간 재생되는 이 방식이, 진행률에 묶이는 스크롤 드리븐과 어떻게 다른지 짚는다.",
+    "bodyHtml": "<p>스크롤에 반응하는 리빌 애니메이션은 오랫동안 인터섹션 옵서버 같은 JS 훅의 몫이었다. 그런데 CSS-Tricks가 6월 19일 소개한 '스크롤 트리거 애니메이션'이 이 패턴을 CSS 안으로 끌어들인다. Chrome 146에 처음 실린 이 기능은 요소가 특정 스크롤 임계점에 닿으면 애니메이션을 고정된 시간 동안 재생한다. 이미 자리 잡은 '스크롤 드리븐 애니메이션'과 이름이 헷갈리기 쉽지만, 둘은 전혀 다른 도구다 — 지금 그 경계를 정리해 둘 때다.</p>\n<blockquote>\"스크롤 트리거 애니메이션은 특정 스크롤 임계점을 넘어서면 고정된 시간 동안 재생된다.\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>핵심은 두 방식의 시간축이 다르다는 점이다. 스크롤 드리븐(<code>animation-timeline: scroll()</code>·<code>view()</code>)은 애니메이션 진행률을 스크롤 위치에 1:1로 묶어 '스크롤을 되감으면 애니메이션도 되감기는' 방식이라 고정 재생 시간이 없다. 반면 스크롤 트리거는 임계점 통과를 '신호'로만 삼아, 한 번 발동되면 정해진 duration 동안 독립적으로 완주한다. 새로 제안된 <code>timeline-trigger</code>가 발동 조건(예: <code>view() entry 100% exit 0%</code>)을 정의하고, <code>animation-trigger</code>가 <code>play-forwards</code>·<code>play-once</code>·<code>reset</code>·<code>replay</code> 같은 동작을 지정한다. 흔한 '스크롤하면 한 번 나타나는' 리빌 패턴을 JS 없이 선언형으로 얻는 것이다.</p>\n<h3>여러 시각</h3>\n<p>같은 '스크롤 애니메이션'이라도 목적에 따라 골라 써야 한다.</p>\n<ul><li><b>CSS-Tricks: 스크롤 드리븐(반대 방향 데모)</b> — 진행률 연동 방식은 두 열의 아이템이 스크롤에 따라 서로 반대로 흐르는 효과를, 가상요소 마스킹과 <code>view()</code>만으로 JS 없이 구현한다. 진행률에 정밀히 묶어야 하는 시각효과엔 이쪽이 정답이다.</li><li><b>브라우저 현실</b> — 같은 저자도 \"스크롤 드리븐은 크롬·사파리 밖에선 아직 지원이 제한적\"이라 인정한다. 트리거 방식 역시 Chrome 146 단독이라, 지금은 표현력과 호환성을 맞바꾸는 초기 단계다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이 구분을 흐리면 잘못된 도구로 문제를 풀게 된다. '한 번 나타나고 끝'인 리빌에 스크롤 드리븐을 쓰면 사용자가 위로 스크롤할 때마다 애니메이션이 되감겨 어색해지고, 반대로 패럴럭스처럼 스크롤에 딱 붙어야 할 효과에 트리거를 쓰면 뚝뚝 끊긴다. 네이티브 CSS로 내려오면 JS 번들과 인터섹션 옵서버 콜백이 줄어 성능·접근성 모두 이득이지만, 지원 범위가 좁은 지금은 폴백 설계가 전제 조건이다. '무엇이 표준으로 오고 있는가'를 미리 읽어 두는 것이 마이그레이션 비용을 가른다.</p>\n<h3>실무 적용</h3>\n<ul><li>'한 번 재생'이면 스크롤 트리거, '진행률 연동'이면 스크롤 드리븐 — 효과의 시간축부터 정하고 API를 고른다.</li><li>Chrome 146 단독 지원을 전제로, <code>@supports</code>와 프로그레시브 인핸스먼트로 미지원 환경엔 즉시 표시되는 폴백을 깐다.</li><li>QA 시 위·아래 반복 스크롤, 빠른 플링, <code>prefers-reduced-motion</code> 환경을 재현 시나리오에 넣어 되감김·끊김·과도한 모션을 잡는다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프런트엔드에서 새 CSS 기능의 진짜 가치는 '화려함'이 아니라 '제거되는 JS'에 있다. 스크롤 리빌 하나 때문에 인터섹션 옵서버와 상태 관리 코드를 얹던 관행이 몇 줄의 선언형 CSS로 대체되면, 번들도 유지보수 부담도 함께 가벼워진다. 다만 나는 Chrome 단독 지원 단계의 기능을 프로덕션 기본값으로 삼지 않는다 — 대신 폴백을 먼저 깔고 인핸스먼트로 얹는다. 좋은 AX는 최신 문법을 빨리 쓰는 게 아니라, 지원이 무르익는 곡선 위에서 위험을 관리하며 올라타는 판단에서 나온다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/css-scroll-triggered-animations-first-look/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: A First Look at Scroll-Triggered Animations ↗</a></li><li><a href=\"https://css-tricks.com/scroll-driven-animations-opposing-scroll-directions/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Using Scroll-Driven Animations for Opposing Scroll Directions ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/css-scroll-triggered-animations-first-look/",
+    "tags": [
+      "ScrollAnimations",
+      "CSS",
+      "Frontend"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-07-07-llm-groupthink-diversity",
+    "category": "ai",
+    "date": "2026-07-07",
+    "title": "LLM의 획일화 함정, 다양성으로 뚫는다",
+    "rawTitle": "LLMs are stuck in a groupthink rut. This startup is trying to get them out.",
+    "summary": "대다수 LLM이 열린 질문에 비슷한 답만 내놓는 '획일화'가 도마에 올랐다. 호주 스타트업 스프링보즈의 모델 Flint는 온도값 대신 필요한 지점에만 변주를 주입해 다양성을 되살린다.",
+    "bodyHtml": "<p>거대 언어 모델이 빠르게 똑똑해지는 사이, 정반대의 결함이 도마에 올랐다 — 다들 너무 비슷하게 답한다는 것이다. MIT 테크놀로지 리뷰가 7월 1일 조명한 호주 스타트업 스프링보즈(Springboards)는, 이 '획일화(groupthink)'를 정면으로 겨냥한 모델 Flint를 내놨다. 대다수 LLM에 \"1부터 10 중 아무 숫자\"를 물으면 약속이나 한 듯 7을 뱉고, 밴드 이름을 시키면 glass·neon·velvet·static 언저리로 수렴한다. 창의성을 파는 도구가 정작 뻔한 답으로 회귀하는 역설이다.</p>\n<blockquote>\"다양성은 아이디어를 촉발할 때 큰 힘이 된다. 기계에 전부 맡겨 잿빛의 지루한 세계로 끝나지 말자.\"<cite>Pip Bingemann, Springboards CEO</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Flint는 알리바바의 Qwen 3을 기반으로, 다양한 출력을 내도록 특별히 훈련됐다. 핵심 발상은 출력 전체에 '온도(temperature)'라는 뭉툭한 손잡이를 올리는 대신, 변주가 유익한 전략적 지점을 골라 그 순간에만 덜 예측 가능한 단어·표현을 주입하는 것이다. 문제의 규모는 학계가 이미 측정해 뒀다. NeurIPS 2025 최우수 논문 '인공 하이브마인드(Artificial Hivemind)'는 25개 LLM에 '시간'의 은유를 각 50번씩, 총 1,250번 생성시켰는데 대부분이 \"시간은 강\" 또는 \"시간은 직조공\" 변형으로 수렴했다. 모델 내부의 반복(intra-model)과 모델 간 수렴(inter-model)이 동시에 나타난 것이다.</p>\n<h3>여러 시각</h3>\n<p>획일화가 '모델만의 문제'가 아니라는 지적도 나란히 있다.</p>\n<ul><li><b>VentureBeat(연구 인용)</b> — 생성형 AI는 개인의 창의성은 끌어올리지만 집단의 다양성은 갉아먹는다. 한 연구에서 인간이 쓴 에세이는 GPT-4 에세이보다 집단 의미 다양성에 약 2~8배 더 기여했다. 개별 산출물이 더 창의적으로 보여도, 모아 놓으면 서로 닮아 간다는 것이다.</li><li><b>정렬 훈련의 부작용</b> — 학계는 획일화의 뿌리를 정렬(alignment) 훈련에서 찾는다. 익숙하고 무난한 응답에 보상이 쏠리면서, 새로움이 깃드는 분포의 꼬리가 잘려 나간다는 진단이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>AI로 만든 카피·아이디어·디자인이 서로 닮아 갈수록, 그것으로 빚은 제품과 브랜드도 평준화된다. 모두가 같은 모델을 같은 방식으로 쓰면 차별화라는 해자 자체가 마른다. 아이디어 발상 단계에서 다양성이 무너지면, 탐색해야 할 선택지가 조용히 사라진 채 '그럴듯한 평균값'만 남는다. 창의성을 표방하는 도구일수록, 다양성은 있으면 좋은 옵션이 아니라 결과물의 질을 좌우하는 핵심 지표가 된다.</p>\n<h3>실무 적용</h3>\n<ul><li>브레인스토밍·카피 생성엔 단일 모델 단발 호출 대신 다중 모델·다중 페르소나·시드 변주로 표본의 다양성을 확보한다.</li><li>온도를 무작정 올리면 품질이 함께 무너지므로, Flint처럼 '변주가 필요한 지점'만 골라 다양화하는 프롬프트·파이프라인 설계를 우선한다.</li><li>AI 산출물의 다양성을 의미 임베딩 군집도 같은 정량 지표로 QA해, 획일화를 눈이 아니라 수치로 잡는다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>AI 제품을 만드는 입장에서 이 논의의 핵심은 '더 똑똑한 모델'이 아니라 '덜 똑같은 출력'이다. 나는 다양성을 부산물이 아니라 설계 요구사항으로 다룬다 — 어디서 변주가 가치를 만들고 어디서 일관성이 중요한지를 먼저 나누고, 그에 맞춰 모델·온도·페르소나를 배치한다. QA의 언어로 옮기면, 획일화는 '눈에 띌 때 고치는 버그'가 아니라 '지표로 상시 감시하는 회귀'다. 남들과 똑같이 프롬프트하는 순간 제품도 똑같아진다는 사실을, 나는 경계로 삼는다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.technologyreview.com/2026/07/01/1140003/llms-are-stuck-in-a-groupthink-rut-this-startup-is-trying-to-get-them-out/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: LLMs are stuck in a groupthink rut. This startup is trying to get them out. ↗</a></li><li><a href=\"https://venturebeat.com/ai/gen-ai-boosts-individual-creativity-at-the-cost-of-collective-diversity-study-finds/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Gen AI boosts individual creativity at the cost of collective diversity, study finds ↗</a></li></ul>",
+    "source": "MIT Technology Review",
+    "sourceUrl": "https://www.technologyreview.com/2026/07/01/1140003/llms-are-stuck-in-a-groupthink-rut-this-startup-is-trying-to-get-them-out/",
+    "tags": [
+      "LLM",
+      "Diversity",
+      "Creativity"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-07-06-view-transitions-webgpu-vs-css",
     "category": "design",
     "date": "2026-07-06",

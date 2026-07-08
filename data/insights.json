@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-07-08-css-border-shape-property",
+    "category": "design",
+    "date": "2026-07-08",
+    "title": "clip-path의 한계를 넘는다 — CSS border-shape",
+    "rawTitle": "Get Ready For the Powerful CSS border-shape Property!",
+    "summary": "CSS-Tricks가 요소를 '자르는' 대신 '형태를 잡는' 새 속성 border-shape를 소개했다. clip-path가 테두리·그림자까지 함께 잘라내던 오랜 골칫거리를, 장식이 형태를 따라 흐르게 하며 푼다.",
+    "bodyHtml": "<p>비정형 도형에 테두리를 두르는 일은 오랫동안 프런트엔드의 골칫거리였다. <code>clip-path</code>나 <code>mask</code>로 요소를 자르면 콘텐츠뿐 아니라 테두리·그림자 같은 장식까지 함께 잘려 나갔기 때문이다. CSS-Tricks가 7월 7일 소개한 새 속성 <code>border-shape</code>는 이 문제를 정면으로 겨냥한다. 요소를 '잘라내는' 대신 '형태를 잡아', 테두리와 장식이 그 형태를 따라 흐르도록 만든다. 현재는 Chrome 계열에만 실렸지만, 지금이 그 잠재력을 미리 익혀 둘 때다.</p>\n<blockquote>\"요소를 클립하는 대신, 이 속성은 요소의 '형태를 잡아' 장식이 그 형태를 따라가게 한다.\"<cite>CSS-Tricks (Temani Afif)</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p><code>border-shape</code>는 <code>clip-path</code>와 똑같은 값 — <code>circle()</code>·<code>polygon()</code>·<code>inset()</code>과 새 <code>shape()</code> 함수 — 을 그대로 받는다. 저자의 말처럼 \"clip-path를 안다면 새로 배울 게 사실상 없고, 속성 이름만 바꾸면 된다.\" 값을 하나만 주면 그 경로를 따라 테두리가 그려지는 '스트로크 모드', 두 개를 주면 두 경로 사이 영역이 채워지는 '필 모드'로 동작한다. 이 덕분에 채움 없는 윤곽선 도형, 원에서 오려낸 컷아웃, 요소 밖으로 삐져나오는 풀블리드 장식, 부분 밑줄 같은 표현을 <code>border</code>·<code>box-shadow</code>·<code>outline</code>이 형태를 따라간 채로 얻을 수 있다. 애니메이션도 지원해 리빌·모핑 효과까지 선언형으로 가능하다.</p>\n<h3>여러 시각</h3>\n<p>같은 'CSS로 형태 잡기'라도 무엇을 형태화하느냐에 따라 짝이 되는 도구가 다르다.</p>\n<ul><li><b>MDN: corner-shape</b> — <code>border-shape</code>가 요소 전체의 윤곽을 다시 그린다면, <code>corner-shape</code>는 <code>border-radius</code>가 만든 '모서리'만 바꾼다. <code>bevel</code>(직선)·<code>scoop</code>(오목)·스퀴클 같은 값으로 모서리 곡률을 조절하되, 테두리·그림자·배경은 똑같이 그 모양을 따라간다. 둘은 대체재가 아니라 '요소 전체 vs 모서리'라는 층위가 다른 짝이다.</li><li><b>CSS-Tricks(Daniel Schwarz): 접힌 모서리</b> — <code>corner-shape: bevel</code>과 가상요소를 조합해 종이가 접힌 듯한 3D 모서리를 만드는 실전 예시다. 다만 저자도 \"크롬 밖에선 둥근 모서리로 폴백된다\"고 못 박아, 표현력과 호환성의 맞바꿈이 지금 단계의 전제임을 보여준다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>핵심은 '장식과 형태의 분리'다. 그동안은 비정형 도형에 테두리를 두르려면 SVG를 겹치거나, 여러 겹의 그라디언트·마스크를 쌓는 우회로가 필요했다. <code>border-shape</code>와 <code>corner-shape</code>가 성숙하면 그 보일러플레이트가 속성 한 줄로 접힌다 — 마크업은 가벼워지고, 접근성 트리도 도형 트릭에 오염되지 않는다. 다만 지금은 Chromium 단독 지원이라, 이들을 프로덕션 기본값으로 삼는 순간 다른 엔진 사용자는 의도치 않은 화면을 보게 된다. '무엇이 표준으로 오고 있는가'를 미리 읽어 두는 것이 나중의 마이그레이션 비용을 가른다.</p>\n<h3>실무 적용</h3>\n<ul><li><code>clip-path</code>를 이미 쓰고 있다면 값을 그대로 <code>border-shape</code>로 옮겨, 잘려 나가던 테두리·그림자를 형태에 되살릴 수 있는지부터 실험한다.</li><li>Chromium 단독 지원을 전제로 <code>@supports (border-shape: circle())</code> 가드를 깔고, 미지원 환경엔 사각형·둥근 모서리로 안전하게 폴백되도록 프로그레시브 인핸스먼트를 설계한다.</li><li>QA 시 Firefox·Safari에서의 폴백 형태, 고대비·다크 모드에서의 테두리 대비, <code>prefers-reduced-motion</code>에서의 도형 애니메이션 억제를 재현 시나리오에 포함한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프런트엔드에서 새 CSS 속성의 진짜 가치는 '화려함'이 아니라 '제거되는 우회로'에 있다. 비정형 카드나 배지에 테두리 하나 두르려고 SVG를 겹치고 마스크를 쌓던 관행이 선언형 한 줄로 접히면, 마크업도 유지보수도 함께 가벼워진다. 다만 나는 Chromium 단독 단계의 속성을 기본값으로 태우지 않는다 — 폴백을 먼저 깔고 인핸스먼트로 얹는다. 좋은 AX는 최신 문법을 가장 빨리 쓰는 게 아니라, 지원이 무르익는 곡선 위에서 위험을 관리하며 올라타는 판단에서 나온다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/get-ready-for-the-powerful-css-border-shape-property/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Get Ready For the Powerful CSS border-shape Property! ↗</a></li><li><a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/corner-shape\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MDN: corner-shape ↗</a></li><li><a href=\"https://css-tricks.com/using-css-corner-shape-for-folded-corners/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Using CSS corner-shape For Folded Corners ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/get-ready-for-the-powerful-css-border-shape-property/",
+    "tags": [
+      "BorderShape",
+      "CSS",
+      "Frontend"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-07-08-claude-global-workspace-j-space",
+    "category": "ai",
+    "date": "2026-07-08",
+    "title": "Claude 안의 '작업 공간' — 의식 이론을 닮은 J-space",
+    "rawTitle": "A global workspace in language models",
+    "summary": "앤트로픽이 7월 6일, Claude 내부에서 '언어화 가능한' 개념이 모이는 J-space를 발견했다고 밝혔다. 신경과학의 전역 작업공간 이론을 닮은 이 구조가 왜 해석가능성·안전의 지렛대가 되는지 짚는다.",
+    "bodyHtml": "<p>모델이 빠르게 똑똑해지는 사이, 정작 그 '안'을 들여다보는 도구는 늘 부족했다. 앤트로픽이 7월 6일 공개한 연구는 그 틈을 파고든다 — Claude 내부에 '언어화 가능한' 개념들이 모이는 J-space라는 공간이 자연히 형성됐다는 것이다. 이는 신경과학의 전역 작업공간 이론(global workspace theory)과 기능적으로 닮았다. 뇌와 언어 모델의 구조는 전혀 다른데도, 지적 시스템이 도달하는 조직 방식이 수렴할 수 있음을 시사하는 발견이다.</p>\n<blockquote>\"Claude의 작업 공간은 더 자동적이고 경직된 처리의 바다 한가운데서, 의도적 추론에 쓰일 수 있다.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>연구진은 'Jacobian 렌즈(J-lens)'라는 새 기법으로, 각 내부 활성 패턴이 미래에 어떤 단어를 말하게 만들지를 계산해 내부 표상을 읽어 냈다. 핵심 발견은 J-space가 전체 신경 활동의 10% 미만, 늘 수십 개 개념만 담는 좁은 공간이라는 점이다. 문법·유창성·단순 사실 같은 대부분의 처리는 이 공간을 거치지 않는다. 연구진은 표상을 강제로 바꿔치기하는 개입 실험으로 상관이 아닌 인과를 확인했고, Claude가 J-space 내용을 정확히 보고하고, 요청에 따라 특정 개념에 '집중'하며, 그 표상이 다단계 추론을 실제로 이끈다는 다섯 가지 기능적 성질을 제시했다. 다만 이는 보고·추론 능력인 '접근 의식'에 관한 것이며, 주관적 경험('현상 의식')을 입증하는 건 아니라고 선을 그었다.</p>\n<h3>여러 시각</h3>\n<p>같은 발견을 두고 '의식 담론'과 '실무 도구'라는 두 결이 갈린다.</p>\n<ul><li><b>VentureBeat(J-lens 해설)</b> — 이 '조용한 작업 공간'이 유력한 의식 이론을 닮았다는 점을 부각하면서도, AI 의식을 둘러싼 철학자·과학자 간 이견과 불확실성이 여전하다고 균형을 잡는다. 흥미로운 은유이되 '의식의 증거'로 과장해선 안 된다는 신중론이다.</li><li><b>VentureBeat('두뇌를 해킹했더니 알아챘다')</b> — 개입 실험의 실무적 함의에 주목한다. 모델의 내부 상태를 조작하자 Claude가 그 변화를 스스로 감지·기술했다는 것으로, 숨은 목표·조작된 데이터·'지금 평가받는 중'이라는 자각을 탐지하는 안전 도구로 이어진다는 각도다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>AI 제품의 신뢰는 결국 '왜 그렇게 답했는가'를 설명할 수 있느냐에 달려 있다. J-space가 실제 추론을 이끄는 좁고 읽을 수 있는 공간이라면, 챗봇의 사후 설명(그럴듯하지만 실제 과정과 무관할 수 있는)에 기대지 않고 내부 상태를 직접 관측할 창이 열린다. 숨은 기만이나 목표를 탐지하고, 모델이 테스트 상황을 자각하는 순간을 잡아내는 일은 곧 안전·정합성 검증의 토대다. 물론 해석가능성 연구는 특정 모델·기법에 묶인 초기 단계이고, '의식'이라는 단어가 붙는 순간 과장의 위험도 함께 커진다.</p>\n<h3>실무 적용</h3>\n<ul><li>모델의 '설명'을 곧 '실제 이유'로 신뢰하지 말고, 사후 합리화와 내부 표상을 구분하는 검증 관점을 프롬프트·평가 설계에 반영한다.</li><li>고위험 에이전트 파이프라인에는 출력만이 아니라 '내부 신호로 이상을 잡는' 해석가능성 기반 모니터링을 안전 요건으로 검토한다.</li><li>'의식' 같은 단어가 붙은 연구를 다룰 때는 '접근 의식 vs 현상 의식'처럼 주장의 범위를 정확히 옮겨, 마케팅적 과장과 실제 결과를 분리해 커뮤니케이션한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>AI 제품을 만드는 입장에서 이 연구의 매력은 '의식'이라는 자극적 단어가 아니라 '관측 가능성'이라는 실무 자산에 있다. 나는 이것을 QA의 언어로 읽는다 — 모델의 자기 설명은 주장이고, 내부 표상에 대한 개입 실험은 증거다. 블랙박스의 출력만 보던 검증이 내부 상태를 계측하는 단계로 넘어갈 수 있다면, 신뢰는 '믿어 달라'가 아니라 '보여 줄 수 있다'로 바뀐다. 다만 나는 이 발견을 결론이 아니라 도구로 다룬다. '의식'의 무게에 눌리기보다, 안전을 계측 가능한 문제로 바꾸는 지렛대로 쓰는 편이 제품에 훨씬 유용하다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/research/global-workspace\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: A global workspace in language models ↗</a></li><li><a href=\"https://venturebeat.com/technology/anthropics-new-j-lens-reveals-a-silent-workspace-inside-claude-that-mirrors-a-leading-theory-of-consciousness\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Anthropic's new J-lens reveals a silent workspace inside Claude ↗</a></li><li><a href=\"https://venturebeat.com/ai/anthropic-scientists-hacked-claudes-brain-and-it-noticed-heres-why-thats\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Anthropic scientists hacked Claude's brain — and it noticed ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/research/global-workspace",
+    "tags": [
+      "Interpretability",
+      "Claude",
+      "AISafety"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-07-07-css-scroll-triggered-animations",
     "category": "design",
     "date": "2026-07-07",

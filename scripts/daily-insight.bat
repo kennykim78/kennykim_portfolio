@@ -13,6 +13,6 @@ REM  - No --bare flag  -> Claude Code uses your keychain/subscription login (no 
 REM  - acceptEdits     -> file writes + common fs commands auto-approved.
 REM  - allowedTools    -> Bash (node/git), web research, file read/write auto-approved (no prompts).
 
-claude -p "Read scripts/daily-insight-routine.md and follow its steps exactly to publish today's TWO Korean insight posts (one design AND one AI), then git add only data/insights.json and js/insights-data.js, commit, and push to origin main. Output a one-line summary for each post published." --permission-mode acceptEdits --allowedTools "Bash,Read,Edit,Write,WebSearch,WebFetch" >> "logs\daily-insight-%date:~-4%-%date:~4,2%-%date:~7,2%.log" 2>&1
+claude -p "Read scripts/daily-insight-routine.md and follow its steps exactly to publish today's TWO Korean insight posts. IMPORTANT: the two categories are NOT fixed to design/AI — compute TODAY'S category pair from the rotation table in the routine (step 2) across the four areas design/ai/plan(기획·QA)/pm(PM·사업기획), and publish one post for each category in that pair. Then git add only data/insights.json and js/insights-data.js, commit, and push to origin main. Output a one-line summary for each post published (include its category)." --permission-mode acceptEdits --allowedTools "Bash,Read,Edit,Write,WebSearch,WebFetch" >> "logs\daily-insight-%date:~-4%-%date:~4,2%-%date:~7,2%.log" 2>&1
 
 echo Exit code: %ERRORLEVEL% >> "logs\daily-insight-%date:~-4%-%date:~4,2%-%date:~7,2%.log"

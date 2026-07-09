@@ -12,14 +12,6 @@
     margin-left: 2.5rem;
   }
 }
-@media (min-width: 1920px) {
-  .sub-layout.insights .insights-hero {
-    width: 110rem;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-  }
-}
 .sub-layout.insights .insights-hero h2 {
   font-size: 3.25rem;
   line-height: 1.2;
@@ -85,14 +77,6 @@
     margin-left: 2.5rem;
   }
 }
-@media (min-width: 1920px) {
-  .sub-layout.insights .insights-filter {
-    width: 110rem;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-  }
-}
 .sub-layout.insights .insights-filter {
   margin-top: 2.5rem;
   display: flex;
@@ -135,14 +119,6 @@
   .sub-layout.insights .insights-list {
     margin-right: 2.5rem;
     margin-left: 2.5rem;
-  }
-}
-@media (min-width: 1920px) {
-  .sub-layout.insights .insights-list {
-    width: 110rem;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
   }
 }
 .sub-layout.insights .insights-list {
@@ -299,14 +275,6 @@
     margin-left: 2.5rem;
   }
 }
-@media (min-width: 1920px) {
-  .sub-layout.insights .insight-back {
-    width: 110rem;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-  }
-}
 .sub-layout.insights .insight-back {
   display: inline-block;
   margin-top: 0;
@@ -325,14 +293,6 @@
   .sub-layout.insights .insight-article {
     margin-right: 2.5rem;
     margin-left: 2.5rem;
-  }
-}
-@media (min-width: 1920px) {
-  .sub-layout.insights .insight-article {
-    width: 110rem;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
   }
 }
 .sub-layout.insights .insight-article {

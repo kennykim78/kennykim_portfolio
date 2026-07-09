@@ -16,7 +16,11 @@ $gutter-md: 2.5rem;
   margin-right: $gutter;
   margin-left: $gutter;
   @media (min-width: 768px) { margin-right: $gutter-md; margin-left: $gutter-md; }
-  @media (min-width: 1920px) { width: 110rem; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+  // NOTE: the shared `.sub-layout .wrapper` caps content at 85rem (centered)
+  // from 1440px up. A `width: 110rem` override here would be WIDER than that
+  // parent, so `margin:auto` collapses to 0 and the section spills past the
+  // viewport (clipped by overflow-x). Stay within the wrapper: keep the
+  // 2.5rem gutters at all large widths instead of forcing a fixed width.
 }
 
 .sub-layout.insights {

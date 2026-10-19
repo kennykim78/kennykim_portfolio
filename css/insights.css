@@ -150,6 +150,53 @@
   color: #666;
   font-size: 1rem;
 }
+.sub-layout.insights .insights-pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 3rem;
+}
+.sub-layout.insights .insights-pager[hidden] {
+  display: none;
+}
+.sub-layout.insights .insights-pager .pg-btn {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.6rem;
+  font-size: 1rem;
+  color: #1a1a1a;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4rem;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.sub-layout.insights .insights-pager .pg-btn:hover:not(:disabled):not(.on) {
+  border-color: #1a1a1a;
+}
+.sub-layout.insights .insights-pager .pg-btn.on {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  cursor: default;
+}
+.sub-layout.insights .insights-pager .pg-btn:disabled {
+  color: #ccc;
+  cursor: default;
+}
+@media (max-width: 430px) {
+  .sub-layout.insights .insights-pager .pg-btn {
+    min-width: 2.2rem;
+    height: 2.2rem;
+    font-size: 0.9rem;
+  }
+}
+.sub-layout.insights .insights-pager .pg-gap {
+  color: #666;
+  padding: 0 0.2rem;
+}
 .sub-layout.insights .insight-card a {
   display: block;
   color: inherit;

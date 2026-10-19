@@ -50,14 +50,44 @@
     if (!grid) return;
     var empty = byId("insightsEmpty");
     var filterBar = byId("insightsFilter");
+    var pager = byId("insightsPager");
+    var PAGE_SIZE = 20;
     var current = "all";
+    var page = 1;
 
     function draw() {
       var items = POSTS.filter(function (p) {
         return current === "all" || p.category === current;
       });
-      grid.innerHTML = items.map(cardHtml).join("");
+      var pages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+      if (page > pages) page = pages;
+      var start = (page - 1) * PAGE_SIZE;
+      grid.innerHTML = items.slice(start, start + PAGE_SIZE).map(cardHtml).join("");
       if (empty) empty.hidden = items.length !== 0;
+      drawPager(pages);
+    }
+
+    function drawPager(pages) {
+      if (!pager) return;
+      pager.hidden = pages <= 1;
+      if (pages <= 1) { pager.innerHTML = ""; return; }
+      // 1 … (page-2..page+2) … last
+      var nums = [];
+      for (var i = 1; i <= pages; i++) {
+        if (i === 1 || i === pages || Math.abs(i - page) <= 2) nums.push(i);
+      }
+      var html = '<button type="button" class="pg-btn pg-prev" data-page="' + (page - 1) + '"' +
+        (page === 1 ? " disabled" : "") + ' aria-label="이전 페이지">&lsaquo;</button>';
+      var last = 0;
+      nums.forEach(function (n) {
+        if (n - last > 1) html += '<span class="pg-gap" aria-hidden="true">&hellip;</span>';
+        html += '<button type="button" class="pg-btn' + (n === page ? " on" : "") + '" data-page="' + n + '"' +
+          (n === page ? ' aria-current="page"' : "") + ">" + n + "</button>";
+        last = n;
+      });
+      html += '<button type="button" class="pg-btn pg-next" data-page="' + (page + 1) + '"' +
+        (page === pages ? " disabled" : "") + ' aria-label="다음 페이지">&rsaquo;</button>';
+      pager.innerHTML = html;
     }
 
     function cardHtml(p) {
@@ -86,10 +116,24 @@
         var btn = e.target.closest(".filter-chip");
         if (!btn) return;
         current = btn.getAttribute("data-cat") || "all";
+        page = 1;
         Array.prototype.forEach.call(filterBar.querySelectorAll(".filter-chip"), function (b) {
           b.classList.toggle("on", b === btn);
         });
         draw();
+      });
+    }
+
+    if (pager) {
+      pager.addEventListener("click", function (e) {
+        var btn = e.target.closest(".pg-btn");
+        if (!btn || btn.disabled) return;
+        var n = parseInt(btn.getAttribute("data-page"), 10);
+        if (!n || n === page) return;
+        page = n;
+        draw();
+        var top = filterBar || grid;
+        window.scrollTo(0, top.getBoundingClientRect().top + window.pageYOffset - 100);
       });
     }
 

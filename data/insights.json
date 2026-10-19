@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-10-19-mindsets-quality-model-ai-self-healing",
+    "category": "plan",
+    "date": "2026-10-19",
+    "title": "AI 시대의 QA, 도구보다 먼저 바꿀 것은 사고방식",
+    "rawTitle": "The Mindsets Quality Model",
+    "summary": "AI가 산출물을 빠르게 만들수록 품질은 사람의 사고 전환 능력에서 갈린다. 마인드셋 모델과 안전한 셀프힐링 자동화를 함께 읽는다.",
+    "bodyHtml": "<p>생성형 AI 덕분에 테스트 케이스와 자동화 스크립트는 몇 분 만에 쏟아져 나온다. 그런데 산출물이 늘어난다고 품질이 올라가지는 않는다. Ministry of Testing에 실린 두 편의 글은 같은 질문을 서로 다른 층위에서 다룬다. 하나는 '어떻게 생각할 것인가', 다른 하나는 '그 생각을 자동화에 어떻게 안전하게 심을 것인가'다.</p><blockquote>\"AI can accelerate output, but only humans can actually think. And thinking is where quality begins.\"<cite>Ministry of Testing</cite></blockquote><h3>무슨 일인가</h3><p>Ady Stokes는 품질 전문가가 상황에 맞춰 바꿔 쓸 수 있는 사고방식을 네 묶음으로 정리한다. 가능성을 그리는 '비저너리·개방형', 사실을 검증하는 '분석·현실 기반형', 영향과 윤리를 살피는 '철학·연결형', 파괴적 의도로 실패 경로를 탐색하는 '어두운·공격형'이다. 어느 하나가 우월하지 않고, 각각 잘 보는 것과 못 보는 것이 다르다는 점이 핵심이다. 글에는 '나중에 저장' 기능을 대상으로 네 라운드 동안 마인드셋을 강제로 바꿔 보는 훈련도 포함되어 있다. 자신의 기본 마인드셋을 먼저 파악하고 의식적으로 이탈해 보게 하는 구조다.</p><h3>여러 시각</h3><p>같은 주제를 자동화 쪽에서 보면 결론은 비슷하게 '판단은 사람이 설계한다'로 모인다.</p><ul><li><b>Ministry of Testing(Pranav Pandit)</b> — AI는 결정론적 자동화를 대체하지 말고, 로케이터가 깨질 때만 작동하는 통제된 폴백이어야 한다고 본다. 모델 성능보다 맥락 신호가 더 중요하다는 것이 그의 결론이다.</li><li><b>실제 사고 사례</b> — 버튼 이름 하나가 바뀌어 테스트 40여 개가 한꺼번에 실패했고, 힐링이 대부분 복구했지만 맥락이 부족한 일부는 엉뚱한 요소를 골랐다. 자동 복구가 곧 정답은 아니라는 증거다.</li><li><b>단계적 도입</b> — 런타임 한정 힐링에서 시작해 사람이 검토하는 수정, 확신이 높을 때만 자동 병합으로 넓히는 순서를 제안한다.</li></ul><h3>왜 중요한가</h3><p>AI가 테스트를 대신 써 주는 흐름에서 QA의 가치는 '많이 만드는 능력'에서 '무엇을 의심할지 아는 능력'으로 옮겨 간다. 마인드셋 모델은 그 능력을 훈련 가능한 항목으로 쪼갠 시도다. 반대로 셀프힐링 글은 AI가 만든 변경이 조용히 잘못된 요소를 통과시키는 위험을 보여 준다. 즉 사고의 폭이 좁으면 AI는 같은 맹점을 더 빠르게 복제한다. 기획 단계의 요구사항 검토에서도 같은 구조가 반복된다.</p><h3>실무 적용</h3><ul><li>요구사항 리뷰 때 '이번에는 공격형 마인드셋으로만 읽는다' 같은 역할 라운드를 회의에 넣어 본다.</li><li>자동화에 AI를 붙일 때는 결정론적 경로를 먼저 두고, 복구 시도는 모두 로그로 남겨 사람이 검토한다.</li><li>자동 복구 결과를 바로 병합하지 말고 단일 매치·가시성·상호작용 가능 여부 같은 검증 규칙을 통과시킨다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드를 만드는 입장에서 UI 변경은 늘 일어나고, 그때마다 테스트가 깨지는 비용을 체감한다. 그래서 셀프힐링이 반갑지만, 'data-testid' 같은 안정적인 계약을 코드에 먼저 심는 편이 가장 싼 해결책이라고 생각한다. AI는 그 계약이 없는 곳의 안전망일 뿐이다. 결국 AX 시대의 QA는 도구 선택보다 어떤 관점으로 의심할지를 팀이 공유하는 일이다. 기획 단계에서 마인드셋을 섞어 쓰는 습관이 나중의 자동화 비용을 줄인다.</p><h3>출처</h3><ul><li><a href=\"https://www.ministryoftesting.com/insights/the-mindsets-quality-model\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: The Mindsets Quality Model ↗</a></li><li><a href=\"https://www.ministryoftesting.com/insights/when-ai-maintains-your-tests-designing-safe-self-healing-automation\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: When AI maintains your tests: Designing safe self-healing automation ↗</a></li></ul>",
+    "source": "Ministry of Testing",
+    "sourceUrl": "https://www.ministryoftesting.com/insights/the-mindsets-quality-model",
+    "tags": [
+      "QA",
+      "Testing",
+      "AI"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-19-startup-moat-and-pm-pmm-handoff",
+    "category": "pm",
+    "date": "2026-10-19",
+    "title": "스타트업의 해자와 PM·PMM 핸드오프, 제품 전략의 두 축",
+    "rawTitle": "How to tell if a startup has a moat",
+    "summary": "속도는 연료일 뿐 해자는 복리로 쌓이는 우위에서 나온다. PM과 PMM을 처음부터 묶는 사례까지 함께 읽는 전략 노트.",
+    "bodyHtml": "<p>AI 덕에 제품을 만드는 속도가 누구에게나 빨라졌다. 그래서 오래 버틸 회사를 가려내는 질문이 더 중요해졌다. Lenny's Newsletter의 Dan Hockenmaier는 스타트업의 해자를 판별하는 틀을 제시하고, Mind the Product의 사례는 그 우위를 시장에서 실제로 전달하는 조직 구조를 다룬다. 전략과 실행을 같이 보면 그림이 선명해진다.</p><blockquote>\"Speed gives a company more shots on goal as it tries to build a great product and a great business, but it must eventually find something more durable.\"<cite>Lenny's Newsletter</cite></blockquote><h3>무슨 일인가</h3><p>Hockenmaier의 틀은 복리로 쌓이는 우위를 찾고, 그 강도를 가늠하고, 실제로 작동하는지 측정하는 세 단계다. 그는 속도·유통·브랜드·자금을 단기적 '연료'로 보고, 지속되는 우위는 전환 비용, 네트워크 효과, 규모의 경제, 데이터 효과 네 가지로 한정한다. 예로 Rippling의 통합 제품군, LinkedIn의 네트워크 밀도, 배송 단가를 300달러에서 12달러로 낮춘 Zipline, 방대한 거래 데이터를 쓰는 Stripe Radar가 나온다. (해당 글은 유료 구간이 있어 이후 단계는 확인하지 못했다.)</p><h3>여러 시각</h3><p>우위가 있어도 시장에 전달되지 않으면 해자는 장부 위에만 존재한다.</p><ul><li><b>Mind the Product(Samridhi Anand)</b> — PM은 '제품의 진실', PMM은 '시장의 진실'을 쫓는다고 구분한다. PMM이 개발 이후에만 합류하면 고객 피드백이 제품 결함이 아닌 메시지 문제로 오해된다고 지적한다.</li><li><b>워크플로 중심 데모</b> — 기능을 나열하는 대신 하나의 업무를 끝까지 보여 주는 방식으로 바꾸자 고객이 자기 업무에 맞춰 이해했다고 한다. 구체적 수치는 공개되지 않았다.</li><li><b>메시지가 안 풀리면</b> — 문구가 어렵다는 것은 제품 결정이 덜 끝났다는 신호일 수 있다는 관찰이 눈에 띈다.</li></ul><h3>왜 중요한가</h3><p>해자 프레임은 '우리가 빠르다'는 자기 위안을 걷어 내고 무엇이 복리로 쌓이는지 묻게 한다. 하지만 전환 비용이든 데이터 효과든 고객이 가치를 체감해야 비로소 작동한다. 그 연결 고리가 디스커버리 단계의 PM·PMM 협업이다. 전략 문서와 출시 메시지가 따로 놀면 우위는 정체된 채 남는다. 두 글은 서로 다른 층위에서 같은 결론, 즉 지속 가능성은 설계된다는 점을 가리킨다.</p><h3>실무 적용</h3><ul><li>제품 전략 문서에 '우리의 복리 우위는 네 가지 중 무엇인가'를 한 줄로 적고, 지표로 확인할 방법을 함께 둔다.</li><li>디스커버리 인터뷰에 PMM이나 사업 담당을 처음부터 참여시켜 고객 언어를 공유한다.</li><li>데모와 제안 자료는 기능 목록이 아니라 한 가지 업무를 끝까지 따라가는 시나리오로 재구성한다.</li></ul><h3>Kenny의 관점</h3><p>PM과 PL, 사업기획을 오가며 느끼는 것은 해자가 거창한 개념이 아니라 일상의 작은 설계에서 시작된다는 점이다. 예를 들어 고객이 쓰는 화면 흐름이 데이터를 쌓고 전환 비용을 만든다. 프론트엔드의 워크플로 설계가 곧 전략의 일부라는 뜻이다. 또 AX 프로젝트에서도 기능 시연보다 한 업무의 완주를 보여 줄 때 의사결정이 빨랐다. 속도는 시작점이고, 남는 것은 구조다.</p><h3>출처</h3><ul><li><a href=\"https://www.lennysnewsletter.com/p/how-to-tell-if-a-startup-has-a-moat\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: How to tell if a startup has a moat ↗</a></li><li><a href=\"https://www.mindtheproduct.com/re-engineering-the-pm-pmm-handoff-a-case-study-in-process-transformation/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Re-engineering the PM-PMM handoff: a case study in process transformation ↗</a></li></ul>",
+    "source": "Lenny's Newsletter",
+    "sourceUrl": "https://www.lennysnewsletter.com/p/how-to-tell-if-a-startup-has-a-moat",
+    "tags": [
+      "Strategy",
+      "Product",
+      "GTM"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-07-08-css-border-shape-property",
     "category": "design",
     "date": "2026-07-08",

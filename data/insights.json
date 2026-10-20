@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-10-20-css-gap-decorations",
+    "category": "design",
+    "date": "2026-10-20",
+    "title": "CSS 갭 데코레이션, border 꼼수의 종말",
+    "rawTitle": "Gap Decorations Are Now Available, Here's What's New",
+    "summary": "Grid·Flexbox 아이템 사이 간격을 row-rule/column-rule로 직접 꾸밀 수 있게 됐다. 의사 요소 꼼수를 걷어낼 시점이다.",
+    "bodyHtml": "<p>그리드와 플렉스박스의 아이템 사이 빈 공간, 즉 gap에 구분선을 넣는 일은 오랫동안 개발자의 숙제였습니다. 이제 Chromium 계열에서 이 간격을 CSS가 직접 꾸미도록 지원하기 시작했습니다. 단순한 장식 기능처럼 보이지만, 레이아웃 코드의 구조 자체를 단순하게 만드는 변화라서 지금 주목할 가치가 있습니다.</p>\n<blockquote>\"For a long time now, web developers have had to use border and pseudo-element hacks to style the gaps between the items of layouts like grid and flexbox.\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>핵심은 <code>row-rule</code>, <code>column-rule</code>(그리고 둘을 묶은 <code>rule</code> 단축 속성)입니다. 멀티 컬럼에서 쓰던 rule 개념을 grid와 flex 간격으로 확장한 것이죠. 선의 시작과 끝을 조절하는 <code>*-inset</code> 계열, 교차 지점에서 선이 겹치는 방식을 정하는 <code>rule-overlap</code>, 빈 칸 옆의 선을 숨기는 <code>rule-visibility-items</code>까지 세밀한 제어 속성이 함께 제공됩니다. 현재는 Chrome·Edge 149 이상에서 사용할 수 있고, 폴리필도 준비 중이라고 합니다.</p>\n<h3>여러 시각</h3>\n<p>같은 시기 CSS-Tricks의 다른 글은 \"새 속성을 어떻게 안전하게 쓸 것인가\"라는 물음에 서로 다른 답을 줍니다.</p>\n<ul><li><b>CSS-Tricks (border-image 애니메이션)</b> — 이미 있는 속성을 <code>@property</code>와 결합해 그라디언트 테두리를 움직이는 접근으로, 새 기능 없이도 표현력을 넓힐 수 있음을 보여 줍니다. 다만 border-image는 둥근 모서리를 따라가지 못한다는 한계를 스스로 인정합니다.</li>\n<li><b>CSS-Tricks (gap decorations)</b> — 신기능은 점진적 향상(progressive enhancement)으로 다뤄야 하며, 미지원 브라우저에서 구분선이 사라져도 괜찮은 곳에 우선 쓰라고 권합니다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>지금까지 구분선은 아이템의 border나 ::after로 흉내 냈기 때문에 줄바꿈, 반응형 열 수 변경, 빈 칸 처리 때마다 예외 코드가 늘었습니다. 간격 자체가 스타일링 대상이 되면 \"마지막 줄은 선 제거\" 같은 규칙이 사라지고 마크업도 가벼워집니다. 디자인 시스템 관점에서는 구분선이 레이아웃의 속성이 되어 토큰으로 관리하기 쉬워집니다. 브라우저 지원이 아직 한정적이라는 점은 도입 속도를 정하는 현실적 변수입니다.</p>\n<h3>실무 적용</h3>\n<ul><li>대시보드 카드·내비게이션처럼 구분선이 장식에 가까운 곳부터 <code>@supports</code>로 감싸 점진적으로 도입한다.</li>\n<li>기존 border·의사 요소 구분선 코드를 목록으로 정리해 두고, 지원 범위가 넓어지면 일괄 교체할 후보로 관리한다.</li>\n<li>구분선 두께·색·inset을 CSS 변수 토큰으로 정의해 두면 이후 전환 비용이 줄어든다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드에서 가장 비싼 코드는 기능을 구현한 코드가 아니라 브라우저의 빈틈을 메우려고 쓴 코드입니다. 플랫폼이 그 빈틈을 메워 줄 때 해야 할 일은 환호가 아니라 정리입니다. 저는 새 속성을 도입하기 전에 어떤 꼼수가 사라지는지부터 따져 보는 편이고, 이번 갭 데코레이션은 삭제할 코드가 분명해서 가치가 큽니다. 다만 미지원 브라우저에서 레이아웃이 깨지지 않는 선까지만 맡기는 것이 안전한 기준입니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/css-gap-decorations-now-available/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Gap Decorations Are Now Available, Here's What's New ↗</a></li><li><a href=\"https://css-tricks.com/animating-css-border-image/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Animating CSS border-image ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/css-gap-decorations-now-available/",
+    "tags": [
+      "CSS",
+      "Grid",
+      "Progressive Enhancement"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-20-netflix-ai-trust-creatives",
+    "category": "pm",
+    "date": "2026-10-20",
+    "title": "넷플릭스는 어떻게 창작자의 AI 신뢰를 얻었나",
+    "rawTitle": "Parsing 'Can' from 'Should': How Netflix's Product Team Got Thousands of Creatives to Trust an AI Overhaul",
+    "summary": "기술 로드맵 대신 미래 상태를 먼저 그려 창작자와 공동 목표를 세운 넷플릭스 사례. AI 전환 PM이 참고할 신뢰 구축법.",
+    "bodyHtml": "<p>AI를 도입하는 조직에서 기술보다 어려운 것은 사람의 신뢰입니다. First Round Review가 소개한 넷플릭스 프로덕트팀 사례는 수천 명의 창작 인력이 AI 개편을 받아들이게 만든 과정을 구체적으로 보여 줍니다. \"할 수 있는 일(can)\"과 \"해야 하는 일(should)\"을 구분하는 방식이 핵심이라, AI 전환을 맡은 PM이라면 지금 읽어 볼 만합니다.</p>\n<blockquote>\"The process of articulating in a way others can follow is the process of decision making.\"<cite>First Round Review</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>약 300명 규모의 이 팀은 200여 개국에서 1만 7천 편 이상의 타이틀 유통을 책임집니다. 이들은 기술이 무엇을 할 수 있는지가 아니라 구성원에게 어떤 결과를 줄 것인가라는 질문에서 출발했습니다. 이상적인 시나리오를 먼저 그리고 거꾸로 필요한 역량을 도출했으며, 현장 창작자 설문과 상반된 입장 간 토론으로 숨은 긴장을 드러냈습니다. 기술 로드맵 대신 \"오늘 vs 내일\" 비교표와 역할이 어떻게 바뀌는지 보여 주는 하루 시나리오를 만들었고, 연간 목표도 프로덕트와 창작 조직이 함께 쓰고 공동으로 책임졌습니다.</p>\n<h3>여러 시각</h3>\n<p>같은 AI 도입 문제를 Lenny's Newsletter는 측정과 품질의 관점에서 다룹니다.</p>\n<ul><li><b>Lenny's Newsletter (Advanced evals)</b> — 평가 지표를 만들기 전에 실제 트레이스를 100건 이상 모아 실패 유형을 먼저 발견하라고 말합니다. 자동화 에이전트는 제품 판단이 필요한 문제를 놓친다는 점도 지적합니다.</li>\n<li><b>First Round Review</b> — 같은 맥락에서 신뢰는 도구의 정확도가 아니라 사용자가 미래 상태에서 자기 모습을 볼 수 있는가에서 생긴다고 봅니다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>두 글은 모두 \"먼저 이해하고 나중에 자동화한다\"는 점에서 만납니다. 평가 체계가 사용자 실패를 이해하는 데서 출발하듯, 조직 전환도 현장의 우려를 이해하는 데서 출발합니다. AI 프로젝트가 실패하는 이유는 모델 성능보다 도입 대상이 변화의 주체가 아니라 대상으로 취급되기 때문인 경우가 많습니다. 공동 목표와 공동 책임은 이 구조를 바꾸는 실질적인 장치입니다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI 기능 기획서에 기술 스펙보다 앞서 \"오늘 vs 내일\" 비교표와 역할별 하루 시나리오를 넣는다.</li>\n<li>출시 전에 실제 사용 로그 100건 이상을 직접 검토해 실패 유형을 분류한 뒤 평가 지표를 정한다.</li>\n<li>현업 팀과 목표를 공동 작성하고, 정기 회의에 불일치 점검 안건을 고정 배치한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>AX 프로젝트를 하면서 가장 자주 보는 실패는 데모는 훌륭한데 현업이 쓰지 않는 경우입니다. 원인은 대개 기능이 아니라 \"이게 내 일을 어떻게 바꾸는지\"를 아무도 설명하지 못한 데 있습니다. 넷플릭스의 비교표와 하루 시나리오는 화려하지 않지만, 기획자가 결정을 문장으로 풀어낼 수 있어야 한다는 원칙을 실행한 사례입니다. 저는 여기에 trace 리뷰를 더해, 사람의 신뢰와 제품의 품질을 같은 현장 관찰에서 얻는 방식을 추천합니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://review.firstround.com/netflix-ai-strategy/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: Parsing 'Can' from 'Should' ↗</a></li><li><a href=\"https://www.lennysnewsletter.com/p/advanced-evals-how-to-find-and-fix\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: Advanced evals: How to find (and fix) hidden AI failures in your product ↗</a></li></ul>",
+    "source": "First Round Review",
+    "sourceUrl": "https://review.firstround.com/netflix-ai-strategy/",
+    "tags": [
+      "AI Adoption",
+      "Product Management",
+      "Change Management"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-19-mindsets-quality-model-ai-self-healing",
     "category": "plan",
     "date": "2026-10-19",

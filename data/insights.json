@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-10-21-anthropic-distillation-defenses",
+    "category": "ai",
+    "date": "2026-10-21",
+    "title": "증류 공격 막기: Anthropic의 3단 방어 전략",
+    "rawTitle": "Strengthening our defenses against distillation attacks",
+    "summary": "가짜 계정 네트워크로 모델 능력을 빼가는 증류 공격에 분류기·컨텍스트 고정·사용 제한으로 맞선다. 수집 데이터가 90~99% 줄었다고 한다.",
+    "bodyHtml": "<p>Anthropic이 모델 능력을 대규모로 빼내 가는 '증류 공격'에 대응한 방어 체계를 공개했습니다. 증류는 정상적인 기법이지만, 가짜 계정으로 은밀하게 수행되면 안전장치 없이 프런티어에 근접한 모델을 싸게 복제하는 수단이 됩니다. API로 AI를 제품에 붙이는 팀이라면 남의 일이 아닌 이야기입니다.</p>\n<blockquote>\"Distillation enables companies to build models that approach the capability frontier, but which have...been released without proportionally robust safeguards.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Anthropic은 한 증류 네트워크가 2만 개 이상의 가짜 계정을 운용한 사례를 들며 공격이 조직적·대규모로 이뤄진다고 설명합니다. 방어는 세 갈래입니다. 8월 31일 이후 생성된 신규 API 계정은 이전 컨텍스트를 수정할 수 없게 하는 '보존된 사고(Preserved Thinking)', 두 단계로 동작하는 분류기, 그리고 의심 계정에 대한 속도 제한·차단·과금입니다. 회사는 이 조치 이후 수집되는 데이터가 90~99% 줄고, 추출되는 추론 토큰은 10~100배 감소했으며, 분류기 오탐률은 0.1% 미만이라고 밝혔습니다. 캠페인이 시작되면 수만 개 계정을 두 시간 안에 차단한다는 수치도 제시했습니다.</p>\n<h3>여러 시각</h3>\n<p>같은 주에 나온 Anthropic의 또 다른 글은 '외부 검증'이라는 다른 방식의 신뢰 구축을 보여 줍니다.</p>\n<ul><li><b>Anthropic (독립 평가자 업데이트)</b> — METR 직원 6명에게 직원에 준하는 접근 권한을 주고, 결과를 Anthropic 승인 없이 공개할 수 있게 했습니다. 기밀 범주에 한해서만 수정을 요구할 수 있습니다. 방어를 안에서 강화하는 증류 대응과 달리, 밖에서 검증받는 구조를 택한 셈입니다.</li>\n<li><b>Anthropic (증류 방어)</b> — 기술적 차단과 계정 단위 제재를 중심에 두고, 정상 사용자에게 피해를 주지 않는 낮은 오탐률을 핵심 지표로 강조합니다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>모델의 가치는 이제 가중치뿐 아니라 '출력이 어떻게 소비되는가'에도 달려 있습니다. API 응답 자체가 학습 데이터가 될 수 있기 때문에, 모델 제공자는 보안 경계를 네트워크가 아닌 사용 패턴에 그어야 합니다. 이는 정상 사용자에게도 속도 제한이나 이상 탐지 같은 형태로 영향을 줄 수 있습니다. 한편 안전장치가 없는 복제 모델이 퍼지는 문제는 업계 전체의 위험 관리 이슈로 번지고 있습니다.</p>\n<h3>실무 적용</h3>\n<ul><li>외부 LLM API를 쓰는 서비스는 계정·키 단위 사용량 모니터링을 갖추고, 비정상적으로 반복되는 대량 호출이 정책 위반으로 오인되지 않도록 사용 패턴을 문서화합니다.</li>\n<li>자사 AI 기능의 응답을 공개 엔드포인트로 노출한다면 속도 제한과 인증, 응답 길이 제한을 기본값으로 둡니다.</li>\n<li>컨텍스트를 클라이언트에서 임의로 수정하는 구조(히스토리 재작성)에 의존한다면 신규 계정 제약이 있는지 API 정책을 먼저 확인합니다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프런트엔드와 AX 관점에서 보면 이번 소식은 'AI 기능은 연결해서 끝이 아니라 운영해야 한다'는 신호입니다. 화면에서 보이는 챗 UI 뒤에는 키 관리, 호출 패턴, 정책 준수라는 보이지 않는 층이 있고, 그 층이 서비스 지속성을 좌우합니다. 저는 AI 기능을 설계할 때 사용자 경험과 함께 남용 시나리오를 한 장의 표로 먼저 그려 봅니다. 제공자의 방어가 강해질수록 정상 사용자의 호출 패턴을 투명하게 남기는 습관이 더 중요해질 것입니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/distillation-defenses\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Strengthening our defenses against distillation attacks ↗</a></li>\n<li><a href=\"https://www.anthropic.com/news/an-update-on-independent-evaluators\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: An update on independent evaluators ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/distillation-defenses",
+    "tags": [
+      "AI Security",
+      "Distillation",
+      "LLM API"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-21-crash-the-app-product-immersion",
+    "category": "plan",
+    "date": "2026-10-21",
+    "title": "별점 4.8이 가린 문제, 매일 앱을 부숴 보는 PM",
+    "rawTitle": "Why we replaced weekly product reviews with daily customer journeys",
+    "summary": "별점 4.8인 앱에서 프로모션 코드가 계속 실패했다. 'Crash the App'은 PM이 매일 직접 써 보며 백로그에 근거를 쌓는 방식이다.",
+    "bodyHtml": "<p>평점 4.8의 앱에서 고객이 프로모션 코드를 제대로 적용하지 못하는 일이 반복됐습니다. 숫자는 좋은데 경험은 나쁘다는 모순이 이 글의 출발점입니다. 기획과 QA의 경계에서 '지표가 가리는 마찰'을 어떻게 드러낼지 고민하는 팀에 참고할 만한 사례입니다.</p>\n<blockquote>\"Repeated use gives the team another form of evidence, and the right tools to act on it.\"<cite>Mind the Product</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Vladimir Pronin이 소개한 'Crash the App'은 PM이 실제 기기에서 지름길 없이 고객처럼 과업을 수행하는 습관입니다. 처음엔 주 1회 30분짜리 팀 세션이었지만, 각 PM이 자기 영역을 매일 비동기로 돌며 발견한 내용을 바로 팀 백로그에 기록하는 방식으로 바뀌었습니다. 프로모션 코드 사례에서는 CMS와 프로모션 도구 두 곳에 같은 설정을 수작업으로 입력하던 것이 근본 원인이었고, 팀은 개별 장애를 고치는 대신 CMS가 단일 원천에서 값을 가져오도록 구조를 바꿨습니다. 그 뒤 관련 불만 유형이 눈에 띄게 줄었다고 합니다.</p>\n<h3>여러 시각</h3>\n<p>같은 Mind the Product의 최근 글은 '고객 현장을 직접 본다'는 원칙을 다른 규모로 보여 줍니다.</p>\n<ul><li><b>Mind the Product (Forward Deployed PM)</b> — 고객사에 파견되어 사용 현장을 지켜보는 역할입니다. 지원 티켓이나 인터뷰 대신 문제가 어떻게 드러나고 사람들이 어떻게 우회하는지 직접 보고, 어떤 요구를 플랫폼 기능으로 만들지 걸러 냅니다.</li>\n<li><b>Mind the Product (Crash the App)</b> — 고객 현장이 아니라 자기 제품을 반복 사용한다는 점이 다릅니다. 비용은 낮지만, 내부자 편향을 피하려면 실기기·실과업 원칙이 필요합니다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>평점이나 NPS 같은 요약 지표는 소수의 치명적 마찰을 평균에 묻어 버립니다. 반복 사용은 우연한 불편을 패턴으로 바꿔 주고, 패턴이 보이면 증상 수정이 아니라 원인 제거로 논의가 옮겨 갑니다. 또 책임을 공동 행사에서 개인 PM에게 옮기면 발견에서 수정까지의 시간이 짧아집니다. 엔지니어도 비난이 아닌 시스템 이해가 목적임을 알면 우군이 된다는 점이 인상적입니다.</p>\n<h3>실무 적용</h3>\n<ul><li>스프린트마다 핵심 여정(가입·결제·쿠폰 적용)을 실기기로 따라가는 15분 점검을 QA 체크리스트 앞단에 넣습니다.</li>\n<li>발견 사항은 재현 단계와 스크린 녹화와 함께 곧바로 백로그에 올리고, 같은 유형이 반복되면 원인 분석 티켓으로 묶습니다.</li>\n<li>같은 값을 두 시스템에 수동 입력하는 지점을 목록화해 단일 원천(Single Source of Truth)으로 정리합니다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프런트엔드를 만드는 사람으로서 이 글의 핵심은 '직접 써 보는 일'이 가장 싸고 빠른 검증이라는 점입니다. 쿠폰 입력창 하나가 매출과 신뢰를 흔드는 걸 많이 봤고, 그 원인은 화면이 아니라 뒤쪽 데이터 구조인 경우가 적지 않았습니다. 기획자는 QA 결과를 기다리지 않고 자기 기획의 결과물을 먼저 써 봐야 합니다. 저는 작은 팀일수록 매일 하는 짧은 사용 습관이 대규모 회고보다 낫다고 생각합니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.mindtheproduct.com/crash-the-app-what-our-4-8-star-rating-was-hiding/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Why we replaced weekly product reviews with daily customer journeys ↗</a></li>\n<li><a href=\"https://www.mindtheproduct.com/what-is-a-forward-deployed-product-manager-anyway/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: What is a Forward Deployed Product Manager, anyway? ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/crash-the-app-what-our-4-8-star-rating-was-hiding/",
+    "tags": [
+      "Product Discovery",
+      "QA",
+      "Product Management"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-20-css-gap-decorations",
     "category": "design",
     "date": "2026-10-20",

@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-10-23-motaverse-gps-quality-model",
+    "category": "plan",
+    "date": "2026-10-23",
+    "title": "GPS 모델로 프로필 페이지를 고치다: 팀 품질의 세 겹",
+    "rawTitle": "How we overhauled the MoTaverse profile page",
+    "summary": "Ministry of Testing는 그룹·페어·솔로 작업을 겹쳐 쓰는 GPS 모델로 프로필 페이지를 개편했다. 품질은 검사 단계가 아니라 협업 구조에서 나온다는 사례다.",
+    "bodyHtml": "<p>테스트 커뮤니티 Ministry of Testing이 자사 플랫폼 MoTaverse의 프로필 페이지를 개편한 과정을 공개했습니다. 흥미로운 점은 결과물보다 일하는 방식입니다. 그룹·페어·솔로 세 가지 작업 방식을 겹쳐 쓰는 'GPS 모델'로 품질을 만들어 갔습니다. 기획과 QA의 경계를 허무는 실전 사례라서 지금 읽어 볼 만합니다.</p>\n<blockquote>\"Community leadership is working out what the community needs and persuading them it's what they want.\"<cite>Ministry of Testing</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>GPS는 Group, Pair, Solo의 약자입니다. 전체 팀이 모여 방향을 맞추는 그룹 세션, 둘이 설계와 디버깅을 함께 하는 페어 작업, 혼자 구현과 테스트에 집중하는 솔로 작업을 상황에 맞게 오갑니다. 팀은 'My MoT' 설정 개편보다 프로필 페이지를 먼저 하기로 우선순위를 정했고, 전체 페이지보다 프로필 카드 컴포넌트부터 손봤습니다. 모바일에서는 사이드바 내용을 본문 아래로 내리는 방식으로 반응형을 처리했습니다. 정식 유저 스토리 대신 대화 메모만 남겨 속도를 냈고, 모든 피드백을 따르기보다 일부러 무시해 전체 일관성을 지켰다는 점도 눈에 띕니다. 결과적으로 배포 문제 없이 출시했습니다.</p>\n<h3>여러 시각</h3>\n<p>같은 호(號)의 다른 글들과 겹쳐 읽으면 품질을 보는 관점이 더 선명해집니다.</p>\n<ul><li><b>Mind the Product</b> — 'say no'를 잘하는 것보다 '더 정확하게 yes'라고 말하는 것이 성과를 만든다고 봅니다. 막는 것의 비용까지 손익에 넣어야 한다는 관점입니다.</li><li><b>Ministry of Testing(이 글)</b> — 모든 요구를 받지 않고 일부러 무시하는 선택도 품질 활동이라고 봅니다. 두 글 모두 '거절의 정확도'를 기획의 핵심으로 다룹니다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>품질을 마지막 검증 단계로만 보면 문제를 늦게 발견하고 수정 비용이 커집니다. GPS 모델은 품질 확인을 작업 과정 전반에 분산시킵니다. 또 피드백을 취사선택하는 판단은 기획자와 QA가 공유해야 할 책임임을 보여 줍니다. 작은 팀일수록 문서보다 대화와 합의가 빠르다는 점도 시사합니다.</p>\n<h3>실무 적용</h3>\n<ul><li>스프린트 계획 때 이번 작업을 그룹·페어·솔로 중 무엇으로 할지 먼저 정한다.</li><li>큰 화면 개편은 핵심 컴포넌트 하나부터 출시해 위험을 줄인다.</li><li>들어온 피드백은 '채택/보류/제외' 사유를 한 줄씩 기록해 일관성을 지킨다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드를 만들 때 가장 비싼 결함은 코드 버그가 아니라 맥락이 어긋난 요구입니다. GPS처럼 페어 단계에서 기획 의도와 구현을 바로 맞추면 QA가 나중에 잡을 일이 줄어듭니다. 저는 컴포넌트 단위 출시와 피드백 취사선택 기록을 함께 쓰는 방식이 작은 팀에 가장 현실적이라고 봅니다. 문서를 줄이되 결정의 이유만은 남기는 것이 핵심입니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.ministryoftesting.com/insights/how-we-overhauled-the-motaverse-profile-page\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: How we overhauled the MoTaverse profile page ↗</a></li><li><a href=\"https://www.mindtheproduct.com/i-spent-years-getting-paid-to-say-no-then-i-learned-to-say-yes-more-accurately/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: I spent years getting paid to say no. Then I learned to say yes, more accurately ↗</a></li></ul>",
+    "source": "Ministry of Testing",
+    "sourceUrl": "https://www.ministryoftesting.com/insights/how-we-overhauled-the-motaverse-profile-page",
+    "tags": [
+      "QA",
+      "Quality",
+      "Product Planning"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-23-google-search-swat-teams",
+    "category": "pm",
+    "date": "2026-10-23",
+    "title": "구글 검색팀의 SWAT 조직: 프로토타입으로 빠르게 출시하는 법",
+    "rawTitle": "How Google structures its product team, prototypes, and ships fast at scale | Soufi Esmaeilzadeh",
+    "summary": "구글 검색 AI의 프로덕트 디렉터는 얇은 SWAT 팀과 프로토타입 중심 의사결정으로 속도를 낸다. 단, 품질 기준은 처음에 정의한다.",
+    "bodyHtml": "<p>Mind the Product가 구글 검색의 프로덕트 디렉터 Soufi Esmaeilzadeh의 인터뷰를 실었습니다. 대규모 조직에서 속도를 유지하는 방법이 주제입니다. 핵심은 조직을 얇게 유지하고 토론 대신 동작하는 프로토타입으로 결정하는 것입니다. AI 때문에 제품 변화 주기가 짧아진 지금, PM 조직 설계에 참고할 만합니다.</p>\n<blockquote>\"These are not one-way doors.\"<cite>Soufi Esmaeilzadeh, Mind the Product</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>인터뷰에 따르면 팀은 선임 전략 리드 한 명과 소수의 개별 기여자로 이루어진 SWAT 형태입니다. 중간 계층이 늘면 맥락이 빠지기 때문에 소통 경로를 평평하게 둡니다. 부서 경계를 넘어 소비자 여정 단위로 가상 팀을 꾸리는 점도 특징입니다. 개발은 가설, 허술한 프로토타입, 실제 데이터 데모, 제한 베타 순으로 진행합니다. 슬라이드를 놓고 길게 논쟁하는 것은 낭비로 보는데, 결정을 되돌릴 수 있기 때문입니다. 한편 속도를 단계별로 측정하되, 품질 기준('좋음'과 '나쁨'의 정의)을 확장 전에 먼저 합의합니다.</p>\n<h3>여러 시각</h3>\n<p>다른 PM 글과 비교하면 '누가 어디서 학습하는가'에서 차이가 납니다.</p>\n<ul><li><b>Mind the Product(시스템 사고 가이드)</b> — PM은 기능 공장에서 벗어나 제품을 상호연결된 시스템으로 보아야 한다고 말합니다. 구글 사례의 여정 단위 가상 팀이 이 시각의 조직적 구현으로 읽힙니다.</li><li><b>Mind the Product(Forward Deployed PM)</b> — 고객 현장에 PM을 심어 문제를 직접 관찰하는 모델입니다. 구글이 데이터와 프로토타입으로 학습한다면, 이쪽은 현장 관찰로 학습합니다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>AI 시대에는 기술 방식이 매달 바뀌어도 조직의 책임 영역은 2~3년 단위로 유지해야 한다는 지적이 설득력 있습니다. 속도는 인력 수가 아니라 맥락 손실과 의사결정 지연을 줄일 때 나옵니다. 또한 품질 기준을 먼저 정하면 빠른 출시가 졸속으로 변하는 것을 막습니다. 사업기획 관점에서는 '되돌릴 수 있는 결정'을 빨리 내리는 문화가 곧 경쟁력입니다.</p>\n<h3>실무 적용</h3>\n<ul><li>기능을 정하기 전에 이틀짜리 프로토타입 데모를 먼저 만들어 보여 준다.</li><li>회의 전 '좋음/나쁨' 기준 3줄을 합의하고 시작한다.</li><li>결정마다 되돌릴 수 있는지(two-way door) 표시해 검토 깊이를 조절한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드 작업에서 프로토타입은 가장 싼 기획서입니다. 화면 하나를 실제로 움직여 보면 문서 열 장보다 빨리 합의됩니다. 다만 속도가 목적이 되면 품질 정의가 흐려지므로, 저는 구글처럼 기준을 먼저 쓰고 프로토타입을 만드는 순서를 지키려 합니다. AX 프로젝트에서도 작은 팀과 짧은 검증 루프가 가장 큰 효율을 냅니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.mindtheproduct.com/how-google-structures-its-product-team-prototypes-and-ships-fast-at-scale-soufi-esmaeilzadeh-product-director-google-search/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: How Google structures its product team, prototypes, and ships fast at scale ↗</a></li><li><a href=\"https://www.mindtheproduct.com/a-guide-to-systems-thinking-for-product-managers/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: A guide to systems thinking for Product Managers ↗</a></li><li><a href=\"https://www.mindtheproduct.com/what-is-a-forward-deployed-product-manager-anyway/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: What is a Forward Deployed Product Manager, anyway? ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/how-google-structures-its-product-team-prototypes-and-ships-fast-at-scale-soufi-esmaeilzadeh-product-director-google-search/",
+    "tags": [
+      "Product Management",
+      "Prototyping",
+      "Team Structure"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-22-css-random-polyfill",
     "category": "design",
     "date": "2026-10-22",

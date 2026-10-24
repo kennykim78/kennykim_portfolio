@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-10-24-document-pip-widgets",
+    "category": "design",
+    "date": "2026-10-24",
+    "title": "문서 PiP API로 만드는 떠 있는 웹 위젯과 CSS의 함정",
+    "rawTitle": "Creating Web Widgets Using the Document Picture-in-Picture API",
+    "summary": "Document Picture-in-Picture API로 타이머·채팅 같은 위젯을 별도 창에 띄울 수 있다. 다만 컴포넌트를 문맥 밖으로 옮기면 CSS가 깨진다는 점이 핵심 주의사항이다.",
+    "bodyHtml": "<p>CSS-Tricks가 Document Picture-in-Picture(DPiP) API로 웹 위젯을 만드는 방법을 소개했다. 영상만 띄우던 기존 PiP와 달리, 임의의 HTML 요소를 항상 위에 떠 있는 별도 창으로 옮길 수 있다. 주식 시세, 채팅, 할 일 목록처럼 다른 작업 중에도 곁눈으로 봐야 하는 UI에 어울린다. 지원 범위가 넓어지는 지금이 설계에 반영해 볼 시점이다.</p><blockquote>\"Taking a HTML component out of context can break the CSS.\"<cite>CSS-Tricks</cite></blockquote><h3>무슨 일인가</h3><p>사용법은 단순하다. <code>\"documentPictureInPicture\" in window</code>로 지원 여부를 확인하고, <code>requestWindow()</code>에 width, height, preferInitialWindowPlacement 같은 옵션을 넘겨 새 창을 연다. 이후 원하는 DOM을 그 창의 document로 옮기거나 복제하면 된다. 창이 열리는 순간은 enter 이벤트로 감지하고, 스타일은 <code>@media (display-mode: picture-in-picture)</code>로 따로 줄 수 있다. 현재 Chrome과 Firefox 151이 지원하고 Safari는 아직이며, 데스크톱 전용이다.</p><h3>여러 시각</h3><p>같은 주 CSS-Tricks의 다른 글은 새 기능을 어떻게 안전하게 쓸지에 대한 힌트를 준다.</p><ul><li><b>CSS-Tricks (What's !important #18)</b> — 새 <code>@supports named-feature()</code>로 앵커 포지셔닝 같은 세부 동작까지 기능 감지를 할 수 있게 되고 있다고 소개한다. 다만 Chrome 위주이며 점진적 향상이 전제다.</li><li><b>CSS-Tricks (같은 글)</b> — Chrome만 지원하는 <code>&lt;geolocation&gt;</code> 요소도 기존 API와 함께 쓰는 점진적 향상을 권한다. DPiP도 같은 접근이 필요하다는 뜻이다.</li></ul><h3>왜 중요한가</h3><p>PiP 창은 웹앱이 브라우저 탭 밖으로 확장되는 첫 번째 본격 사례다. 사용자는 탭을 전환하지 않고도 앱의 핵심 정보를 계속 볼 수 있다. 반면 개발자는 하나의 컴포넌트가 두 개의 문서 환경에서 동작해야 하는 새 제약을 떠안는다. 부모 문서의 스타일시트가 자동으로 따라가지 않으므로, 선택자가 어디서든 성립하도록 컴포넌트를 설계해야 한다. 컴포넌트의 독립성이 곧 품질이 되는 셈이다.</p><h3>실무 적용</h3><ul><li>위젯 컴포넌트는 부모 문서 선택자(예: body 하위 규칙)에 의존하지 않게 만들고 CSS 변수로 테마를 주입한다.</li><li>기능 감지 후 지원하지 않는 브라우저에서는 기존 인페이지 패널로 폴백한다.</li><li>PiP 창 전용 레이아웃은 display-mode 미디어 쿼리로 분리하고 작은 창 크기에서 테스트한다.</li></ul><h3>Kenny의 관점</h3><p>이 API의 진짜 교훈은 기능 자체보다 컴포넌트 경계에 있다고 본다. 디자인 시스템이 토큰과 컴포넌트를 문서 환경에 묶어 두었다면 PiP에서 바로 깨진다. 반대로 토큰이 CSS 변수로 잘 분리된 시스템이라면 복제만으로 동작한다. AI 어시스턴트나 대시보드 요약처럼 곁에 떠 있어야 하는 AX 도구에 특히 잘 맞고, 그래서 지금 컴포넌트 독립성을 점검해 두는 것이 가장 싼 준비라고 생각한다.</p><h3>출처</h3><ul><li><a href=\"https://css-tricks.com/creating-web-widgets-using-the-document-picture-in-picture-api/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Creating Web Widgets Using the Document Picture-in-Picture API ↗</a></li><li><a href=\"https://css-tricks.com/whats-important-18/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: What's !important #18 ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/creating-web-widgets-using-the-document-picture-in-picture-api/",
+    "tags": [
+      "CSS",
+      "Document PiP",
+      "Web Components"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-24-founder-led-attention",
+    "category": "pm",
+    "date": "2026-10-24",
+    "title": "창업자가 사람들의 관심을 얻는 법: 세 가지 유형과 자율성",
+    "rawTitle": "How to make people care about your startup",
+    "summary": "Lenny's Newsletter는 창업 동기에 따라 문제형·통찰형·비전형 세 유형의 소통 전략을 제시한다. First Round의 Lovable 사례는 자율과 신뢰가 브랜드의 바탕이라고 말한다.",
+    "bodyHtml": "<p>Lenny's Newsletter가 스타트업이 관심을 얻는 방법을 창업자 소통의 관점에서 정리했다. 광고비가 부족한 초기 팀에게 창업자의 목소리는 가장 싸고 효과 큰 자산이라는 주장이다. 핵심은 채널이나 기법이 아니라 왜 이 회사를 시작했는가라는 질문에서 출발하는 것이다. 같은 시기 First Round Review의 Lovable 브랜드 이야기와 함께 읽으면 입체적으로 보인다.</p><blockquote>\"If your reason was convincing enough for you, it's convincing enough to make other people care too.\"<cite>Lenny's Newsletter</cite></blockquote><h3>무슨 일인가</h3><p>글은 창업자를 세 유형으로 나눈다. 개인적 불편을 해결하려 시작한 문제형 창업자는 솔직하고 구체적인 개인 서사로 고객의 공감을 얻는다. 남들이 놓친 기회를 본 통찰형은 분석적이고 의견이 분명하며 아낌없이 나누는 목소리로 신뢰를 쌓는다. 다른 세상을 그리는 비전형은 확장적이고 희망적인 어조로 믿는 사람들의 움직임을 만든다. 각 유형에 맞는 소통 목표와 어조가 달라서, 남의 방식을 그대로 베끼면 어색해진다는 것이 요지다.</p><h3>여러 시각</h3><p>브랜드는 외부 소통만이 아니라 내부 운영 방식에서도 나온다는 보조 시각이 있다.</p><ul><li><b>First Round Review (Lovable)</b> — 재능 있는 사람에게 결과의 모호함을 맡기고 허락을 구하지 않게 해야 학습 속도가 빨라진다고 본다. 사용성 지표보다 사용자가 느끼는 감정을 중시한다.</li><li><b>Lenny's Newsletter</b> — 반대로 외부 서사의 일관성에 무게를 둔다. 두 글을 합치면 안쪽의 자율성이 바깥의 진정성을 만든다는 그림이 나온다.</li></ul><h3>왜 중요한가</h3><p>제품이 비슷해지는 시대에 차별점은 왜 하는가에서 나온다. 창업 동기를 정직하게 말하는 팀은 마케팅 문구를 새로 만들 필요가 없다. 또한 유형을 알면 어떤 콘텐츠를 만들지, 어떤 채널에서 어떤 어조를 쓸지 선택이 쉬워진다. 내부 문화가 외부 이야기와 어긋나면 신뢰가 빠르게 무너진다는 점도 함께 기억해야 한다.</p><h3>실무 적용</h3><ul><li>팀 킥오프에서 우리가 이 일을 시작한 이유를 한 문장으로 적고, 세 유형 중 무엇에 가까운지 합의한다.</li><li>유형에 맞춰 첫 콘텐츠 형식을 정한다. 문제형은 사용 후기와 사연, 통찰형은 분석 글, 비전형은 선언문이 맞다.</li><li>제품 회의에서 숫자 지표와 함께 사용자가 어떤 감정을 느끼는지 한 줄씩 기록한다.</li></ul><h3>Kenny의 관점</h3><p>프리랜서와 소규모 스튜디오에게도 그대로 적용된다고 생각한다. 포트폴리오는 결과물 나열이 아니라 왜 이 방식으로 만드는가에 대한 일관된 대답이어야 한다. AI 도구가 결과물 품질을 평준화할수록 사람의 동기와 판단이 남는 차별점이 된다. 그래서 기획자나 PM도 기능 명세 못지않게 자기 서사를 정리해 두는 것이 사업기획의 기본기라고 본다.</p><h3>출처</h3><ul><li><a href=\"https://www.lennysnewsletter.com/p/how-to-make-people-care-about-your\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: How to make people care about your startup ↗</a></li><li><a href=\"https://review.firstround.com/firsthand-lovable/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: Firsthand: How I Built a Brand with Heart at Lovable ↗</a></li></ul>",
+    "source": "Lenny's Newsletter",
+    "sourceUrl": "https://www.lennysnewsletter.com/p/how-to-make-people-care-about-your",
+    "tags": [
+      "Startup",
+      "Founder Brand",
+      "Product Strategy"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-23-motaverse-gps-quality-model",
     "category": "plan",
     "date": "2026-10-23",

@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-10-25-agent-skills-agentic-ai-foundation",
+    "category": "ai",
+    "date": "2026-10-25",
+    "title": "Agent Skills, 벤더 중립 재단으로 옮겨가다",
+    "rawTitle": "Donating Agent Skills to the Agentic AI Foundation",
+    "summary": "Anthropic이 Agent Skills 표준의 명칭·로고·GitHub 조직·도메인을 Agentic AI Foundation에 기부했다. 에이전트 확장 규격이 한 회사의 손을 떠났다.",
+    "bodyHtml": "<p>Anthropic이 에이전트에게 절차적 전문성을 주입하는 개방형 규격 Agent Skills를 Linux Foundation 산하 Agentic AI Foundation(AAIF)에 기부했다. 지난해 12월 개방형 표준으로 공개된 지 약 10개월 만의 일이다. 이름과 로고, GitHub 조직, agentskills.io 도메인까지 넘겼다는 점에서 상징적 선언을 넘어 실질적 소유권 이전이다. AI 에이전트를 제품에 붙이는 팀이라면 이 규격의 거버넌스가 바뀐 이유를 눈여겨볼 만하다.</p>\n<blockquote>\"We're committed to keeping Agent Skills open, community-driven, and vendor-neutral.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Agent Skills는 Claude Code를 만들며 나온 아이디어다. 범용 지식 작업은 잘하지만 실제 업무에 필요한 절차적 노하우가 부족했던 문제를, SKILL.md 메타데이터와 스크립트·리소스를 담은 디렉터리로 풀었다. 에이전트는 요청이 스킬의 영역과 맞을 때만 필요한 내용을 불러오는 '점진적 공개' 방식으로 컨텍스트를 아낀다. 발표에 따르면 공개 이후 70개 넘는 에이전트 플랫폼이 도입했고, 커뮤니티가 약 100만 개의 스킬을 게시했으며 설치는 2억 8천만 건에 육박한다. 이제 Anthropic과 Google, OpenAI 등의 엔지니어가 개인 자격으로 공동 유지보수하고, 버전 릴리스와 공식 제안 절차로 규격이 움직인다.</p>\n<h3>여러 시각</h3>\n<p>같은 흐름을 두고 매체들은 '표준 선점 전략'과 '생태계 인프라'라는 서로 다른 각도로 읽는다.</p>\n<ul><li><b>VentureBeat</b> — 지난해 개방 당시 이를 엔터프라이즈 시장에서 입지를 굳히려는 전략적 베팅으로 해석했고, Microsoft·Atlassian·Figma 등 파트너 도입을 근거로 들었다.</li><li><b>Unite.AI</b> — MCP를 Linux Foundation에 넘긴 선례와 이어 붙여, 산업 인프라를 만들어 온 Anthropic의 패턴으로 설명했다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>MCP가 에이전트와 도구를 잇는 배선이라면, Skills는 에이전트에게 업무 방식을 가르치는 매뉴얼이다. 두 규격이 모두 중립 재단에 자리 잡으면서 에이전트 확장 계층의 표준화가 거의 마무리 단계에 들어섰다. 기업 입장에서는 특정 벤더에 종속되지 않고 스킬 자산을 쌓을 수 있다는 신호가 된다. 반대로 경쟁사 엔지니어가 함께 유지보수하는 만큼 규격 변경 속도는 느려지고 합의 비용은 커질 수 있다.</p>\n<h3>실무 적용</h3>\n<ul><li>사내 반복 업무 절차를 SKILL.md 형태로 문서화해 두면 어떤 에이전트 도구로 옮겨도 재사용할 수 있다.</li><li>스킬 설명 메타데이터는 검색·호출의 기준이므로 트리거 조건을 구체적으로 쓴다.</li><li>외부 스킬을 설치하기 전에는 포함된 스크립트와 권한 범위를 코드 리뷰하듯 확인한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드 개발자에게 스킬은 디자인 시스템 문서와 닮았다. 컴포넌트 사용 규칙을 사람이 아닌 에이전트가 읽도록 정리하는 일이기 때문이다. AX 관점에서 진짜 자산은 모델이 아니라 우리 조직의 절차를 담은 이런 문서라고 본다. 규격이 중립이 되었으니 이제 투자 대상은 규격 선택이 아니라 좋은 스킬을 쓰는 습관이다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Donating Agent Skills to the Agentic AI Foundation ↗</a></li><li><a href=\"https://venturebeat.com/ai/anthropic-launches-enterprise-agent-skills-and-opens-the-standard\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Anthropic launches enterprise agent skills and opens the standard ↗</a></li><li><a href=\"https://www.unite.ai/anthropic-opens-agent-skills-standard-continuing-its-pattern-of-building-industry-infrastructure\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Unite.AI: Anthropic opens Agent Skills standard ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+    "tags": [
+      "AgentSkills",
+      "OpenStandard",
+      "AX"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-25-systems-thinking-for-pms",
+    "category": "plan",
+    "date": "2026-10-25",
+    "title": "기능 공장을 넘어, PM의 시스템 사고 가이드",
+    "rawTitle": "A guide to systems thinking for Product Managers",
+    "summary": "제품을 기능 목록이 아닌 서로 얽힌 시스템으로 보라는 제안. 변경이 파급되는 2차 효과를 미리 읽는 것이 기획과 QA의 공통 과제다.",
+    "bodyHtml": "<p>Mind the Product에 실린 이 글은 제품 관리의 시선을 '기능을 얼마나 빨리 내보내는가'에서 '제품이 어떤 시스템 안에서 움직이는가'로 옮기자고 제안한다. 요구사항을 쌓는 선형 방식은 한 곳의 변경이 다른 곳에서 문제를 일으키는 순간 한계를 드러낸다. 기획자와 QA가 같은 지도를 보고 싶다면 읽어볼 만한 출발점이다.</p>\n<blockquote>\"A system as a set of interrelated components that work together to perform whatever functions are required to achieve the system's objectives.\"<cite>Mind the Product</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>필자는 피터 센게의 『학습하는 조직』이 대중화한 '전체를 보는 훈련'과 도넬라 메도즈의 시스템 정의를 바탕에 둔다. 여기에 존 커틀러의 관점, 곧 시스템 사고를 제품이 환경·내부 구조와 어떻게 맞물리는지 아는 '상황 인식'으로 보는 시각을 더한다. 핵심은 정지된 스냅샷 대신 패턴과 연결을 읽어 의사결정의 2차 효과를 예상하는 것이다. 제품을 한 번 출시하고 끝나는 산출물이 아니라 계속 유지보수해야 하는 살아 있는 시스템으로 대한다는 점이 결론이다.</p>\n<h3>여러 시각</h3>\n<p>같은 사고방식은 품질 쪽에서도 다른 언어로 나타난다.</p>\n<ul><li><b>Ministry of Testing</b> — AI Risk List 연재에서 차별, 개인정보, 오용, 인간-컴퓨터 상호작용, 사회·환경 영향까지 위험 범주를 나눠 제품 전체를 훑는 점검 틀을 제시한다. 시스템의 어느 면이 깨질 수 있는지 목록으로 만드는 접근이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>기능 하나를 추가할 때 영향은 화면, 데이터, 운영, 사용자 기대까지 번진다. 기획 단계에서 이 연결을 그려 두면 QA는 무엇을 회귀 테스트해야 할지 근거를 갖는다. 반대로 연결을 모르는 채 출시 속도만 높이면 장애와 신뢰 하락이 뒤늦게 청구된다. AI 기능처럼 결과가 비결정적인 제품에서는 이 차이가 더 커진다.</p>\n<h3>실무 적용</h3>\n<ul><li>요구사항 문서에 '이 변경이 영향을 주는 영역' 항목을 넣고 인과 관계를 간단한 그림으로 남긴다.</li><li>테스트 계획을 기능 목록이 아니라 위험 범주(데이터·UX·보안·운영) 기준으로 한 번 더 점검한다.</li><li>출시 후 지표를 한 개가 아닌 서로 견제하는 2~3개로 묶어 본다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드를 하다 보면 작은 스타일 변경이 전혀 다른 페이지를 깨뜨리는 경험이 흔하다. 이것이 바로 시스템 사고가 필요한 이유라고 생각한다. 기획과 QA를 나누어 보지 않고 같은 의존성 지도를 공유하면 리뷰와 테스트 비용이 함께 줄어든다. AI 기능을 붙일 때는 상호작용 실패 시 사용자에게 제어권을 돌려주는 경로까지 시스템의 일부로 설계해야 한다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.mindtheproduct.com/a-guide-to-systems-thinking-for-product-managers/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: A guide to systems thinking for Product Managers ↗</a></li><li><a href=\"https://www.ministryoftesting.com/insights/ai-risk-list-human-computer-interaction-5\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: AI Risk List: Human-Computer Interaction (5) ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/a-guide-to-systems-thinking-for-product-managers/",
+    "tags": [
+      "SystemsThinking",
+      "ProductPlanning",
+      "QA"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-24-document-pip-widgets",
     "category": "design",
     "date": "2026-10-24",

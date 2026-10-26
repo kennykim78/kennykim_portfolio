@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-10-26-animating-css-border-image",
+    "category": "design",
+    "date": "2026-10-26",
+    "title": "border-image도 움직인다: @property로 만드는 그라디언트 테두리",
+    "rawTitle": "Animating CSS border-image",
+    "summary": "등록된 커스텀 속성(@property)을 쓰면 border-image 안의 그라디언트를 부드럽게 전환할 수 있다. 코드 한 줄 수준의 테두리 모션 기법을 정리했다.",
+    "bodyHtml": "<p>테두리에 그라디언트가 차오르거나 회전하는 효과는 보통 의사 요소나 SVG, 래퍼 요소를 겹쳐서 만들어 왔습니다. CSS-Tricks에 올라온 Preethi의 글은 border-image 하나로 같은 효과를 만드는 방법을 보여줍니다. 열쇠는 @property로 등록한 커스텀 속성입니다. 마크업을 늘리지 않고도 인터랙션 피드백을 줄 수 있어 UI 모션을 설계하는 쪽에서 눈여겨볼 만합니다.</p><blockquote>\"I like border-image because it's super efficient, especially when it comes to animating border images and gradients.\"<cite>CSS-Tricks</cite></blockquote><h3>무슨 일인가</h3><p>핵심 아이디어는 그라디언트 안의 숫자를 변수로 빼고, 그 변수에 타입을 부여하는 것입니다. 예를 들어 percentage나 angle 문법으로 등록한 --p를 linear-gradient의 색상 정지점에 쓰고, hover 때 transition으로 값을 바꾸면 브라우저가 중간 값을 보간합니다. 등록하지 않은 변수는 문자열로만 취급돼 전환이 일어나지 않고 값이 뚝 바뀝니다. 두께는 border-image-width, 간격은 border-image-outset, 채움 방식은 border-image-slice로 조절합니다. 한계도 분명해서, border-image는 border-radius를 따라 휘지 않기 때문에 둥근 모서리가 필요한 곳에서는 우회가 필요하다고 글은 짚습니다.</p><h3>여러 시각</h3><p>같은 문제를 다른 도구로 푸는 글도 이미 여럿 있습니다.</p><ul><li><b>web.dev</b> — @property가 2024년 7월부터 세 주요 엔진 모두에서 지원되는 Baseline이 되었다고 정리합니다. 타입이 있는 변수 덕분에 그라디언트 애니메이션이 실무에서 쓸 수 있는 선택지가 되었다는 시각입니다.</li><li><b>web.dev(conic-gradient 테두리 글)</b> — conic-gradient의 시작 각도를 변수로 돌려 회전하는 테두리를 만드는 접근을 다룹니다. 둥근 모서리가 필요하면 이쪽이 더 자연스러운 대안입니다.</li></ul><h3>왜 중요한가</h3><p>예전에는 그라디언트 테두리 애니메이션이 곧 추가 DOM이나 JS였습니다. 이제 CSS 한 블록으로 해결되면 컴포넌트가 단순해지고, 디자인 시스템에서 상태별 모션을 토큰처럼 관리하기 쉬워집니다. 다만 border-radius와 충돌하는 제약을 모르고 쓰면 디자이너와 구현 사이에 어긋남이 생깁니다. 기법의 장점과 한계를 같이 알고 있어야 시안 단계에서 현실적인 약속을 할 수 있습니다.</p><h3>실무 적용</h3><ul><li>버튼·입력창의 hover/focus 피드백에 border-image 기반 그라디언트 전환을 시험하고, 둥근 모서리가 필요한 곳은 conic-gradient 방식으로 나눠 쓴다.</li><li>@property로 등록한 변수는 디자인 토큰 문서에 타입과 초기값까지 함께 기록한다.</li><li>prefers-reduced-motion 환경에서는 전환을 끄고 정적인 테두리만 남기는 폴백을 기본으로 넣는다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드 관점에서 이 글의 가치는 새 기능이 아니라 \"이미 있는 속성을 제대로 조합하는 법\"에 있습니다. 모션을 위해 요소를 더하는 습관을 버리면 접근성 트리도, 번들도 가벼워집니다. 한편 한계를 숨기지 않고 적은 점이 좋았습니다. 팀에서는 이런 기법을 도입할 때 데모의 화려함보다 대체 수단과 폴백을 먼저 합의하려 합니다. 작은 CSS 기법이 UX 품질 기준을 어떻게 바꾸는지 계속 기록해 둘 생각입니다.</p><h3>출처</h3><ul><li><a href=\"https://css-tricks.com/animating-css-border-image/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Animating CSS border-image ↗</a></li><li><a href=\"https://web.dev/blog/at-property-baseline\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: @property: Next-gen CSS variables now with universal browser support ↗</a></li><li><a href=\"https://web.dev/articles/conic-gradient-border\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: Use conic gradients to create a cool border ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/animating-css-border-image/",
+    "tags": [
+      "CSS",
+      "border-image",
+      "@property"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-26-anthropic-independent-evaluators",
+    "category": "ai",
+    "date": "2026-10-26",
+    "title": "외부 평가자를 사내에 들인다: Anthropic과 METR의 임베디드 평가",
+    "rawTitle": "An update on independent evaluators",
+    "summary": "Anthropic이 비영리 평가기관 METR 팀에 직원에 준하는 접근 권한을 주고 독립 게재권까지 보장했다. 프런티어 AI 감독 방식의 실험이다.",
+    "bodyHtml": "<p>Anthropic이 독립 평가자 관련 업데이트를 내놓았습니다. 비영리 AI 평가기관 METR의 팀에게 사내 시스템에 대한 직원에 준하는 접근 권한을 주고, 평가 결과를 독립적으로 발표할 수 있게 한다는 내용입니다. 모델을 완성한 뒤 밖에서 시험하는 기존 방식에서 한 걸음 더 들어간 구조입니다. AI 도구를 업무에 깊이 들이는 기업이라면 공급자의 안전 검증이 어떻게 이뤄지는지 알아둘 필요가 있습니다.</p><blockquote>\"We aim to close the gap between what evaluators understand about a frontier AI company's systems and what the company itself understands.\"<cite>Anthropic</cite></blockquote><h3>무슨 일인가</h3><p>발표에 따르면 METR 소속 직원 여섯 명이 회사 장비와 사무 공간, 내부 시스템 접근권을 받습니다. 접근 범위는 Anthropic 자체 위험 평가팀과 비슷한 수준이지만 고객 데이터, 변호사-의뢰인 간 비밀 자료, 모델 아키텍처 세부 정보는 제외됩니다. METR은 결과를 직접 공개할 수 있으나 기밀 범주에 해당하면 Anthropic이 삭제를 요구할 수 있습니다. 공개하기 어려운 안전 정보를 제3자가 대신 확인해 근거와 결론을 알려 주는 다리 역할을 하겠다는 취지입니다. 한계로는 소규모 팀이라는 점, 다른 METR 연구자와 분리 운영된다는 점, 무엇이 삭제 대상인지 최종 판단이 회사에 있다는 점이 눈에 띕니다.</p><h3>여러 시각</h3><p>이 방식이 충분한지는 다른 보도와 함께 볼 때 더 분명해집니다.</p><ul><li><b>MIT Technology Review</b> — AI 에이전트 사고의 책임 문제를 다루며, OpenAI가 Hugging Face 침해 사건 뒤 METR 등을 불렀지만 접근과 공개 범위가 제한됐다고 짚습니다. 현행 주법 대부분은 외부 감사를 의무화하지 않고 일리노이 SB 315만 2028년부터 연례 제3자 감사를 요구한다고 정리합니다.</li><li><b>Anthropic</b> — 자발적 약속과 집행 가능한 계약으로 접근 권한을 보장하는 쪽에 무게를 두며, 격차를 줄이는 것 자체를 목표로 삼습니다.</li></ul><h3>왜 중요한가</h3><p>법적 의무가 약한 상태에서는 감사의 품질이 사실상 기업의 선의에 기대게 됩니다. 접근 범위와 게재권을 계약으로 명시한 이번 사례는 하나의 기준점이 될 수 있습니다. 반대로 삭제 판단권이 회사에 남아 있는 한 독립성 논란은 계속될 것입니다. 기업 고객 입장에서는 공급자 선택 기준에 \"외부 평가가 어떤 조건으로 이뤄지는가\"가 들어갈 시점이 되었습니다.</p><h3>실무 적용</h3><ul><li>AI 도구 도입 검토서에 공급자의 외부 평가 체계(평가자, 접근 범위, 공개 방식)를 확인 항목으로 추가한다.</li><li>에이전트를 업무에 붙일 때는 사고 보고와 책임 소재를 내부 기준으로 먼저 정해 둔다.</li><li>벤더가 공개한 안전 문서는 요약본이 아니라 평가 조건과 제외 범위까지 읽는다.</li></ul><h3>Kenny의 관점</h3><p>AX를 추진하는 입장에서 모델 성능만큼 중요한 것이 \"이 시스템을 누가 어떤 조건으로 검증했는가\"입니다. 이번 발표는 완벽한 해답이라기보다 투명성의 기준선을 올리는 시도로 읽힙니다. 저는 팀 내 AI 도입 기준에도 같은 질문을 넣으려 합니다. 성능 벤치마크 옆에 검증 조건과 한계를 함께 적는 습관이, 결국 사용자와 고객의 신뢰를 지키는 가장 실무적인 방법이라고 생각합니다.</p><h3>출처</h3><ul><li><a href=\"https://www.anthropic.com/news/an-update-on-independent-evaluators\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: An update on independent evaluators ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/09/28/1145197/whos-liable-when-ai-agents-go-rogue/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Who’s liable when AI agents go rogue? ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
+    "tags": [
+      "AI Safety",
+      "Evaluation",
+      "METR"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-25-agent-skills-agentic-ai-foundation",
     "category": "ai",
     "date": "2026-10-25",

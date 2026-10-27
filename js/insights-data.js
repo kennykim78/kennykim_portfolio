@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-10-27-data-quality-testing-trust",
+    "category": "plan",
+    "date": "2026-10-27",
+    "title": "데이터 품질 테스트는 인터페이스가 아닌 신뢰에서 시작한다",
+    "rawTitle": "Testing data quality effectively",
+    "summary": "데이터에는 소프트웨어 같은 겉모습이 없다. 사용자 가치에서 출발하는 품질 차원과 메달리온·WAP·데이터 계약이 테스트 설계의 뼈대가 된다.",
+    "bodyHtml": "<p>화면과 API가 있는 소프트웨어와 달리 데이터는 관찰할 만한 인터페이스가 거의 없습니다. 그래서 익숙한 테스트 기법을 그대로 옮기면 \"행이 몇 개인가\" 수준의 확인에 머물기 쉽습니다. Ministry of Testing에 실린 Bob Salmon의 글은 이 지점을 정면으로 짚습니다. AI 기능이 늘며 데이터 파이프라인이 제품 품질의 상류가 된 지금, 기획 단계의 품질 기준 설정과 QA 전략을 함께 다시 보게 만드는 글입니다.</p>\n<blockquote>\"Garbage in, garbage out\"<cite>Ministry of Testing</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>글의 출발점은 데이터가 소프트웨어와 다르다는 진단입니다. 겉으로 드러나는 껍데기가 없고 계약이 느슨하며, 입력과 결과 사이의 인과를 머릿속에 그리기 어렵습니다. 대신 먼저 \"이 데이터를 누가, 어떤 문제를 풀려고 쓰는가\"를 묻고, 정확성·완전성·유효성·일관성·적시성·유일성의 여섯 차원으로 품질을 쪼개 보라고 제안합니다. 문제를 막는 패턴으로는 브론즈·실버·골드 단계의 메달리온 구조, 검증 후 공개하는 Write-Audit-Publish, 사람이 읽을 수 있는 YAML 형태로 버전 관리하는 데이터 계약을 듭니다.</p>\n<h3>여러 시각</h3>\n<p>같은 문제를 AI 제품 쪽에서 보면 접근이 비슷하면서도 출발점이 다릅니다.</p>\n<ul><li><b>Lenny's Newsletter(Hamel Husain·Shreya Shankar)</b> — AI 제품은 지표부터 만들지 말고 먼저 오류 발견(error discovery)을 하라고 합니다. 실제 세션 트레이스 약 100건을 사람과 에이전트가 함께 검토해 실패 유형을 묶고 빈도를 세는 방식입니다.</li><li><b>Ministry of Testing</b> — 반대로 파이프라인 단계마다 검증 지점을 심어 문제가 퍼지기 전에 막는 예방 쪽에 무게를 둡니다.</li></ul>\n<p>한쪽은 \"무엇이 깨지는지 관찰해서 배운다\", 다른 쪽은 \"깨지지 않을 구조를 만든다\"입니다. 둘은 경쟁이 아니라 순서의 문제로 읽힙니다.</p>\n<h3>왜 중요한가</h3>\n<p>데이터와 모델 출력의 품질 문제는 하류로 갈수록 커지고, 발견 시점이 늦을수록 원인 추적 비용이 급증합니다. 그런데 요구사항 문서에는 \"정확한 데이터\"처럼 검증 불가능한 문장이 자주 적힙니다. 품질 차원을 수용 기준으로 번역하지 않으면 QA는 무엇을 통과 기준으로 삼을지 알 수 없습니다. 기획과 QA가 같은 언어를 쓰는 순간 품질은 사후 점검이 아니라 설계 입력이 됩니다.</p>\n<h3>실무 적용</h3>\n<ul><li>요구사항에 \"누가 이 데이터로 어떤 결정을 내리는가\"를 먼저 적고, 여섯 품질 차원 중 중요한 두세 개만 측정 가능한 수용 기준으로 바꾼다.</li><li>수집 단계 원본(브론즈)과 가공 결과(골드) 사이에 검증 지점을 두고, 실패 시 공개를 막는 게이트를 둔다.</li><li>AI 기능은 출시 전 실제 트레이스 100건 안팎을 직접 읽고 실패 유형을 빈도순으로 정리해 테스트 우선순위로 쓴다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드 개발자로서 가장 자주 마주치는 장애는 화면 버그가 아니라 \"화면이 정직하게 보여준 나쁜 데이터\"입니다. UI 테스트가 아무리 촘촘해도 상류 데이터가 흔들리면 사용자는 제품 전체를 불신합니다. AX 프로젝트에서도 모델 정확도보다 입력 데이터의 계약을 먼저 합의하는 쪽이 재작업을 크게 줄였다고 느낍니다. 결국 기획자가 품질 기준을 문장으로 남기고 QA가 그것을 게이트로 만드는 협업이 가장 값싼 보험이라고 봅니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.ministryoftesting.com/insights/testing-data-quality-effectively\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: Testing data quality effectively ↗</a></li><li><a href=\"https://www.lennysnewsletter.com/p/advanced-evals-how-to-find-and-fix\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: Advanced evals: How to find (and fix) hidden AI failures in your product ↗</a></li></ul>",
+    "source": "Ministry of Testing",
+    "sourceUrl": "https://www.ministryoftesting.com/insights/testing-data-quality-effectively",
+    "tags": [
+      "QA",
+      "DataQuality",
+      "Evals"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-27-say-yes-more-accurately",
+    "category": "pm",
+    "date": "2026-10-27",
+    "title": "거절하는 PM에서 더 정확히 승인하는 PM으로",
+    "rawTitle": "I spent years getting paid to say no. Then I learned to say yes, more accurately",
+    "summary": "사기 방지 PM이 차단이 아닌 정밀도로 목표를 재정의하자 손실은 그대로인데 분기 매출이 1,900만 달러 늘었다. 복제가 쉬운 시대의 해자 논의와 함께 읽는다.",
+    "bodyHtml": "<p>리스크를 다루는 PM의 성과 지표는 보통 손실 감소입니다. 의심스러우면 막는 것이 가장 안전해 보이기 때문입니다. Mind the Product에 실린 Amey Farde의 글은 그 지표 자체가 틀렸을 수 있다고 말합니다. 사업기획 관점에서 \"우리가 막는 것\"과 \"우리가 놓치는 매출\"을 같은 장부에 올리는 방법을 보여주는 사례입니다.</p>\n<blockquote>\"A wrongly declined good customer is a loss too. It just shows up on somebody else's P&amp;L.\"<cite>Mind the Product</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>저자는 JPMorgan Chase에서 손실 중심으로, Walmart eCommerce에서 고객 영향 중심으로, 이후 Sift에서 정밀도 중심으로 역할을 넓혀 왔다고 소개합니다. 핵심 변화는 고정 임계값을 실시간 트래픽 대비 상대 순위를 매기는 백분위 방식으로 바꾼 것입니다. 이렇게 하자 플래시 세일 때 몰린 정상 구매자가 한꺼번에 거절당하는 일이 줄었습니다. 저자는 이 튜닝이 사기 손실은 그대로 두면서 단일 분기 1,900만 달러의 매출 증가로 이어졌고 차지백 비율도 내려갔다고 밝힙니다. 여기에 차단율 상승이 실제 공격 증가와 맞물리는지 감시하는 안정화 장치와, 리스크·성장 팀이 거짓 거절의 금액을 기준으로 함께 보는 분기 로드맵 리뷰가 더해졌습니다.</p>\n<h3>여러 시각</h3>\n<p>같은 \"지키는 것의 가치\"를 다른 각도에서 본 글이 있습니다.</p>\n<ul><li><b>Mind the Product(Rob Ferguson, Fireworks AI)</b> — 기능은 며칠이면 95~97%까지 복제되므로 방어선은 기능이 아니라 고객과의 관계, 데이터, 분명한 관점이라고 말합니다. \"관계는 디자인보다 복제하기 어렵다\"는 문장이 요약입니다.</li><li><b>Mind the Product(Amey Farde)</b> — 방어는 막는 것이 아니라 정확하게 통과시키는 것이라고 봅니다. 고객 한 명을 잘못 거절하는 순간 관계라는 해자가 깎입니다.</li></ul>\n<p>두 글을 겹치면 정밀도는 단순한 운영 지표가 아니라 관계를 지키는 전략 지표가 됩니다.</p>\n<h3>왜 중요한가</h3>\n<p>부서마다 지표가 다르면 각자 합리적으로 행동해도 회사 전체는 손해를 봅니다. 리스크팀의 손실 절감은 성장팀의 전환율 하락으로 나타나고, 그 비용은 다른 손익계산서에 찍힙니다. 공통 단위인 금액으로 비용을 환산해 같은 회의에서 보면 우선순위 다툼이 데이터 논의로 바뀝니다. 복제가 쉬운 시장일수록 이런 내부 정렬이 곧 실행 속도의 차이가 됩니다.</p>\n<h3>실무 적용</h3>\n<ul><li>\"차단·거절·반려\"로 끝나는 지표에는 반드시 짝이 되는 \"놓친 가치\"를 금액으로 병기한다.</li><li>고정 임계값 대신 상대 기준(백분위)을 도입해 트래픽 급증기의 오탐을 줄이는 방안을 검토한다.</li><li>상충하는 목표를 가진 두 팀이 분기마다 같은 로드맵 리뷰에서 같은 화폐 단위로 우선순위를 정한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>서비스를 만들다 보면 \"안전하게 막는 UX\"가 얼마나 쉽게 전환율을 갉아먹는지 자주 봅니다. 과한 인증 단계나 모호한 오류 문구는 보안 장치이기 전에 이탈 장치입니다. PM으로서는 지표를 하나 정할 때 그 지표가 다른 팀 손익에 남길 그림자를 함께 적는 습관이 중요하다고 생각합니다. 정확하게 \"예\"라고 말하는 능력이 AI 시대에 복제되지 않는 제품 감각이라고 봅니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.mindtheproduct.com/i-spent-years-getting-paid-to-say-no-then-i-learned-to-say-yes-more-accurately/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: I spent years getting paid to say no. Then I learned to say yes, more accurately ↗</a></li><li><a href=\"https://www.mindtheproduct.com/how-to-make-your-customers-stay-when-anyone-can-copy-your-product-rob-ferguson-vp-fireworks-ai/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: How to make your customers stay when anyone can copy your product | Rob Ferguson ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/i-spent-years-getting-paid-to-say-no-then-i-learned-to-say-yes-more-accurately/",
+    "tags": [
+      "ProductManagement",
+      "Metrics",
+      "Strategy"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-26-animating-css-border-image",
     "category": "design",
     "date": "2026-10-26",

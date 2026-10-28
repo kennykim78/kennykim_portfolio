@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-10-28-dark-mode-two-state-toggle",
+    "category": "design",
+    "date": "2026-10-28",
+    "title": "다크 모드 토글, 두 단계면 충분하다",
+    "rawTitle": "Dark mode toggles: two states are enough",
+    "summary": "시스템 설정을 기본값으로 두고 반대 모드만 보여 주는 2상태 토글이 3상태 못지않게 모든 경우를 표현할 수 있다는 주장.",
+    "bodyHtml": "<p>다크 모드 토글을 라이트·다크·시스템 3단계로 만들어야 할까요? Lea Verou는 CSS-Tricks에서 \"두 단계면 충분하다\"고 주장합니다. 대부분의 사이트가 당연하게 여기던 3상태 UI를 다시 따져 보게 만드는 글입니다. 토글은 사용자가 사이트에 온 목적과 무관한 부차적 컨트롤이라는 점이 출발점입니다.</p>\n<blockquote>\"a good two state control can actually express all three states — users just need to apply the override the first time it becomes relevant.\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>핵심 아이디어는 기본값을 운영체제 설정(<code>prefers-color-scheme</code>)에 맡기는 것입니다. 사용자가 직접 바꿀 때만 선택을 <code>localStorage</code>에 저장해 덮어씁니다. 토글에는 현재 적용된 모드의 반대쪽만 보여 주므로 \"시스템\" 옵션을 항상 노출할 필요가 없습니다. 사실상 세 상태를 두 개의 버튼으로 표현하는 셈입니다.</p>\n<h3>여러 시각</h3>\n<p>같은 시기 CSS 생태계는 상태를 JS 없이 선언적으로 다루는 방향으로 가고 있습니다.</p>\n<ul><li><b>CSS-Tricks What's !important #19</b> — <code>scroll-state()</code> 쿼리의 stuck·snapped 같은 상태와 <code>@custom-media</code>를 소개하며 UI 상태를 CSS에서 해결하는 흐름을 보여 줍니다.</li><li><b>댓글의 반론</b> — 3상태 토글은 시스템 동기화로 명시적으로 되돌릴 수 있고 선택지가 투명하다는 점을 들어, 두 단계는 되돌리기 경로가 모호해진다고 지적합니다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>컨트롤이 하나 늘 때마다 사용자는 선택 비용을 치릅니다. 다크 모드 토글처럼 사소한 UI일수록 \"모든 경우를 노출\"하려는 습관이 쌓여 인터페이스를 무겁게 만듭니다. 반면 반론이 말하는 되돌리기 문제도 실재합니다. 결국 문제는 기본값을 얼마나 믿을 수 있느냐, 예외 경로를 얼마나 쉽게 만들 수 있느냐입니다.</p>\n<h3>실무 적용</h3>\n<ul><li>초기 테마는 <code>prefers-color-scheme</code>로 정하고, 저장된 값이 있을 때만 덮어쓰세요.</li><li>토글 라벨은 현재 상태가 아니라 \"전환될 상태\"를 보여 주세요.</li><li>깜빡임(FOUC)을 막도록 저장값 확인은 렌더링 전에 인라인 스크립트로 처리하세요.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드에서 가장 좋은 UI는 설명이 필요 없는 UI라고 생각합니다. 세 상태를 모두 보여 주는 것은 개발자의 완결성 욕심인 경우가 많습니다. 다만 \"시스템으로 복귀\" 경로를 설정 화면이나 길게 누르기로 남겨 두는 절충은 필요합니다. 기본값을 믿되 탈출구는 숨겨 두는 설계가 좋은 UX에 가깝습니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/dark-mode-toggles-two-states-are-enough/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Dark mode toggles: two states are enough ↗</a></li><li><a href=\"https://css-tricks.com/whats-important-19/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: What's !important #19 ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/dark-mode-toggles-two-states-are-enough/",
+    "tags": [
+      "CSS",
+      "Dark Mode",
+      "UX"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-28-no-long-term-plan-emergence",
+    "category": "pm",
+    "date": "2026-10-28",
+    "title": "장기 계획이 없어도 괜찮다: 창발형 커리어와 제품 전략",
+    "rawTitle": "What if you're not supposed to have a long-term plan?",
+    "summary": "정교한 계획 대신 단순한 원칙을 쌓아 결과가 창발하게 하라는 제안을, Guideline의 PMF 사례와 함께 비교해 본다.",
+    "bodyHtml": "<p>\"5년 뒤 어디에 있고 싶은가요?\"라는 질문에 막힌 적이 있다면 이 글이 위로가 됩니다. Molly Graham은 Lenny's Newsletter에서 장기 계획이 없어도 괜찮고, 오히려 없는 편이 나을 수 있다고 말합니다. 개념은 '창발(emergence)'입니다. 단순한 원칙이 쌓여 복잡한 결과가 만들어진다는 관점입니다.</p>\n<blockquote>\"An outcome no single bird designed or planned\"<cite>Lenny's Newsletter</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>글은 찌르레기 떼의 군무에 비유합니다. 중앙 설계자 없이 각자가 이웃과의 거리 같은 단순한 규칙만 지켜도 거대한 패턴이 나옵니다. 성공한 사람들도 돌아보면 전략적으로 보일 뿐, 당시에는 에너지와 원칙을 따라 움직였다는 겁니다. 저자는 하루의 에너지를 1~10점으로 기록하고, 정점의 순간을 되짚어 자신만의 '로컬 규칙'을 찾으라고 제안합니다.</p>\n<h3>여러 시각</h3>\n<p>같은 \"계획\" 문제를 First Round Review의 Guideline 사례는 정반대 각도에서 보여 줍니다.</p>\n<ul><li><b>First Round Review</b> — Guideline은 TaskRabbit 직원의 401(k) 가입률이 36%에 그친다는 문제를 출발점 삼아 풀스택을 직접 만들고 401(k) 하나로 범위를 좁혔습니다. 0% 자산 수수료와 자동 가입이라는 뚜렷한 가설이 있었지만, 초기 영업 실패에서 Gusto 파트너십이라는 예상 밖 경로가 열렸습니다.</li></ul>\n<p>두 글 모두 명확한 원칙과 집중이 있고 정확한 도착지는 없다는 점에서 만납니다.</p>\n<h3>왜 중요한가</h3>\n<p>제품 로드맵과 커리어 모두 불확실성 속에서 움직입니다. 정교한 계획이 실행을 늦추는 순간이 흔합니다. 원칙을 먼저 정하면 결과가 달라져도 방향이 흔들리지 않습니다. 팀 차원에서는 \"무엇을 만들까\"보다 \"무엇은 절대 하지 않을까\"를 합의하는 것이 더 강한 정렬 장치가 됩니다.</p>\n<h3>실무 적용</h3>\n<ul><li>로드맵에 기능 목록 대신 3~5개의 의사결정 원칙을 함께 적어 두세요.</li><li>분기마다 가장 에너지가 올랐던 업무를 기록해 다음 분기의 우선순위 단서로 쓰세요.</li><li>초기 실패는 폐기하지 말고 예상 밖 경로의 신호인지 회고하세요.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>PM·PL 일을 하며 계획이 어긋나는 장면을 자주 봤습니다. 문제는 계획 자체가 아니라 계획에 대한 집착이었습니다. 저는 계획을 가설로 두고 원칙은 고정하는 방식을 선호합니다. AX 프로젝트처럼 기술 변화가 빠른 영역에서는 이 접근이 더 잘 맞습니다. 로드맵은 지도가 아니라 나침반에 가깝다고 생각합니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.lennysnewsletter.com/p/what-if-youre-not-supposed-to-have\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: What if you're not supposed to have a long-term plan? ↗</a></li><li><a href=\"https://review.firstround.com/guidelines-path-to-product-market-fit/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: Guideline's Path to Product-Market Fit ↗</a></li></ul>",
+    "source": "Lenny's Newsletter",
+    "sourceUrl": "https://www.lennysnewsletter.com/p/what-if-youre-not-supposed-to-have",
+    "tags": [
+      "Product Management",
+      "Strategy",
+      "Career"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-27-data-quality-testing-trust",
     "category": "plan",
     "date": "2026-10-27",

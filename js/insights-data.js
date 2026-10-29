@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-10-29-claude-drug-development-early-progress",
+    "category": "ai",
+    "date": "2026-10-29",
+    "title": "Claude, 신약 개발 병목을 파고들다: 초기 성과와 한계",
+    "rawTitle": "Early progress on accelerating drug development with Claude",
+    "summary": "Anthropic이 제약·바이오 6개 파트너와 신약 개발 전 단계에 Claude를 투입한 초기 결과를 공개했다. 수치는 인상적이지만 대부분 전임상 단계다.",
+    "bodyHtml": "<p>Anthropic이 제약·바이오 파트너 여섯 곳과 함께 진행한 신약 개발 초기 성과를 공개했습니다. 타깃 발굴부터 분자 설계, 최적화, 제조, 규제 문서, 임상시험 운영까지 한 단계가 아니라 전 과정에 걸친 시도라는 점이 눈에 띕니다. 동시에 같은 주에 과학 연구 지원 프로그램도 20개 기관으로 확장되어, AI가 '코딩 도구'를 넘어 과학 업무 도구로 자리 잡는 흐름이 선명해졌습니다.</p>\n<blockquote>\"The bottlenecks are distributed all throughout the drug development process.\"<cite>Anthropic Research</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>파트너는 BigHat Biosciences, Bristol Myers Squibb, Divergence Labs, Enveda, Generate Biomedicines, The Column Group이며, 별도로 Anthropic 내부 신약 연구도 병행됩니다. Generate Biomedicines는 CAR T 세포 구성요소를 70% 짧게 설계하면서 수용체 발현을 10배 높였다고 밝혔습니다. Divergence Labs는 한 달 동안 약 3만 5천 개의 항체 설계를 생성해 IgE 제거 후보 20여 개를 찾았고, BigHat은 10주간 1,010개 변이체를 시험해 결합력 10배 이상, 응집 속도 100배 이상 개선을 얻었습니다. Enveda는 사람이 하던 검토를 25시간 이상에서 3시간 미만으로(89%) 줄이면서 표시된 문제 11건을 모두, 추가로 7건을 더 잡아냈다고 합니다.</p>\n<h3>여러 시각</h3>\n<p>같은 흐름을 다른 각도에서 보면 해석의 초점이 달라집니다.</p>\n<ul><li><b>Anthropic AI for Science</b> — 2025년 5월 시작된 크레딧 프로그램이 Sloan·Simons·Schmidt Sciences·NSF 같은 재단과 Sanger 연구소, EMBL, gnomAD 등 20개 기관으로 늘었다. 오픈 데이터셋·소프트웨어·표준 같은 공공재 구축에 방점이 있다.</li>\n<li><b>Anthropic 신약 개발 보고</b> — 반면 이쪽은 기업 파트너와의 개별 성과 사례 중심이며, 대부분 아직 전임상 단계로 사람 대상 시험은 시작되지 않았다고 스스로 한계를 밝힌다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>눈여겨볼 대목은 속도 향상 자체보다 '병목이 한 곳에 있지 않다'는 진단입니다. 설계 생성은 빨라졌지만 검증은 실험실의 시간이 걸리고, 문서·규제·운영 업무에는 또 다른 병목이 있습니다. 검토 시간을 89% 줄인 Enveda 사례처럼 지루한 확인 업무에서 효과가 크다는 점도 현실적입니다. 다만 수치는 각 사가 고른 성공 사례이므로, 임상 성공률이라는 최종 지표가 나오기 전에는 과대평가를 경계해야 합니다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI 도입 효과는 '생성' 단계가 아니라 '검토·검증' 단계의 시간 절감으로 먼저 측정하자.</li>\n<li>사례 수치를 인용할 때는 단계(전임상/임상)와 선별 편향을 함께 명시하는 UI·리포트를 설계하자.</li>\n<li>사람이 검토하는 지점을 워크플로 중간에 명시적으로 두는 휴먼 인 더 루프 화면을 기본값으로 삼자.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드·AX 관점에서 이 글의 교훈은 '모델 성능'보다 '업무 흐름 전체 설계'입니다. 후보를 3만 5천 개 쏟아내는 시스템은 그것을 걸러내고 비교하고 근거를 추적하는 인터페이스가 없으면 쓸모가 없습니다. 결국 AX의 승부처는 생성 결과를 사람이 빠르게 판단하도록 돕는 화면과 검증 파이프라인이라고 생각합니다. 그래서 저는 AI 기능을 기획할 때 먼저 '검토 시간이 얼마나 줄어드는가'를 질문합니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/research/early-progress-drug-development\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Early progress on accelerating drug development with Claude ↗</a></li><li><a href=\"https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: AI for Science expands to foundations and research institutions ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/research/early-progress-drug-development",
+    "tags": [
+      "AI for Science",
+      "Drug Discovery",
+      "Human-in-the-loop"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-29-churned-customers-product-lessons",
+    "category": "plan",
+    "date": "2026-10-29",
+    "title": "이탈 고객에게 배우는 제품 기획: 생존자 편향 깨기",
+    "rawTitle": "What your churned customers can teach you about your product",
+    "summary": "성공한 고객만 보면 제품의 약점이 가려진다. 최근 이탈 고객 10곳에서 공통점을 찾는 6개월 사이클을 소개한다.",
+    "bodyHtml": "<p>제품 기획에서 가장 흔한 착시는 남아 있는 고객의 목소리만 듣는 것입니다. Mind the Product에 실린 이 글은 이탈 고객 분석을 일회성 사후 조사가 아니라 정기 루프로 만들자고 제안합니다. 같은 주에 소개된 책임 있는 제품 개발 키노트와 함께 읽으면, '무엇을 만들까'만큼 '무엇을 놓치고 있는가'가 기획의 핵심 질문이 되고 있음을 알 수 있습니다.</p>\n<blockquote>\"Your real prize is a successful product, and spending some attention on your losses gets you closer to that, faster.\"<cite>Mind the Product</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>저자는 2차 세계대전 때 귀환한 비행기의 총탄 자국에 장갑을 덧대려던 분석을 예로 듭니다. 정작 중요한 곳은 피격 자국이 없는 부위였다는 이야기입니다. 제품도 마찬가지로 갱신 고객만 분석하면 이탈 원인이 드러나지 않는다는 주장입니다. 구체적 절차는 여섯 단계입니다. 한 세그먼트의 최근 이탈 고객 10곳을 나열하고, 그중 8곳 이상의 공통점 하나를 찾아, 담당자와 고객에게 검증한 뒤 건강 점수에 '이탈 변수'로 추가하고, 미래 이탈과의 상관을 측정하며, 분기마다 한 변수씩만 바꿔 반복합니다. 사례 지표로는 핵심 워크플로 완료율 11~17%, 도입 완료 기간(30일 내 배포 비율 16%에서 80%로), 사용률 10% 미만 기능을 이탈 신호로 보는 기준이 언급됩니다.</p>\n<h3>여러 시각</h3>\n<p>같은 주제를 다른 각도에서 다룬 글과 비교하면 이 접근의 위치가 분명해집니다.</p>\n<ul><li><b>Mind the Product(Kathy Pham 키노트)</b> — 평가(eval)를 새로운 인수 기준으로 삼고 신뢰를 기능으로 다루라고 한다. 이탈 분석이 '고객이 떠난 이유'를 본다면, 이쪽은 '떠날 이유를 만들지 않는 기준'을 앞단에서 세우자는 입장이다.</li>\n<li><b>Ministry of Testing</b> — AI 전환은 조직 목표와 개인 목표를 맞추는 문제라고 보며, 기획·QA 담당자가 스스로 학습 방향을 주도하라고 강조한다. 제품 팀의 학습 루프를 개인 단위까지 확장하는 시각이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이탈 분석의 장점은 가설이 한 번에 하나씩이라는 점입니다. 변수를 하나씩 건강 점수에 넣고 상관을 확인하므로 팀이 감으로 쌓아 온 가설을 데이터로 걸러낼 수 있습니다. 또 '채택률 10% 미만'처럼 임계값을 명시하면 로드맵 토론이 취향 대결이 아니라 근거 논쟁으로 바뀝니다. 다만 표본이 10곳이라 통계적 확정이 아니라 가설 생성 도구라는 점은 분명히 인식해야 합니다.</p>\n<h3>실무 적용</h3>\n<ul><li>분기마다 이탈 사용자 10명의 공통 행동(미완료 플로우, 미사용 기능)을 뽑아 QA 시나리오와 이벤트 로그에 반영하자.</li>\n<li>기능 출시 시 '사용률 10% 미만이면 점검' 같은 임계값을 인수 기준에 함께 적어 두자.</li>\n<li>온보딩 완료까지의 시간을 화면 단위로 측정해 지연 구간을 UX 개선 우선순위로 올리자.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>기획과 QA를 함께 보는 입장에서 이 글은 '품질'의 정의를 넓혀 줍니다. 버그가 없는 것만이 품질이 아니라 사용자가 끝까지 목적을 달성하는 것이 품질이며, 이탈 지점은 가장 값비싼 테스트 케이스입니다. 저는 이탈 패턴을 곧바로 회귀 시나리오와 프론트엔드 이벤트 설계로 번역하는 습관이 필요하다고 봅니다. 데이터가 적을 때는 정성 인터뷰와 함께 묶어 가설을 단단하게 만드는 편이 안전합니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.mindtheproduct.com/what-your-churned-customers-can-teach-you-about-your-product/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: What your churned customers can teach you about your product ↗</a></li><li><a href=\"https://www.mindtheproduct.com/what-we-learned-from-kathy-phams-keynote-at-mind-the-product-chicago-2026/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Treat trust as a feature (Kathy Pham keynote) ↗</a></li><li><a href=\"https://www.ministryoftesting.com/insights/your-ai-transformation-is-yours-to-drive\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: Your AI transformation is yours to drive ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/what-your-churned-customers-can-teach-you-about-your-product/",
+    "tags": [
+      "Churn Analysis",
+      "Product Discovery",
+      "Quality"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-28-dark-mode-two-state-toggle",
     "category": "design",
     "date": "2026-10-28",

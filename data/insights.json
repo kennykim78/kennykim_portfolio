@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-10-30-frankenstein-table-grid-semantics",
+    "category": "design",
+    "date": "2026-10-30",
+    "title": "테이블 마크업에 그리드 레이아웃을 입히는 '프랑켄슈타인 테이블'",
+    "rawTitle": "The Frankenstein Table",
+    "summary": "table 요소의 의미는 유지한 채 CSS Grid로 카드형 레이아웃을 만드는 실험이다. 시맨틱과 레이아웃의 경계를 다시 묻게 한다.",
+    "bodyHtml": "<p>CSS-Tricks에 올라온 'The Frankenstein Table'은 table, tr, th, td 마크업을 그대로 두고 화면에서는 CSS Grid 카드처럼 보이게 만드는 기법을 소개한다. 상품 카드처럼 표가 아닌 목록을 표로 마크업해도 되는가, 반대로 표를 그리드처럼 다룰 수 없는가라는 오래된 질문에서 출발한다. 같은 주에 나온 CSS 소식들까지 함께 보면, 레이아웃 도구가 빠르게 늘어나는 지금 시맨틱을 어디에 두느냐가 더 중요해졌다.</p>\n<blockquote>\"it reads like a table, but acts like a grid\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>글쓴이 Preethi는 Flexbox와 Grid의 정렬 속성이 표나 목록 같은 요소에는 기대대로 적용되지 않는 점에서 출발한다. 해법은 간단하다. table에 display: grid를 주고, tbody는 display: contents로 레이아웃 트리에서 빼며, tr과 셀은 block으로 바꾼다. 그러면 grid-template-columns와 gap 같은 속성이 카드 배치에 그대로 적용된다. 저자는 th가 라벨과 데이터를 묶어 주는 '준 시맨틱' 역할을 한다고 보고, 자신의 테스트에서는 VoiceOver와 키보드 탐색도 여전히 표로 인식했다고 밝힌다.</p>\n<h3>여러 시각</h3>\n<p>같은 시기 CSS-Tricks의 다른 글들은 '도구가 늘어난 CSS를 어떻게 쓸 것인가'라는 맥락을 보여 준다.</p>\n<ul><li><b>CSS-Tricks What's !important #19</b> — scroll-state() 컨테이너 쿼리로 스크롤 가능·고정(stuck) 상태를 CSS만으로 스타일링하고, @custom-media로 Sass 없이 이름 붙은 브레이크포인트를 쓰는 방법을 다룬다. 즉 JS 없이 CSS가 상태와 조건을 직접 표현하는 흐름이다.</li><li><b>Frankenstein Table</b> — 같은 흐름이지만 방향이 다르다. 새 기능이 아니라 기존 시맨틱 요소의 표시 방식(display)을 바꿔 의미와 모양을 분리한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>마크업은 의미를, CSS는 모양을 맡는다는 원칙은 오래 전부터 있었지만 display 값이 시맨틱에 영향을 주는 사례가 많아 실제로는 깨지기 쉬웠다. 이 글은 그 경계를 실험으로 확인하려는 시도다. 다만 display를 바꾸면 브라우저에 따라 접근성 트리에서 표 의미가 사라지는 경우가 있어, 저자의 테스트 결과를 일반화하면 안 된다. 신기한 기법일수록 검증 비용이 따라온다는 점이 핵심이다.</p>\n<h3>실무 적용</h3>\n<ul><li>표 형태 데이터를 반응형 카드로 바꿔야 할 때, 새 컴포넌트를 만들기 전에 display 재정의로 충분한지 먼저 검토한다.</li><li>display를 바꾼 표는 VoiceOver·NVDA·TalkBack과 키보드 탐색으로 직접 확인하고, 필요하면 role 속성을 명시한다.</li><li>상태 기반 스타일은 scroll-state()처럼 CSS 네이티브 기능으로 옮길 수 있는지 점검해 JS 의존을 줄인다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드 실무에서 가장 흔한 실수는 '보이는 대로' 마크업하는 것이다. 이 글은 반대로 의미를 먼저 정하고 모양을 나중에 입히는 사고방식을 보여 준다는 점에서 읽을 만하다. 다만 팀 코드베이스에서는 낯선 패턴이 유지보수 비용이 되기도 한다. 그래서 나는 이 기법을 그대로 쓰기보다, 디자인 시스템 안에 접근성 테스트가 붙은 컴포넌트로 감싸 두는 방식을 권한다. 시맨틱과 레이아웃의 분리는 결국 테스트로 증명해야 설득력이 생긴다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/the-frankenstein-table/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: The Frankenstein Table ↗</a></li><li><a href=\"https://css-tricks.com/whats-important-19/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: What's !important #19 ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/the-frankenstein-table/",
+    "tags": [
+      "CSS Grid",
+      "Semantic HTML",
+      "Accessibility"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-30-anthropic-ai-for-science-expansion",
+    "category": "ai",
+    "date": "2026-10-30",
+    "title": "AI for Science, 개인 연구자에서 재단·연구기관으로 확장",
+    "rawTitle": "AI for Science expands to foundations and research institutions",
+    "summary": "Anthropic이 과학 지원 프로그램을 재단·연구기관 20곳으로 넓혔다. 같은 주 공공부문 협약과 비교하면 '기관 단위 도입'이라는 공통 방향이 보인다.",
+    "bodyHtml": "<p>Anthropic이 10월 28일 AI for Science 프로그램을 재단, 연구기관, 연구 프로젝트 등 20개 파트너로 확대한다고 발표했다. 2025년 5월 시작한 이 프로그램은 연구자에게 Claude 크레딧을 무상 제공해 왔는데, 이제 개인 지원에서 기관 경유 지원으로 무게중심을 옮긴다. 같은 주에 발표된 미국 GSA 협약과 함께 보면 AI 도입이 개인 도구에서 조직 인프라로 넘어가는 모습이 선명하다.</p>\n<blockquote>\"AI for Science began by supporting individual scientists.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>파트너는 Sloan Foundation, Simons Foundation, 미국 NSF 같은 자금 지원 기관 6곳, Sanger·Crick·EMBL 등 연구기관 6곳, FlyWire·gnomAD 같은 연구 프로젝트 6곳으로 나뉜다. 앞서 협력한 HHMI Janelia와는 AI 에이전트가 실험 장비를 안전하게 다루게 하는 Model Hardware Standard를 함께 만들어 연구 프리뷰로 공개했다. Anthropic은 상당수 협업이 아직 초기이며 결과는 나중에 공유하겠다고 밝혔다. 오픈 데이터셋과 소프트웨어 같은 공공재를 만드는 프로젝트가 많다는 점도 특징이다.</p>\n<h3>여러 시각</h3>\n<p>같은 주 Anthropic의 다른 발표는 기관 단위 도입이라는 흐름을 다른 영역에서 보여 준다.</p>\n<ul><li><b>Anthropic GSA 협약</b> — 미국 연방·주·지방 정부 약 500개 조직이 Claude를 쓰고, Claude Enterprise·API 등에 40% 할인을 적용하며 최소 사용 약정은 없다. 과학이 '지식 생산'이라면 이쪽은 '행정 업무'의 기관 도입이다.</li><li><b>Anthropic 연구 블로그(신약 개발 초기 성과)</b> — 앞서 공개된 제약·바이오 파트너 사례는 이번 확장의 실제 적용 예로 읽힌다. 다만 대부분 전임상 단계라는 한계도 함께 봐야 한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>재단과 기관을 통하면 개별 연구자 수십 명보다 훨씬 넓은 분야에 도구와 표준이 퍼진다. 반면 기관 협약은 도입 속도를 높이는 대신 특정 벤더 의존과 표준 선점이라는 문제를 낳는다. Model Hardware Standard처럼 공유 사양을 먼저 제시하는 접근이 그래서 눈에 띈다. 성과가 공개 데이터와 오픈소스로 돌아오는지가 이 프로그램의 진짜 평가 기준이 될 것이다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI 도입을 개인 생산성 도구 단계에 머물게 하지 말고, 조직 단위 표준·권한·감사 기준을 먼저 설계한다.</li><li>에이전트가 외부 장비나 시스템을 다루는 경우 공유 사양(인터페이스 표준)을 우선 정의해 벤더 종속을 줄인다.</li><li>초기 성과 보고에는 단계(전임상 등)와 검증 범위를 명시하는 습관을 팀 문서에 넣는다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>AX(AI 전환)를 하다 보면 개인이 쓰던 도구를 조직에 옮기는 순간 문제의 성격이 바뀐다. 품질보다 권한, 로그, 표준이 더 큰 쟁점이 되기 때문이다. 이번 발표는 과학 분야가 같은 단계를 밟고 있음을 보여 준다. 프론트엔드 관점에서는 에이전트가 장비나 시스템을 다루는 인터페이스 표준이 결국 사용자 경험의 일부가 된다고 본다. 사람이 승인하고 되돌릴 수 있는 화면을 설계하는 일이 더 중요해질 것이다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: AI for Science expands to foundations and research institutions ↗</a></li><li><a href=\"https://www.anthropic.com/news/expanding-partnership-gsa\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Expanding our partnership with GSA to bring Claude to all levels of government ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions",
+    "tags": [
+      "Anthropic",
+      "AI for Science",
+      "Enterprise AI"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-29-claude-drug-development-early-progress",
     "category": "ai",
     "date": "2026-10-29",

@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-10-31-evals-as-acceptance-criteria",
+    "category": "plan",
+    "date": "2026-10-31",
+    "title": "만들기 쉬워진 시대, 평가(eval)가 새 인수 기준이다",
+    "rawTitle": "Why you should care about trust when building is this easy: Kathy Pham (Harvard, Workday, Mozilla)",
+    "summary": "AI로 빌드 비용이 0에 가까워지자 “무엇을 만들까”와 “품질을 어떻게 증명할까”가 핵심이 됐다. 평가를 인수 기준으로 삼자는 제안을 정리한다.",
+    "bodyHtml": "<p>Mind the Product 시카고 2026 기조연설에서 Kathy Pham(하버드 선임 펠로, 전 Workday·Mozilla)은 오래된 질문을 다시 꺼냈다. 제품이 사회에 무엇을 하는가. 몇 분이면 프로토타입이 나오는 지금, 이 질문은 철학이 아니라 기획과 QA의 일상 업무가 되었다. 만드는 속도가 빨라질수록 검증이 병목이 되기 때문이다. 기획자와 QA가 지금 무엇을 바꿔야 하는지 짚어 본다.</p>\n<blockquote>\"Any tooling that makes building the right thing cheaper makes building the wrong thing cheaper too,\"<cite>Mind the Product</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Pham은 좋은 제품의 조건을 세 가지 질문으로 정리한다. 사람들이 쓰는가, 시장 적합성이 있는가, 그리고 사람과 사회에 옳은가. AI 도구는 역량을 더해 주지만 판단력까지 더해 주지는 않는다는 것이 그의 경고다. 그래서 윤리적 출시를 위한 네 기둥을 제시한다. 올바른 문제를 풀 것, 평가(eval)를 새로운 인수 기준으로 삼고 도메인 전문가의 판단을 가드레일로 둘 것, 신뢰를 기능으로 다룰 것, 그리고 제품·소프트웨어 라이프사이클과 팀 역할을 다시 설계할 것이다. 엔지니어, 임상 전문가, 디자이너, 커뮤니티 구성원 같은 “전화 연결할 친구”를 두라는 조언도 덧붙였다.</p>\n<h3>여러 시각</h3>\n<p>같은 시기 Ministry of Testing도 AI 제품의 품질을 위험 관점에서 다루고 있다.</p>\n<ul><li><b>Mind the Product(Pham)</b> — 평가를 인수 기준으로 올리고, 신뢰를 출시 전에 설계해야 하는 기능으로 본다.</li><li><b>Ministry of Testing</b> — 연재 “AI Risk List”의 7번째 편(System Safety, Failures &amp; Limitations)을 통해 제품 위험을 데이터와 목록으로 탐색하자고 제안한다. 본문은 회원 전용이라 부제 수준만 확인했다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>요구사항 문서가 “무엇을 보여 줄 것인가”에 머물던 시절에는 QA가 구현 뒤에 붙는 단계였다. 생성형 기능에서는 정답이 하나가 아니므로 합격 기준 자체를 사전에 정의해야 한다. 평가 세트가 곧 인수 기준이 되면 기획과 QA의 경계가 사라지고, 위험 목록은 그 기준의 원재료가 된다. 만들기 쉬운 만큼 잘못 만든 것도 빨리 퍼지기 때문에, 검증 비용을 앞단으로 옮기는 팀이 결국 더 빠르다.</p>\n<h3>실무 적용</h3>\n<ul><li>스토리 작성 시 “통과 예시 5개·실패 예시 5개”를 인수 기준으로 함께 적는다.</li><li>위험 목록(안전·오작동·한계)을 기획 단계에서 만들고 테스트 시나리오로 연결한다.</li><li>도메인 전문가 리뷰를 릴리스 게이트에 넣어 “출시해도 되는가”를 명시적으로 승인한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드와 AX를 함께 다루다 보면, 화면은 하루 만에 만들어도 “이 결과를 믿어도 되는가”는 하루 만에 답할 수 없다는 점을 체감한다. 그래서 저는 평가 세트를 코드 옆에 두고 CI에서 돌리는 방식이 가장 현실적이라고 본다. 인수 기준이 문서가 아니라 실행되는 테스트가 될 때, 기획·QA·개발이 같은 기준을 바라본다. 속도를 얻은 만큼 신뢰를 설계하는 일이 직무의 중심으로 이동한다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.mindtheproduct.com/what-we-learned-from-kathy-phams-keynote-at-mind-the-product-chicago-2026/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Why you should care about trust when building is this easy ↗</a></li><li><a href=\"https://www.ministryoftesting.com/insights/ai-risk-list-system-safety-failures-limitations-7\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: AI Risk List: System Safety, Failures &amp; Limitations (7) ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/what-we-learned-from-kathy-phams-keynote-at-mind-the-product-chicago-2026/",
+    "tags": [
+      "QA",
+      "AI Evals",
+      "Product Planning"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-10-31-saas-layers-fdpm",
+    "category": "pm",
+    "date": "2026-10-31",
+    "title": "에이전트 시대의 SaaS, 그리고 고객 현장에 파견되는 PM",
+    "rawTitle": "How is AI changing the traditional SaaS and business app model?",
+    "summary": "AI 에이전트가 앱 위에 올라타며 SaaS의 3개 계층이 흔들린다. 이 변화가 사업 전략과 PM 역할(Forward Deployed PM)에 주는 의미를 짚는다.",
+    "bodyHtml": "<p>Satya Nadella가 2025년 12월 “에이전트 시대에 비즈니스 앱은 붕괴할 것”이라고 말한 뒤, SaaS 사업을 하는 팀은 같은 질문을 받고 있다. 우리 제품은 에이전트 뒤로 숨는가, 아니면 에이전트가 되는가. Mind the Product의 FreeAgent 제품 운영 책임자 Lucy Pitticas-Rothwell은 이를 구조적으로 풀어 설명한다. 사업기획과 PM 모두에게 지금 필요한 프레임이다.</p>\n<blockquote>\"Typically, all layers are owned by the SaaS provider.\"<cite>Mind the Product</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>글은 비즈니스 앱을 세 계층으로 나눈다. 사용자가 누르거나 말을 거는 프런트엔드, 개인·앱 데이터를 담은 데이터 계층, 데이터를 쓸모 있는 결과로 바꾸는 로직 계층이다. 지금까지는 한 SaaS 벤더가 세 계층을 모두 소유했다. 필자는 가상의 급여 SaaS를 예로 들어, 사용자가 메뉴와 폼 대신 대화형 인터페이스로 급여 처리를 요청하게 되면 프런트엔드가 가장 먼저 밀려나고, 이어 로직 계층이 에이전트로 이동할 수 있다고 본다. 인터페이스 선호가 바뀌면 벤더의 접점이 사라진다는 경고다. 다만 후반부 전략 대응 부분은 필자가 확인하지 못했다.</p>\n<h3>여러 시각</h3>\n<p>같은 주에 올라온 다른 글은 “AI 제품을 어떻게 고객에게 안착시킬 것인가”라는 반대편 질문을 다룬다.</p>\n<ul><li><b>Mind the Product(Pitticas-Rothwell)</b> — 프런트엔드·데이터·로직 3계층 소유가 흔들리는 것이 SaaS의 구조적 위협이라고 진단한다.</li><li><b>Mind the Product(Caroline Clark)</b> — Forward Deployed PM을 소개한다. 일반 PM이 제품을 소유한다면 FDPM은 한 고객 계정의 성과를 소유한다. 2026년 7월 말 기준 “Forward Deployed” 채용 공고 170건(98개 회사)이 있고, 신규 공고가 1월 1건에서 7월 62건으로 늘었다는 수치를 인용한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>AI 제품은 고객의 데이터·워크플로·권한에 연결되어야 비로소 가치가 나오므로, 배포(deployment) 자체가 병목이 된다. 이는 사업 모델에도 영향을 준다. 계층을 에이전트에 내주더라도 데이터와 현장 맥락, 신뢰를 쥔 쪽은 협상력을 유지한다. 반대로 인터페이스만 가진 SaaS는 가장 취약하다. 그래서 어느 계층에서 차별화할지를 고르는 일이 로드맵보다 먼저다.</p>\n<h3>실무 적용</h3>\n<ul><li>우리 제품의 프런트엔드·데이터·로직 계층 중 에이전트에게 대체되기 쉬운 것을 표로 점검한다.</li><li>핵심 고객 한두 곳에 PM이 상주해 설정·프로토타입·성과 기록을 하고, 학습을 코어 제품으로 환류한다.</li><li>API·권한·감사 로그를 “에이전트가 호출할 수 있는 제품”의 기본 사양으로 로드맵에 올린다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드 개발자로서 “화면이 사라진다”는 말은 가볍게 들리지 않는다. 하지만 대화형 인터페이스가 늘어도 신뢰를 주는 결과 표시와 승인 흐름은 여전히 설계 대상이다. 그래서 저는 SaaS의 해자가 화면에서 데이터와 현장 이해로 옮겨 간다고 본다. FDPM은 그 해자를 만드는 역할이다. 작은 팀일수록 고객 현장에서 배운 것을 제품에 빠르게 되돌리는 구조를 먼저 갖추는 것이 사업 기획의 우선순위여야 한다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.mindtheproduct.com/how-is-ai-changing-the-traditional-saa-s-and-business-app-model/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: How is AI changing the traditional SaaS and business app model? ↗</a></li><li><a href=\"https://www.mindtheproduct.com/what-is-a-forward-deployed-product-manager-anyway/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: What is a Forward Deployed Product Manager, anyway? ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/how-is-ai-changing-the-traditional-saa-s-and-business-app-model/",
+    "tags": [
+      "SaaS",
+      "Product Management",
+      "AI Strategy"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-30-frankenstein-table-grid-semantics",
     "category": "design",
     "date": "2026-10-30",

@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-01-interop-2027-modern-css",
+    "category": "design",
+    "date": "2026-11-01",
+    "title": "Interop 2027, 다가오는 CSS의 미래 10선",
+    "rawTitle": "The Future of CSS ✨ My top 10 picks for Interop 2027",
+    "summary": "Josh Comeau가 Interop 2027에 오르길 바라는 CSS 기능 10가지를 꼽았다. 크로스 브라우저 합의가 곧 실무 도입 시점이다.",
+    "bodyHtml": "<p>브라우저 벤더들이 함께 상호운용성을 맞추는 Interop 프로젝트가 2027년 기획 단계에 들어갔습니다. 프론트엔드 개발자 Josh Comeau는 여기에 포함되길 바라는 CSS 기능 10가지를 공개했습니다. 어떤 기능이 Interop에 들어가느냐는 곧 '언제부터 프로덕션에서 안심하고 쓸 수 있느냐'와 직결됩니다. 그래서 이 목록은 내년 프론트엔드 로드맵을 미리 보는 지도에 가깝습니다.</p>\n<blockquote>\"We can't expect LLMs to use modern CSS features when so much of their training data is years old.\"<cite>Josh W. Comeau</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Interop은 Google·Apple·Microsoft·Mozilla가 Igalia, Bocoup과 함께 운영하는 협업입니다. 한번 목록에 오른 기능은 보통 1년 안에 거의 모든 브라우저에서 지원되는데, 대표 사례가 Interop 2023에 들어간 subgrid입니다. Comeau가 고른 10선에는 CSS <code>@function</code>, <code>corner-shape</code>, <code>border-shape</code>, 앵커 컨테이너 쿼리, 스크롤 트리거 애니메이션, <code>reading-flow</code>, <code>interpolate-size</code>, gap decorations, scroll-state 컨테이너 쿼리 등이 포함됩니다. 이 중 상당수는 이미 Chromium에서 동작하지만 Firefox와 Safari는 아직입니다. 반면 <code>inherit()</code>는 제안 단계라 어느 브라우저에도 구현되지 않았습니다.</p>\n<h3>여러 시각</h3>\n<p>같은 시기 다른 매체도 CSS 기능의 빠른 확산을 다뤘고, 강조점은 조금씩 달랐습니다.</p>\n<ul><li><b>CSS-Tricks</b> — What's !important #19에서 scroll-state() 쿼리(scrollable, scrolled, snapped, stuck)와 컨테이너 스타일 쿼리 활용 사례를 소개하며, Chrome과 Firefox가 2주 주기로 출시되고 Safari 27이 여러 기능을 Baseline으로 올렸다고 짚었습니다.</li><li><b>Josh Comeau</b> — 지원이 불균등한 현재는 점진적 향상으로 접근하되, <code>interpolate-size</code>처럼 미지원 브라우저에서 지연이 생기는 기능은 <code>@supports</code>로 감싸라고 권합니다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>브라우저 릴리스 주기가 짧아지면서 '언제 쓸 수 있나'의 기준이 연 단위에서 월 단위로 바뀌고 있습니다. Interop 목록은 벤더 간 합의 신호이기 때문에, 개별 기능의 지원표보다 훨씬 신뢰할 만한 도입 근거가 됩니다. 또 JS로 해결하던 스크롤 연동, 앵커 배치, 모양 처리가 CSS로 내려오면 번들 크기와 유지보수 부담이 함께 줄어듭니다.</p>\n<h3>실무 적용</h3>\n<ul><li>Chromium 전용 기능은 <code>@supports</code> 기반 점진적 향상으로 먼저 도입하고, 폴백 스타일을 기본값으로 둔다.</li><li>JS로 구현한 sticky 감지·스크롤 연동 로직을 scroll-state 쿼리와 스크롤 트리거 애니메이션으로 대체할 후보를 목록화한다.</li><li>Interop 투표와 Baseline 상태를 분기별로 확인해 디자인 시스템의 CSS 도입 일정에 반영한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>가장 눈에 띈 부분은 결론입니다. LLM의 학습 데이터가 오래되어 있으면 AI가 쓰는 코드도 몇 년 전 CSS에 머뭅니다. AI와 함께 개발하는 팀이라면 최신 CSS 지식은 개인의 취향이 아니라 에이전트를 올바로 이끄는 지시문 품질이 됩니다. 저는 프로젝트의 가이드 문서에 '쓸 수 있는 최신 CSS 목록'을 명시해 두는 것이 가장 싼 투자라고 봅니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.joshwcomeau.com/css/interop-2027/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Josh W. Comeau: The Future of CSS — My top 10 picks for Interop 2027 ↗</a></li><li><a href=\"https://css-tricks.com/whats-important-19/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: What's !important #19 ↗</a></li></ul>",
+    "source": "Josh W. Comeau",
+    "sourceUrl": "https://www.joshwcomeau.com/css/interop-2027/",
+    "tags": [
+      "CSS",
+      "Interop",
+      "Frontend"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-01-new-founder-archetypes-ai",
+    "category": "pm",
+    "date": "2026-11-01",
+    "title": "AI 시대, 어떤 창업자가 이기는가: 새 창업자 유형",
+    "rawTitle": "New Founder Archetypes in the AI Age",
+    "summary": "a16z의 Andrew Chen은 기술이 바뀌면 성공하는 창업자 프로필도 바뀐다고 말한다. 단, 새 공식 대신 패턴 자체를 의심하라고 경고한다.",
+    "bodyHtml": "<p>a16z의 제너럴 파트너 Andrew Chen이 AI 시대의 창업자 유형을 정리한 글을 냈습니다. 그는 초기 투자 프로그램 Speedrun을 이끌며 최대 100만 달러의 첫 수표를 쓰는 사람입니다. 핵심 질문은 AI가 '비즈니스 + 기술' 공동창업 구도를 없애고 1인 창업자도 큰 회사를 만들 수 있게 하느냐입니다. 사업기획이나 팀 구성을 고민하는 사람에게 투자자의 사고 틀을 엿볼 수 있는 글입니다.</p>\n<blockquote>\"The point is that when the underlying technology changes this much, the founder profiles that work should change too.\"<cite>Andrew Chen, a16z</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>Chen은 솔로 창업자, 비기술 창업자, 도메인 전문가, 젊은 학생, 콘텐츠 크리에이터 같은 새 유형마다 '왜 될 것 같은가'와 '왜 안 될 수 있는가'를 나란히 놓습니다. 과거에도 구글 이후의 스탠퍼드 박사, 에어비앤비의 디자인 감각형, 우버의 실행력형처럼 시대마다 유리한 유형이 있었다는 점을 상기시킵니다. 또 유형 선호는 업종별 패턴, 그 뒤의 기술·유통 주기, 투자자 편향의 자기강화라는 세 층으로 작동하며 특히 프리시드·시드 단계에서 편향이 크다고 설명합니다.</p>\n<h3>여러 시각</h3>\n<p>같은 주제를 다른 각도에서 본 글이 있습니다.</p>\n<ul><li><b>First Round Review</b> — Lovable 초기 디자이너의 회고는 4번째 직원으로 합류해 나흘 만에 출시를 시작하고, 허락을 구하지 않고 확신 있는 결정을 내리는 '오너십'을 핵심 가치로 꼽습니다. 유형보다 행동 방식이 성패를 가른다는 시각입니다.</li><li><b>a16z (Chen)</b> — 반대로 투자자 관점에서는 유형이라는 패턴 매칭이 여전히 의사결정 도구이지만, 새 규칙으로 갈아타는 것도 위험하다고 경고합니다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>창업자 프로필의 선호가 바뀌면 자금 유입, 채용 시장, 팀 구조 표준이 함께 바뀝니다. 특히 소규모 팀이 AI로 확장되는 흐름에서는 '누구를 채용하고 어떤 역할을 둘 것인가'가 사업 계획의 첫 질문이 됩니다. 다만 '솔로 창업자가 이제 유리하다' 같은 단정은 또 하나의 편향이 될 수 있다는 지적이 균형을 잡아 줍니다.</p>\n<h3>실무 적용</h3>\n<ul><li>사업계획서의 팀 파트를 직함 나열 대신 'AI로 증폭되는 역량과 여전히 사람이 필요한 역량'으로 나눠 설명한다.</li><li>투자·파트너 제안 시 투자자의 편향(유형 선호)이 어느 층에서 작동하는지 가정해 보고 메시지를 조정한다.</li><li>초기 팀의 의사결정 권한 범위를 문서화해 Lovable 사례처럼 확신 있는 결정은 허락 없이 실행하게 한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>저는 기획과 개발을 오가는 입장에서, 이 글이 '누가 창업하느냐'보다 '무엇이 병목이냐'를 묻고 있다고 읽었습니다. AI가 구현 비용을 낮출수록 병목은 문제 정의와 신뢰, 유통으로 이동합니다. 그렇다면 어떤 유형이든 그 병목을 먼저 풀 수 있는 사람이 이기고, 패턴은 결과일 뿐입니다. 팀을 설계할 때도 이력서의 유형보다 오너십의 증거를 보겠습니다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://a16z.com/new-founder-archetypes-in-the-ai-age/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">a16z: New Founder Archetypes in the AI Age ↗</a></li><li><a href=\"https://review.firstround.com/firsthand-lovable/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: Firsthand: How I Built a Brand with Heart at Lovable ↗</a></li></ul>",
+    "source": "a16z",
+    "sourceUrl": "https://a16z.com/new-founder-archetypes-in-the-ai-age/",
+    "tags": [
+      "Startup",
+      "Founders",
+      "AI"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-10-31-evals-as-acceptance-criteria",
     "category": "plan",
     "date": "2026-10-31",

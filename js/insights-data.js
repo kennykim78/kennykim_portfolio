@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-03-whats-important-final-css-tricks-independent",
+    "category": "design",
+    "date": "2026-11-03",
+    "title": "마지막 What's !important, 그리고 독립한 CSS-Tricks",
+    "rawTitle": "What's !important #20: GTA 6 Scroll Effects, Scrollspies, random()",
+    "summary": "CSS-Tricks의 월간 칼럼이 20회로 막을 내리고 뉴스레터로 돌아온다. 마지막 호에 담긴 CSS 신기능 흐름과 사이트 독립 소식을 함께 짚는다.",
+    "bodyHtml": "<p>CSS-Tricks의 칼럼 <b>What's !important</b>가 20번째 호를 끝으로 마무리됐다. 이 칼럼은 4년 만에 부활하는 CSS-Tricks 뉴스레터로 이어지며, 정식 시작일은 11월 10일이다. 같은 시기 사이트 자체도 DigitalOcean 소유에서 벗어나 Geoff Graham이 맡는 독립 매체로 돌아왔다. 프론트엔드 실무자가 읽는 CSS 정보원의 구조가 바뀌는 시점이라 눈여겨볼 만하다.</p>\n<blockquote>\"This is the final issue of What's !important on CSS-Tricks.com.\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>마지막 호는 Rockstar의 GTA 6 사이트에서 쓰인 스크롤 효과 분석, 최신 CSS로 만드는 scrollspy, random() 데모 같은 실전 주제를 모았다. 눈에 띄는 것은 Lea Verou의 아이콘 구현 글로, Linked Parameters·ident()·@mixin/@apply 같은 아직 제안 단계의 문법을 다룬다. Kilian Valkhof는 *가 매칭하지 못하는 ::backdrop 같은 의사 요소를 위해 ::* 선택자를 제안했다. 디자인 시스템 관점에서는 text-box, sibling-index(), sibling-count(), @scope, @custom-media가 핵심 도구로 꼽혔다. 릴리스 노트에는 Chrome 156의 random()과 Firefox 159의 스크롤 기반 애니메이션이 이름을 올렸다.</p>\n<h3>여러 시각</h3>\n<p>이번 소식은 콘텐츠 흐름과 매체 운영이라는 두 층으로 읽을 수 있다.</p>\n<ul><li><b>CSS-Tricks(Geoff Graham)</b> — 사이트가 다시 독립했고 전업으로 운영하며, 광고·멤버십·숍·초보자용 HTML/CSS 강의로 수익을 꾸린다고 밝혔다. 전면 리디자인 대신 조금씩 개선하겠다는 입장이다.</li><li><b>What's !important #20</b> — 개별 기능보다 '디자인 시스템이 쓸 수 있는 새 CSS 도구가 한꺼번에 도착하고 있다'는 흐름을 보여준다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>CSS는 이제 JavaScript 없이 난수, 스크롤 연동, 형제 요소 인덱스까지 다루는 단계에 들어섰다. 브라우저별 지원 시점이 달라 어떤 기능을 언제 도입할지 판단하는 일이 실무의 핵심이 된다. 큐레이션을 해주던 칼럼이 뉴스레터로 바뀌는 것도 정보 습득 습관을 점검할 기회다. 독립 매체로 돌아온 만큼 커뮤니티 기고 창구도 다시 열려 있다.</p>\n<h3>실무 적용</h3>\n<ul><li>sibling-index()/sibling-count()와 random()은 먼저 장식적 요소에 적용하고, 미지원 브라우저에서도 자연스럽게 보이는 폴백을 둔다.</li><li>@scope와 @custom-media는 디자인 시스템 토큰·컴포넌트 규칙 정리에 시험해 본다.</li><li>CSS 소식은 뉴스레터와 브라우저 릴리스 노트를 함께 구독해 도입 시점 표를 팀 위키에 갱신한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>새 CSS 문법은 화려하지만, 현업에서 가치가 큰 쪽은 JS를 걷어내 유지보수 비용을 낮추는 기능이다. 스크롤 효과나 난수 연출도 접근성과 성능 예산 안에서 쓸 때 비로소 디자인 자산이 된다. 정보원이 독립 매체로 돌아온 것은 반갑고, 이런 소규모 매체는 구독과 공유로 지탱해야 한다고 생각한다. 저는 제안 단계의 문법은 읽어 두되 프로덕션 도입은 두 엔진 이상 지원될 때로 미루는 원칙을 유지한다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/whats-important-20/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: What's !important #20 ↗</a></li><li><a href=\"https://css-tricks.com/css-tricks-has-a-new-owner/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: CSS-Tricks has a new owner! ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/whats-important-20/",
+    "tags": [
+      "CSS",
+      "Newsletter",
+      "Design Systems"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-03-genesis-mission-usage-policy",
+    "category": "ai",
+    "date": "2026-11-03",
+    "title": "Anthropic, 1.5억 달러 과학 지원과 개정 이용정책",
+    "rawTitle": "Building on our commitment to American scientific discovery",
+    "summary": "Anthropic이 미국 Genesis Mission에 3년간 1.5억 달러를 투입하고, 11월 12일 시행되는 개정 이용정책도 함께 공개했다.",
+    "bodyHtml": "<p>Anthropic이 미국 연방 AI 과학 이니셔티브 Genesis Mission에 3년간 1억 5천만 달러를 투입하겠다고 밝혔다. 같은 날 연례 이용정책 개정안도 공개했고, 새 정책은 11월 12일부터 적용된다. 하나는 AI의 활용 범위를 넓히는 소식이고 다른 하나는 그 범위의 경계를 다시 긋는 소식이다. 두 발표를 함께 읽으면 에이전트 시대의 방향이 보인다.</p>\n<blockquote>\"Our commitment to the Genesis Mission is our next step toward helping researchers everywhere.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>이번 투자로 NASA, NIH, NSF를 포함한 15개 이상의 기관이 Claude를 쓰게 된다. 수백 개 연구 프로젝트에 Claude, Claude Code, API 크레딧을 제공하고, 핵융합 에너지와 양자 컴퓨팅 같은 우선 과제에서 국립연구소와 협력한다. 교육·온보딩·기술 지원도 포함된다. 이는 Claude Science 워크벤치, 학계 연구자 1만 석 지원 등 기존 과학 프로그램의 연장선이다.</p>\n<h3>여러 시각</h3>\n<p>같은 날 나온 이용정책 개정은 다른 각도에서 AI의 역할을 규정한다.</p>\n<ul><li><b>Anthropic 이용정책</b> — 가짜 계정·허위 뉴스 사이트 등을 묶은 '기만 캠페인' 항목이 신설됐다. 선거 항목은 유권자 기만과 선거 방해에 집중하도록 좁혀졌다.</li><li><b>Anthropic 이용정책(자율 작업)</b> — 물리적 행동을 하는 하드웨어에는 중단 권한이 있는 자격 있는 운영자가 필요하고, Claude 연결이 끊기면 장비가 안전 상태를 유지해야 한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>연구 현장에 AI를 대규모로 넣으려면 장비 제어와 같은 물리적 작업에 대한 안전 규칙이 따라와야 한다. 정책에 '연결 끊김 시 안전 상태'라는 조건이 들어간 것은 에이전트가 실험실 기기를 다루는 상황을 현실로 본다는 신호다. 또한 감시·수사 판단 금지 등은 기업 도입 시 컴플라이언스 검토 항목이 된다. 투자와 규칙이 한 묶음으로 나온 점이 인상적이다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI 기능을 기획할 때 이용정책의 금지 항목을 요구사항 단계에서 체크리스트로 만든다.</li><li>에이전트가 외부 장비나 시스템을 다룰 경우 중단 버튼과 안전 상태 복귀 UX를 처음부터 설계한다.</li><li>고위험 영역에는 사람이 확인하는 단계와 영향받는 사용자에 대한 고지 문구를 넣는다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>AX 프로젝트에서 도입을 막는 것은 성능보다 '어디까지 맡겨도 되는가'라는 질문인 경우가 많다. 정책 문서는 그 답의 출발점이며, 프론트엔드는 그 규칙을 사용자가 느낄 수 있는 화면으로 번역하는 역할을 한다. 중단, 승인, 기록이 보이는 UI가 곧 신뢰의 기능이라고 본다. 정책 변경일 전에 우리 서비스의 AI 사용 사례를 한 번 훑어보길 권한다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/genesis-mission-commitment\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Building on our commitment to American scientific discovery ↗</a></li><li><a href=\"https://www.anthropic.com/news/2026-usage-policy-update\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: 2026 Usage Policy update ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/genesis-mission-commitment",
+    "tags": [
+      "AI Policy",
+      "Science",
+      "Agents"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-02-embedded-evaluation-agent-observability",
     "category": "ai",
     "date": "2026-11-02",

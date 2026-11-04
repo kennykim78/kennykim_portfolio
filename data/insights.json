@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-11-04-evals-error-discovery-two-way-doors",
+    "category": "plan",
+    "date": "2026-11-04",
+    "title": "AI 제품 QA는 지표가 아니라 '오류 발견'에서 시작한다",
+    "rawTitle": "Advanced evals: How to find (and fix) hidden AI failures in your product",
+    "summary": "Hamel Husain과 Shreya Shankar는 eval 지표를 쓰기 전에 에러 디스커버리부터 하라고 말한다. 구글 테스팅 블로그의 '양방향 문' 관점과 함께 읽어 본다.",
+    "bodyHtml": "<p>AI 제품은 바꾸기는 쉬운데 결과를 예측하기는 어렵다. 프롬프트나 모델을 한 번 바꾸면 한 동작은 좋아지고 다른 동작은 깨질 수 있다. 그래서 eval이 PM과 QA 모두의 핵심 역량으로 올라왔다. Lenny's Newsletter에 실린 Hamel Husain과 Shreya Shankar의 글은 대부분의 팀이 건너뛰는 단계, 곧 '무엇을 측정할지 찾는 일'을 짚는다.</p>\n<blockquote>\"Error discovery is the eval equivalent of product discovery.\"<cite>Lenny's Newsletter</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>두 저자는 50곳이 넘는 AI 기업과 일하며 팀들이 곧바로 지표 작성에 뛰어들어 엉뚱한 것을 재는 모습을 봤다고 한다. 제안은 지표 이전에 실제 대화 기록(trace)을 보고 어떤 실패가 측정할 가치가 있는지 찾는 것이다. 이전 글의 '에러 분석'은 이번에 '에러 디스커버리'로 이름이 바뀌었다. 핵심 개념은 기준 표류(criteria drift)다. 사례로 든 임대 상담 AI에서 고객이 예산이 안 맞는다고 하자 에이전트는 정중히 인사만 하고 끝냈다. 대화 자체는 매끄럽지만 제품 목표인 대안 매물 제안에는 실패했고, 이 기준은 사람이 기록을 읽어 보고서야 생겼다. 100개의 실제 trace로 한 실험에서 에이전트는 문맥이 필요한 판단(문자 메시지의 마크다운, 놓친 상담원 인계)을 놓치고, 도구 출력과 모순되는 답처럼 눈에 띄는 오류는 잘 잡았다.</p>\n<h3>여러 시각</h3>\n<p>같은 '고치기 쉬운 구조를 먼저 만든다'는 주제를 구글 테스팅 블로그는 코드 쪽에서 다룬다.</p>\n<ul><li><b>Lenny's Newsletter(Hamel·Shreya)</b> — 다양한 샘플로 시작해 실패를 발견하면 몇 건 더 확인하고, 그다음 에이전트에게 주석을 달게 하는 능동 학습 방식이다. 사람의 판단과 자동화를 섞는다.</li><li><b>Google Testing Blog</b> — 되돌리기 어려운 결정(일방향 문)과 쉬운 결정(양방향 문)을 구분하고, 기능 플래그와 섀도 실행 같은 패턴으로 되돌릴 수 있는 구조를 설계하라고 한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>AI가 변경을 사람이 검토할 수 있는 속도보다 빨리 만들어 내는 시대에는 자동 검증이 출시 속도를 좌우한다. 그런데 자동 검증은 무엇이 '좋은 것'인지 정의된 만큼만 작동한다. 기준을 찾는 단계를 건너뛰면 대시보드는 초록색인데 사용자는 불만인 상황이 생긴다. 반대로 구글의 관점처럼 실험 경로를 격리해 두면 틀린 기준으로 만든 변경도 부담 없이 되돌릴 수 있다. 발견과 되돌림이 짝을 이룰 때 품질과 속도가 함께 간다.</p>\n<h3>실무 적용</h3>\n<ul><li>새 AI 기능은 출시 전에 실제 또는 모의 trace 수십 건을 사람이 먼저 읽고, 실패 유형 목록을 만든 뒤 지표를 정한다.</li><li>에이전트 자동 평가의 결과는 '맞다/틀리다' 승인 단계를 두어 사람이 기준 표류를 반영한다.</li><li>모델·프롬프트 변경은 기능 플래그와 섀도 실행으로 감싸 롤백 비용을 낮춘다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>QA 입장에서 이 글은 낯설지 않다. 탐색적 테스트로 먼저 문제를 찾고 그다음에 회귀 테스트를 자동화하던 순서가 AI 제품에서도 그대로 통한다는 확인이기 때문이다. 기획자에게는 eval이 곧 요구사항 문서라는 말이 와닿는다. 좋은 응답의 정의를 쓰지 않으면 제품 기획을 안 한 것과 같다. 저는 AX 프로젝트에서 출시 체크리스트의 첫 항목을 '실제 대화 30건 읽기'로 두고 싶다. 그 뒤에 지표와 롤백 장치를 얹는 순서가 가장 비용이 낮다고 본다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.lennysnewsletter.com/p/advanced-evals-how-to-find-and-fix\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: Advanced evals: How to find (and fix) hidden AI failures in your product ↗</a></li><li><a href=\"https://testing.googleblog.com/2026/10/two-way-doors-dont-code-yourself-into.html\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Google Testing Blog: Two-Way Doors: Don’t Code Yourself into a Corner ↗</a></li></ul>",
+    "source": "Lenny's Newsletter",
+    "sourceUrl": "https://www.lennysnewsletter.com/p/advanced-evals-how-to-find-and-fix",
+    "tags": [
+      "Evals",
+      "QA",
+      "AI Product"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-04-ai-applications-earn-premium",
+    "category": "pm",
+    "date": "2026-11-04",
+    "title": "AI 앱이 프리미엄 가격을 지키는 세 가지 조건",
+    "rawTitle": "How AI Applications Earn Their Premium",
+    "summary": "a16z는 모델이 좋아질수록 AI 애플리케이션의 가격 방어력이 흔들린다고 보고, 워크플로 운영·컨텍스트·가치 증명 세 원칙을 제시한다.",
+    "bodyHtml": "<p>모델 추론 비용이 내려가면 AI 앱의 마진은 좋아지지만, 고객이 범용 모델로 같은 결과를 직접 만들 가능성도 커진다. a16z의 Tugce Erten은 이 긴장 속에서 'AI 앱은 무엇으로 프리미엄을 받는가'를 묻는다. 빠르게 성장하는 회사일수록 가격 문제를 미루기 쉬운데, 지금이 가장 중요한 시기라는 것이 글의 출발점이다.</p>\n<blockquote>\"The commercial question is what customers will continue to pay for as their alternatives improve.\"<cite>a16z</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>글은 고객이 핵심 결과물을 범용 모델과 약간의 노력으로 재현할 수 있을 때 앱이 취약해진다고 말한다. 방어 수단으로 도메인 전문성, 깊은 통합, 안정적 실행, 접근하기 어려운 컨텍스트를 꼽고, 세 원칙을 정리한다. 첫째, 고객보다 워크플로를 잘 운영할 것. 둘째, 컨텍스트를 직접 만드는 것보다 빌려 쓰는 편이 싸게 만들 것. 셋째, 가치를 입증한 뒤 그에 맞춰 가격을 매길 것. 사례로 Repsol 법무팀은 Harvey를 Copilot 및 자체 프로토타입과 블라인드로 비교했다. 12개 관할의 변호사 50명이 8주간 시험한 뒤 도입했고, 주당 4~6시간 절감과 96% 사용률이 보고됐다. 8월 설문에서는 기업 LLM 의사결정자 100명 중 94%가 지출 증가를, 37%가 최소 두 배 증가를 예상했다.</p>\n<h3>여러 시각</h3>\n<p>같은 주 a16z의 다른 글은 '통제되지 않은 도입'이 만드는 가치를 다른 각도에서 본다.</p>\n<ul><li><b>a16z(Tugce Erten)</b> — 단위 업무(검토한 계약 한 건, 해결한 상담 한 건)의 총 전달 비용을 재고, 실패한 시도까지 포함한 성공 건당 비용으로 가격을 설계하라고 한다.</li><li><b>a16z(Marc Andreessen)</b> — 기술은 혼란스럽게 직장에 들어온다는 관점에서, 아무도 권한을 정하지 않고 아무도 행동을 볼 수 없는 에이전트 환경을 누가 '정돈된 서식지'로 바꾸느냐가 기회라고 말한다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>AI 시장에서 기능은 빠르게 복제되므로 가격은 곧 제품 전략의 시험대가 된다. 좌석당 요금처럼 익숙한 모델은 '완료된 일'의 가치와 어긋나기 쉽다. 두 글을 겹쳐 보면 앱이 받는 돈은 모델 성능이 아니라 통제, 검증, 맥락 같은 '혼란을 줄이는 일'에 대한 대가에 가깝다. 이 비용 구조를 숫자로 설명하지 못하면 고객은 직접 만드는 쪽을 택한다. 사업기획자에게는 가격 가설을 가장 먼저 검증해야 하는 이유가 된다.</p>\n<h3>실무 적용</h3>\n<ul><li>가장 노출된 워크플로 하나를 골라, 구현·사람 검토·실패·유지보수를 포함해 고객의 최선 대안과 비교표를 만든다.</li><li>고객에게 익숙한 업무 단위를 정하고 재시도와 평가 비용까지 포함한 성공 건당 원가를 측정한다.</li><li>사용할수록 좋아지는 요소(수정 이력, 평가 데이터)를 지표로 만들어 가격 협상 자료에 넣는다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>사업기획에서 가격은 마지막에 붙이는 숫자가 아니라 제품이 해결하는 문제의 크기를 증명하는 방식이라고 생각한다. 이 글의 '성공 건당 원가' 관점은 AX 컨설팅 제안서에도 그대로 쓸 수 있다. 고객사 업무 한 건을 얼마나 줄였는지 보여 주지 못하면 도입 이후 갱신이 어렵다. 또한 컨텍스트를 정리해 주는 일은 프론트엔드·UX가 맡는 영역과 맞닿아 있어서, 화면 설계가 곧 가치 증명의 일부가 된다고 본다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://a16z.com/how-ai-applications-earn-their-premium/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">a16z: How AI Applications Earn Their Premium ↗</a></li><li><a href=\"https://a16z.com/let-chaos-reign-and-then-rein-in-chaos/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">a16z: Let Chaos Reign, and Then Rein In Chaos ↗</a></li></ul>",
+    "source": "a16z",
+    "sourceUrl": "https://a16z.com/how-ai-applications-earn-their-premium/",
+    "tags": [
+      "AI Pricing",
+      "Strategy",
+      "SaaS"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-03-whats-important-final-css-tricks-independent",
     "category": "design",
     "date": "2026-11-03",

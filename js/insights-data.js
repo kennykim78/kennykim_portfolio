@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-05-dynamic-nth-child-sibling-index",
+    "category": "design",
+    "date": "2026-11-05",
+    "title": "sibling-index()로 런타임에 바뀌는 :nth-child() 만들기",
+    "rawTitle": "Re-Implementing :nth-child() With Modern CSS",
+    "summary": "CSS-Tricks가 sibling-index()와 if(), mod()로 An+B 값을 커스텀 속성에 담아 실시간으로 바꾸는 nth-child를 다시 구현했다. 실험이지만 최신 CSS의 방향을 보여준다.",
+    "bodyHtml": "<p>CSS-Tricks에 Temani Afif가 <code>:nth-child()</code>를 모던 CSS만으로 다시 구현한 글을 올렸다. 핵심은 선택자의 An+B 인자를 CSS 변수로 바꿔 런타임에 조절할 수 있게 한다는 점이다. 실서비스에 바로 쓸 기법이라기보다, 최근 CSS에 들어온 함수들이 어디까지 표현력을 넓혔는지 보여주는 사례로 읽는 편이 좋다.</p>\n<blockquote>\"With my implementation, you will be able to do it!\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>기존 <code>:nth-child()</code>는 인자가 선택자에 고정돼 있어 값을 동적으로 바꿀 수 없다. 글쓴이는 요소의 형제 간 위치를 반환하는 <code>sibling-index()</code>를 중심에 두고, <code>if()</code>의 <code>style()</code> 조건으로 스타일을 분기한다. 단일 위치는 인덱스가 --B와 같은지, 범위는 --X ≤ 인덱스 ≤ --Y인지, 배수는 <code>mod()</code>가 0인지로 판별한다. 일반형은 n = (index − B)/A로 바꿔 나머지가 0이고 n이 0 이상일 때만 일치시킨다.</p>\n<p>세부 함정도 정리돼 있다. A가 0이면 <code>mod()</code>가 NaN이 되어 <code>sign()</code> 등으로 우회해야 하고, A가 음수면 엉뚱한 요소가 선택되므로 A &gt; 0 조건을 더해야 한다. 또 속성마다 <code>if()</code>를 반복해야 하는 단점을 글쓴이 스스로 인정하며, \"실제로 동적 nth-child가 필요한 일은 거의 없을 것\"이라고 덧붙인다.</p>\n<h3>여러 시각</h3>\n<p>같은 시기 web.dev는 브라우저에 실제로 들어온 기능과 표준 논의 쪽에서 모던 CSS의 흐름을 다룬다.</p>\n<ul><li><b>web.dev 9월 플랫폼 소식</b> — <code>progress()</code>, <code>alpha()</code> 상대 색상, <code>revert-rule</code>, <code>appearance: base-select</code> 같은 기능이 안정 또는 베타 브라우저에 들어왔다고 정리한다. 다만 이 글에는 sibling-index 계열 항목이 없어, 오늘 실험의 핵심 함수는 아직 지원 범위를 따로 확인해야 한다.</li>\n<li><b>web.dev Interop 2027 에이전트 글</b> — 코드베이스의 폴리필과 우회 코드를 코딩 에이전트로 찾아 Interop 제안 후보를 뽑는 프롬프트를 소개한다. \"플랫폼에 없어서 JS로 막은 부분\"이 다음 표준의 근거가 된다는 관점이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>CSS가 값 계산, 조건 분기, 트리 위치 인식을 갖추면서 JavaScript로 하던 레이아웃·상태 로직이 스타일 계층으로 내려오고 있다. 이번 글은 그 경계가 얼마나 밀려났는지 보여주는 시험대다. 다만 구현이 길고 속성마다 반복된다는 점은 아직 선언적 추상화가 부족하다는 신호이기도 하다.</p>\n<p>또한 브라우저별 지원 시점이 제각각이라, 새 함수를 쓸 때는 폴백과 점진적 향상을 설계에 포함해야 한다. 독자 댓글에서도 범위 비교 문법의 지원 여부에 대한 질문이 나왔다.</p>\n<h3>실무 적용</h3>\n<ul><li>목록 순서에 따른 지연 애니메이션이나 색 단계는 <code>sibling-index()</code> 하나로 단순해질 수 있으니, 지원 범위를 확인한 뒤 점진적 향상으로 시도한다.</li>\n<li>동적 nth-child 같은 고난도 기법은 프로덕션 대신 디자인 시스템의 실험 브랜치나 내부 데모에서 먼저 검증한다.</li>\n<li>JS로 구현한 인덱스 계산·폴리필 목록을 정리해 두면 네이티브 대체 가능성을 점검할 기준이 된다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드 실무에서 중요한 것은 \"할 수 있는가\"보다 \"팀이 유지보수할 수 있는가\"다. 이 글의 코드는 영리하지만 읽기 어렵고, 글쓴이도 그 비용을 숨기지 않는다. 그래서 저는 이런 기법을 그대로 쓰기보다 CSS가 어떤 원시 기능을 갖추는지 가늠하는 지표로 삼는다.</p>\n<p>AX 관점에서도 비슷하다. 코딩 에이전트가 우회 코드를 찾아 주는 시대일수록, 사람은 어떤 기능을 표준에 요구할지 판단하는 역할이 커진다. 지원 범위 점검과 폴백 설계 같은 판단은 여전히 개발자의 몫이다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/re-implementing-nth-child-with-modern-css/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Re-Implementing :nth-child() With Modern CSS ↗</a></li><li><a href=\"https://web.dev/blog/web-platform-09-2026\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: New to the web platform in September ↗</a></li><li><a href=\"https://web.dev/blog/coding-agents-interop-proposals\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: Find features to support for Interop 2027 with your coding agent ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/re-implementing-nth-child-with-modern-css/",
+    "tags": [
+      "CSS",
+      "sibling-index",
+      "Front-end"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-05-startup-moat-ai-era",
+    "category": "pm",
+    "date": "2026-11-05",
+    "title": "AI 시대, 스타트업의 해자를 가려내는 3단계 틀",
+    "rawTitle": "How to tell if a startup has a moat",
+    "summary": "Lenny's Newsletter는 속도와 브랜드가 아닌 복리로 쌓이는 우위가 해자라고 말한다. First Round의 Netflix 사례와 함께 AI 전략의 기준을 살펴본다.",
+    "bodyHtml": "<p>Lenny's Newsletter에 Dan Hockenmaier가 \"스타트업에 해자가 있는지 어떻게 알아보는가\"라는 글을 기고했다. 모두가 비슷한 제품을 빠르게 만드는 AI 시대에 지표가 좋아 보이는 회사도 경쟁이 거세지면 멈춰 설 수 있다는 문제의식이다. 사업기획과 제품 전략을 맡은 사람이라면 투자 판단뿐 아니라 자기 제품의 방어력을 점검하는 틀로 쓸 만하다. (유료 구독 영역은 읽지 못했고 공개된 앞부분만 참고했다.)</p>\n<blockquote>\"Moats are more important than ever in the AI era.\"<cite>Lenny's Newsletter</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>글의 틀은 세 단계다. 복리로 쌓이는 우위를 찾고, 그것이 얼마나 강해질 수 있는지 가늠하고, 실제로 작동하는지 측정한다. 복리 우위로는 전환 비용, 네트워크 효과, 규모의 경제, 데이터 효과 네 가지를 든다. 반면 실행 속도, 유통, 브랜드, 강한 창업팀, 자금은 해자가 아니라 연료로 분류한다. 특히 브랜드는 스타트업에게는 고객 획득 비용에 가깝다고 본다.</p>\n<p>사례도 구체적이다. 전환 비용은 데이터 이전이 아니라 팀을 재교육하는 \"워크플로 세금\"이 본질이며 AI가 이전 비용을 낮춘다고 본다. 규모의 경제는 Zipline의 배송당 비용이 300달러에서 12달러로 떨어졌다는 수치로, 데이터 효과는 Stripe Radar가 70조 건 이상의 데이터를 처리한다는 수치로 설명한다. 조언은 회사의 선언이 아니라 팀이 매일 하는 일과 로드맵을 보라는 것이다.</p>\n<h3>여러 시각</h3>\n<p>같은 질문을 다른 각도에서 다룬 글들이 있다.</p>\n<ul><li><b>First Round Review</b> — 전 Netflix 제품 총괄 Mckenzie Lock는 \"무엇이 가능한가\"가 아니라 \"구성원에게 어떤 경험을 만들 것인가\"에서 출발했다고 말한다. 18개월 자동화 목표를 정하고 거꾸로 계획했으며, 아트워크 선택 모델은 크리에이티브 가이드라인으로 재학습해 시청 지표 개선을 얻었다고 한다.</li>\n<li><b>a16z 팟캐스트</b> — 기존 소프트웨어 기업은 고객·데이터·기록 시스템을 쥐고 있지만, AI 네이티브 기업의 기회는 그 시스템 밖의 이메일·협상 같은 비정형 업무에 있다고 본다. 설명 페이지 기준으로 정리했으며 전문은 확인하지 못했다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>세 글을 겹쳐 보면 방어력은 기능 목록이 아니라 쌓이는 구조에서 나온다는 결론이 나온다. 기능은 복제되지만 사용 데이터, 워크플로 정착, 네트워크는 시간이 지날수록 격차가 벌어진다. 기록 시스템이 아닌 업무의 빈틈을 노리는 전략도 같은 맥락이다.</p>\n<p>동시에 Netflix 사례는 해자가 기술 선택만으로 만들어지지 않는다는 점을 보여준다. 현업 구성원의 신뢰를 얻고 핵심 지표에 연결한 AI만 조직에 남는다. 그래서 해자 분석은 사업기획과 PM이 함께 해야 한다.</p>\n<h3>실무 적용</h3>\n<ul><li>우리 제품의 우위를 전환 비용·네트워크·규모·데이터로 나누고, 어느 것이 시간이 갈수록 커지는지 표로 점검한다.</li>\n<li>속도·브랜드·팀 같은 \"연료\" 항목을 방어력으로 착각하지 않도록 로드맵 리뷰에서 구분해 말한다.</li>\n<li>AI 기능 기획 시 \"할 수 있는가\"와 \"해야 하는가\"를 나누고, 18개월 목표에서 역산한 가설과 측정 지표를 먼저 정한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프로젝트를 이끌다 보면 일정과 기능 완성도에 집중하느라 방어력 질문을 뒤로 미루기 쉽다. 하지만 AI로 구현 속도가 빨라질수록 차별점은 만든 속도가 아니라 쌓인 맥락에서 나온다. 저는 기획 단계에서 어떤 데이터와 사용 흔적이 남도록 설계했는지를 PRD의 필수 질문으로 두고 싶다.</p>\n<p>또 하나는 현업의 신뢰다. 제품이 아무리 좋아도 쓰는 사람이 워크플로에 받아들이지 않으면 전환 비용이 쌓이지 않는다. 기술 시연보다 도입 경험을 설계하는 일이 곧 해자 설계라고 생각한다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.lennysnewsletter.com/p/how-to-tell-if-a-startup-has-a-moat\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: How to tell if a startup has a moat ↗</a></li><li><a href=\"https://review.firstround.com/netflix-ai-strategy/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: Parsing \"Can\" from \"Should\" ↗</a></li><li><a href=\"https://a16z.com/podcast/why-ai-agents-can-beat-the-incumbents/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">a16z: Why AI Agents Can Beat the Incumbents ↗</a></li></ul>",
+    "source": "Lenny's Newsletter",
+    "sourceUrl": "https://www.lennysnewsletter.com/p/how-to-tell-if-a-startup-has-a-moat",
+    "tags": [
+      "Moat",
+      "Product Strategy",
+      "AI"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-04-evals-error-discovery-two-way-doors",
     "category": "plan",
     "date": "2026-11-04",

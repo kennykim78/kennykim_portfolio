@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-11-07-modern-css-typography-reset",
+    "category": "design",
+    "date": "2026-11-07",
+    "title": "타이포그래피 리셋, 이제 CSS가 직접 판단한다",
+    "rawTitle": "Taming Typography: Building a Modern CSS Reset",
+    "summary": "CSS-Tricks가 소개한 현대적 타이포 리셋은 컨테이너 단위·text-box·text-wrap을 묶어, 리셋이 글자 조판 판단까지 맡는 시대를 보여준다.",
+    "bodyHtml": "<p>CSS-Tricks에 실린 Stu Robson의 글은 흔한 margin 초기화 수준을 넘어, 최신 타이포그래피 기능을 한 장의 기본 스타일시트(tidy-typography.css)로 묶는 시도를 소개한다. 렌더링, 유동 크기, 수직 리듬, 줄바꿈, 하이픈, OpenType 세부 조정까지 층(layer)으로 나눠 정리한 점이 특징이다. 리셋이 '지우는 도구'에서 '조판 기본값을 설계하는 도구'로 넘어가고 있다는 신호다.</p>\n<blockquote>\"CSS can now make choices about type that used to sit outside a reset.\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>핵심 장치는 몇 가지다. 제목 크기를 뷰포트가 아니라 컬럼 폭에 맞추기 위해 container-type: inline-size와 cqi 단위를 쓰고, text-box: trim-both cap alphabetic으로 line-height가 만드는 위아래 여백(half-leading)을 제거해 다른 요소와 촘촘히 정렬한다. text-wrap은 역할별로 나눠 제목에는 balance, 본문에는 pretty, 편집 가능한 영역에는 stable을 준다. 아직 브라우저에 없는 :heading 선택자는 @supports selector() 안에 가둬 안전하게 적용한다.</p>\n<h3>여러 시각</h3>\n<p>같은 기능을 다룬 다른 글들은 '언제 무엇을 쓰는가'에 더 무게를 둔다.</p>\n<ul><li><b>LogRocket</b> — balance는 제목처럼 짧은 블록에, pretty는 마지막 줄 정리가 필요한 긴 글에 쓰라고 권하며, pretty는 성능 비용이 있으므로 남용을 경계한다.</li>\n<li><b>Chrome for Developers</b> — balance를 줄 수가 적은 블록용 기능으로 설명하고, 미지원 브라우저에서는 속성이 무시되어 기본 줄바꿈으로 돌아간다는 점을 강조한다.</li></ul>\n<p>정리하면 CSS-Tricks는 '묶음 기본값'을, 나머지는 '개별 속성의 적용 범위와 비용'을 이야기한다. 독자 댓글에서도 font-synthesis, 하이픈, body max-width 같은 규칙은 리셋에 넣기엔 지나치게 의견이 강하다는 반론이 나왔다.</p>\n<h3>왜 중요한가</h3>\n<p>타이포그래피 품질은 그동안 디자이너의 시안과 개발자의 수작업 사이에서 자주 유실되던 영역이다. 이 기능들이 CSS 기본값으로 내려오면 JS 기반 줄바꿈 보정이나 폰트 크기 계산 코드를 줄일 수 있다. 다만 기능마다 지원 수준이 달라, 무엇을 '기본'으로 삼을지는 팀이 판단해야 한다. 결국 리셋 파일은 기술 모음이 아니라 팀의 조판 철학을 담은 문서가 된다.</p>\n<h3>실무 적용</h3>\n<ul><li>제목에는 text-wrap: balance, 본문 p·li에는 pretty를 적용하고, 미지원 브라우저에서도 레이아웃이 깨지지 않는지 확인한다.</li>\n<li>Hero 제목처럼 컬럼 폭에 반응해야 하는 곳은 뷰포트 단위 대신 컨테이너 쿼리 단위(cqi)로 바꿔 본다.</li>\n<li>리셋에 넣을 규칙과 컴포넌트에서 선택할 규칙을 나눠, 의견이 강한 속성(하이픈, 합성 폰트)은 옵트인으로 둔다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>프론트엔드 작업에서 가장 오래 걸리는 일은 새 기술 도입보다 '어디까지를 기본값으로 할지' 합의하는 일이었다. 이 글은 그 경계를 코드로 드러낸다는 점에서 유용하다. 저는 리셋은 최소한으로 유지하고, 타이포 기본값은 별도 레이어로 분리해 프로젝트마다 켜고 끄는 방식을 권한다. 그래야 디자인 시스템이 바뀌어도 조판 규칙을 일관되게 유지하면서 브라우저 지원 변화에 맞춰 천천히 확장할 수 있다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/taming-typography-modern-css-reset/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Taming Typography: Building a Modern CSS Reset ↗</a></li><li><a href=\"https://blog.logrocket.com/css-text-wrap-balance-vs-text-wrap-pretty/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">LogRocket: CSS text-wrap: balance vs. text-wrap: pretty ↗</a></li><li><a href=\"https://developer.chrome.com/blog/css-text-wrap-balance\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Chrome for Developers: CSS text-wrap: balance ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/taming-typography-modern-css-reset/",
+    "tags": [
+      "CSS",
+      "Typography",
+      "Container Queries"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-07-claude-frontier-academy-talent",
+    "category": "ai",
+    "date": "2026-11-07",
+    "title": "Anthropic, 1억 달러로 AI 도입의 병목 ‘인재’를 겨냥하다",
+    "rawTitle": "Anthropic invests $100 million to train 10,000 engineers and tackle the enterprise AI talent gap",
+    "summary": "Anthropic이 Claude Frontier Academy에 1억 달러를 투입해 2027년까지 현장 배치 엔지니어 1만 명을 양성한다. 기업 AI 도입의 병목이 기술에서 사람으로 옮겨가고 있다.",
+    "bodyHtml": "<p>Anthropic이 Claude Frontier Academy를 발표했다. 목표는 2027년 말까지 Frontier Deployed Engineer(FDE) 1만 명을 길러내는 것이고, 투자 규모는 1억 달러다. 모델 성능 경쟁이 한창인 시점에 '사람'을 병목으로 지목했다는 점이 눈에 띈다. 기업 AI 도입을 고민하는 팀이라면 이 방향 전환을 짚어볼 만하다.</p>\n<blockquote>\"Today we are launching Claude Frontier Academy to solve one of the most pressing issues in AI implementation: talent.\"<cite>Anthropic</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>첫 프로그램은 의료 수련 방식을 본뜬 FDE 레지던시다. 조직이 가장 유능한 엔지니어를 지명하면, 이들은 직접 이끌 Claude 프로젝트를 하나씩 들고 입교한다. 먼저 며칠간 대면 과정에서 유스케이스 선정부터 보안 검토, 인수인계까지 모의 기업 배치를 수행하고 실기 평가를 통과해야 한다. 이어 12주 동안 자기 조직의 실제 사례를 이끌고, 최종 평가를 통과하면 인증을 받는다. 첫 코호트에는 Accenture, Deloitte, McKinsey, Morgan Stanley 등이 참여하며 샌프란시스코·뉴욕·런던에서 운영된다.</p>\n<h3>여러 시각</h3>\n<p>같은 시기 VentureBeat의 기업 AI 기사들은 '사람' 외에 비용과 인프라라는 다른 병목을 보여준다.</p>\n<ul><li><b>VentureBeat (비용)</b> — 기업 156곳 설문에서 38%가 비용 초과 때문에 AI 프로젝트를 미루거나 축소·취소했고, 컴퓨팅 부족을 꼽은 곳은 12%에 그쳤다고 전한다.</li>\n<li><b>VentureBeat (Microsoft 후원)</b> — 기업 AI가 '포트폴리오 문제'가 되어, 워크로드마다 모델과 인프라를 맞춰야 한다고 주장한다. 다만 후원 콘텐츠라 마케팅 성격을 감안해야 한다.</li></ul>\n<p>Anthropic은 인재를, VentureBeat 설문은 비용을 병목으로 본다. 두 시각은 충돌하기보다, 도입을 이끄는 사람이 비용과 아키텍처 판단까지 맡아야 한다는 점에서 맞닿는다.</p>\n<h3>왜 중요한가</h3>\n<p>AI 도구는 빠르게 좋아지지만 현업에 안착시키는 능력은 같은 속도로 늘지 않는다. 보안 검토, 데이터 연결, 운영 인수인계 같은 일은 모델이 아닌 사람의 역량이다. 이번 발표는 그 역량을 별도의 직무와 인증으로 제도화하겠다는 선언에 가깝다. 앞으로 '프롬프트를 잘 쓰는 사람'보다 '도입을 끝까지 책임지는 사람'의 가치가 커질 가능성이 높다.</p>\n<h3>실무 적용</h3>\n<ul><li>AI 도입 과제마다 소유자 한 명과 실제 유스케이스를 지정하고, 파일럿이 아닌 운영 인수인계까지를 완료 기준으로 삼는다.</li>\n<li>도입 체크리스트에 보안 검토와 비용 상한을 초기에 넣어, 후반에 중단되는 위험을 줄인다.</li>\n<li>사내 엔지니어 중 LLM 구축 경험과 타 팀 교육 경험을 함께 가진 사람을 우선 육성 대상으로 파악한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>AX 프로젝트를 하면서 가장 자주 막히는 지점은 모델 선택이 아니라 현업 프로세스에 붙이는 단계였다. 그래서 이번 발표의 문제 설정에는 공감한다. 프론트엔드 개발자는 사용자 접점과 업무 흐름을 함께 보기 때문에 FDE와 가장 가까운 직무라고 생각한다. 인증 자체보다 '실제 사례를 12주 동안 끝까지 이끈다'는 설계가 핵심이며, 우리 팀도 작은 규모로라도 같은 방식의 책임 구조를 시도해 볼 만하다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://www.anthropic.com/news/claude-frontier-academy\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Anthropic invests $100 million to train 10,000 engineers and tackle the enterprise AI talent gap ↗</a></li><li><a href=\"https://venturebeat.com/infrastructure/the-ai-race-is-raising-companies-bills-from-gpus-to-memory-to-microsoft-365\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: The AI race is raising companies' bills, from GPUs to memory to Microsoft 365 ↗</a></li><li><a href=\"https://venturebeat.com/infrastructure/why-ai-model-choice-is-now-an-infrastructure-decision\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Why AI model choice is now an infrastructure decision ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/news/claude-frontier-academy",
+    "tags": [
+      "Enterprise AI",
+      "Talent",
+      "Claude"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-06-how-researchers-use-claude",
     "category": "ai",
     "date": "2026-11-06",

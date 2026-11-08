@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-11-08-ai-bias-and-entity-quality",
+    "category": "plan",
+    "date": "2026-11-08",
+    "title": "AI가 만든 결과의 '편향 없음'을 기획은 어떻게 검증할까",
+    "rawTitle": "AI image bias isn't just a ChatGPT problem: What Gemini and Midjourney reveal",
+    "summary": "스테레오타입의 반대가 곧 공정함은 아니다. 이미지 생성 AI 비교 실험과 은행 거래 데이터 사례로 AI 품질 기준을 기획 단계에서 정의하는 법을 짚는다.",
+    "bodyHtml": "<p>Mind the Product에 실린 한 실험이 눈길을 끈다. 저자는 11개 직업을 대상으로 ChatGPT, Gemini, Midjourney에 같은 이미지 프롬프트를 넣고, 다음 라운드에서는 '편견을 피하라'는 지시를 추가해 결과를 비교했다. 결론은 어느 모델도 기본값으로는 편향 없는 결과를 내지 못했다는 것이다. AI 기능을 제품에 넣는 기획자라면 '품질 기준'을 누가 어떻게 정의하는지 다시 점검할 시점이다.</p><blockquote>\"The opposite of a stereotype is not automatically the absence of a stereotype.\"<cite>Mind the Product</cite></blockquote><h3>무슨 일인가</h3><p>첫 라운드에서 Gemini는 전체 성별 비율이 거의 균등했지만 의사·과학자는 여성, CEO·현장직은 남성으로 묶는 경향을 보였다. Midjourney는 겉보기엔 다양했으나 CEO 이미지는 모두 나이 든 백인 남성이었다. 편견 방지 지시를 넣자 Gemini는 11장 중 10장이 흑인으로 쏠렸고, ChatGPT는 여러 직업에서 비슷한 인상의 여성 한 명으로 수렴했다. 즉 지시를 주면 눈에 띄는 속성만 바뀔 뿐, 사람을 더 공정하게 재현하는 것은 아니라는 관찰이다. 다만 표본이 작은 정성 실험이라는 한계는 저자도 인정한다.</p><h3>여러 시각</h3><p>같은 '데이터 품질' 문제를 다른 도메인에서 본 글이 두 편 있다.</p><ul><li><b>Mind the Product(Intuit PM의 거래 데이터 사례)</b> — 같은 가맹점이 여러 문자열로 찍혀 규칙 기반 분류가 깨졌고, 언어 모델과 임베딩 모델을 묶은 앙상블로 해결했다. 잘못된 매칭은 소상공인의 대출 심사 결과를 바꿀 수 있다고 지적한다.</li><li><b>Lenny's Newsletter(Hamel Husain·Shreya Shankar)</b> — 지표부터 만들지 말고 실제 트레이스를 사람이 검토하는 '오류 발견'을 먼저 하라고 권한다. 이를 평가 영역의 프로덕트 디스커버리에 비유한다.</li></ul><h3>왜 중요한가</h3><p>세 글의 공통점은 실패가 대시보드에 드러나지 않는다는 점이다. 이미지 편향은 평균 비율로는 정상처럼 보이고, 거래 분류 오류는 정확도 평균에 묻힌다. 그래서 '전체 수치가 괜찮다'는 QA 기준만으로는 부족하고, 어떤 하위 집단과 어떤 상황에서 틀리는지를 요구사항 단계에서 정의해야 한다. AI 기능의 품질은 개발이 끝난 뒤 측정하는 값이 아니라 기획이 설계하는 대상이 된다.</p><h3>실무 적용</h3><ul><li>요구사항 문서에 '정확도 목표'와 함께 '허용할 수 없는 실패 유형'(특정 집단, 특정 입력)을 명시한다.</li><li>출시 전 실제 출력 샘플 100건 안팎을 사람이 직접 읽고 오류를 분류하는 리뷰 세션을 QA 일정에 넣는다.</li><li>프롬프트 보정 후에는 '무엇이 바뀌었나'를 다시 비교해, 다양성이 늘었는지 단순히 쏠림이 이동했는지 확인한다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드와 AX를 함께 다루다 보면 모델 출력은 결국 UI 위의 사용자 경험으로 도착한다. 사용자는 평균을 보지 않고 자기 앞의 한 장면을 본다. 그래서 저는 AI 기능의 수락 기준을 '한 건의 나쁜 결과를 어떻게 발견하고 되돌릴 수 있는가'로 쓰는 편이 현실적이라고 본다. 기획·QA가 함께 오류 사례집을 키워 가는 습관이 모델 교체보다 오래 간다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/ai-image-bias-isnt-just-a-chat-gpt-problem-what-gemini-and-midjourney-reveal/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: AI image bias isn't just a ChatGPT problem ↗</a></li><li><a href=\"https://www.mindtheproduct.com/i-thought-bank-statements-were-a-formatting-problem-then-i-found-out-whose-loan-was-riding-on-one/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: I thought bank statements were a Formatting Problem ↗</a></li><li><a href=\"https://www.lennysnewsletter.com/p/advanced-evals-how-to-find-and-fix\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: Advanced evals ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/ai-image-bias-isnt-just-a-chat-gpt-problem-what-gemini-and-midjourney-reveal/",
+    "tags": [
+      "AI Quality",
+      "Product Planning",
+      "Evals"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-08-unexpected-growth-and-trust",
+    "category": "pm",
+    "date": "2026-11-08",
+    "title": "다들 같은 성장 공식을 쓸 때, 예상 밖의 한 수와 신뢰가 이긴다",
+    "rawTitle": "60+ new creative growth ideas",
+    "summary": "모두가 같은 마케팅 플레이북을 돌리는 시대, 저비용 기발한 시도와 오래 쌓은 신뢰가 성장의 차이를 만든다. 두 글을 교차해 사업·GTM 시사점을 정리한다.",
+    "bodyHtml": "<p>Lenny's Newsletter에서 Wiz 그로스 마케팅 리드 Tom Orbach가 4년간 모은 비정형 성장 전술 60여 개를 공개했다. 핵심 진단은 단순하다. 대부분의 회사가 비슷한 런칭 영상, 인플루언서, SEO, 이메일, 행사를 반복하다 보니 눈에 띄지 않는다는 것이다. 사업기획 입장에서 '차별화된 채널'보다 '차별화된 행동'이 더 싸고 빠를 수 있다는 점을 보여 준다.</p><blockquote>\"But attention always goes to what people don’t see coming.\"<cite>Lenny's Newsletter</cite></blockquote><h3>무슨 일인가</h3><p>글의 사례는 구체적이다. 사이버보안 임원을 겨냥한 가짜 장난감 가게는 거의 비용 없이 Reddit에서 화제가 되어 24시간 만에 4만 6천 명이 방문했다. Wiz는 이름이 새겨진 마일스톤 인증서를 보낸 뒤 고객의 SNS 공유가 300% 늘었다고 한다. 가입 폼 뒤에 제품 화면을 흐리게 깔아 전환율이 25% 올랐다는 본인 테스트도 있다. 저자는 이 아이디어들을 전부 하지 말고 '복권'처럼 몇 장만 골라 실험하라고 권한다.</p><h3>여러 시각</h3><p>같은 주제를 장기 관점에서 본 글이 First Round Review에 있다.</p><ul><li><b>First Round Review(Vanta CMO의 회고)</b> — 'Compliance that doesn't SOC 2 much' 같은 위트 있는 빌보드로 화제를 모았고 그것이 최대 엔터프라이즈 고객의 데모로 이어졌다. 하지만 저자는 재치 자체보다 6년 동안 쌓인 신뢰가 다음 역할과 캠페인을 가능하게 했다고 말한다.</li></ul><h3>왜 중요한가</h3><p>두 글은 서로 다른 시간축을 보여 준다. Orbach는 단기 실험으로 주목을 사는 법을, Vanta의 사례는 그 주목이 신뢰로 바뀌어야 지속된다는 점을 말한다. AI로 만드는 비용이 낮아져 제품 차이가 빨리 좁혀지는 지금, 사업 측면의 방어선은 점점 브랜드와 관계로 이동한다. 기발한 전술은 입구가 되고, 약속을 지킨 기록이 재구매와 추천을 만든다.</p><h3>실무 적용</h3><ul><li>분기마다 저비용 성장 실험 3개를 정해 가설·비용·성공 지표를 한 장으로 기록하고 2주 안에 결과를 본다.</li><li>고객이 자랑하고 싶어 할 순간(마일스톤, 첫 성과)을 찾아 공유 가능한 형태로 만든다.</li><li>화제성 지표와 별도로 재방문·추천 같은 신뢰 지표를 같은 대시보드에서 추적한다.</li></ul><h3>Kenny의 관점</h3><p>웹사이트와 제품 경험을 만드는 사람으로서 저는 '한 번 눈에 띄는 것'과 '계속 믿을 수 있는 것'이 같은 화면에서 만나야 한다고 본다. 흐린 스크린샷 하나가 전환율을 바꾸듯 작은 UI 선택도 성장 실험이 된다. 다만 재치가 약속과 어긋나면 신뢰 비용이 더 커진다. 사업기획 단계에서 실험 목록과 지켜야 할 브랜드 약속을 함께 적어 두는 것을 권한다.</p><h3>출처</h3><ul><li><a href=\"https://www.lennysnewsletter.com/p/60-creative-growth-ideas\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: 60+ new creative growth ideas ↗</a></li><li><a href=\"https://review.firstround.com/vanta-firsthand/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: Firsthand: Six Years at Vanta ↗</a></li></ul>",
+    "source": "Lenny's Newsletter",
+    "sourceUrl": "https://www.lennysnewsletter.com/p/60-creative-growth-ideas",
+    "tags": [
+      "Growth",
+      "GTM",
+      "Brand Trust"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-07-modern-css-typography-reset",
     "category": "design",
     "date": "2026-11-07",

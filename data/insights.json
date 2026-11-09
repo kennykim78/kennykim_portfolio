@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-11-09-anchor-positioning-tooltips",
+    "category": "design",
+    "date": "2026-11-09",
+    "title": "툴팁·팝오버, 이제 JS 없이 CSS 앵커로 배치한다",
+    "rawTitle": "Getting Started with Anchor Positioning",
+    "summary": "CSS Anchor Positioning이 주요 브라우저에 들어오면서 툴팁 배치를 JS 계산 없이 선언만으로 처리할 수 있다. 두 글로 쓰는 법과 다음 단계를 정리한다.",
+    "bodyHtml": "<p>Josh W. Comeau가 CSS Anchor Positioning API 입문 글을 올렸다. 툴팁이나 팝오버를 기준 요소 옆에 붙이려고 getBoundingClientRect와 스크롤 이벤트로 좌표를 계산하던 방식을, 선언 몇 줄로 대체하는 내용이다. 그는 이 API가 2026년 1월부터 주요 브라우저에서 지원된다고 소개한다. 다만 글이 처음 나온 7월 기준 caniuse 지원율은 약 81%였고, 2단계 기능은 약 64%였다. 쓸 수 있지만 폴백은 챙겨야 하는 시점이다.</p><blockquote>\"The Anchor Positioning API has been supported across all major browsers since January 2026.\"<cite>Josh W. Comeau</cite></blockquote><h3>무슨 일인가</h3><p>기본 패턴은 세 단계다. 기준 요소에 anchor-name을 주고, 띄울 요소에 position-anchor로 연결한 뒤, position-area로 위치(top, top left 등)를 고른다. 띄울 요소는 absolute 또는 fixed여야 한다. 간격 속성이 따로 없어서 margin으로 거리를 준다. 화면 밖으로 넘칠 때는 position-try-fallbacks에 bottom이나 flip-block 같은 값을 줘서 자동으로 방향을 바꾼다. 한번 바뀐 위치는 다시 넘치기 전까지 유지된다는 점도 짚는다.</p><h3>여러 시각</h3><p>같은 저자의 Interop 2027 글은 이 기능이 어디로 확장되는지 보여 준다.</p><ul><li><b>Josh W. Comeau(입문 글)</b> — 2단계의 anchored container query로 툴팁 꼬리 화살표가 위치에 따라 뒤집히게 만든다. 꼬리 모양은 border-shape를 쓰는데 7월 기준 Chromium 전용이라 clip-path 폴백을 둔다.</li><li><b>Josh W. Comeau(Interop 2027 Top 10)</b> — anchored container queries, border-shape, scroll-triggered animations, gap decorations 등을 뽑았고 대부분 2026년 10월 기준 Chromium 전용이라고 밝힌다. 점진적 향상으로 쓰라는 권고다.</li></ul><h3>왜 중요한가</h3><p>위치 계산 코드는 UI 라이브러리가 오래 떠안아 온 복잡도였다. 브라우저가 이를 맡으면 번들 크기와 레이아웃 흔들림, 스크롤 동기화 버그가 함께 줄어든다. 또 배치 규칙이 CSS에 있으면 디자이너와 개발자가 같은 파일에서 의도를 읽을 수 있다. 다만 지원율이 100%가 아니라서, 기능이 아니라 향상으로 다루는 판단이 필요하다.</p><h3>실무 적용</h3><ul><li>새 툴팁·드롭다운은 anchor-name과 position-area로 만들고, 기존 JS 위치 계산은 @supports 안쪽 폴백으로 남긴다.</li><li>가장자리 넘침은 position-try-fallbacks로 처리하고 모바일 뷰포트에서 방향 전환을 직접 확인한다.</li><li>border-shape 같은 Chromium 전용 장식은 clip-path 폴백을 두고, 없어도 기능이 깨지지 않게 한다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드에서 가장 오래 써 온 JS 의존 중 하나가 팝업 위치 계산이라고 생각한다. 이게 CSS로 넘어가면 컴포넌트는 더 얇아지고 접근성 속성만 신경 쓰면 된다. 그래서 새 프로젝트부터는 앵커 방식을 기본으로 두고 폴백을 한 겹 얹는 구조를 권한다. 반대로 기존 코드를 한꺼번에 갈아엎는 것은 이득이 작다. 지원율이 올라가는 속도에 맞춰 컴포넌트 단위로 옮기는 편이 안전하다.</p><h3>출처</h3><ul><li><a href=\"https://www.joshwcomeau.com/css/anchor-positioning/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Josh W. Comeau: Getting Started with Anchor Positioning ↗</a></li><li><a href=\"https://www.joshwcomeau.com/css/interop-2027/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Josh W. Comeau: The Future of CSS — My top 10 picks for Interop 2027 ↗</a></li></ul>",
+    "source": "Josh W. Comeau",
+    "sourceUrl": "https://www.joshwcomeau.com/css/anchor-positioning/",
+    "tags": [
+      "CSS",
+      "Anchor Positioning",
+      "Frontend"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-09-who-owns-customer-when-ai-shops",
+    "category": "pm",
+    "date": "2026-11-09",
+    "title": "AI가 대신 쇼핑하면 고객 관계와 수익은 누가 가져가나",
+    "rawTitle": "Who Gets Paid When AI Does the Shopping?",
+    "summary": "AI 비서가 구매 결정의 입구가 되면 마켓플레이스의 광고·수수료 이익이 흔들린다. a16z의 분석과 Lovable의 브랜드 사례로 고객 소유의 의미를 짚는다.",
+    "bodyHtml": "<p>a16z Growth는 AI 비서가 사람들이 무엇을 살지 정하는 곳이 되면 마켓플레이스의 수익 구조가 압박받는다고 분석했다. 핵심은 두 질문이다. 에이전트가 얼마나 새로운 수요를 만들어 내는가, 그리고 플랫폼 이익이 발견 단계와 고객 관계를 쥐는 데 얼마나 의존하는가. 사업기획자에게는 '누가 고객 접점을 갖는가'가 곧 가격 결정력이라는 점을 다시 확인해 주는 글이다.</p><blockquote>\"AI assistants don't need to replicate Amazon's warehouses to put pressure on Amazon's profits.\"<cite>a16z</cite></blockquote><h3>무슨 일인가</h3><p>저자들이 든 숫자가 구체적이다. 아마존의 2025년 광고 매출은 690억 달러인데, AWS를 뺀 영업이익은 340억 달러다. 광고 기여마진을 70%로 가정하면 광고가 보고된 영업이익보다 더 큰 이익을 낸다는 계산이 나온다. DoorDash와 Instacart도 같은 구조라고 한다. 알파벳과 메타의 광고 매출은 합쳐서 약 5천억 달러에 가깝다. 한편 Instacart는 Muse와 연동하지만 아마존은 막았다. 저자들은 옳고 그름이 아니라 협상력의 차이로 읽는다. 식사 주문 예시에서는 비서, Toast, DoorDash Drive가 이어져 고객이 마켓플레이스를 거치지 않는다.</p><h3>여러 시각</h3><p>보조 소스는 고객 접점을 지키는 쪽이 아니라 만드는 쪽의 경험을 보여 준다.</p><ul><li><b>First Round Review(Lovable 첫 디자이너의 회고)</b> — 출시 후 입소문이 주된 유입원이었다. 사용자 통화를 다시 돌려 보며 가능성·주도권·속도라는 세 감정을 브랜드 기준으로 삼았다. 유통 채널이 아니라 직접 듣기와 일관된 감정이 접점이 된다는 시각이다.</li></ul><h3>왜 중요한가</h3><p>두 글은 같은 질문의 양면이다. 중개자가 AI로 바뀌면 플랫폼은 발견 단계의 통제력을 잃을 수 있고, 제품을 만드는 쪽은 비서가 추천하고 싶은 이유를 스스로 만들어야 한다. 아마존의 광고 이익 사례는 접점을 잃는 비용이 매출이 아니라 이익률에서 먼저 나타난다는 것을 보여 준다. 사업 계획에서 채널 의존도를 마진 기준으로 점검해야 하는 이유다.</p><h3>실무 적용</h3><ul><li>매출 상위 채널별로 광고·수수료가 이익에서 차지하는 비중을 계산해, AI 비서가 발견 단계를 가져갈 때의 민감도를 본다.</li><li>비서·에이전트가 읽을 수 있는 구조화된 상품·가격·재고 정보를 노출하고, 연동 제안을 받을 때의 협상 조건을 미리 정리한다.</li><li>직접 유입(입소문·재구매) 비율을 지표로 올려, 중개자가 바뀌어도 남는 관계를 측정한다.</li></ul><h3>Kenny의 관점</h3><p>웹사이트를 만드는 입장에서 이 흐름은 남의 일이 아니다. 비서가 요약해 주는 세상에서는 페이지가 클릭을 받기 전에 먼저 읽혀야 하고, 읽힌 뒤에도 브랜드가 기억돼야 한다. 그래서 구조화된 데이터와 일관된 브랜드 경험을 함께 설계하는 것이 사업기획의 실무라고 본다. 다만 이것은 두 글을 엮은 제 해석이고, 에이전트 쇼핑의 실제 규모는 아직 확인되지 않았다는 점은 구분해서 봐야 한다.</p><h3>출처</h3><ul><li><a href=\"https://a16z.com/who-gets-paid-when-ai-does-the-shopping/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">a16z: Who Gets Paid When AI Does the Shopping? ↗</a></li><li><a href=\"https://review.firstround.com/firsthand-lovable/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: Firsthand: How I Built a Brand with Heart at Lovable ↗</a></li></ul>",
+    "source": "a16z",
+    "sourceUrl": "https://a16z.com/who-gets-paid-when-ai-does-the-shopping/",
+    "tags": [
+      "AI Commerce",
+      "Business Strategy",
+      "Distribution"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-08-ai-bias-and-entity-quality",
     "category": "plan",
     "date": "2026-11-08",

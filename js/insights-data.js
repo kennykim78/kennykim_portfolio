@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-10-fable-5-2-mythos-5-2",
+    "category": "ai",
+    "date": "2026-11-10",
+    "title": "같은 모델, 두 가지 문: Fable 5.2와 Mythos 5.2의 의미",
+    "rawTitle": "Introducing Claude Fable 5.2 and Claude Mythos 5.2",
+    "summary": "Anthropic이 동일한 모델을 안전장치 수준만 달리해 일반 공개(Fable)와 검증 기관 전용(Mythos)으로 나눠 내놨다. 성능만큼 접근 설계가 제품이 된다.",
+    "bodyHtml": "<p>Anthropic이 11월 9일 Claude Fable 5.2와 Mythos 5.2를 발표했다. 이름은 둘이지만 같은 모델이고, 달라지는 것은 사이버보안·생물학 영역의 안전장치와 접근 권한이다. 모델 성능 경쟁이 \"누가 쓸 수 있는가\"의 설계 경쟁으로 넘어가고 있다는 신호로 읽힌다. 개발 현장에서는 모델 선택 기준 자체가 달라질 수 있다.</p><blockquote>\"Claude Fable and Claude Mythos are the same underlying model.\"<cite>Anthropic</cite></blockquote><h3>무슨 일인가</h3><p>Fable은 강화된 안전장치를 적용해 모든 사용자에게 열리고, Mythos는 사이버·생명과학 검증 프로그램을 통과한 기관에만 제공된다. Anthropic은 이전 5.1 대비 출력 속도가 최대 30% 빨라졌고 가격은 입력 100만 토큰당 8달러, 출력 40달러라고 밝혔다. 선택형 고속 모드는 속도를 최대 2.5배 높이는 대신 단가가 두 배다. 자체 보고 벤치마크에서는 FrontierCode 2.0 49.1%로 Opus 5.5(45.5%)를 앞섰다. 다만 대부분의 작업은 여전히 Opus 5.5로 시작하라고 권고한다.</p><h3>여러 시각</h3><p>같은 시기의 다른 소스는 '모델이 강해질수록 신뢰를 어떻게 설계하느냐'를 다르게 짚는다.</p><ul><li><b>Mind the Product</b> — G2의 Alexis Zheng은 AI의 병목이 이제 데이터나 연산이 아니라 신뢰이며, 단계마다 검증자를 둬야 한다고 말한다. 접근 통제보다 검증 루프를 강조하는 관점이다.</li><li><b>Anthropic S-1 공지</b> — 같은 달 상장 신청서 제출이 발표됐다. 모델 공개 전략이 규제·투자자 시선과 맞물리는 시기임을 보여주는 맥락이다.</li></ul><h3>왜 중요한가</h3><p>한 모델을 권한별로 쪼개 배포하는 방식은 능력과 위험을 분리해 관리하겠다는 선언이다. 앞으로 기업 고객은 벤치마크뿐 아니라 어떤 검증 단계를 통과해야 어떤 기능을 쓸 수 있는지를 계약 조건으로 따지게 될 것이다. 또한 속도·가격 옵션이 세분화되어 작업 유형별로 모델과 모드를 조합하는 운영 역량이 중요해진다. 공급사 의존도와 모델 교체 비용도 함께 계산해야 한다.</p><h3>실무 적용</h3><ul><li>모델 ID(claude-fable-5-2)를 설정값으로 분리해 교체·롤백 비용을 낮춘다.</li><li>고속 모드는 사용자 대기가 길어 체감 가치가 큰 흐름에만 선택 적용하고 비용을 계측한다.</li><li>벤더 벤치마크를 믿기 전에 우리 도메인 과제로 소규모 평가셋을 만들어 비교한다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드·AX 관점에서 중요한 건 모델 이름이 아니라 모델을 갈아 끼워도 흔들리지 않는 인터페이스 계층이다. 응답 속도 옵션이 생기면 로딩·스트리밍 UX 설계가 곧 비용 설계가 된다. 권한이 나뉜 모델 환경에서는 \"이 기능은 왜 제한되는가\"를 사용자에게 설명하는 UI도 제품의 일부다. 결국 AX는 가장 강한 모델을 붙이는 일이 아니라 검증과 폴백을 갖춘 구조를 만드는 일이다.</p><h3>출처</h3><ul><li><a href=\"https://www.anthropic.com/claude-fable-and-mythos-5-2\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Introducing Claude Fable 5.2 and Claude Mythos 5.2 ↗</a></li><li><a href=\"https://www.mindtheproduct.com/building-ai-products-as-systems-of-trust-alexis-zheng-at-mind-the-product-chicago/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Building AI Products as Systems of Trust ↗</a></li><li><a href=\"https://www.anthropic.com/news/s1-sec\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Anthropic files S-1 with the SEC for proposed initial public offering ↗</a></li></ul>",
+    "source": "Anthropic",
+    "sourceUrl": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+    "tags": [
+      "Claude",
+      "ModelRelease",
+      "AX"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-10-ai-trust-verifiers-product",
+    "category": "plan",
+    "date": "2026-11-10",
+    "title": "AI 제품은 신뢰 시스템이다: 검증 루프를 요구사항으로",
+    "rawTitle": "Building AI Products as Systems of Trust: Alexis Zheng at Mind the Product Chicago",
+    "summary": "G2의 Alexis Zheng은 AI의 병목이 신뢰라고 말한다. 실수를 요구사항과 테스트로 되돌리는 학습 루프가 기획·QA의 새 핵심이다.",
+    "bodyHtml": "<p>Mind the Product Chicago에서 G2의 CPTO Alexis Zheng은 AI 발전의 병목이 데이터도 연산도 아닌 신뢰라고 주장했다. G2 설문에서 구매자의 약 60%가 구매 여정에 AI를 쓰지만 추천을 신뢰하는 비율은 9%에 그친다. 기능을 많이 정의하는 기획에서, 신뢰를 설계하는 기획으로 무게중심이 옮겨가고 있다. QA도 출시 전 관문이 아니라 제품 내부 루프가 된다.</p><blockquote>\"Your loop is only as good as the verifiers that you write at every stage.\"<cite>Mind the Product</cite></blockquote><h3>무슨 일인가</h3><p>Zheng은 다섯 가지 교훈을 제시한다. 화면이 아니라 시스템으로 생각하고, 인지·예측·불확실성·지연을 다루는 하네스를 설계하며, 시스템이 스스로 실수를 모아 요구사항과 테스트로 바꾸는 학습 루프를 만든다. 이어 시뮬레이터와 루브릭 기반 에이전트 평가로 신뢰를 검증하고, 마지막으로 에이전트가 직접 다루는 헤드리스 소프트웨어를 향해 나아가라고 말한다. 요점은 PM이 기능 명세 대신 시스템과 검증 장치를 설계해야 한다는 것이다.</p><h3>여러 시각</h3><p>같은 날 올라온 다른 글은 조직·역할 측면에서 비슷한 결론에 닿는다.</p><ul><li><b>Mind the Product (Canva 해고 분석)</b> — Mike Belsito는 Canva의 22% 감원을 AI 때문만이 아니라 관리 계층 축소와 오너십 확대로 읽는다. 상태 보고·초안 작성 같은 조율은 AI가 맡고 무엇을 만들고 버릴지의 판단이 PM에게 남는다.</li><li><b>Anthropic</b> — 새 모델 발표에서 접근 권한을 검증 프로그램으로 나누는 방식을 택했다. 신뢰를 제품 바깥의 통제로 푸는 접근으로, Zheng의 내부 검증 루프와 대조된다.</li></ul><h3>왜 중요한가</h3><p>AI 기능은 출시 시점에 정답이 정해지지 않고 사용 중에 품질이 변한다. 따라서 요구사항은 한 번 쓰고 끝나는 문서가 아니라 실패 사례에서 계속 갱신되는 살아 있는 명세가 되어야 한다. QA 역시 사람이 체크리스트를 도는 일에서, 루브릭과 시뮬레이션으로 에이전트를 채점하는 일로 이동한다. 이 변화를 읽지 못하면 신뢰 격차 9%의 벽을 넘기 어렵다.</p><h3>실무 적용</h3><ul><li>PRD에 \"성공 기준\"과 함께 \"실패 시 어떻게 검증하고 되돌리는가\"를 필수 항목으로 넣는다.</li><li>운영 중 발견한 오류를 회귀 테스트 케이스로 자동 편입하는 흐름을 만든다.</li><li>핵심 업무 흐름마다 평가 루브릭을 정의해 에이전트 평가셋의 뼈대로 쓴다.</li></ul><h3>Kenny의 관점</h3><p>기획과 QA를 함께 하다 보면 둘이 같은 문서를 다른 시점에 쓴다는 점이 아쉬웠는데, 이 접근은 둘을 하나의 루프로 묶는다. 실패 사례가 곧 요구사항이 되고 요구사항이 곧 테스트가 되는 구조다. 프론트엔드 입장에서는 불확실성과 지연을 사용자에게 솔직히 보여주는 UI가 신뢰 설계의 가장 눈에 띄는 접점이다. 신뢰는 문구가 아니라 검증 가능한 동작으로 만들어진다고 본다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/building-ai-products-as-systems-of-trust-alexis-zheng-at-mind-the-product-chicago/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Building AI Products as Systems of Trust ↗</a></li><li><a href=\"https://www.mindtheproduct.com/fewer-layers-and-broader-ownership-unpacking-the-canva-layoffs-and-what-it-means-for-product-people/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Unpacking Canva's layoffs ↗</a></li><li><a href=\"https://www.anthropic.com/claude-fable-and-mythos-5-2\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Introducing Claude Fable 5.2 and Claude Mythos 5.2 ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/building-ai-products-as-systems-of-trust-alexis-zheng-at-mind-the-product-chicago/",
+    "tags": [
+      "AIProduct",
+      "Evals",
+      "QA"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-09-anchor-positioning-tooltips",
     "category": "design",
     "date": "2026-11-09",

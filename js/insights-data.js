@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-11-css-declarations-just-once",
+    "category": "design",
+    "date": "2026-11-11",
+    "title": "CSS 중복 선언 합치기, 지금도 효과 있을까?",
+    "rawTitle": "CSS Optimization: Is Using Declarations Just Once (UDJO) Still Effective Today?",
+    "summary": "선언을 한 번만 쓰자는 18년 된 UDJO 기법을 20개 사이트로 재검증한 결과, 파일 크기 절감은 여전히 유효했다.",
+    "bodyHtml": "<p>CSS 최적화의 고전인 UDJO(Using Declarations Just Once)가 다시 도마에 올랐다. 같은 선언이 여러 규칙에 반복되면 셀렉터를 묶어 한 번만 쓰자는 DRY 발상이다. 저자 Jens Oliver Meiert는 이 기법이 최소 18년 되었다고 소개하며, 요즘 번들러·압축 환경에서도 통하는지 직접 데이터로 확인했다. 프론트엔드 성능 예산을 따지는 팀이라면 한 번 짚어볼 만한 주제다.</p>\n<blockquote>\"in all cases, declaration repetition can be reduced in a manner that also reduces file size\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>저자는 직접 만든 도구 CSS Dedup으로 임의의 사이트 20곳의 외부 스타일시트를 분석했다. 20곳 모두에서 반복 선언을 줄일 수 있었지만, 단순 중복 제거는 18곳에서 오히려 파일이 커졌다(eff.org +27.7% 등). 셀렉터를 길게 묶으면 선언 한 줄을 아끼는 것보다 비용이 클 수 있기 때문이다. 반면 '절감되는 경우만 합치는' 모드에서는 20곳 모두 작아졌다. 개발자 사이트 10곳 표본에서도 비슷한 경향이었고, 결론은 \"여전히 유효하다\"였다. 다만 gzip·Brotli 효과와 CSS 품질은 측정하지 않았다는 한계를 명시한다.</p>\n<h3>여러 시각</h3>\n<p>같은 '브라우저가 실제로 하는 일' 관점에서 다른 글들은 파일 크기 너머를 본다.</p>\n<ul><li><b>Josh W. Comeau</b> — CSS 전환·키프레임은 메인 스레드와 분리되어 돌고, transform은 레이아웃·페인트를 건드리지 않는다는 점을 강조한다. 즉 바이트 수보다 렌더링 경로가 체감 성능을 좌우한다.</li><li><b>web.dev</b> — 9월 신기능 정리에서 progress(), alpha() 같은 새 CSS 함수가 Baseline에 들어왔다고 알린다. 새 문법은 반복 선언 자체를 줄이는 또 다른 길이다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>이 글의 교훈은 '무조건 합쳐라'가 아니라 '측정하고 합쳐라'다. 자동화 도구가 규칙 순서를 안전하게 지키며 이득이 있는 곳만 합친다면, 사람이 손으로 하던 미세 최적화를 빌드 단계로 넘길 수 있다. 다만 전송 시 압축이 반복 문자열을 이미 잘 줄여주므로 실제 네트워크 이득은 작을 수 있다. 결국 크기·가독성·유지보수성의 균형 문제다.</p>\n<h3>실무 적용</h3>\n<ul><li>빌드 파이프라인에서 이미 압축된 CSS에 중복 제거 단계를 넣고 전후 크기를 gzip 기준으로 같이 비교한다.</li><li>디자인 토큰·유틸리티 클래스가 많은 프로젝트는 반복 선언이 많으므로 우선 점검 대상으로 삼는다.</li><li>크기 절감보다 애니메이션 속성(transform, opacity) 선택 같은 렌더링 비용 점검을 먼저 챙긴다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>CSS는 손으로 다듬는 공예이면서 동시에 배포 산출물이다. 소스는 읽기 좋게 쓰고, 산출물은 도구가 줄이는 역할 분담이 가장 현실적이라고 본다. 이 글에서 인상적인 건 '합치면 오히려 커진다'는 반직관적 데이터였다. 감으로 하던 최적화를 숫자로 검증하는 습관이 프론트엔드 품질을 만든다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://css-tricks.com/css-using-declarations-just-once/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: CSS Optimization: Is Using Declarations Just Once (UDJO) Still Effective Today? ↗</a></li><li><a href=\"https://www.joshwcomeau.com/animation/css-vs-javascript/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Josh W. Comeau: CSS vs. JavaScript ↗</a></li><li><a href=\"https://web.dev/blog/web-platform-09-2026\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: New to the web platform in September ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/css-using-declarations-just-once/",
+    "tags": [
+      "CSS",
+      "Performance",
+      "Optimization"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-11-paypal-ai-accuracy-knowledge-layer",
+    "category": "ai",
+    "date": "2026-11-11",
+    "title": "모델 교체 없이 정확도 43→95%, PayPal의 비결",
+    "rawTitle": "PayPal says its AI assistant went from 43% to 95% accuracy without changing the model",
+    "summary": "PayPal은 LLM을 그대로 두고 비즈니스 지식 계층만 붙여 데이터 어시스턴트 정확도를 43%에서 95%로 끌어올렸다.",
+    "bodyHtml": "<p>AI 도입의 성패가 모델 성능보다 '회사의 지식을 얼마나 잘 먹이느냐'에 달려 있다는 사례가 나왔다. PayPal은 사내 데이터 사이언스 어시스턴트의 질의응답 정확도가 43%에서 95%로 올랐다고 밝혔다. 놀라운 점은 그 사이 기반 LLM을 바꾸지 않았다는 것이다. 에이전트를 운영에 올리려는 팀이라면 모델 선택보다 먼저 볼 이야기다.</p>\n<blockquote>\"The LLM is still the same,\" Zhang said.<cite>VentureBeat</cite></blockquote>\n<h3>무슨 일인가</h3>\n<p>어시스턴트는 이미 검증된 데이터에 접근할 수 있었지만, 직원들이 실제로 쓰는 지표 정의·쿼리 패턴·분석 절차는 몰랐다. PayPal은 이를 모델 밖의 지식 계층으로 분리해 채웠다. 특정 목적의 검색 명세인 '골든 쿼리'와 문제를 조사하는 방법을 담은 분석 플레이북이 핵심이다. 10주간 1,000건 넘는 질문과 약 1,600시간 절감이 보고됐지만, 질문 수만으로 생산성을 증명할 수는 없다고 스스로 선을 그었다. 고객용 커머스 에이전트에서는 지연 시간 때문에 80억 파라미터 모델로 내려갔고, 파인튜닝은 도움이 됐으나 신규 모델마다 재학습하는 비용 때문에 비중을 줄였다.</p>\n<h3>여러 시각</h3>\n<p>같은 '비즈니스가 가진 정보를 AI에 연결한다'는 흐름을 다른 각도에서 보면 이렇다.</p>\n<ul><li><b>VentureBeat(OpenAI 기사)</b> — OpenAI는 기업이 ChatGPT 프로필을 직접 인증·관리하고 자사 '비즈니스 에이전트'가 상품과 정책을 답하게 하는 베타를 시작했다. 지식의 주인이 기업이 되는 외부 고객용 버전이다.</li><li><b>VentureBeat(VB Pulse 설문)</b> — 사전 평가를 운영하는 조직의 42%가 내부 테스트를 통과한 기능이 1년 내 실서비스에서 실패했다고 답했고, 39%는 나쁜 출력을 탐지하는 자동 점검이 없었다.</li></ul>\n<h3>왜 중요한가</h3>\n<p>모델은 몇 달마다 더 좋아지고 싸지지만, 조직의 정의와 절차는 쉽게 복제되지 않는 자산이다. 지식을 모델과 분리해 두면 새 모델이 나올 때 \"그냥 꽂아 쓰면\" 된다는 PayPal의 말처럼 모델 종속을 피할 수 있다. 동시에 정확도가 높아져도 중요한 결정에는 인간 검증이 남는다. 평가 체계 없이는 95%라는 숫자도 신뢰하기 어렵다.</p>\n<h3>실무 적용</h3>\n<ul><li>사내 지표 정의, 대표 쿼리, 분석 절차를 문서로 정리해 모델 밖 지식 계층(골든 쿼리·플레이북)으로 관리한다.</li><li>단일 턴과 멀티 턴 시나리오, 합성 질문을 포함한 오프라인 평가 세트를 만들고 모델 교체 때마다 재실행한다.</li><li>에이전트 출력에 인증된 데이터 소스·SOP 대조 단계와 사람 검수 지점을 설계한다.</li></ul>\n<h3>Kenny의 관점</h3>\n<p>AX의 병목은 모델이 아니라 '맥락의 정리'라고 본다. 프론트엔드에서 디자인 시스템이 일관성을 만들듯, AI에서는 지식 계층이 일관성을 만든다. 파인튜닝에 매달리기 전에 정의와 절차를 구조화하는 작업이 훨씬 싸고 오래간다. 그리고 그 위에 평가 자동화가 없다면 정확도는 그저 믿음일 뿐이다.</p>\n<h3>출처</h3>\n<ul><li><a href=\"https://venturebeat.com/orchestration/paypal-says-its-ai-assistant-went-from-43-to-95-accuracy-without-changing-the-model\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: PayPal says its AI assistant went from 43% to 95% accuracy without changing the model ↗</a></li><li><a href=\"https://venturebeat.com/technology/openai-lets-you-claim-your-business-in-chatgpt-and-set-up-a-custom-agentic-ai-customer-sales-rep\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: OpenAI lets you claim your business in ChatGPT and set up a custom agentic AI customer sales rep ↗</a></li></ul>",
+    "source": "VentureBeat",
+    "sourceUrl": "https://venturebeat.com/orchestration/paypal-says-its-ai-assistant-went-from-43-to-95-accuracy-without-changing-the-model",
+    "tags": [
+      "AI Agents",
+      "Evals",
+      "Enterprise AI"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-10-fable-5-2-mythos-5-2",
     "category": "ai",
     "date": "2026-11-10",

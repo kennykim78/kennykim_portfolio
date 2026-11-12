@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-12-test-values-and-prefactoring",
+    "category": "plan",
+    "date": "2026-11-12",
+    "title": "통과하는 테스트가 거짓 안심을 줄 때: 값 선택과 준비 리팩터링",
+    "rawTitle": "Choosing Values for Robust Tests",
+    "summary": "기본값과 우연히 일치하는 테스트 값은 버그를 가린다. 구글 테스팅 블로그의 두 글로 테스트 값 설계와 변경 분리 습관을 짚는다.",
+    "bodyHtml": "<p>구글 테스팅 블로그가 'Tech on the Toilet' 시리즈로 올린 글은 초록불이 켜진 테스트가 곧 정상 동작을 뜻하지는 않는다고 말한다. 예시는 단순하다. 맵에 값을 넣는 insert 함수가 두 번째 인자를 아예 저장하지 않는데, 테스트가 값 0을 넣고 0을 기대해서 통과한다. 정수의 기본값이 0이라 우연히 맞아떨어진 것이다. QA 관점에서는 케이스 수보다 케이스에 쓰는 값의 질이 신뢰를 좌우한다는 점을 상기시킨다.</p><blockquote>\"Sometimes the values you choose in your tests can create a false sense of security, especially when dealing with default values.\"<cite>Google Testing Blog</cite></blockquote><h3>무슨 일인가</h3><p>글은 세 가지 원칙을 제시한다. 첫째, 타입의 기본값(0, 빈 문자열, 첫 번째 enum)과 다른 값으로 검증한다. 같은 예시에서 값을 5로 바꾸면 \"Expected 5, got 0\"으로 즉시 실패해 버그가 드러난다. 둘째, 빈 값·null·경계값·복잡한 분기를 일으키는 특수값 등 서로 다른 시나리오를 입력으로 다루고, 가능하면 퍼징과 매개변수화 테스트로 입력 공간을 넓힌다. 셋째, 입력마다 서로 다른 값을 써서 코드가 한 입력을 재사용하거나 인자 순서를 바꿔도 알아챌 수 있게 한다. key와 value를 1과 2로 구분하는 식이다.</p><h3>여러 시각</h3><p>같은 시리즈의 다른 글은 테스트 이전 단계, 곧 변경을 어떻게 나눌 것인가를 다룬다.</p><ul><li><b>Google Testing Blog(Prefactoring)</b> — 새 기능을 넣기 전에 기존 코드를 먼저 정리하는 '준비 리팩터링'을 권한다. 정리와 기능을 별개 변경으로 나누면 리뷰가 쉬워지고, 버그가 줄고, 문제 시 되돌리기도 안전하다고 본다. 켄트 벡의 \"먼저 변경을 쉽게 만들고, 그다음 쉬운 변경을 하라\"를 인용한다.</li></ul><h3>왜 중요한가</h3><p>두 글은 서로 다른 지점에서 같은 문제를 겨냥한다. 하나는 테스트가 실제 결함을 잡을 수 있는가이고, 다른 하나는 변경이 검증 가능한 크기로 쪼개져 있는가이다. 기본값과 우연히 일치하는 테스트는 커버리지 수치가 높아도 결함을 놓친다. 리팩터링과 기능이 한 변경에 섞이면 어느 쪽이 회귀를 만들었는지 가려내기 어렵다. 결국 품질은 테스트 개수가 아니라 신호가 선명한 구조에서 나온다.</p><h3>실무 적용</h3><ul><li>테스트 리뷰 체크리스트에 '기본값과 다른 값을 썼는가', '입력마다 값이 구분되는가'를 추가한다.</li><li>요구사항 단계에서 경계값·빈 값·특수 케이스를 인수 조건으로 미리 적어 두어 테스트 값이 기획에서 출발하게 한다.</li><li>스토리를 쪼갤 때 '준비 리팩터링' 작업을 별도 티켓으로 분리해 리뷰와 롤백 단위를 작게 유지한다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드 화면 검증에서도 같은 함정이 흔하다. 폼에 빈 문자열이나 기본 선택값을 넣고 확인하면 저장 로직이 깨져도 통과해 보인다. 기획자와 QA가 처음부터 '기본값과 다른 입력'을 시나리오에 넣어 두면 개발 단계의 방어선이 한 겹 더 생긴다고 본다. 변경을 나누는 습관도 마찬가지여서, 디자인 시스템 정리와 신규 화면 작업을 분리할 때 리뷰 속도가 눈에 띄게 빨라진다. 다만 이 두 글은 코드 단위 사례이므로 화면·시나리오 수준으로의 확장은 제 해석이다.</p><h3>출처</h3><ul><li><a href=\"https://testing.googleblog.com/2026/06/choosing-values-for-robust-tests.html\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Google Testing Blog: Choosing Values for Robust Tests ↗</a></li><li><a href=\"https://testing.googleblog.com/2026/07/prefactoring-clear-way-for-your-new.html\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Google Testing Blog: Prefactoring: Clear the Way for Your New Feature ↗</a></li></ul>",
+    "source": "Google Testing Blog",
+    "sourceUrl": "https://testing.googleblog.com/2026/06/choosing-values-for-robust-tests.html",
+    "tags": [
+      "Test Design",
+      "QA",
+      "Code Health"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-12-b2a-economy-positioning",
+    "category": "pm",
+    "date": "2026-11-12",
+    "title": "에이전트가 고객이 되는 B2A 경제, 무엇으로 차별화할 것인가",
+    "rawTitle": "Welcome to the B2A Economy",
+    "summary": "a16z는 AI 에이전트가 제품을 고르고 결제하는 B2A 시대를 전망한다. First Round의 포지셔닝 글과 함께 GTM 전략을 짚는다.",
+    "bodyHtml": "<p>a16z 소비자 팀은 인터넷의 주된 사용자가 이미 사람이 아니라 AI 에이전트라고 주장한다. 에이전트가 질문에 답하는 단계를 넘어 어떤 제품을 쓰고 어디에 돈을 쓸지 대신 정하기 시작하면, 기업은 사람뿐 아니라 에이전트를 1순위 고객으로 대해야 한다. 사업기획자에게는 유통 채널이 또 한 번 바뀌는 시점에 무엇을 준비할지 묻는 글이다.</p><blockquote>\"The primary users of the Internet are no longer human.\"<cite>a16z</cite></blockquote><h3>무슨 일인가</h3><p>글은 숫자로 변화를 뒷받침한다. Shopify는 2026년 1분기 AI 유입 트래픽이 전년 대비 8배, AI 검색 기반 주문이 거의 13배 늘었다고 밝혔다. AI 유입 트래픽은 참여도와 전환율이 높고 이탈률은 낮다. 코딩 에이전트는 선행 사례다. 2026년 9월 기준 GitHub PR의 40% 이상이 에이전트 초안에서 시작했고, 6개월 전에는 17%였다. Supabase는 신규 데이터베이스의 60% 이상이 AI 도구로 만들어진다고 보고했고, Vercel은 에이전트가 일으킨 배포가 1년간 28배 늘었다고 했다. 수혜 후보로는 에이전트 자체, 에이전트가 가능케 한 신제품, 에이전트에 최적화한 기존 기업, 결제·신원 같은 에이전트 인프라를 꼽는다.</p><h3>여러 시각</h3><p>같은 문제를 First Round Review는 '에이전트가 고르는 세상'이 아니라 '비슷해 보이는 제품들 사이에서 어떻게 선택받는가'로 푼다.</p><ul><li><b>First Round Review(Arielle Jackson)</b> — \"AI-powered X\"는 신뢰할 만한 경쟁자가 다섯만 생겨도 포지션이 되지 못한다. 차이가 눈에 보이지 않으면 시장은 제품을 서로 바꿔 쓸 수 있는 것으로 인식하고, 전환 비용이 낮을수록 치명적이다. 처방은 소신 있는 관점(POV)을 먼저 세우고, 누구를 위한 제품인지 선택해 포지셔닝을 계속 갱신하는 것이다.</li></ul><h3>왜 중요한가</h3><p>a16z가 유통의 변화를, Jackson이 차별화의 변화를 말한다고 읽을 수 있다. 에이전트가 후보를 비교하는 환경에서는 기능표에서 비슷한 제품이 가장 먼저 탈락한다. 반대로 구조화된 정보와 명확한 포지션을 가진 제품은 에이전트와 사람 모두에게 설명하기 쉽다. 두 글의 공통점은 발견·평가 단계가 자동화될수록 제품의 차이를 명시적으로 만드는 일이 더 중요해진다는 것이다.</p><h3>실무 적용</h3><ul><li>AI 유입 트래픽과 전환율을 별도 지표로 분리해, 에이전트 경로가 얼마나 커졌는지 분기마다 추적한다.</li><li>제품 정보·가격·정책을 에이전트가 읽을 수 있는 구조화 데이터와 문서로 정리하고, 연동 경로(API·플러그인)를 로드맵에 올린다.</li><li>\"누구를 위한 제품이고 무엇이 다른가\"를 한 문장으로 적고, 경쟁사 소개문과 바꿔 써도 말이 되는지 점검한다.</li></ul><h3>Kenny의 관점</h3><p>웹을 만드는 입장에서는 사람이 보는 화면과 에이전트가 읽는 정보를 같은 기획서에서 함께 다뤄야 한다고 본다. 의미 있는 마크업, 명확한 가격 구조, 일관된 문구는 디자인 품질이면서 동시에 에이전트 친화성이다. 그리고 포지셔닝은 결국 무엇을 하지 않을지 정하는 일이라서, 비서가 요약해도 남는 한 문장을 먼저 정하는 것이 우선이다. 다만 B2A 규모에 대한 수치는 a16z와 각 회사의 자체 보고라서 방향성의 근거로만 받아들이는 것이 안전하다.</p><h3>출처</h3><ul><li><a href=\"https://a16z.com/welcome-to-the-b2a-economy/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">a16z: Welcome to the B2A Economy ↗</a></li><li><a href=\"https://review.firstround.com/positioning-playbook-for-ai-products/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: \"AI-Powered\" Isn't a Position ↗</a></li></ul>",
+    "source": "a16z",
+    "sourceUrl": "https://a16z.com/welcome-to-the-b2a-economy/",
+    "tags": [
+      "B2A",
+      "Positioning",
+      "GTM"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-11-css-declarations-just-once",
     "category": "design",
     "date": "2026-11-11",

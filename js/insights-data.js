@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-13-beyond-12-columns-layout-personality",
+    "category": "design",
+    "date": "2026-11-13",
+    "title": "12컬럼을 넘어서: 개성 있는 레이아웃의 출발점",
+    "rawTitle": "Beyond 12 Columns: Designing Layouts With Personality",
+    "summary": "12컬럼 그리드가 기본값이 된 탓에 사이트가 닮아간다는 문제의식에서, 비율·모듈·복합 그리드로 콘텐츠와 브랜드 성격에 맞는 레이아웃을 짜는 법을 짚는다.",
+    "bodyHtml": "<p>CSS-Tricks에 실린 Andy Clarke의 글은 12컬럼 그리드를 버리자는 주장이 아니다. 문제는 회사가 무엇이 다르고 사이트가 무엇을 전달해야 하는지 묻기 전에 12컬럼부터 꺼내 드는 습관이다. 그 결과 많은 웹사이트가 비슷해 보인다. 그는 콘텐츠와 회사의 성격에서 출발해 그에 맞는 그리드를 고르라고 제안한다.</p><blockquote>\"Twelve-column grids are useful, and I’m certainly not suggesting you should stop using them entirely.\"<cite>CSS-Tricks</cite></blockquote><h3>무슨 일인가</h3><p>글은 HTML 표와 스페이서 GIF, 플로트와 포지셔닝, 그리고 CSS 프레임워크로 이어지는 역사를 짧게 훑는다. Blueprint CSS는 24컬럼, 960 Grid System은 12·16컬럼을 제공했고, Bootstrap과 Foundation이 12컬럼을 사실상 표준으로 굳혔다. 이어 세 가지 도구를 제시한다. 첫째는 컬럼 비율로, 같은 폭은 같은 비중을, 2/3과 1/3 같은 비율은 위계를 만든다. 둘째는 모듈형 그리드로, 행을 더해 모듈을 만들고 여러 모듈을 묶어 큰 영역을 만든다. 4×4 그리드에서 요소를 여러 모듈에 걸쳐 배치하는 식이다. 셋째는 복합 그리드로, 2컬럼과 3컬럼 또는 4컬럼과 5컬럼처럼 서로 다른 그리드를 겹쳐 새로운 폭을 얻으면서도 구조적 연결을 유지한다. 예시는 가상의 회사 Wheelman의 제품 랜딩 페이지이며, 글에는 와이어프레임과 스크린샷만 있고 CSS 코드는 없다.</p><h3>여러 시각</h3><p>같은 그리드 주제를 구현 쪽에서 본 글과 나란히 놓으면 역할이 갈린다.</p><ul><li><b>Josh W. Comeau(Subgrid)</b> — 서브그리드는 중첩 요소가 부모 그리드의 트랙을 공유하게 해 \"그리드 구조는 하나지만 여러 그리드가 이를 함께 쓴다\"는 구현 모델을 준다. Clarke가 말하는 복합·모듈형 구성을 코드로 깔끔하게 옮길 때 유용한 도구다. 다만 행이 자동 생성되지 않아 미리 확보해야 하고 서브그리드 안에서는 라인 번호가 초기화되는 점은 유의해야 한다.</li><li><b>Andy Clarke 본인의 단서</b> — 단일 컬럼이 반응형에는 더 쉽다고 인정하고, 모듈형 구성이 모든 화면 크기에서 통하지는 않아 조정이 필요하다고 밝힌다. 변화를 위한 변화는 경계한다.</li></ul><h3>왜 중요한가</h3><p>이 글은 그리드를 기술 선택이 아니라 브랜드 표현의 문제로 되돌려 놓는다. 프레임워크가 기본값을 제공하는 환경에서는 빠르게 만들수록 결과물이 닮기 쉽다. 반대로 CSS Grid와 서브그리드로 비정형 구성을 구현하는 비용이 낮아진 지금은, 디자인 의도가 구현 제약에 막힐 이유가 줄었다. 다만 개성과 반응형 유지보수 사이의 비용은 여전히 설계 단계에서 함께 따져야 한다.</p><h3>실무 적용</h3><ul><li>와이어프레임 단계에서 \"이 회사가 무엇이 다른가\"를 먼저 적고, 그에 맞는 컬럼 비율과 위계를 정한 뒤 그리드를 선택한다.</li><li>모듈형 구성은 큰 화면 기준으로 설계하되, 좁은 화면에서 어떤 모듈 순서로 접을지 브레이크포인트별로 미리 정의한다.</li><li>카드 안 정렬 같은 반복 패턴은 서브그리드로 구현하고 @supports 폴백으로 구형 브라우저를 대비한다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드 현장에서는 일정 압박 때문에 12컬럼 유틸리티 클래스로 바로 가는 경우가 많다. 그러나 디자인 시스템의 레이아웃 토큰을 컬럼 수가 아니라 비율과 영역 단위로 정의해 두면, 개성과 일관성을 함께 지킬 수 있다고 본다. 이 글은 코드가 없는 개념 중심 글이므로 구현 방식은 제 해석이며, 화면별 검증은 별도로 해야 한다.</p><h3>출처</h3><ul><li><a href=\"https://css-tricks.com/beyond-12-columns/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Beyond 12 Columns: Designing Layouts With Personality ↗</a></li><li><a href=\"https://www.joshwcomeau.com/css/subgrid/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Josh W. Comeau: Brand New Layouts with CSS Subgrid ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/beyond-12-columns/",
+    "tags": [
+      "CSS Grid",
+      "Layout",
+      "Subgrid"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-13-ai-powered-isnt-a-position",
+    "category": "pm",
+    "date": "2026-11-13",
+    "title": "\"AI 기반\"은 포지션이 아니다: 대체 불가능해지는 법",
+    "rawTitle": "\"AI-Powered\" Isn't a Position",
+    "summary": "AI 제품이 서로 비슷해지는 시대에 포지셔닝은 어떻게 달라져야 하는가. First Round의 다섯 단계 프레임워크와 창업자 커뮤니케이션 관점을 함께 본다.",
+    "bodyHtml": "<p>First Round Review가 2015년 자사 포지셔닝 글을 AI 시대에 맞춰 다시 썼다. 핵심 주장은 \"AI-powered X\"라는 문구가 더는 차별점이 되지 못한다는 것이다. 모델은 공유되고 인프라는 추상화되어, 예전엔 몇 년 걸리던 제품이 며칠 만에 나온다. 이럴 때 시장이 제품을 서로 바꿔 끼울 수 있는 것으로 보기 시작하면 사업기획 입장에서는 가장 위험한 신호다.</p><blockquote>\"And interchangeability is what kills you, especially when switching costs are near-zero.\"<cite>First Round Review</cite></blockquote><h3>무슨 일인가</h3><p>글은 \"AI 기반\" 포지션이 2023~2024년에는 통했지만, 비슷한 그라디언트·스크린샷·문구(\"가장 정확하고 빠르며 엔터프라이즈에 적합\")를 쓰는 경쟁사가 늘면서 효력을 잃었다고 진단한다. B2B 구매자는 사내에서 설명하기 가장 쉬운 쪽을 택하게 된다. 처방은 다섯 가지다. 관점이 뚜렷한 입장 찾기, 몇 달마다 포지셔닝 재점검, 디자인과 언어로 표현하기, AI에 날카로운 입력 주기, 일관된 선택 이어가기. 사례로 Square는 경쟁 결제사가 아니라 현금 거래 가맹점을 상대로, Gong은 \"감에 의존한 코칭\"을 상대로 자리를 잡았다. Cursor는 Claude Code 등장 후 에이전트 오케스트레이션 중심으로 재포지셔닝해야 했다고 소개된다. 간단한 테스트도 있다. 홈페이지 로고를 경쟁사 것으로 바꿔도 말이 되면 그 브랜드는 차별화되지 않은 것이다.</p><h3>여러 시각</h3><p>같은 문제를 창업자 개인의 목소리라는 각도에서 다룬 글이 있다.</p><ul><li><b>Lenny's Newsletter(Kristen Lowe)</b> — AI가 만든 콘텐츠가 넘치는 환경에서 창업자 직접 소통은 비용 대비 효과가 큰 수단이라고 본다. 출발점은 \"왜 이 회사를 시작했는가\"이며, 문제형·통찰형·비전형 창업자 유형별로 메시지 축이 달라야 한다고 설명한다. 통찰형은 근거 없는 주장, 비전형은 현실에 대한 경멸을 경계하라는 조언이 붙는다. 이 부분은 유료 구독 전 공개 범위 기준이다.</li></ul><h3>왜 중요한가</h3><p>두 글은 기업의 포지션과 창업자의 목소리라는 서로 다른 층위에서 같은 결론에 닿는다. 기능과 성능은 빠르게 복제되므로 남는 것은 누구를 위해, 무엇에 반대하며 만들었는가라는 관점이다. 글은 브랜드를 해자가 아니라 \"일시적 우위\"로 규정한다. 따라서 포지셔닝은 한 번 정하고 끝내는 문서가 아니라 주기적으로 점검할 운영 항목이 된다. 전환 비용이 낮은 AI 제품일수록 이 점검의 주기가 짧아야 한다.</p><h3>실무 적용</h3><ul><li>분기마다 \"로고 교체 테스트\"로 자사 홈페이지·소개서의 차별성을 점검하고, 경쟁사가 같은 문장을 쓰는지 확인한다.</li><li>포지셔닝 문서에 \"누구를 위한 것인가, 무엇을 상대로 하는가, 세상의 무엇이 고장 났는가\"를 한 장으로 적어 PRD와 GTM 계획의 첫머리에 둔다.</li><li>경쟁 환경이 바뀔 신호(대형 플레이어의 기능 출시 등)를 재포지셔닝 트리거로 미리 정의해 둔다.</li></ul><h3>Kenny의 관점</h3><p>화면과 문구를 만드는 입장에서, 비슷해 보이는 AI 서비스들의 랜딩 페이지는 실제로 구분이 어렵다. 포지셔닝은 마케팅 몫이 아니라 기획 단계의 의사결정이며, 디자인 시스템과 카피 가이드에 그대로 내려와야 한다고 본다. 작은 팀일수록 \"무엇을 하지 않을 것인가\"를 먼저 적는 편이 효과적이다. 다만 글의 사례들은 원문의 서술이며, 개별 기업의 수치는 제가 검증한 것이 아니다.</p><h3>출처</h3><ul><li><a href=\"https://review.firstround.com/positioning-playbook-for-ai-products/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: \"AI-Powered\" Isn't a Position ↗</a></li><li><a href=\"https://www.lennysnewsletter.com/p/how-to-make-people-care-about-your\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: How to make people care about your startup ↗</a></li></ul>",
+    "source": "First Round Review",
+    "sourceUrl": "https://review.firstround.com/positioning-playbook-for-ai-products/",
+    "tags": [
+      "Positioning",
+      "GTM",
+      "AI Products"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-12-test-values-and-prefactoring",
     "category": "plan",
     "date": "2026-11-12",

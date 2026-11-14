@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-14-agent-spend-kill-switch",
+    "category": "ai",
+    "date": "2026-11-14",
+    "title": "에이전트는 통제하면서 비용은 못 막는다: 실시간 킬스위치 부재",
+    "rawTitle": "One in five enterprises can't stop a runaway AI agent's spending in real time",
+    "summary": "기업 5곳 중 1곳은 폭주하는 AI 에이전트의 지출을 실시간으로 멈출 수단이 없다. 거버넌스는 갖췄지만 비용 계량은 비어 있는 현실을 짚는다.",
+    "bodyHtml": "<p>VentureBeat가 기업 107곳을 대상으로 한 조사에서, 에이전트 지출을 실시간으로 차단하지 못하는 기업이 5곳 중 1곳꼴로 나타났다. 에이전트를 도입하는 속도에 비해 비용 통제 장치는 한참 뒤처져 있다는 뜻이다. 에이전트가 루프에 빠지거나 도구 호출을 반복하면 청구서는 사람이 알아채기 전에 불어난다. 지금 기업 AI 도입에서 가장 현실적인 운영 리스크가 여기에 있다.</p><blockquote>\"Clearly, while enterprises recognize the problem with spend, many have not yet instrumented their stacks to rein it in.\"<cite>VentureBeat</cite></blockquote><h3>무슨 일인가</h3><p>조사에 따르면 지출 통제 방식은 넷으로 갈린다. 30%는 플랫폼 기본 한도(예산 상한·스로틀링)에 의존하고, 25%는 자체 게이트웨이 미들웨어를 만들었으며, 25%는 저렴한 모델로 동적 라우팅을 하고, 21%는 사후 모니터링만 하고 실시간 차단 수단이 없다. 흥미롭게도 규모 차이는 크지 않아서, 직원 1만 명 이상 기업의 18%, 그보다 작은 기업의 23%가 사후 대응에 머물렀다. 또 85%가 둘 이상의 오케스트레이션 플랫폼을 함께 쓰는데, 이는 단일 벤더의 보안·권한 관리를 완전히 믿지 못해 자체 통제권을 남겨두려는 선택으로 읽힌다.</p><h3>여러 시각</h3><p>같은 조사 시리즈의 다른 보고서는 같은 문제를 다른 각도에서 본다.</p><ul><li><b>VentureBeat Pulse Research(비용 계량 편)</b> — 기업이 에이전트를 '통제'하는 법은 익혔지만 비용을 '계량'하는 법은 아직 못 익혔다고 진단한다. 플랫폼 만족도 중 가성비가 5점 만점에 3.63으로 가장 낮았고, 한도 설정을 제공자 기본값에 맡기는 비율이 30%다.</li><li><b>같은 보고서의 벤더 종속 논점</b> — 제공자 주도 통제 방식의 최대 우려는 벤더 종속(23%)이 아니라 보안·권한 한계(37%)였다. 즉 비용 문제는 락인 이슈가 아닌 가시성·통제 문제로 다뤄진다. 다만 표본이 자발적 응답이고 기술 편향이라 방향성 참고용이라고 저자가 밝힌다.</li></ul><h3>왜 중요한가</h3><p>에이전트는 사람과 달리 사용량의 상한이 없는 호출자다. 한 번의 설계 실수가 곧바로 비용 사고가 되며, 사후 로그로는 이미 늦다. 또 플랫폼을 여러 개 쓰면 한도 정책이 제각각이라 전사 단위의 총량 통제가 더 어려워진다. 비용 통제는 FinOps의 문제이기 이전에 에이전트 아키텍처의 필수 구성요소가 되고 있다.</p><h3>실무 적용</h3><ul><li>에이전트 호출 경로에 요청·토큰·도구 호출 횟수 상한을 두는 게이트웨이 계층을 두고, 초과 시 즉시 차단하는 킬스위치를 기본값으로 만든다.</li><li>작업 난이도에 따라 저가 모델로 라우팅하는 규칙을 정의하고, 라우팅 결과별 비용·정확도를 함께 기록한다.</li><li>플랫폼이 여러 개라면 팀·에이전트 단위로 공통 태그를 붙여 단일 대시보드에서 합산 지출을 본다.</li></ul><h3>Kenny의 관점</h3><p>AX 프로젝트에서 기능 데모가 끝나면 다음 질문은 늘 '이걸 얼마에 돌리나'다. 프론트엔드 입장에서는 사용자에게 보이는 에이전트 UI에도 진행 상태·중단 버튼·예상 비용 같은 장치가 필요하다고 본다. 통제 장치는 백엔드만의 일이 아니라 제품 경험의 일부다. 이 조사는 8월 시점 자료이니 수치는 현재와 다를 수 있다는 점은 감안해야 한다.</p><h3>출처</h3><ul><li><a href=\"https://venturebeat.com/orchestration/one-in-five-enterprises-cant-stop-a-runaway-ai-agents-spending-in-real-time\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: One in five enterprises can't stop a runaway AI agent's spending in real time ↗</a></li><li><a href=\"https://venturebeat.com/resources/agentic-orchestration-enterprise-ai-organizations-know-how-to-govern-agents-but-still-cant-meter-what-they-cost\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Agentic orchestration: Enterprise AI organizations know how to govern agents but still can't meter what they cost ↗</a></li></ul>",
+    "source": "VentureBeat",
+    "sourceUrl": "https://venturebeat.com/orchestration/one-in-five-enterprises-cant-stop-a-runaway-ai-agents-spending-in-real-time",
+    "tags": [
+      "AI Agents",
+      "FinOps",
+      "Orchestration"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-14-discovery-pitfalls-uncertainty-rubric",
+    "category": "plan",
+    "date": "2026-11-14",
+    "title": "디스커버리 vs 딜리버리: 불확실성 점수로 시작점을 정하는 법",
+    "rawTitle": "Common product discovery pitfalls and how to avoid them",
+    "summary": "디스커버리가 흔히 무너지는 여섯 함정과, 불확실성을 1~10점으로 매겨 '지금 만들지 더 알아볼지'를 정하는 실용 루브릭을 함께 정리한다.",
+    "bodyHtml": "<p>기획 단계의 가장 비싼 실수는 잘못 만드는 것이 아니라 확인하지 않고 만드는 것이다. Mind the Product의 두 글(2021년 디렉터 Imogen Schels, 2019년 Philipp Krehl)은 오래됐지만, AI로 구현 비용이 급격히 낮아진 지금 오히려 더 중요해진 질문을 다룬다. 만들기가 쉬워질수록 '무엇을 만들지'의 불확실성이 병목이 되기 때문이다.</p><blockquote>\"We never want to separate the two activities of a product team — discovery and delivery.\"<cite>Marty Cagan, Mind the Product 인용</cite></blockquote><h3>무슨 일인가</h3><p>Schels의 글은 여섯 가지 함정을 든다. 압박 속에서 고객 대화를 멈추는 것, 의사결정에 너무 많은 사람을 끌어들이는 것, 디스커버리와 딜리버리 팀을 분리하는 것, 해결책을 검증하지 않는 것, 확증 편향 등에 휘둘리는 것, 문제 범위를 모호하게 두는 것이다. 마지막 항목의 처방으로 대상 사용자·현재 문제·현재의 우회책·제안 접근·성공 기준·사업 가치의 여섯 항목으로 문제 범위를 정의하라고 제안한다. 편향에 대해서는 가상의 관심이 아니라 과거 행동을 묻고, 이탈 고객과도 이야기하라고 권한다.</p><h3>여러 시각</h3><p>두 번째 소스는 같은 주제를 '언제 디스커버리를 하는가'로 정량화한다.</p><ul><li><b>Philipp Krehl(Mind the Product)</b> — 디스커버리와 딜리버리의 차이는 불확실성의 크기이며, 불확실성이 높으면 디스커버리부터 하라고 말한다. 가치·사용성·실현 가능성·사업 타당성의 네 위험을 질문 11개로 나눠 1(100% 확신)~10(추측)점으로 스스로 채점하고, 모두 3 이하면 개발에 착수, 4 이상이면 그 영역을 디스커버리 대상으로 삼는다.</li><li><b>우선순위 방식</b> — 4점 이상 항목을 가정으로 바꾸고 영향도 점수를 더해 불확실성×영향도 격자에서 둘 다 높은 것부터 처리한다. 각 가정은 2주 같은 기한이 있는 실험으로 만든다.</li></ul><h3>왜 중요한가</h3><p>Schels는 '무엇을 해야 하나'를, Krehl은 '언제 해야 하나'를 답한다. 둘을 합치면 디스커버리가 상시 습관이면서도 끝없는 조사로 늘어지지 않게 하는 틀이 된다. 특히 요구사항 정의가 빠르게 코드로 바뀌는 환경에서는, 불확실한 가정을 명시하지 않으면 잘못된 기능이 놀라운 속도로 완성된다. 같은 팀이 발견과 구현을 함께 맡아야 맥락이 끊기지 않는다는 지적도 지금 더 설득력이 있다.</p><h3>실무 적용</h3><ul><li>요구사항 문서 맨 위에 여섯 항목 문제 범위(사용자·문제·우회책·접근·성공 기준·가치)를 채우지 못하면 개발 티켓으로 넘기지 않는다.</li><li>스프린트 계획 때 가치·사용성·실현 가능성·사업 타당성별 확신도를 1~10으로 매기고, 4 이상 항목은 기한이 있는 검증 작업으로 먼저 배치한다.</li><li>QA 관점에서는 성공 기준을 테스트 가능한 형태로 적어 두고, 검증 실험의 결과를 인수 기준에 반영한다.</li></ul><h3>Kenny의 관점</h3><p>기획과 QA를 함께 보면, 성공 기준이 흐릿한 요구사항은 결국 테스트 케이스도 흐릿하다. 불확실성 점수는 화려한 도구가 필요 없는 가벼운 회의 장치이고, 프론트엔드 프로토타입 하루로 사용성 위험을 크게 낮출 수 있다는 점에서 개발자가 디스커버리에 참여할 이유도 분명하다. 다만 두 글은 각각 2021년, 2019년 자료이며 점수 기준은 한 저자의 방식이라 팀에 맞게 조정해야 한다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/common-product-discovery-pitfalls-and-how-to-avoid-them/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Common product discovery pitfalls and how to avoid them ↗</a></li><li><a href=\"https://www.mindtheproduct.com/product-discovery-or-product-delivery-how-do-you-decide/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Product Discovery or Product Delivery: How do you Decide? ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/common-product-discovery-pitfalls-and-how-to-avoid-them/",
+    "tags": [
+      "Product Discovery",
+      "Requirements",
+      "QA"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-13-beyond-12-columns-layout-personality",
     "category": "design",
     "date": "2026-11-13",

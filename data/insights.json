@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-11-16-testing-ai-metamorphic-exploratory",
+    "category": "plan",
+    "date": "2026-11-16",
+    "title": "AI 시스템 테스트, 정답 비교 대신 관계와 탐색으로",
+    "rawTitle": "Metamorphic and adversarial strategies for testing AI systems",
+    "summary": "출력이 매번 달라지는 AI는 정답 비교가 어렵다. 메타모픽·적대적 기법과 구조화된 탐색 테스트가 QA의 새 기본기다.",
+    "bodyHtml": "<p>LLM 기능이 제품에 들어오면서 QA는 낯선 문제를 만났습니다. 같은 입력에도 출력이 달라지는 비결정적 시스템에서는 \"기대값과 같은가\"라는 전통적 단언이 성립하지 않습니다. 출력을 사람이 일일이 비교하는 방식은 규모가 커질수록 시간만 잡아먹습니다. 그래서 테스트의 질문 자체를 바꾸는 접근이 주목받고 있습니다.</p><blockquote>\"Manual comparison of outputs is time-consuming, especially for large-scale testing.\"<cite>Ministry of Testing</cite></blockquote><h3>무슨 일인가</h3><p>Ministry of Testing의 글은 비결정적 시스템을 위한 메타모픽(metamorphic) 테스트와 적대적(adversarial) 전략을 소개합니다. 핵심은 정확한 정답을 맞히는 대신 입력을 의도적으로 변형했을 때 출력 사이의 관계가 유지되는지를 보는 것입니다. 예를 들어 질문을 동의어로 바꿔도 결론이 뒤집히면 안 된다는 식의 성질을 검증합니다. 적대적 입력은 모델이 흔들리는 경계를 일부러 찾아내는 역할을 합니다.</p><h3>여러 시각</h3><p>같은 사이트의 다른 글들은 사람이 맡을 몫을 강조합니다.</p><ul><li><b>TORCH 기법</b> — 타이머, 오라클, 질문, 휴리스틱으로 탐색 테스트 세션을 계획하는 방법을 제시해, 탐색을 감이 아닌 구조로 만듭니다.</li><li><b>탐색 테스트 인증 과정 안내</b> — AI를 활용한 탐색 테스트와 그에 과도하게 의존할 때의 위험을 교육 주제로 함께 다룹니다.</li></ul><h3>왜 중요한가</h3><p>AI 기능의 품질 이슈는 \"틀린 답\"보다 \"가끔 이상한 답\"으로 나타납니다. 이런 결함은 고정된 기대값 테스트로는 잘 잡히지 않고, 성질 기반 검증과 사람의 탐색이 함께 있어야 드러납니다. 또한 어떤 위험이 중요한지는 사용자와 비즈니스 맥락을 아는 사람이 정해야 하므로 기획 단계의 요구사항 정의와 QA가 더 가까워집니다.</p><h3>실무 적용</h3><ul><li>AI 기능마다 \"변형해도 유지돼야 할 성질\"을 3~5개 목록으로 먼저 정의합니다.</li><li>탐색 테스트는 TORCH처럼 시간·오라클·질문을 정해 세션 단위로 기록합니다.</li><li>자동화는 성질 위반을 찾는 데 쓰고, 위험 판단과 결과 해석은 사람이 맡도록 역할을 분리합니다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드에서 AI 응답을 화면에 붙여 보면, 버그는 대개 정상 경로가 아니라 응답이 조금 달라지는 순간에 나옵니다. 그래서 화면 상태(로딩·부분 응답·실패)와 모델 출력의 성질을 함께 테스트 케이스로 다루는 것이 현실적입니다. AX 프로젝트에서는 기획 단계에서 \"허용 가능한 변동 범위\"를 요구사항으로 적어 두는 것이 QA의 출발점이라고 봅니다.</p><h3>출처</h3><ul><li><a href=\"https://www.ministryoftesting.com/insights/metamorphic-and-adversarial-strategies-for-testing-ai-systems\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: Metamorphic and adversarial strategies for testing AI systems ↗</a></li><li><a href=\"https://www.ministryoftesting.com/moments/the-torch-technique-for-exploratory-testing\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: The TORCH technique for exploratory testing ↗</a></li><li><a href=\"https://www.ministryoftesting.com/news/new-certificate-rediscover-exploratory-testing-for-the-age-of-ai\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Ministry of Testing: Rediscover exploratory testing for the age of AI ↗</a></li></ul>",
+    "source": "Ministry of Testing",
+    "sourceUrl": "https://www.ministryoftesting.com/insights/metamorphic-and-adversarial-strategies-for-testing-ai-systems",
+    "tags": [
+      "AI Testing",
+      "Exploratory Testing",
+      "QA"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-16-canva-layoffs-fewer-layers-pm",
+    "category": "pm",
+    "date": "2026-11-16",
+    "title": "Canva 감원이 PM에게 던진 신호: 층은 줄고 책임은 넓어진다",
+    "rawTitle": "Unpacking Canva’s layoffs: fewer layers, more ownership, less remote work",
+    "summary": "Canva의 대규모 감원을 AI 효율화가 아닌 성장 둔화와 조직 평탄화로 읽는 시각, 그리고 PM 직무에 주는 의미.",
+    "bodyHtml": "<p>Canva가 인력의 약 22%를 줄였다는 소식에 많은 이들이 \"또 하나의 AI 감원\"이라고 말합니다. 하지만 Mind the Product의 Mike Belsito는 CEO 메모를 다르게 읽습니다. 성장 둔화와 관리 층 축소가 더 큰 원인이라는 해석입니다. 이 구분은 PM이 자기 직무의 미래를 어떻게 준비할지에 직접 영향을 줍니다.</p><blockquote>\"Many people are calling it another AI layoff.\"<cite>Mind the Product</cite></blockquote><h3>무슨 일인가</h3><p>글은 Canva가 이번 주 직원의 22%를 감원했다고 전하며, 메모의 핵심 키워드를 더 적은 층, 더 넓은 오너십, 줄어드는 원격 근무로 정리합니다. Belsito는 Canva뿐 아니라 Netflix, eBay도 AI 효율보다 성장 둔화와 층 축소를 언급한다고 짚되, 뒤의 두 곳은 단정하지 않고 \"그런 듯하다\"는 수준으로 조심스럽게 표현합니다. 또 미국 기술 업계의 프로덕트 인력이 2022년 정점 대비 28% 줄었고, 매니저는 31%, VP는 38%, 시니어 개별 기여자는 21% 감소했다는 수치를 인용합니다.</p><h3>여러 시각</h3><p>같은 매체의 다른 글들은 AI가 PM 채용과 커리어 구조를 바꾸는 방식을 다룹니다.</p><ul><li><b>Anthropic의 고용 보고서 해설</b> — 주니어 채용이 줄어드는 흐름을 짚으며, 입문 단계의 일이 AI로 대체되는 압력을 이야기합니다.</li><li><b>AI와 코딩 면접 글</b> — AI가 코딩 면접을 통과할 수 있는 시대에 PM 채용은 무엇을 평가해야 하는지 묻습니다.</li></ul><h3>왜 중요한가</h3><p>원인을 AI로만 돌리면 대응도 \"AI 도구 익히기\"에 그치기 쉽습니다. 그러나 층이 줄고 오너십이 넓어지는 구조 변화라면, 필요한 역량은 조율 중심의 관리가 아니라 직접 결정하고 결과에 책임지는 능력입니다. 사업기획 관점에서도 인력 구조 조정은 비용 문제이기 전에 의사결정 속도의 문제로 읽힙니다.</p><h3>실무 적용</h3><ul><li>내 역할에서 \"승인 단계\"만 담당하는 일이 무엇인지 점검하고, 직접 결정할 범위를 문서로 명확히 합니다.</li><li>성과를 활동이 아닌 결과 지표와 연결해 설명할 수 있게 포트폴리오를 정리합니다.</li><li>주니어 업무가 줄어드는 만큼, 팀 내 학습 기회(리뷰·페어 작업)를 의도적으로 설계합니다.</li></ul><h3>Kenny의 관점</h3><p>소규모 팀에서 기획·PM·프론트엔드를 오가다 보면 층이 얇은 조직이 실제로 어떻게 돌아가는지 체감합니다. 승인 대기가 없으니 빠르지만, 결정의 질이 개인에게 고스란히 얹힙니다. AX 시대의 PM은 AI로 속도를 내는 사람이 아니라, 줄어든 층 위에서 무엇을 만들지 책임 있게 고르는 사람이라고 생각합니다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/fewer-layers-and-broader-ownership-unpacking-the-canva-layoffs-and-what-it-means-for-product-people/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Unpacking Canva’s layoffs: fewer layers, more ownership, less remote work ↗</a></li><li><a href=\"https://www.mindtheproduct.com/key-takeaways-from-anthropics-employment-report/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Why Anthropic is hiring fewer juniors ↗</a></li><li><a href=\"https://www.mindtheproduct.com/claude-can-now-pass-coding-interviews-now-what/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: AI can pass coding interviews. What does that mean for hiring product managers? ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/fewer-layers-and-broader-ownership-unpacking-the-canva-layoffs-and-what-it-means-for-product-people/",
+    "tags": [
+      "Product Management",
+      "Org Design",
+      "AI"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-15-web-platform-october-scroll-animations-random",
     "category": "design",
     "date": "2026-11-15",

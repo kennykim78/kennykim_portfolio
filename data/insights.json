@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-11-17-stagger-scroll-animation-range-start",
+    "category": "design",
+    "date": "2026-11-17",
+    "title": "스크롤 스태거, 복잡한 수식 없이 한 줄 CSS로",
+    "rawTitle": "Staggering Scroll-Driven Animations with animation-range-start",
+    "summary": "스크롤 기반 애니메이션의 스태거를 거대한 수식 대신 animation-range-start와 sibling-index() 한 줄로 푸는 접근과 그 트레이드오프.",
+    "bodyHtml": "<p>스크롤에 맞춰 글자나 숫자가 차례로 등장하는 스태거 효과는 스크롤리텔링의 단골 연출입니다. CSS-Tricks의 Lee Meyer는 이 효과를 위해 긴 수식과 사용자 정의 CSS 함수를 쌓는 방식이 과하다고 지적합니다. 이미 CSS에 내장된 기능으로 같은 결과를 훨씬 단순하게 만들 수 있다는 것입니다. 새 기능을 쓰는 것만큼 \"이미 있는 기능을 알아보는 것\"이 중요하다는 사례입니다.</p><blockquote>\"The docs also point out that animation-delay is only meaningful when we are using the default time-based document timeline.\"<cite>CSS-Tricks</cite></blockquote><h3>무슨 일인가</h3><p>발단은 Frontend Masters 푸터의 기부 금액 집계 데모를 하나의 진행률 값으로 구동하는 수식 기반 스태거 글이었습니다. Meyer는 시간이 아닌 스크롤 진행도로 타임라인이 돌아가는 순간 animation-delay가 의미를 잃는다는 점에 주목합니다. 그 자리를 대신하도록 만들어진 속성이 animation-range-start이고, 스크롤 진행도 기준으로 시작 시점을 늦춥니다. 여기에 sibling-index()를 더해 형제 순서마다 시작 지점을 조금씩 밀면, 여덟 글자의 스태거가 <code>animation-range-start: contain calc(10% + 2.5% * sibling-index())</code> 한 줄로 끝납니다. 글자 하나당 2.5%씩 밀려 마지막 글자가 범위의 30% 지점에서 등장하는 식입니다.</p><h3>여러 시각</h3><p>같은 CSS-Tricks의 다른 글은 sibling-index()를 다른 문제에 적용합니다.</p><ul><li><b>CSS-Tricks(Temani Afif)</b> — sibling-index()와 if()를 조합해 :nth-child()를 커스텀 프로퍼티로 런타임에 바꿀 수 있게 재구현하며, 순서 기반 스타일링이 CSS 안에서 가능해졌음을 보여줍니다.</li><li><b>CSS-Tricks(Meyer)의 방어 논리</b> — 수식 방식도 \"하나의 진행률 값으로 전체 효과를 구동\"할 수 있다는 장점이 있고, 다만 이징이 개별 요소가 아닌 전체 마스터 타임라인에 적용되는 비용이 있다고 짚습니다.</li></ul><h3>왜 중요한가</h3><p>브라우저가 제공하는 기능을 직접 재발명하면 통제력은 얻지만 유지보수 부담이 따라옵니다. 이 글은 재발명 자체가 나쁜 것이 아니라 이유가 분명해야 한다는 기준을 제시합니다. 스크롤 타임라인, sibling-index(), if() 같은 최신 기능은 지원 범위가 고르지 않으므로, 단순함의 이득과 호환성 비용을 함께 따져야 합니다. 작은 연출 하나에도 \"내장 기능으로 풀리는가\"를 먼저 묻는 습관이 코드 크기와 디버깅 시간을 줄입니다.</p><h3>실무 적용</h3><ul><li>스크롤 기반 연출에서는 animation-delay가 아니라 animation-range-start/end로 타이밍을 설계합니다.</li><li>요소 순서에 따른 지연은 JS로 인덱스를 주입하기 전에 sibling-index()로 해결 가능한지 먼저 확인합니다.</li><li>Chromium 중심 기능이므로 지원하지 않는 브라우저에서는 애니메이션 없이도 콘텐츠가 읽히도록 폴백을 둡니다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드 작업에서 복잡한 해법이 눈에 들어올 때가 가장 위험하다고 느낍니다. 영리한 수식은 만드는 순간은 즐겁지만 팀이 이어받을 때 부채가 됩니다. 한 줄로 끝나는 선언형 CSS는 디자이너와 개발자가 같은 코드를 읽을 수 있게 해 준다는 점에서 협업 비용도 낮춥니다. 다만 스크롤이 빠를 때 연출이 눈에 띄지 않을 수 있다는 지적처럼, 기술적 단순함과 사용자 경험의 체감은 별개로 검증해야 합니다.</p><h3>출처</h3><ul><li><a href=\"https://css-tricks.com/staggering-scroll-driven-animations-with-animation-range-start/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Staggering Scroll-Driven Animations with animation-range-start ↗</a></li><li><a href=\"https://css-tricks.com/re-implementing-nth-child-with-modern-css/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Re-Implementing :nth-child() With Modern CSS ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/staggering-scroll-driven-animations-with-animation-range-start/",
+    "tags": [
+      "CSS",
+      "Scroll-Driven Animation",
+      "Frontend"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-17-atlassian-state-of-product-2026-pm",
+    "category": "pm",
+    "date": "2026-11-17",
+    "title": "Atlassian 제품 보고서: PM의 시간은 전략에 쓰이지 않는다",
+    "rawTitle": "Four things we learned from Atlassian’s State of Product 2026",
+    "summary": "제품팀 1,000여 명 조사에서 드러난 전략 시간 부족, 늦은 엔지니어링 참여, 실험 부재, 그리고 AI 비용 구조가 던지는 과제.",
+    "bodyHtml": "<p>Atlassian이 처음 낸 State of Product 2026은 미국·유럽 제품 전문가 1,000명 이상을 조사했습니다. 제품 조직의 영향력은 커졌지만 시간 압박, 협업, 시장 성공에 대한 불안은 여전하다는 것이 요지입니다. Mind the Product가 핵심을 간추렸고, 같은 매체의 AI 제품 전략 가이드와 함께 보면 사업기획 관점의 질문이 선명해집니다.</p><blockquote>\"If product teams don't co-own go-to-market, we limit ourselves to shipping features instead of driving business outcomes.\"<cite>Mind the Product</cite></blockquote><h3>무슨 일인가</h3><p>보고서에 따르면 팀의 80%가 아이디어 구상, 문제 정의, 로드맵 단계에 엔지니어를 참여시키지 않습니다. 응답팀의 49%는 전략 수립이나 로드맵, 깊이 있는 분석에 쓸 시간이 부족하다고 답했고, 빠른 실험과 반복 학습을 우선하는 조직은 31%에 그쳤습니다. 85%는 전략을 이끌 권한이 있다고 느끼면서도 84%는 제품이 시장에서 성공하지 못할까 걱정합니다. 영향력은 올라갔지만 확신과 측정 가능한 성과는 따라오지 않았다는 뜻입니다. AI 도구는 하루 10~60분을 절약해 주지만 복잡한 기획 업무에는 도움이 덜하고, 도구 간 통합 부족이 가장 큰 도입 장벽으로 꼽혔습니다.</p><h3>여러 시각</h3><p>이 데이터를 사업·재무 관점으로 읽는 글이 같은 매체에 있습니다.</p><ul><li><b>Mind the Product(AI 제품 전략 가이드)</b> — 2026년은 실험 단계에서 투자 대비 효과를 따지는 단계로 넘어간다고 보며, AI 기능을 일반 R&amp;D가 아닌 별도 손익 항목으로 관리하라고 권합니다.</li><li><b>Mind the Product(AI Dungeon 사례)</b> — 사용량에 따라 비용이 늘어나는 LLM을 정액 구독에 묶으면 가장 열성적인 사용자가 마진을 갉아먹을 수 있다고 경고합니다. 월 30달러 요금제에서 헤비 유저 한 명의 모델 비용이 약 40달러인 가상 사례가 이를 보여줍니다.</li></ul><h3>왜 중요한가</h3><p>두 글을 겹치면 제품팀의 문제는 속도가 아니라 판단의 근거와 경제성으로 모입니다. 전략 시간이 없으니 의견과 관성으로 결정하고, 실험이 부족하니 AI 기능의 비용 대비 가치를 검증하지 못합니다. GTM을 함께 소유하지 않으면 기능 출시가 곧 성과라는 착각에 빠지기 쉽습니다. 사업기획에서는 기능 목록보다 단위 경제와 학습 속도가 로드맵의 우선순위를 정해야 합니다.</p><h3>실무 적용</h3><ul><li>로드맵 논의에 엔지니어를 문제 정의 단계부터 초대해 실현 가능성과 재작업 비용을 앞에서 걸러냅니다.</li><li>주간 일정에 전략·분석 전용 시간을 고정 블록으로 확보하고 회의로 대체하지 않습니다.</li><li>AI 기능은 사용량 상한과 모델 라우팅을 포함한 기능별 손익 가정을 기획서에 먼저 적습니다.</li></ul><h3>Kenny의 관점</h3><p>소규모 팀에서 기획과 PM, 프론트엔드를 함께 하다 보면 전략 시간이 가장 먼저 사라진다는 말이 실감납니다. 실행이 급할수록 데모가 잘 나오는 AI 기능에 끌리지만, 정액 요금과 변동 비용이 만나는 지점은 설계 단계에서 막아야 합니다. AX 프로젝트에서도 \"무엇을 자동화할까\"보다 \"그 자동화가 누구의 비용으로 어떤 성과를 내는가\"를 먼저 묻는 편이 결과적으로 빠르다고 생각합니다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/inside-atlassians-state-of-product-2026-key-takeaways/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Four things we learned from Atlassian’s State of Product 2026 ↗</a></li><li><a href=\"https://www.mindtheproduct.com/the-2026-ai-product-strategy-huide-how-to-plan-budget-and-build-without-buying-into-the-hype/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: The 2026 AI product strategy guide ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/inside-atlassians-state-of-product-2026-key-takeaways/",
+    "tags": [
+      "Product Management",
+      "Strategy",
+      "AI Economics"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-16-testing-ai-metamorphic-exploratory",
     "category": "plan",
     "date": "2026-11-16",

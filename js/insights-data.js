@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-18-fountain-orchestra-frontline-agents",
+    "category": "ai",
+    "date": "2026-11-18",
+    "title": "현장 인력 관리까지 온 AI 에이전트, 관건은 '완료 검증'",
+    "rawTitle": "AI agents are coming to help hire, schedule, and manage frontline workers as Fountain launches Orchestra",
+    "summary": "Fountain의 Orchestra는 채용·근무 배정을 에이전트에 맡긴다. 핵심은 실행보다 '일을 끝냈는지' 검증하는 구조에 있다.",
+    "bodyHtml": "<p>시급제 현장 인력 채용 플랫폼 Fountain이 고객이 직접 설계하는 AI 에이전트 빌더 Orchestra를 내놓았습니다. 결원 근무를 메우려고 가능한 직원에게 차례로 연락하고, 수락한 사람에게 근무를 배정한 뒤 매니저에게 문자로 알리는 일을 에이전트가 맡는 식입니다. 사무직 코파일럿을 넘어 매장·물류 같은 현장 운영으로 에이전트가 들어오고 있다는 신호입니다. 그리고 이 발표가 강조하는 지점은 실행이 아니라 '검증'입니다.</p><blockquote>\"Knowing when it hasn't completed the job and why is the hard part.\"<cite>VentureBeat</cite></blockquote><h3>무슨 일인가</h3><p>VentureBeat 보도에 따르면 Orchestra는 사용자가 목표를 설명하면 에이전트 설계안을 제안하고, 승인하면 Fountain에 이미 쌓인 데이터로 반복 업무를 수행합니다. 설계는 Claude Opus 5.5가, 대부분의 실행은 Sonnet 5.5가, 작은 작업은 Haiku가 나눠 맡는 모델 분업 구조입니다. 별도의 AI 검사기가 각 에이전트가 목표를 달성했는지 확인하고 최대 세 번까지 재실행을 권고하며, 에이전트는 실행한 사람의 권한을 그대로 물려받고 연락 동의·통화 가능 시간·일일 연락 한도를 확인합니다. 500곳 이상의 고객사 중 일부에게 출시 시점에 무료로 제공되고 정식 출시는 2027년 초로 예정돼 있으며, 과금은 실패 시도는 빼고 완료된 결과에만 매기는 방식이 거론됩니다. 다만 보도는 독립적인 평가나 고객 성과 수치가 아직 없다는 점도 함께 짚습니다.</p><h3>여러 시각</h3><p>같은 시기 다른 매체는 '에이전트를 만들 수 있느냐'보다 '조직 전체로 확장할 수 있느냐'에 초점을 맞춥니다.</p><ul><li><b>MIT Technology Review Insights</b> — Infosys와 함께 만든 스폰서 콘텐츠에서 SAP·Infosys 임원들은 많은 기업이 파일럿 단계에 머문다는 조사를 인용하며, 연결된 데이터 기반과 정책·플랫폼·프로세스 3단 거버넌스가 있어야 확장된다고 말합니다. 정확도 80%가 어떤 업무에선 충분해도 공급망·결산에선 심각한 결과라는 지적은 Fountain의 완료 검증 설계와 같은 문제의식입니다.</li></ul><h3>왜 중요한가</h3><p>현장 업무는 실수 비용이 즉시 드러납니다. 근무가 비거나 동의하지 않은 사람에게 연락이 가면 바로 운영 사고가 됩니다. 그래서 에이전트의 가치는 '얼마나 많이 하느냐'보다 '끝났는지와 실패 이유를 아느냐'에서 결정되고, 결과 기반 과금도 이 검증이 있어야 성립합니다. 권한 상속과 연락 규칙 같은 가드레일이 제품 기능의 일부가 되는 흐름도 눈여겨볼 만합니다.</p><h3>실무 적용</h3><ul><li>에이전트를 기획할 때 '완료 조건'과 '실패 사유 분류'를 요구사항에 먼저 적고, 이를 검사하는 단계를 별도로 둡니다.</li><li>설계·실행·경량 작업에 서로 다른 모델을 배치하는 분업 구조로 비용과 품질의 균형을 잡습니다.</li><li>UI에서는 에이전트의 진행 상태·재시도·실패 이유를 사람이 읽을 수 있게 보여 주어 매니저가 개입할 지점을 명확히 합니다.</li></ul><h3>Kenny의 관점</h3><p>AX 프로젝트에서 가장 자주 빠지는 화면이 '에이전트가 지금 무엇을 했고, 왜 멈췄는가'를 보여 주는 화면입니다. Orchestra 사례는 검사기와 재시도 정책을 처음부터 제품의 핵심으로 설계했다는 점에서 참고할 만합니다. 프론트엔드 입장에서는 실행 로그를 그대로 노출하기보다 완료·부분 완료·실패를 구분한 상태 모델을 만드는 것이 먼저라고 봅니다. 성과 수치가 공개되기 전까지는 '검증 가능한 구조'라는 설계 원칙만 가져가는 편이 현실적입니다.</p><h3>출처</h3><ul><li><a href=\"https://venturebeat.com/orchestration/ai-agents-are-coming-to-help-hire-schedule-and-manage-frontline-workers-as-fountain-launches-orchestra\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: AI agents are coming to help hire, schedule, and manage frontline workers as Fountain launches Orchestra ↗</a></li><li><a href=\"https://www.technologyreview.com/2026/11/16/1146070/building-ai-that-can-work-across-the-enterprise/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">MIT Technology Review: Building AI that can work across the enterprise ↗</a></li></ul>",
+    "source": "VentureBeat",
+    "sourceUrl": "https://venturebeat.com/orchestration/ai-agents-are-coming-to-help-hire-schedule-and-manage-frontline-workers-as-fountain-launches-orchestra",
+    "tags": [
+      "AI Agents",
+      "Agent Evaluation",
+      "Enterprise AI"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-18-four-levels-ai-autonomy-planning",
+    "category": "plan",
+    "date": "2026-11-18",
+    "title": "AI를 어디에 넣을까, 자율성 단계와 실수 비용으로 고르기",
+    "rawTitle": "Using the Four Levels of AI autonomy to decide where AI fits into your product",
+    "summary": "사용자 과업마다 AI 자율성 단계와 실수 비용을 함께 매기면, AI를 넣을 곳과 사람이 남을 곳이 기획 단계에서 드러난다.",
+    "bodyHtml": "<p>\"우리 제품 어디에 AI를 넣을까\"는 요즘 기획 회의의 단골 질문이지만, 답은 대개 아이디어 나열로 끝납니다. Mind the Product에 실린 FreeAgent 제품운영 리드의 글은 이 질문을 사용자 과업, AI 자율성 단계, 실수 비용이라는 세 축으로 구조화합니다. 기능 아이디어가 아니라 과업 단위로 판단한다는 점에서 요구사항 정의와 QA 기준까지 한 번에 연결되는 틀입니다.</p><blockquote>\"The goal is that everywhere a user task can be improved by assigning it to an AI, it is.\"<cite>Mind the Product</cite></blockquote><h3>무슨 일인가</h3><p>글은 AI 자율성을 0단계(AI 거의 없음)부터 1단계(모든 출력을 사람이 승인), 2단계(신뢰도가 높아 일부만 승인), 3단계(다른 시스템에서 다단계 작업 수행, 승인은 여전히 많음), 4단계(초기 설정 후 무개입)로 나눕니다. 각 Jobs to Be Done의 현재 위치와 AI로 도달 가능한 위치를 축 위에 표시하고, 사용자 손실·브랜드 신뢰·회사 비용·규제를 따져 실수 비용을 매깁니다. 실수 비용이 클수록 자율성은 낮게 잡는 것이 원칙입니다. 중소사업자용 디지털 은행 예시에서 대출 신청과 거래처 대금 지급은 3단계까지 올리되, 대출을 AI가 알아서 받는 4단계는 너무 위험하다고 판단합니다. 단순한 규칙 기반 자동화가 AI보다 나은 경우가 많다는 단서도 붙습니다.</p><h3>여러 시각</h3><p>같은 매체의 팟캐스트는 이 판단을 실제 개발로 넘기는 연결 고리를 다룹니다.</p><ul><li><b>The Product Experience (Jenny Martin)</b> — 결과·산출물·프로세스·시나리오·입력의 5층 프레임으로 디스커버리와 딜리버리를 잇자고 제안합니다. 결정적인 테스트 시나리오와 비결정적 결과를 다루는 AI 평가가 둘 다 필요하고, 구체적인 테스트 데이터가 숨은 가정을 일찍 드러낸다고 말합니다.</li></ul><h3>왜 중요한가</h3><p>자율성 단계를 정하는 순간 사람의 승인 지점, 예외 처리, 감사 로그 같은 요구사항이 함께 정해집니다. 실수 비용 평가는 곧 테스트 우선순위가 되어, 위험한 과업일수록 시나리오와 평가를 촘촘히 짜야 한다는 근거가 됩니다. 결국 이 틀은 기획과 QA가 같은 표를 보고 대화하게 만든다는 데 가치가 있습니다. 'AI를 넣을 수 있는가'가 아니라 '어디까지 맡겨도 되는가'로 질문이 바뀝니다.</p><h3>실무 적용</h3><ul><li>주요 사용자 과업을 목록으로 만들고 현재 자율성 단계, 목표 단계, 실수 비용을 한 표에 정리해 우선순위를 정합니다.</li><li>목표 단계마다 사람의 승인 지점과 되돌리기(undo)·확인 UI를 요구사항으로 명시합니다.</li><li>실수 비용이 높은 과업은 결정적 시나리오 테스트와 AI 평가 세트를 함께 준비하고, 구체적인 테스트 데이터를 기획 단계부터 확보합니다.</li></ul><h3>Kenny의 관점</h3><p>AX 컨설팅에서 고객이 가장 먼저 원하는 것은 4단계 같은 완전 자동화지만, 실제로 가치가 나는 곳은 2~3단계인 경우가 많습니다. 이 틀은 그 대화를 감이 아니라 근거로 할 수 있게 해 줍니다. 프론트엔드 관점에서는 자율성 단계가 곧 화면 설계 차이로 이어집니다. 1단계는 승인 큐, 3단계는 실행 내역과 개입 버튼이 중심이 되므로 단계 결정을 디자인 착수 전에 끝내 두는 것이 좋습니다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/using-the-four-levels-of-ai-autonomy-to-decide-where-ai-fits-into-your-product/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Using the Four Levels of AI autonomy to decide where AI fits into your product ↗</a></li><li><a href=\"https://www.mindtheproduct.com/how-to-close-the-gap-between-discovery-and-delivery-jenny-martin-the-collaboration-coach-author-of-oopsi/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: How to close the gap between discovery and delivery | Jenny Martin ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/using-the-four-levels-of-ai-autonomy-to-decide-where-ai-fits-into-your-product/",
+    "tags": [
+      "AI Autonomy",
+      "Product Discovery",
+      "Risk Assessment"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-17-stagger-scroll-animation-range-start",
     "category": "design",
     "date": "2026-11-17",

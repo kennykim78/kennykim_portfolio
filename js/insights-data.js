@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-20-product-data-to-decisions",
+    "category": "plan",
+    "date": "2026-11-20",
+    "title": "좋은 데이터가 좋은 결정을 보장하지 않는 이유",
+    "rawTitle": "Why good product data doesn't always lead to better decisions",
+    "summary": "대시보드를 만들어도 결정이 바뀌지 않는다면 문제는 데이터가 아니라 연결이다. 프로덕트 옵스와 초기 PM 프로세스 사례로 데이터·피드백을 실제 의사결정에 꽂는 기획 운영법을 짚는다.",
+    "bodyHtml": "<p>많은 팀이 분석 도구를 도입하고 대시보드를 만들면 의사결정이 자연스럽게 좋아질 거라 기대한다. 하지만 현실에서는 숫자가 회의실에 올라가도 아무도 반응하지 않고, 로드맵은 그대로 흘러가는 경우가 흔하다. Mind the Product가 소개한 Korn Ferry의 프로덕트 옵스 리더 Maria Knausz의 사례는 이 간극을 정면으로 다룬다. AI로 실행 속도가 빨라진 지금, 잘못된 결정의 비용도 함께 커졌다는 점에서 더 주목할 만하다.</p><blockquote>\"AI is making us go faster, but it's also expanding the risk if we make the wrong decisions.\"<cite>Mind the Product</cite></blockquote><h3>무슨 일인가</h3><p>Knausz는 사내에 Pendo를 도입하고 대시보드를 구축한 뒤 리더십 회의에서 데이터를 발표했지만, 누구도 질문하지 않았고 결정도 바뀌지 않았다. 그녀는 리더의 침묵을 \"데이터가 왜 중요한지 보이지 않는다\"는 신호로 해석했고, 이후 프로덕트 옵스가 먼저 인사이트를 들고 찾아가는 방식으로 바꿨다. 돌파구는 고객 갱신(renewal) 논의였다. 갱신 여부를 묻는 질문에 사용량 데이터가 직접 답을 주면서 프로덕트 옵스가 전략 기능으로 자리 잡았다. 그녀는 또 Product Focus 2026 조사를 인용해, PM의 97%가 AI로 개인 생산성이 올랐다고 답했지만 매출·출시 속도 같은 제품 성과 개선을 체감한 비율은 64%에 그친다고 지적한다.</p><h3>여러 시각</h3><p>같은 문제를 조직의 맨 처음 단계에서 바라본 글과 비교하면 그림이 더 선명해진다.</p><ul><li><b>Mind the Product (Pola Wittmann)</b> — 두 명짜리 PM 조직을 처음부터 세운 경험에서 \"로드맵보다 피드백 루프가 먼저\"라고 말한다. 고객 입력 없는 로드맵은 내부 의견 목록일 뿐이며, 완벽한 프로세스보다 70%만 맞아도 실제로 쓰이는 프로세스가 낫다는 실용론을 편다.</li></ul><h3>왜 중요한가</h3><p>두 글은 규모가 정반대인 조직에서 출발하지만 결론은 같다. 데이터와 피드백은 수집만으로는 가치가 없고, 누군가 그것을 결정의 언어로 번역해 적절한 자리에 올려야 한다. 대기업에서는 그 역할이 프로덕트 옵스로, 작은 팀에서는 PM 개인의 운영 습관으로 나타날 뿐이다. AI가 기획·개발 속도를 끌어올리는 만큼, 무엇을 만들지 고르는 단계의 품질이 곧 제품 품질을 좌우하게 된다.</p><h3>실무 적용</h3><ul><li>대시보드를 공유할 때 지표 나열 대신 \"이 숫자가 바꿔야 할 결정 하나\"를 첫 줄에 적는다.</li><li>고객 지원 티켓·영업 통화 메모 등 흩어진 피드백을 한곳으로 모으는 최소한의 루프를 로드맵 작업보다 먼저 만든다.</li><li>AI 도입 효과를 개인 생산성이 아니라 리드타임·전환율 같은 제품 성과 지표로 따로 추적해 97%와 64%의 간극을 측정한다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드와 AX 프로젝트를 하다 보면 \"데이터는 다 있는데 아무도 안 본다\"는 상황을 자주 만난다. 결국 문제는 도구가 아니라 데이터를 의사결정 시점에 맞춰 배치하는 설계다. 그래서 대시보드를 납품할 때도 화면 구성보다 어떤 회의에서 어떤 질문에 답할지를 먼저 정의하려 한다. 70%짜리 프로세스로 빠르게 시작하고, 리더가 실제로 묻는 질문에 데이터를 꽂아 넣는 것이 가장 확실한 출발점이다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/product-leader-profiles-maria-knausz/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Why good product data doesn't always lead to better decisions ↗</a></li><li><a href=\"https://www.mindtheproduct.com/how-to-build-your-first-product-management-processes-from-scratch/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: How to build your first product management processes from scratch ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/product-leader-profiles-maria-knausz/",
+    "tags": [
+      "Product Ops",
+      "Data-Driven Decisions",
+      "Product Discovery"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-20-pm-job-market-late-2026",
+    "category": "pm",
+    "date": "2026-11-20",
+    "title": "AI 시대 채용 시장, PM만 웃고 있다",
+    "rawTitle": "State of the tech job market: late 2026",
+    "summary": "PM 채용 공고는 2023년 저점 대비 75% 늘었지만 엔지니어는 정체, 디자인은 역대 최저다. 숫자가 말하는 PM 역할의 변화와 AI 시대 PM에게 요구되는 역량을 짚는다.",
+    "bodyHtml": "<p>Lenny Rachitsky가 2026년 하반기 테크 채용 시장 리포트를 내놨다. TrueUp의 9천여 개 기업 채용 공고와 Live Data Technologies의 실제 채용 데이터를 교차한 결과, 핵심 직군 중 PM만이 뚜렷하게 성장하고 있다. 반면 엔지니어 수요는 정체됐고 디자인·리서치는 급감했다. AI가 \"만드는 일\"의 비용을 낮추면서 \"무엇을 만들지 정하는 일\"의 가치가 올라가고 있다는 신호로 읽힌다.</p><blockquote>\"Today, \"LLM\" is the most mentioned skill in product manager job descriptions.\"<cite>Lenny's Newsletter</cite></blockquote><h3>무슨 일인가</h3><p>PM 채용 공고는 2023년 3월 저점 대비 75% 증가했고, 5대 핵심 직군 중 채용 비중이 늘어난 유일한 직군이다(2021년 16% → 현재 21%). 엔지니어 공고 증가율은 2024년 29%, 2025년 15%에서 최근 1년 2.5%로 꺾였고, 미국 기업의 연간 소프트웨어 엔지니어 채용은 약 11.3만 명으로 2022년 정점의 절반에도 못 미친다. 프로덕트 디자인 공고는 약 1,900건으로 전년 대비 28% 줄어 PM 대 디자이너 공고 비율이 3.8:1까지 벌어졌다. 원격 근무 비중은 14%로 역대 최저이며, PM 공고에서 가장 많이 언급되는 기술은 \"LLM\"이다.</p><h3>여러 시각</h3><p>숫자가 보여주는 PM 수요 증가가 현장에서 어떤 역량으로 나타나는지는 다른 사례와 함께 봐야 한다.</p><ul><li><b>First Round Review</b> — AI IT 플랫폼 Serval 창업자는 \"가장 큰 페인 포인트가 뭔가요?\" 대신 \"옆에 사람을 한 명 고용해 일을 맡긴다면 무엇을 시키겠나요?\"라고 물어 진짜 수요를 찾았다. 기존 시장을 \"10배 더 나은 경험\"으로 공략한 이 사례는 AI 시대 PM의 핵심 역량이 실행이 아니라 문제 정의와 디스커버리 질문에 있음을 보여준다.</li></ul><h3>왜 중요한가</h3><p>AI 코딩 도구가 구현 비용을 낮추자, 기업은 엔지니어를 더 뽑는 대신 무엇을 만들지 판단할 사람을 늘리고 있다. 동시에 디자인·리서치 직군 축소는 그 판단의 근거를 PM이 직접 확보해야 한다는 뜻이기도 하다. 즉 PM 수요 증가는 기회이면서 책임 범위의 확장이다. 사업기획과 디스커버리, AI 이해를 한 사람이 겸하는 하이브리드형 역할이 표준이 되어 가고 있다.</p><h3>실무 적용</h3><ul><li>PM·기획자는 LLM의 한계와 평가 방법을 설명할 수 있는 수준까지 AI 리터러시를 끌어올린다.</li><li>디자인·리서치 리소스가 줄어든 팀이라면 고객 인터뷰 질문 설계를 PM의 핵심 업무로 가져온다(Serval식 \"대신 시킬 일\" 질문 활용).</li><li>프론트엔드·UX 실무자는 프로토타이핑 역량을 무기로 PM 영역과의 경계를 넓혀 하이브리드 커리어를 설계한다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드에서 기획·PM으로 영역을 넓혀 온 입장에서 이 데이터는 꽤 현실적이다. AI가 코드를 빠르게 만들어 줄수록 병목은 \"무엇이 고객에게 10배 나은가\"를 판단하는 쪽으로 옮겨간다. 다만 디자인·리서치 공백을 PM이 떠안는 구조는 품질 리스크도 크다. 그래서 구현을 이해하는 PM, 문제 정의를 할 줄 아는 엔지니어처럼 경계를 넘나드는 사람이 가장 강한 시기라고 본다.</p><h3>출처</h3><ul><li><a href=\"https://www.lennysnewsletter.com/p/state-of-the-tech-job-market-late\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Lenny's Newsletter: State of the tech job market: late 2026 ↗</a></li><li><a href=\"https://review.firstround.com/servals-path-to-product-market-fit/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: Serval's Path to Product-Market Fit ↗</a></li></ul>",
+    "source": "Lenny's Newsletter",
+    "sourceUrl": "https://www.lennysnewsletter.com/p/state-of-the-tech-job-market-late",
+    "tags": [
+      "Product Management",
+      "Job Market",
+      "AI Careers"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-19-when-everything-has-changed",
     "category": "design",
     "date": "2026-11-19",

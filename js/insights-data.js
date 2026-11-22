@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-22-tmobile-narrow-context-agents",
+    "category": "ai",
+    "date": "2026-11-22",
+    "title": "더 많이 읽힐수록 틀렸다, T-Mobile의 컨텍스트 교훈",
+    "rawTitle": "Giving its AI more to read made T-Mobile's answers worse",
+    "summary": "T-Mobile은 상담 문서를 통째로 넣은 AI 에이전트가 오히려 오답을 내자, 문구별 조회 테이블로 컨텍스트를 좁혔다. 이제 AX의 핵심은 얼마나 넣느냐보다 무엇을 뺄지다.",
+    "bodyHtml": "<p>컨텍스트 창이 백만 토큰을 넘어서면서 '일단 다 넣자'는 접근이 자연스러워졌습니다. 그런데 T-Mobile은 정반대 결론에 도달했습니다. VentureBeat 보도에 따르면 T-Mobile은 고객 상담 문서 전체를 대형 컨텍스트 모델에 넣었다가 실패했고, 지금은 에이전트가 읽는 정보를 의도적으로 좁히고 있습니다. 같은 주에 Uber도 비용 문제로 컨텍스트와 추론 강도를 줄였다고 밝혀, '적게 읽히기'가 품질과 비용 양쪽의 해법으로 떠올랐습니다.</p><blockquote>\"The table is built for agents rather than people.\"<cite>VentureBeat</cite></blockquote><h3>무슨 일인가</h3><p>T-Mobile CIO 제프 사이먼은 2024년부터 채팅·문자·음성 상담 에이전트를 만들어 왔습니다. 첫 시도는 상담 문서를 모두 넣는 방식이었지만, 서로 충돌하는 지침 때문에 에이전트가 엉뚱한 절차로 빠졌습니다. 고객의 한 문장이 '기존 회선에 새 폰'과 '회선 추가'처럼 여러 절차로 해석될 수 있었기 때문입니다. 두 번째로 시도한 지식 그래프는 탐색이 너무 느렸습니다. 결국 자주 쓰이는 고객 표현을 다음 에이전트 경로에 연결하는 키-값 조회 테이블을 만들고, 오케스트레이터가 의도를 확인한 뒤 해당 경로의 컨텍스트만 가진 에이전트로 넘기는 구조에 정착했습니다. 소형 모델이 모든 상담을 LLM 판정자로 검사하다가, 모델이 조회 대기 중에 있지도 않은 대기 음악을 '지어내는' 현상을 잡아낸 일화도 소개됐습니다.</p><h3>여러 시각</h3><p>같은 문제를 비용과 운영 기본값의 관점에서 다룬 사례도 있습니다.</p><ul><li><b>VentureBeat (Uber 사례)</b> — Uber는 올해 AI 예산을 몇 달 만에 소진한 뒤, 엔지니어 전원에게 40만 토큰 자동 압축, 중간 수준 추론 강도, 시작 시 MCP 도구 정의 미적재 같은 기본값을 적용했습니다. 모델을 그대로 둔 채 1,000건당 비용을 정점 대비 약 34% 줄였다고 합니다.</li><li><b>VB Pulse 설문(같은 보도 인용)</b> — 회사 데이터로 에이전트를 운영하는 응답자의 78%가 최근 6개월 사이 컨텍스트 누락·불일치 때문에 '자신 있게 틀린 답'을 겪었습니다. 큰 입력을 그대로 컨텍스트에 넣는 방식은 10%에 그쳤습니다.</li></ul><h3>왜 중요한가</h3><p>두 사례는 서로 다른 동기에서 출발했지만 결론이 같습니다. 컨텍스트는 많을수록 좋은 자원이 아니라, 충돌과 비용을 함께 늘리는 변수라는 것입니다. 특히 사내 문서는 버전과 부서마다 내용이 엇갈리기 쉬워, 많이 넣을수록 '그럴듯한 오답'의 재료가 됩니다. 앞으로 에이전트 품질은 모델 선택보다 어떤 정보를 언제 누구에게 줄지 설계하는 컨텍스트 아키텍처에서 갈릴 가능성이 큽니다.</p><h3>실무 적용</h3><ul><li>에이전트에 넣을 문서 목록을 만들고, 서로 충돌하는 지침이 있는지 먼저 정리해 하나의 기준 문서로 통합합니다.</li><li>자주 들어오는 사용자 표현을 의도·경로로 매핑하는 테이블을 두고, 담당자와 갱신 주기를 정해 운영 자산으로 관리합니다.</li><li>컨텍스트 한도, 추론 강도, 도구 정의 적재량을 팀 기본값으로 정하고 품질·비용 지표로 A/B 비교합니다.</li></ul><h3>Kenny의 관점</h3><p>AX 프로젝트에서 가장 흔한 요청은 '우리 문서를 전부 학습시켜 달라'입니다. T-Mobile 사례는 그 요청이 정답이 아닐 수 있음을 실제 운영 경험으로 보여 줍니다. 저는 에이전트 기획 단계에서 '무엇을 넣을지'보다 '무엇을 빼고, 충돌은 누가 정리할지'를 먼저 정의하자고 제안합니다. 프론트엔드에서는 의도 확인 단계를 대화 UI에 자연스럽게 넣는 것이 잘못된 경로를 막는 가장 저렴한 장치가 됩니다.</p><h3>출처</h3><ul><li><a href=\"https://venturebeat.com/orchestration/giving-its-ai-more-to-read-made-t-mobiles-answers-worse\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Giving its AI more to read made T-Mobile's answers worse ↗</a></li><li><a href=\"https://venturebeat.com/infrastructure/uber-blew-through-its-ai-budget-then-dialed-back-context-and-reasoning-in-its-ai-coding-tools\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Uber blew through its AI budget, then dialed back context and reasoning in its AI coding tools ↗</a></li></ul>",
+    "source": "VentureBeat",
+    "sourceUrl": "https://venturebeat.com/orchestration/giving-its-ai-more-to-read-made-t-mobiles-answers-worse",
+    "tags": [
+      "Context Engineering",
+      "AI Agents",
+      "AX"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-22-chatgpt-business-agents-answer-qa",
+    "category": "plan",
+    "date": "2026-11-22",
+    "title": "ChatGPT 속 우리 제품, 그 답변도 기획·QA 대상",
+    "rawTitle": "OpenAI launches Businesses in ChatGPT: Here's how it works",
+    "summary": "ChatGPT에 기업 프로필과 브랜드 에이전트가 생기면서, AI가 우리 제품에 대해 하는 말이 새 요구사항이 됐다. 답변 일관성을 정의하고 검증하는 일이 기획·QA의 몫으로 넘어온다.",
+    "bodyHtml": "<p>고객이 웹사이트에 오기 전에 AI 채팅 안에서 제품을 찾아보고 판단하는 흐름이 굳어지고 있습니다. OpenAI가 ChatGPT에 기업 프로필, 상품 피드, 브랜드 에이전트를 묶은 'Businesses in ChatGPT'를 내놓자, Mind the Product는 이를 광고가 아닌 제품 오너십의 문제로 다뤘습니다. 외부 AI가 우리 가격·정책을 어떻게 말하는지가 곧 사용자 경험이 된 셈입니다. 그렇다면 그 답변을 정의하고 검증하는 일은 기획과 QA의 영역입니다.</p><blockquote>\"Don't hand the agent to whoever owns the ads budget.\"<cite>Mind the Product</cite></blockquote><h3>무슨 일인가</h3><p>새 기능은 기업 프로필과 허브, 인증, 상품 피드, 언급·클릭·발견 주제를 보여 주는 인사이트, 브랜드 에이전트로 구성됩니다. 프로필 등록은 누구나 무료지만, 에이전트는 당분간 미국의 일부 커머스·온라인 서비스 기업에만 열려 있습니다. 글은 Air Canada 챗봇 판결처럼 에이전트가 한 말의 책임이 기업에 돌아온 사례를 짚고, 고객지원 봇과 ChatGPT 에이전트가 환불 정책을 다르게 답하는 상황을 경고합니다. 대안으로 제품 설명·가격·비교·연동·불만이라는 다섯 질문을 ChatGPT에 던져 틀리거나 오래된 답을 기록하고, 몇 주 뒤 다시 확인하는 테스트를 제안합니다.</p><h3>여러 시각</h3><p>AI가 만든 결과물을 사람이 어떻게 검증할지에 대해서는 OpenAI 내부 사례가 다른 각도를 보여 줍니다.</p><ul><li><b>VentureBeat (OpenAI Performance Factory)</b> — OpenAI는 Codex 기반 시스템으로 ChatGPT 성능 저하를 조사해 3개월여 동안 1,700건 넘게 추적하고 600건 이상의 원인을 찾았습니다. 새 컨텍스트로 시작하는 '적대적 리뷰어'가 진단의 약 25%를 되돌려 보내며, 사람에게는 꼭 필요한 정보만 보여 줘 리뷰 피로를 줄이는 것을 원칙으로 삼습니다.</li></ul><h3>왜 중요한가</h3><p>지금까지 QA의 대상은 우리가 만든 화면과 API였습니다. 이제는 우리가 통제하지 않는 채널에서 AI가 생성하는 답변까지 품질 범위에 들어옵니다. 두 사례 모두 AI 출력은 '한 번 검증하면 끝'이 아니라, 기준을 정하고 반복 점검하며 다른 시각으로 다시 의심하는 구조가 필요하다는 점을 보여 줍니다. 기준 없이 열어 둔 에이전트는 가격·정책 약속이라는 실제 리스크로 돌아옵니다.</p><h3>실무 적용</h3><ul><li>에이전트가 약속해도 되는 범위(가격·재고·환불)와 모를 때의 답변, 사람에게 넘기는 조건을 요구사항 문서에 명시합니다.</li><li>다섯 질문 테스트를 회귀 테스트처럼 정기 실행하고, 지원 봇과 외부 에이전트의 답을 나란히 비교해 불일치를 결함으로 관리합니다.</li><li>상품 카탈로그·가격·정책 데이터를 단일 출처로 정리해, 어느 채널의 AI든 같은 기준 데이터를 쓰게 합니다.</li></ul><h3>Kenny의 관점</h3><p>기획자로서 이 변화는 요구사항의 범위가 '우리 화면 밖'으로 넓어졌다는 신호로 읽힙니다. QA 관점에서는 정답이 하나로 고정되지 않는 AI 답변을 어떤 기준으로 합격·불합격 판정할지 먼저 합의해야 합니다. 저는 제품·지원·마케팅·법무가 함께 '에이전트 답변 기준표'를 만들고, 이를 테스트 케이스로 바로 옮기는 방식을 권합니다. 기준표가 있어야 Performance Factory처럼 AI가 검증을 돕는 단계로도 나아갈 수 있습니다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/open-ai-wants-your-product-inside-chat-gpt-heres-how-it-works/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: OpenAI launches Businesses in ChatGPT: Here's how it works ↗</a></li><li><a href=\"https://venturebeat.com/orchestration/exclusive-openai-reveals-performance-factory-a-codex-powered-software-optimization-system-that-keeps-chatgpt-fast\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Exclusive: OpenAI reveals Performance Factory, a Codex-powered software optimization system that keeps ChatGPT fast ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/open-ai-wants-your-product-inside-chat-gpt-heres-how-it-works/",
+    "tags": [
+      "AI Agents",
+      "QA",
+      "Product Requirements"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-21-chrome-158-install-element-highlight",
     "category": "design",
     "date": "2026-11-21",

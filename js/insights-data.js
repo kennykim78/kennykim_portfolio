@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-24-product-assumptions-kill-criteria",
+    "category": "plan",
+    "date": "2026-11-24",
+    "title": "AI 시대의 기획, 기능보다 먼저 무너진 전제를 찾아라",
+    "rawTitle": "Welcome to the software renaissance: Martin Eriksson at Mind the Product Chicago 2026",
+    "summary": "마틴 에릭슨의 의사결정 스택과 중단 기준을 구글의 코드 리뷰 조언과 겹쳐 읽으며, 결정의 이유를 남기는 기획·QA 방식을 살펴봅니다.",
+    "bodyHtml": "<p>AI가 제품을 어떻게 바꿀지에 대한 예측이 쏟아지지만, 그 예측에 맞춰 기획하는 일은 위험합니다. 마틴 에릭슨은 Mind the Product 시카고 2026 강연에서 미래를 맞히는 대신 <b>어떤 전제가 바뀌었는지</b>를 찾자고 제안했습니다. 기획서의 기능 목록보다 그 아래 깔린 가정을 먼저 점검하자는 이야기라 지금 되새길 만합니다.</p><blockquote>\"you cannot A/B test 2028.\"<cite>Mind the Product</cite></blockquote><h3>무슨 일인가</h3><p>에릭슨의 의사결정 스택은 어디로 가는지, 어떻게 가는지, 지금 무엇이 중요한지, 무엇을 할지, 어떻게 고를지를 묻는 다섯 층입니다. 기사는 AI를 기능으로 덧붙인 사례로 Chegg를, 전제부터 다시 본 사례로 IKEA와 Intercom을 듭니다. IKEA는 상담을 자동화한 뒤 남은 문의가 주로 디자인 질문임을 발견해 상담 인력을 인테리어 서비스로 재교육했고, Intercom은 좌석당 과금을 해결 건당 0.99달러로 바꿨습니다. 그는 70% 정도의 확신에서 베팅하되 중단 기준을 미리 적어 두라고 조언합니다.</p><h3>여러 시각</h3><p>전략의 전제를 다룬 이 강연은, 코드 한 줄의 이유를 다룬 구글의 짧은 글과 의외로 맞닿아 있습니다.</p><ul><li><b>Mind the Product</b> — 전략 층위의 시각입니다. 위로 올라가며 \"무엇이 참이어야 하는가\"를 묻고, 여전히 유효한 전제를 만나면 거기서 다시 설계합니다.</li><li><b>Google Testing Blog</b> — 실행 층위의 시각입니다. 리뷰 답변이 \"완료\"로 끝나면 이유가 사라지므로, 추가한 검증이나 선택의 트레이드오프, 오프라인 논의 결과를 짧게 남기라고 권합니다.</li></ul><h3>왜 중요한가</h3><p>두 글을 함께 읽으면 결정과 이유는 한 세트라는 결론에 이릅니다. 이유가 남아 있어야 상황이 바뀌었을 때 무엇을 고칠지 알 수 있습니다. 중단 기준은 실패 선언이 아니라 기획에 붙이는 테스트 케이스에 가깝습니다. 다만 강연이 든 성공 사례는 결과를 알고 고른 것이므로, 방법의 효과를 입증하는 증거로 읽어서는 안 됩니다.</p><h3>실무 적용</h3><ul><li>요구사항마다 전제, 확인 방법, 중단 기준을 한 줄씩 적고 QA 계획과 연결합니다.</li><li>MAU 같은 지표가 에이전트나 MCP 경유 사용에서도 유효한지 점검합니다.</li><li>PR과 리뷰 답변에 변경 이유와 추가한 테스트를 한 문장으로 남깁니다.</li></ul><h3>Kenny의 관점</h3><p>저는 기획서에서 가장 자주 빠지는 항목이 \"언제 그만둘 것인가\"라고 봅니다. 프론트엔드에서는 기능 플래그와 이벤트 로그로 중단 기준을 실제로 측정할 수 있으니, 기준은 구현 전에 합의하는 편이 낫습니다. AX 프로젝트라면 모델 비용이 크게 내리거나 오르는 두 경우를 모두 적어 보길 권합니다. 전제가 문서에 있으면 AI가 만든 결과물도 같은 기준으로 검증할 수 있습니다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/welcome-to-the-software-renaissance-martin-eriksson-at-mind-the-product-chicago-2026/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Welcome to the software renaissance ↗</a></li><li><a href=\"https://testing.googleblog.com/2026/05/code-review-responses-add-context-when.html\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Google Testing Blog: Code Review Responses: Add Context When It Counts ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/welcome-to-the-software-renaissance-martin-eriksson-at-mind-the-product-chicago-2026/",
+    "tags": [
+      "Product Planning",
+      "Kill Criteria",
+      "Code Review"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-24-how-ai-agents-buy",
+    "category": "pm",
+    "date": "2026-11-24",
+    "title": "AI 에이전트는 어떻게 물건을 고르는가",
+    "rawTitle": "Welcome to the B2A Economy: How Agents Buy",
+    "summary": "a16z의 에이전트 구매 실험과 Mind the Product의 차단 논의를 비교해, 에이전트를 고객으로 맞을 때 필요한 GTM 과제를 정리합니다.",
+    "bodyHtml": "<p>AI 에이전트가 상품을 비교하고 결제 직전까지 진행하면서, 기업의 고객 목록에 사람이 아닌 구매 주체가 들어왔습니다. a16z는 네 가지 에이전트의 실행 1만 1,307건을 분석해 이들이 무엇을 보고 고르는지 공개했습니다. 한편 많은 웹 서비스는 같은 에이전트를 막고 있어, <b>팔 것인가 막을 것인가</b>가 사업기획의 질문이 됐습니다.</p><blockquote>\"Every run on a store that required a logged-in account stopped early in the purchase process\"<cite>a16z</cite></blockquote><h3>무슨 일인가</h3><p>실험은 10월 22일부터 11월 8일까지 Grok Bot, Muse, Instinct, Dots에 프롬프트 1,270개를 주는 방식이었습니다. 선택을 주로 좌우한 것은 가격과 리뷰였고, 가격이 같으면 86%의 테스트에서 반품 정책이 나은 판매처를 골랐습니다. 실제 매장 비교 275건에서는 72%가 신뢰도 높은 판매처를 추천했습니다. 요청이 구체적일수록 결과도 달라져, 범용 그래픽 도구로는 Canva가, 전문가용 결과물에는 Adobe가 선택됐습니다.</p><h3>여러 시각</h3><p>a16z가 에이전트에게 선택받는 법을 다룬다면, Mind the Product는 에이전트가 막히는 지점을 봅니다.</p><ul><li><b>a16z</b> — 수요 기회의 시각입니다. 에이전트마다 검색 경로와 행동이 다르니 각각을 별개 고객으로 보라고 합니다. AI에 투자하는 벤처캐피털의 글이라는 점은 감안해야 합니다.</li><li><b>Mind the Product</b> — 팟캐스트 소개문에 따르면 봇 설정, 사람 확인, 약관, 업체 기본값이 합쳐져 이미 에이전트 정책이 됩니다. 핵심 흐름을 에이전트로 시험하고, 막히면 사람에게 넘기는 과정을 설계하라고 권합니다.</li></ul><h3>왜 중요한가</h3><p>두 시각의 교차점은 기본값이 곧 전략이 된다는 사실입니다. 게스트 결제를 지원한 매장에서는 81%의 실행이 결제 양식 끝에 도달했지만, 로그인이 필수인 매장에서는 모두 일찍 멈췄습니다. 마케팅이 아무리 좋아도 가입 벽이 매출 경로를 끊을 수 있다는 뜻입니다. 다만 짧은 기간의 특정 에이전트를 본 실험이므로 수치를 그대로 우리 시장에 옮기기는 어렵습니다.</p><h3>실무 적용</h3><ul><li>가격·배송비·반품 조건을 시맨틱 HTML과 구조화 데이터로 명확히 노출합니다.</li><li>핵심 구매 흐름을 에이전트로 돌려 막히는 단계와 사람에게 넘길 지점을 기록합니다.</li><li>분석 도구에서 에이전트와 사람의 활동을 구분하고 허용 권한을 명시합니다.</li></ul><h3>Kenny의 관점</h3><p>저는 에이전트 대응을 새 채널 개발보다 기본기 점검으로 시작하겠습니다. 명확한 레이블, 읽기 쉬운 가격 정보, 가입 없는 결제는 접근성과 사람의 전환율에도 도움이 되는 투자입니다. 그렇다고 모두 열 필요는 없으며, 조회는 열고 결제 확정은 사람이 승인하는 식의 단계별 정책이 현실적입니다. PM은 이 정책을 보안팀의 기본 설정에 맡기지 말고 제품 결정으로 다뤄야 합니다.</p><h3>출처</h3><ul><li><a href=\"https://a16z.com/welcome-to-the-b2a-economy-how-agents-buy/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">a16z: Welcome to the B2A Economy: How Agents Buy ↗</a></li><li><a href=\"https://www.mindtheproduct.com/why-are-companies-are-blocking-ai-agents/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: Why companies are blocking AI agents ↗</a></li></ul>",
+    "source": "a16z",
+    "sourceUrl": "https://a16z.com/welcome-to-the-b2a-economy-how-agents-buy/",
+    "tags": [
+      "AI Agents",
+      "Go-to-Market",
+      "Product Strategy"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-23-andy-clarke-standout-designs",
     "category": "design",
     "date": "2026-11-23",

@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-11-25-frontend-fallback-design",
+    "category": "design",
+    "date": "2026-11-25",
+    "title": "실패를 먼저 설계하라: 프론트엔드 폴백의 기준",
+    "rawTitle": "Using Fallbacks for a Robust Front-End",
+    "summary": "CSS-Tricks의 HTML·CSS·JS 폴백 패턴을 Josh Comeau의 브라우저 지원 판단 기준, web.dev의 신기능 소식과 함께 읽으며 폴백의 우선순위를 정리했습니다.",
+    "bodyHtml": "<p>새 기능은 빠르게 늘지만 작동하지 않는 순간까지 설계한 화면은 드뭅니다. CSS-Tricks가 11월 23일 공개한 글은 폴백을 HTML·CSS·JavaScript 전 층의 안전망으로 다시 정리합니다. 품질은 실패할 때 무엇이 남는지에서 갈립니다.</p>\n<blockquote>\"it doesn’t take much to implement various safety nets on the front end\"<cite>CSS-Tricks</cite></blockquote>\n<h3>무슨 일인가</h3><p>점진적 향상은 지원되는 기능을 더하고, 폴백은 쓸 수 없을 때를 대비한다고 구분합니다. HTML은 오류 페이지와 noscript, CSS는 @supports, JavaScript는 기능과 데이터를 확인하는 조건문을 제시합니다. Baseline이 접근성 지원까지 추적하지는 않는다는 점도 짚습니다.</p>\n<h3>여러 시각</h3><p>구현 패턴에 판단 기준과 변화 속도를 더해 봅니다.</p><ul><li><b>Josh W. Comeau</b> — 2024년 글이지만 폴백 경험, 실제 사용자의 브라우저 분포, 실패 시 피해를 함께 보라는 기준은 유효합니다. 선언을 지워 폴백을 확인하는 방법도 권합니다.</li><li><b>web.dev</b> — 9월부터 Chrome과 Firefox가 2주 주기로 출시되고 progress(), alpha() 등이 Baseline에 새로 들어섰다고 전합니다.</li></ul>\n<h3>왜 중요한가</h3><p>전 세계 지원율만으로는 우리 사용자가 겪을 일을 알 수 없습니다. 어색한 줄바꿈과 사라진 예약 버튼은 피해가 다릅니다. 폴백을 모든 곳에 붙이기보다 핵심 과업이 끊기는 지점에 집중해야 비용이 맞습니다.</p>\n<h3>실무 적용</h3><ul><li>새 CSS 선언을 잠시 지우고 핵심 과업이 끝나는지 확인합니다.</li><li>컴포넌트 명세에 로딩·빈 데이터·오류 상태와 재시도·문의 경로를 함께 적습니다.</li><li>noscript 안의 새로고침은 JS 버튼 대신 현재 페이지 링크로 만들고, @supports 폴백은 정기 점검합니다.</li></ul>\n<h3>Kenny의 관점</h3><p>흥미롭게도 원문 댓글에서는 noscript 안 새로고침 버튼이 JS 없이는 작동하지 않을 수 있다는 지적이 나왔습니다. 폴백은 실제로 실패시켜 봐야 하는 기능입니다. AI가 정상 화면을 빠르게 만들수록 사람은 실패를 명세해야 합니다. 저는 폴백을 예외 처리보다 UX 요구사항으로 다루겠습니다.</p>\n<h3>출처</h3><ul><li><a href=\"https://css-tricks.com/using-frontend-fallbacks/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Using Fallbacks for a Robust Front-End ↗</a></li><li><a href=\"https://www.joshwcomeau.com/css/browser-support/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Josh W. Comeau: A Framework for Evaluating Browser Support ↗</a></li><li><a href=\"https://web.dev/blog/web-platform-09-2026\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">web.dev: New to the web platform in September ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/using-frontend-fallbacks/",
+    "tags": [
+      "Fallbacks",
+      "Progressive Enhancement",
+      "CSS"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-25-everyone-becomes-a-manager",
+    "category": "pm",
+    "date": "2026-11-25",
+    "title": "모두가 관리자가 되는 회사, PM에게 남는 일",
+    "rawTitle": "Databricks & the Future of the Firm",
+    "summary": "에이전트가 정보 전달을 맡으면 관리는 사라질까요? a16z의 Databricks 분석과 First Round의 위임 조언을 비교해 PM의 역할을 짚습니다.",
+    "bodyHtml": "<p>에이전트가 보고와 조율을 대신하면 중간 관리는 줄어들까요? a16z는 10월 27일 Databricks를 다룬 긴 글에서 관리의 종말보다 관리 업무의 확산을 예상합니다. PM이 해 온 정의·위임·검수가 모든 직무로 번진다는 이야기입니다.</p>\n<blockquote>\"the decline of managerialism may look more like everyone becoming a manager\"<cite>a16z</cite></blockquote>\n<h3>무슨 일인가</h3><p>a16z는 에이전트가 일하려면 회사의 기록 시스템이 무엇이 사실인지, 무슨 뜻인지, 무엇이 허용되는지, 효과가 있었는지에 답해야 한다고 봅니다. Databricks는 자체 테스트에서 조직의 지식 구조를 연결하자 답변 정확도가 약 50%에서 84.5%로 올랐다고 합니다. 다만 a16z는 초기 투자사이므로 이해관계를 감안해야 합니다.</p>\n<h3>여러 시각</h3><p>정보 흐름을 자동화해도 어디까지 맡길지는 별개의 질문입니다.</p><ul><li><b>a16z</b> — Block의 잭 도시는 계층이 정보 흐름을 막는다고 보지만, Databricks의 알리 고드시는 조직도와 정보 흐름은 다르며 사람을 키우는 관리자는 필요하다고 선을 긋습니다.</li><li><b>First Round Review</b> — 2025년 글에서 과잉 관리를 피하려다 방치하는 문제를 지적합니다. Rippling의 COO는 현장의 이야기와 데이터가 어긋나면 직접 가서 보라고 하고, Stripe 출신 마케터는 검토 체계에 투자했다고 합니다.</li></ul>\n<h3>왜 중요한가</h3><p>대시보드와 요약이 자동화되면 정보를 나르는 PM의 가치는 낮아집니다. 반대로 성공 기준을 정하고 예외를 판단하는 일의 가치는 커집니다. 같은 모델을 누구나 빌린다면 차이는 판단 이력을 자산으로 쌓았는지에서 생깁니다.</p>\n<h3>실무 적용</h3><ul><li>업무를 맡기기 전 허용 범위, 합격 기준, 절대 하면 안 되는 실수를 한 장에 적습니다.</li><li>결정마다 근거, 사람의 수정, 결과를 남기고 다음 실행 기준에 반영합니다.</li><li>지표와 고객의 말이 어긋나면 요약 대신 원본 통화나 화면을 직접 확인합니다.</li></ul>\n<h3>Kenny의 관점</h3><p>AX를 도구 도입으로 시작하면 막히는 이유가 여기 있다고 봅니다. 예외 규칙과 승인 기준이 사람의 머릿속에만 있으면 에이전트는 빠르게 틀릴 뿐입니다. 프론트엔드에는 근거와 수정 이력을 드러내는 검수 UI가 필요합니다. 제가 먼저 만들 것은 에이전트보다 위임 기준서와 결정 로그입니다.</p>\n<h3>출처</h3><ul><li><a href=\"https://a16z.com/databricks-the-future-of-the-firm/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">a16z: Databricks &amp; the Future of the Firm ↗</a></li><li><a href=\"https://review.firstround.com/how-to-be-a-good-micromanager/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: Is All Micromanagement Bad? ↗</a></li></ul>",
+    "source": "a16z",
+    "sourceUrl": "https://a16z.com/databricks-the-future-of-the-firm/",
+    "tags": [
+      "Product Management",
+      "AI Agents",
+      "Delegation"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-24-product-assumptions-kill-criteria",
     "category": "plan",
     "date": "2026-11-24",

@@ -1,5 +1,39 @@
 [
   {
+    "id": "2026-11-26-ai-agents-review-their-own-code",
+    "category": "ai",
+    "date": "2026-11-26",
+    "title": "AI가 짠 코드를 AI가 검토한다: 리뷰가 마지막 관문이 된 이유",
+    "rawTitle": "Nearly half of surveyed engineers and leaders say the AI agents that write their code also review it",
+    "summary": "응답자의 47%가 AI 에이전트가 작성한 코드를 AI가 다시 검토한다고 답했습니다. 코드 생산은 빨라졌지만 리뷰 기준과 책임 구조는 아직 정해지지 않았습니다.",
+    "bodyHtml": "<p>AI로 코드를 만드는 속도는 빨라졌지만, 그 코드를 확인하는 일은 병목이 됐습니다. LeadDev의 2026 AI 코드 리뷰 보고서(응답 325명)에서 거의 절반은 코드를 쓴 AI가 리뷰까지 맡는다고 답했습니다. 같은 주에는 MCP 서버가 에이전트 지침까지 전달하게 됐습니다. 에이전트의 일을 누가 어떤 기준으로 승인하느냐가 이번 주의 질문입니다.</p><blockquote>\"Anyone can go from idea to code now, so review is the only gate left, and everything piles up there.\"<cite>VentureBeat (CodeRabbit CEO Harjot Gill)</cite></blockquote><h3>무슨 일인가</h3><p>응답자의 절반은 AI 도입 뒤 1인당 PR이 25% 이상 늘었다고 했고, 45%는 리뷰 처리량을 배포의 최대 병목으로 꼽았습니다. 47%가 AI 코드를 AI가 리뷰하지만, AI 코드 리뷰 기준을 일관되게 적용하는 곳은 14%뿐입니다. 사람이 직접 리뷰한다는 답이 82%였지만, 아키텍처 영향을 판단할 맥락을 늘 갖춘 리뷰어는 18%에 그쳤습니다.</p><h3>여러 시각</h3><p>같은 문제를 승인 범위와 리뷰 소통의 각도에서 본 글들입니다.</p><ul><li><b>VentureBeat (MCP 스킬)</b> — MCP 서버가 스킬(에이전트 지침)까지 전달하게 되면서, 서버 승인은 이제 에이전트에게 무엇을 시키는지까지 승인하는 일이 됐다고 짚습니다.</li><li><b>Google Testing Blog</b> — 리뷰 답변에 \"Done\"만 쓰지 말고 어떻게, 왜 고쳤는지 덧붙이라고 권합니다. 리뷰어가 맥락을 바로 잡게 하는 습관입니다.</li></ul><h3>왜 중요한가</h3><p>이제 리뷰가 거의 유일한 거름망인데, 출시 후 결함을 추적하는 조직은 22%뿐입니다. AI가 쓰고 AI가 리뷰하고 자동으로 머지한 코드의 책임자도 분명하지 않습니다. 맥락 없는 PR과 기준 없는 AI 리뷰가 겹치면 문제의 원인을 찾기 어렵습니다.</p><h3>실무 적용</h3><ul><li>변경의 위험도로 리뷰 경로를 나누고, 인증·결제·스키마 변경은 반드시 사람이 봅니다.</li><li>AI가 만든 PR에는 의도·대안·테스트 범위 요약을 의무화합니다.</li><li>MCP 서버를 연결할 때 도구 권한과 함께 전달되는 스킬도 검토합니다.</li></ul><h3>Kenny의 관점</h3><p>에이전트로 컴포넌트를 만들면 PR이 금세 수백 줄이 됩니다. 리뷰어에게 필요한 건 어디를 봐야 하는지 알려주는 맥락입니다. AI에게 리뷰를 맡기기 전에 PR 설명부터 제대로 쓰게 해야 합니다. AX의 핵심은 사람이 판단할 지점을 정확히 남기는 설계입니다.</p><h3>출처</h3><ul><li><a href=\"https://venturebeat.com/technology/nearly-half-of-surveyed-engineers-and-leaders-say-the-ai-agents-that-write-their-code-also-review-it\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Nearly half of surveyed engineers and leaders say the AI agents that write their code also review it ↗</a></li><li><a href=\"https://venturebeat.com/technology/mcp-servers-can-now-deliver-ai-agent-skills-changing-what-companies-approve-when-they-connect-one\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: MCP servers can now deliver AI agent skills, changing what companies approve when they connect one ↗</a></li><li><a href=\"https://testing.googleblog.com/2026/05/code-review-responses-add-context-when.html\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Google Testing Blog: Code Review Responses: Add Context When It Counts ↗</a></li></ul>",
+    "source": "VentureBeat",
+    "sourceUrl": "https://venturebeat.com/technology/nearly-half-of-surveyed-engineers-and-leaders-say-the-ai-agents-that-write-their-code-also-review-it",
+    "tags": [
+      "AI Code Review",
+      "Agent Governance",
+      "MCP"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-26-two-way-doors-reversible-decisions",
+    "category": "plan",
+    "date": "2026-11-26",
+    "title": "되돌릴 수 있는 결정을 설계하라: 코드와 제품의 두 갈래 문",
+    "rawTitle": "Two-Way Doors: Don’t Code Yourself into a Corner",
+    "summary": "사소한 선택도 시간이 지나면 되돌리기 어려운 결정으로 굳습니다. 피처 플래그와 다크 런치로 되돌릴 길을 미리 만들어 두면 빠르고 안전하게 움직일 수 있습니다.",
+    "bodyHtml": "<p>결정을 미루는 흔한 이유는 잘못 고르면 되돌릴 수 없다는 두려움입니다. Google Testing Blog는 그 두려움을 이기는 대신 처음부터 되돌릴 수 있게 설계하라고 제안합니다. 같은 주 Mind the Product에는 시장 급락을 버틴 마켓플레이스의 리스크 설계 사례가 실렸습니다. 두 글 모두 빠른 실행과 안전을 함께 얻는 방법을 말합니다.</p><blockquote>\"Unless designing for flexibility, even trivial choices can quickly harden into painful one-way doors.\"<cite>Google Testing Blog</cite></blockquote><h3>무슨 일인가</h3><p>데이터베이스 선택처럼 되돌리기 어려운 결정은 한쪽 문, 변수 이름처럼 쉽게 바꾸는 결정은 양쪽 문입니다. 사소한 선택도 코드가 쌓이면 한쪽 문으로 굳습니다. 그래서 피처 플래그로 배포와 출시를 분리하고, 미성숙한 API 노출을 줄이고, 메모리 포맷과 디스크 포맷을 나누고, 다크 런치로 결과만 기록하며 검증하라고 권합니다.</p><h3>여러 시각</h3><p>같은 원리를 사업 리스크에 적용한 사례가 있습니다.</p><ul><li><b>Mind the Product</b> — 게임 아이템을 즉시 매입해 되파는 Skins.Cash의 CPO는 위험을 직접 떠안는 구조에서 가격 책정이 곧 제품이라고 말합니다. 동적 가격 엔진으로 재고 회전 시간을 53% 줄여, 고가 아이템이 하루 최대 70% 떨어진 날에도 손실이 작았습니다.</li></ul><h3>왜 중요한가</h3><p>두 글은 위험을 피하기보다 노출 시간과 범위를 줄입니다. 코드에서는 플래그와 다크 런치가, 사업에서는 빠른 재고 회전이 그 역할을 합니다. 기획과 QA에게는 어떻게 되돌릴지도 요구사항이 된다는 뜻입니다. 되돌릴 길이 있으면 결정도 빨라집니다.</p><h3>실무 적용</h3><ul><li>기획서에 결정마다 한쪽/양쪽 문을 표시하고 한쪽 문에 검토를 집중합니다.</li><li>QA 체크리스트에 플래그를 껐을 때 정상 복구되는지 확인하는 롤백 시나리오를 넣습니다.</li><li>새 추천·가격 로직은 다크 런치로 비교 로그를 쌓은 뒤 공개합니다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드의 가장 무서운 한쪽 문은 localStorage나 URL 구조처럼 사용자 쪽에 남은 데이터 형식입니다. 한번 퍼지면 오래 읽어줘야 하니, 화면 상태와 저장 포맷을 나누고 버전 필드를 붙입니다. 되돌릴 길이 요구사항에 있으면 개발도 과감해집니다.</p><h3>출처</h3><ul><li><a href=\"https://testing.googleblog.com/2026/10/two-way-doors-dont-code-yourself-into.html\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Google Testing Blog: Two-Way Doors: Don’t Code Yourself into a Corner ↗</a></li><li><a href=\"https://www.mindtheproduct.com/what-an-instant-buyout-marketplace-taught-me-about-risk\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: What an instant-buyout marketplace taught me about risk ↗</a></li></ul>",
+    "source": "Google Testing Blog",
+    "sourceUrl": "https://testing.googleblog.com/2026/10/two-way-doors-dont-code-yourself-into.html",
+    "tags": [
+      "Reversibility",
+      "Feature Flags",
+      "Risk Management"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-25-frontend-fallback-design",
     "category": "design",
     "date": "2026-11-25",

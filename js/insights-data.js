@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-27-style-queries-conditional-modifiers",
+    "category": "design",
+    "date": "2026-11-27",
+    "title": "부모는 신호만, 결정은 컴포넌트가: 스타일 쿼리 활용법",
+    "rawTitle": "Style Queries as Conditional Modifiers",
+    "summary": "Kevin Powell이 CSS-Tricks에서 스타일 쿼리를 '조건부 수정자'로 쓰는 패턴을 정리했습니다. 범위 문법, Interop 2027 후보와 함께 읽으며 컴포넌트 설계 기준을 짚었습니다.",
+    "bodyHtml": "<p>카드 하나에 .card--compact, .card--sidebar 같은 수정자 클래스가 계속 붙는다면 설계를 다시 볼 때입니다. Kevin Powell은 11월 25일 CSS-Tricks 글에서 컨테이너 스타일 쿼리를 수정자 클래스의 보완책으로 제시합니다. 부모가 커스텀 프로퍼티로 신호를 보내고 컴포넌트가 스스로 반응하는 방식입니다. 스타일 쿼리가 Baseline Newly Available이 되면서 실무에서 쓸 수 있게 됐습니다.</p>\n<blockquote>\"I don’t think style queries mean it’s time to throw out modifier classes (or data modifiers).\"<cite>CSS-Tricks (Kevin Powell)</cite></blockquote>\n<h3>무슨 일인가</h3><p>@container style(--card-layout: alternative)처럼 조상에 설정된 커스텀 프로퍼티 값을 조건으로 스타일을 바꿉니다. 모든 요소가 기본적으로 스타일 컨테이너라 container-type 선언이 필요 없지만, 자기 자신의 프로퍼티는 조회할 수 없고 일반 속성 조회도 아직 지원되지 않습니다. 글은 사이드바에서 --card-density: compact를 내려보내는 예와, 분할 레이아웃이 --overflow-grid-direction을 row로 바꾸면 그리드가 스스로 한 열로 바뀌는 예를 보여줍니다. 부모가 자식 스타일을 직접 덮어쓰지 않는다는 점이 핵심입니다.</p>\n<h3>여러 시각</h3><p>같은 '조건부 CSS' 흐름을 문법의 확장과 다음 표준 후보에서 봅니다.</p><ul><li><b>CSS-Tricks (Daniel Schwarz)</b> — 2025년 글로, 스타일 쿼리와 if()에 &lt;, &gt;= 같은 범위 비교가 들어왔다고 전합니다. --lightness &lt; 50%처럼 값의 구간으로 분기할 수 있어 신호가 '토글'에서 '수치'로 넓어집니다.</li><li><b>Josh W. Comeau</b> — Interop 2027 추천 목록에 @function, inherit(), 앵커 컨테이너 쿼리 등을 올렸습니다. 커스텀 프로퍼티로 컴포넌트를 조율하는 방식이 계속 강해질 것임을 보여줍니다.</li></ul>\n<h3>왜 중요한가</h3><p>수정자 클래스는 맥락을 아는 쪽이 클래스를 붙여야 하므로 레이아웃이 바뀔 때마다 마크업도 고쳐야 합니다. 스타일 쿼리는 맥락은 부모가, 반응 방식은 컴포넌트가 갖게 해 책임을 나눕니다. 디자인 시스템에서는 커스텀 프로퍼티가 컴포넌트의 공개 API가 됩니다. 다만 신호가 많아지면 어디서 값이 왔는지 추적하기 어려워지는 비용도 생깁니다.</p>\n<h3>실무 적용</h3><ul><li>컴포넌트 문서에 받을 수 있는 신호(--card-density 등)와 허용 값을 props처럼 명시합니다.</li><li>단순한 시각 변형은 수정자 클래스로 두고, 배치에 따른 변형만 스타일 쿼리로 옮깁니다.</li><li>신호를 설정하는 레이아웃 계층을 정해 두고, 깊은 곳에서 임의로 덮어쓰지 않게 합니다.</li></ul>\n<h3>Kenny의 관점</h3><p>React로 치면 스타일 쿼리는 CSS 안의 컨텍스트입니다. 레이아웃이 props를 일일이 내려주지 않아도 컴포넌트가 상황을 알게 됩니다. AI 에이전트에게 화면을 만들게 할 때도 '이 영역은 compact'라는 신호 하나가 클래스 조합 규칙보다 안정적입니다. 저는 신호 이름과 값을 토큰처럼 관리하는 것부터 시작하겠습니다.</p>\n<h3>출처</h3><ul><li><a href=\"https://css-tricks.com/css-style-queries-as-conditional-modifiers/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: Style Queries as Conditional Modifiers ↗</a></li><li><a href=\"https://css-tricks.com/the-range-syntax-has-come-to-container-style-queries-and-if/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">CSS-Tricks: The Range Syntax Has Come to Container Style Queries and if() ↗</a></li><li><a href=\"https://www.joshwcomeau.com/css/interop-2027/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Josh W. Comeau: The Future of CSS ✨ ↗</a></li></ul>",
+    "source": "CSS-Tricks",
+    "sourceUrl": "https://css-tricks.com/css-style-queries-as-conditional-modifiers/",
+    "tags": [
+      "Style Queries",
+      "Custom Properties",
+      "CSS Architecture"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-27-cost-per-fix-ai-coding-models",
+    "category": "ai",
+    "date": "2026-11-27",
+    "title": "토큰 단가가 아닌 '수정 1건당 비용'으로 모델을 골라라",
+    "rawTitle": "Claude Fable 5.2 cost three times as much as Opus 5.5 for nearly the same results in a VentureBeat bug-fixing test",
+    "summary": "VentureBeat 버그 수정 테스트에서 Fable 5.2는 Opus 5.5와 비슷한 결과에 3배의 비용이 들었습니다. 모델 선택 기준을 성공 1건당 비용으로 바꿔야 한다는 신호입니다.",
+    "bodyHtml": "<p>더 강한 모델이 나오면 일단 올려 쓰고 싶어집니다. VentureBeat는 11월 23일, 8,400줄짜리 자체 코드베이스에 버그를 심어 네 모델에게 같은 버그 리포트 다섯 개를 줬습니다. 결과는 성능보다 비용에서 갈렸습니다. AI 예산이 커지는 지금, 무엇을 기준으로 모델을 고를지 묻는 실험입니다.</p>\n<blockquote>\"The number that matters is what a finished fix costs on the team's own code, and token prices don't show it.\"<cite>VentureBeat</cite></blockquote>\n<h3>무슨 일인가</h3><p>시도당 도구 호출 70회 제한으로 리포트마다 세 번씩 시도했고, 숨은 테스트를 통과해야 성공으로 셌습니다. Fable 5.2는 15회 중 10회 성공에 89달러, Opus 5.5는 9회 성공에 29달러로 성공 1건당 8.90달러 대 3.22달러였습니다. Fable은 토큰 단가가 높고 도구 호출과 출력도 더 많았습니다. 서로 숨기는 두 버그 과제는 어떤 모델도 풀지 못했고, 기자는 한 번 차이는 우열을 가리기에 너무 작다고 밝힙니다.</p>\n<h3>여러 시각</h3><p>같은 '비용 대비 가치' 문제를 제조사와 기업 운영 쪽에서 봅니다.</p><ul><li><b>Anthropic</b> — Fable 5.2를 가장 야심찬 개방형 기술 작업용으로 두고, 대부분의 코딩 작업은 Opus 5.5에서 시작해 필요할 때 올리거나 내리라고 권합니다. 실험 결과와 충돌하기보다 그 권고를 뒷받침합니다.</li><li><b>VentureBeat (Snowflake)</b> — Snowflake는 AI 지출 상한을 유지하되, 상한을 넘긴 직원을 인터뷰해 가치 있는 워크플로를 찾아 재사용 스킬로 만듭니다. 비용 초과를 통제 대상이 아닌 탐색 신호로 봅니다.</li></ul>\n<h3>왜 중요한가</h3><p>토큰 단가표만 보면 실패한 시도와 늘어난 도구 호출 비용이 보이지 않습니다. 실제 비용은 '끝난 일 1건'에 붙어야 의미가 있습니다. 동시에 어려운 과제에서만 모델 차이가 드러나므로, 모든 작업에 같은 모델을 쓰는 방식은 낭비이거나 위험합니다. 라우팅과 측정이 모델 선택보다 먼저입니다.</p>\n<h3>실무 적용</h3><ul><li>우리 코드베이스에서 대표 버그 5~10개로 작은 평가 세트를 만들고 성공 1건당 비용을 잽니다.</li><li>기본 모델은 Opus급으로 두고, 증상과 원인이 먼 버그처럼 어려운 과제에서만 상위 모델로 올립니다.</li><li>예산 초과 사례를 처벌하기보다 기록하고, 효과가 확인된 흐름은 팀 스킬로 공유합니다.</li></ul>\n<h3>Kenny의 관점</h3><p>프론트엔드 작업의 대부분은 최상위 모델이 필요 없는 반복 작업입니다. 오히려 비싼 모델은 탐색을 더 많이 하며 비용을 키우기도 합니다. 저는 작업 난이도를 먼저 분류하고, 실패 기록을 쌓아 다음 라우팅 규칙에 반영하겠습니다. AX의 비용 관리는 모델 비교표가 아니라 우리 일의 데이터에서 시작합니다.</p>\n<h3>출처</h3><ul><li><a href=\"https://venturebeat.com/orchestration/claude-fable-5-2-cost-three-times-as-much-as-opus-5-5-for-nearly-the-same-results-in-a-venturebeat-bug-fixing-test\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: Claude Fable 5.2 cost three times as much as Opus 5.5 for nearly the same results in a VentureBeat bug-fixing test ↗</a></li><li><a href=\"https://www.anthropic.com/claude-fable-and-mythos-5-2\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Anthropic: Introducing Claude Fable 5.2 and Claude Mythos 5.2 ↗</a></li><li><a href=\"https://venturebeat.com/orchestration/after-token-leaderboards-and-spending-caps-snowflake-has-a-third-idea-keep-the-cap-then-learn-from-whoever-breaks-it\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">VentureBeat: After token leaderboards and spending caps, Snowflake has a third idea: Keep the cap, then learn from whoever breaks it ↗</a></li></ul>",
+    "source": "VentureBeat",
+    "sourceUrl": "https://venturebeat.com/orchestration/claude-fable-5-2-cost-three-times-as-much-as-opus-5-5-for-nearly-the-same-results-in-a-venturebeat-bug-fixing-test",
+    "tags": [
+      "AI Coding Agents",
+      "Model Routing",
+      "AI Cost"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-26-ai-agents-review-their-own-code",
     "category": "ai",
     "date": "2026-11-26",

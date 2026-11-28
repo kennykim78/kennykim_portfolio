@@ -4,6 +4,40 @@
  */
 window.INSIGHTS = [
   {
+    "id": "2026-11-28-fundraising-conversion-experiments",
+    "category": "plan",
+    "date": "2026-11-28",
+    "title": "전환율 실험, 남의 업계 전술은 이유부터 빌려라",
+    "rawTitle": "How to fix your conversion: Three lessons from a fundraising app experiment",
+    "summary": "기부 플랫폼의 A/B 실험 세 가지는 이탈 복구·결제 선택지·업계 간 전술 차용이 언제 통하고 언제 실패하는지 보여준다. 핵심은 가설의 질이다.",
+    "bodyHtml": "<p>온라인 기부 플랫폼 Fundraise Up이 실제 트래픽으로 돌린 전환율 실험 결과를 공개했다. 기부자는 계정도 저장된 결제수단도 없는 경우가 많아, 마찰 하나가 곧 이탈로 이어진다. 그래서 이 사례는 핀테크·커머스·SaaS 결제 플로우를 설계하는 기획자에게 그대로 통하는 교과서다. 특히 성공한 실험만큼 실패한 실험을 투명하게 다뤘다는 점이 눈에 띈다.</p><blockquote>\"The key is to understand why a practice works before applying it elsewhere.\"<cite>Mind the Product</cite></blockquote><h3>무슨 일인가</h3><p>첫 실험은 커머스의 장바구니 이탈 복구를 빌려왔다. 결제 중 떠나는 사용자에게 리마인더 수신 여부를 묻고 1·3·7일 차에 메일을 보냈더니, 수신자의 10%가 기부를 완료해 목표 5%의 두 배를 넘겼고 평균 금액도 유지됐다. 영수증 메일의 추가 기부 유도는 프리셋 2개+직접 입력 안이 평균 금액을 약 6% 올린 반면, 버튼 하나 안은 클릭률이 44% 넘게 떨어졌다. Google Pay·Apple Pay 도입은 전환을 2~2.6% 끌어올렸지만, 주식 기부 옵션은 클릭 0.45%에 그쳐 목표에 크게 못 미쳤다. 단계가 늘어나는 기능은 아무리 그럴듯해도 마찰을 이기지 못했다.</p><h3>여러 시각</h3><p>같은 매체의 다른 글은 실험 자체를 언제 하지 말아야 하는지를 짚는다.</p><ul><li><b>Mind the Product (Mohit Agrawal)</b> — 트래픽이 적거나, 가설이 불분명하거나, 변수를 여러 개 묶거나, 가격처럼 걸린 게 큰 결정이라면 A/B 테스트는 오히려 잘못된 선택일 수 있다고 경고한다. 기부 사례가 52일·10만 명 이상 규모와 명확한 성공 기준을 갖췄기에 의미 있는 결과를 낸 것과 정확히 대비된다.</li></ul><h3>왜 중요한가</h3><p>두 글을 겹쳐 보면 결론은 같다. 실험의 가치는 도구가 아니라 가설에서 나온다. 무엇을, 왜 바꾸고, 결과가 어느 쪽이든 무엇을 배울지 미리 정하면 주식 기부 같은 실패도 비용이 아니라 학습이 된다. 반대로 가설 없이 돌린 실험은 트래픽만 소모하고 테스트 분기라는 기술 부채를 남긴다.</p><h3>실무 적용</h3><ul><li>실험 기획서에 변경 대상·기대 행동 변화·성공/실패 시 학습 포인트를 한 줄씩 적고 시작한다.</li><li>결제·가입 플로우는 기능 추가보다 단계 축소(간편결제, 프리셋 금액)를 먼저 검증한다.</li><li>QA 관점에서 실험 종료 후 테스트 분기 코드 제거를 완료 조건(DoD)에 넣는다.</li></ul><h3>Kenny의 관점</h3><p>프론트엔드에서 보면 이 실험들의 승패는 결국 화면 위 클릭 수와 입력 단계에서 갈렸다. 버튼 하나로 단순화한 안이 오히려 실패한 건, 단순함이 아니라 사용자의 선택지를 줄인 탓이다. 기획·QA는 실험을 돌리기 전에 트래픽 규모와 가설 품질부터 점검하는 게이트 역할을 해야 한다. 남의 업계 전술을 빌릴 땐 화면이 아니라 그 전술이 해결한 마찰을 빌려야 한다.</p><h3>출처</h3><ul><li><a href=\"https://www.mindtheproduct.com/how-to-fix-your-conversion-three-lessons-from-a-fundraising-app-experiment\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: How to fix your conversion: Three lessons from a fundraising app experiment ↗</a></li><li><a href=\"https://www.mindtheproduct.com/10-reasons-why-a-b-testing-might-be-the-wrong-move/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">Mind the Product: 10 reasons why A/B testing might be the wrong move ↗</a></li></ul>",
+    "source": "Mind the Product",
+    "sourceUrl": "https://www.mindtheproduct.com/how-to-fix-your-conversion-three-lessons-from-a-fundraising-app-experiment",
+    "tags": [
+      "Experimentation",
+      "Conversion",
+      "Hypothesis"
+    ],
+    "thumb": ""
+  },
+  {
+    "id": "2026-11-28-gamma-ai-pivot-strategy",
+    "category": "pm",
+    "date": "2026-11-28",
+    "title": "빈 페이지 문제가 Gamma의 AI 피벗을 만들었다",
+    "rawTitle": "How Gamma pulled off their AI pivot | Jon Noronha (Co-founder and CPO of Gamma)",
+    "summary": "런웨이 1년을 남긴 Gamma는 활성화율 데이터에서 빈 페이지 문제를 찾아 AI로 풀었다. 해자보다 채택이 먼저라는 교훈이 핵심이다.",
+    "bodyHtml": "<p>프레젠테이션 도구 Gamma의 공동창업자이자 CPO 존 노로냐가 First Round 팟캐스트에서 AI 피벗의 전 과정을 털어놨다. 2020년 원격근무에 베팅해 출발했지만 2022년까지 성장은 완만했고 런웨이는 1년 남짓이었다. 그러다 2023년 3월 생성형 AI 중심으로 전면 재출시하며 반전을 만들었다. AI 시대에 기존 제품을 어떻게 재정의할지 고민하는 PM·사업기획자에게 구체적인 의사결정 기록이다.</p><blockquote>\"The blank page was the problem we started out trying to solve.\"<cite>First Round Review</cite></blockquote><h3>무슨 일인가</h3><p>전환점은 활성화 지표였다. 랜딩 가입자 중 가치에 도달하는 비율이 5~10%에 불과했고, 원인은 빈 페이지 앞에서 막히는 경험이었다. AI 생성으로 이 단계를 없애자 사용자는 발표 자료 한 건에 드는 약 10시간 중 8~9시간을 아끼게 됐다. 투자자들이 권한 버티컬 전략 대신 영업·마케팅·컨설팅처럼 외부에 발표하는 모든 사람을 겨냥한 수평 전략을 택했고, 초기 12명 팀에 GTM 인력은 없었다. 반성도 분명하다. 사용자가 채택하기 전에 독자 포맷이라는 해자부터 쌓았고, PowerPoint 내보내기는 1~2년 늦었다.</p><h3>여러 시각</h3><p>같은 시리즈의 Supabase 인터뷰는 AI 시대 성장을 다른 각도에서 보여준다.</p><ul><li><b>First Round Review (Supabase 폴 코플스톤)</b> — Supabase는 제품을 갈아엎는 피벗 대신 pgvector, Bolt·Lovable, Claude Code·Codex로 이어진 세 번의 AI 물결에 기존 인프라를 맞춰 올라탔다. 작은 기본 기능에 집중하고 가치 도달 시간을 핵심 지표로 삼았다는 점에서, 활성화에서 답을 찾은 Gamma와 문제의식이 맞닿는다.</li></ul><h3>왜 중요한가</h3><p>두 사례 모두 AI를 기능 목록에 더하지 않고 사용자가 가치에 도달하는 시간을 줄이는 데 썼다. Gamma는 화면 앞의 막힘을, Supabase는 개발자의 설정 시간을 없앴다. 또 하나의 시사점은 순서다. 채택 전에 해자를 쌓으면 성장이 막히고, 기업 수요가 몰려와도 영업·보안·구매 대응 체계가 없으면 기회를 놓친다.</p><h3>실무 적용</h3><ul><li>AI 도입 아이디어는 기능 목록이 아니라 활성화 퍼널의 가장 큰 이탈 구간에서 출발한다.</li><li>호환성(내보내기·가져오기)을 독자 포맷보다 먼저 로드맵에 올려 채택 장벽을 낮춘다.</li><li>B2C 확산 이후 B2B 수요에 대비해 보안·구매 대응 요건을 미리 사업계획에 넣는다.</li></ul><h3>Kenny의 관점</h3><p>\"데이터로 진단하고 디자인으로 해결한다\"는 노로냐의 말은 AX 프로젝트의 정석이다. 고객사와 AI 도입을 논의하면 모델 성능부터 묻지만, 실제 성과는 사용자가 첫 결과물을 보기까지의 시간을 얼마나 줄였는지에서 난다. 프론트엔드 입장에서 빈 페이지를 채운 첫 초안은 그 자체로 온보딩이다. PM은 해자를 설계하기 전에 사용자가 떠나지 않을 이유부터 증명해야 한다.</p><h3>출처</h3><ul><li><a href=\"https://review.firstround.com/how-gamma-pulled-off-their-ai-pivot-jon-noronha-co-founder-and-cpo-of-gamma/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: How Gamma pulled off their AI pivot | Jon Noronha ↗</a></li><li><a href=\"https://review.firstround.com/how-supabase-became-the-essential-infrastructure-for-the-ai-era-paul-copplestone-co-founder-ceo/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">First Round Review: How Supabase became the essential infrastructure for the AI era | Paul Copplestone ↗</a></li></ul>",
+    "source": "First Round Review",
+    "sourceUrl": "https://review.firstround.com/how-gamma-pulled-off-their-ai-pivot-jon-noronha-co-founder-and-cpo-of-gamma/",
+    "tags": [
+      "AI Pivot",
+      "Activation",
+      "Product Strategy"
+    ],
+    "thumb": ""
+  },
+  {
     "id": "2026-11-27-style-queries-conditional-modifiers",
     "category": "design",
     "date": "2026-11-27",
